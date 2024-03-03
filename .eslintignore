@@ -1,4 +1,5 @@
 jest.config.js
 jest.setup.js
-next.config.js
 commitlint.config.js
+.eslintrc.js
+next.config.mjs
