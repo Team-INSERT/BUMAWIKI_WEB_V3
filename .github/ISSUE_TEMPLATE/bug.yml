@@ -1,0 +1,17 @@
+name: "Bug"
+description: "🤬"
+labels: 버그
+body:
+  - type: textarea
+    attributes:
+      label: Describe
+      description: |
+        버그에 대해서 설명해주세요!
+      placeholder: |
+        헤더가 깨지는 버그가 발생해요
+
+  - type: textarea
+    attributes:
+      label: Additional
+      description: |
+        추가로 해주실 말씀이 있나요?
