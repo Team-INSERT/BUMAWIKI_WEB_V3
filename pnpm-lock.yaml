@@ -11,6 +11,9 @@ dependencies:
   '@stylexjs/babel-plugin':
     specifier: ^0.5.1
     version: 0.5.1
+  '@stylexjs/nextjs-plugin':
+    specifier: ^0.5.1
+    version: 0.5.1(next@14.1.1)
   '@stylexjs/stylex':
     specifier: ^0.5.1
     version: 0.5.1
@@ -282,8 +285,28 @@ packages:
       '@babel/types': 7.24.0
     dev: false
 
+  /@babel/plugin-syntax-flow@7.23.3(@babel/core@7.24.0):
+    resolution: {integrity: sha512-YZiAIpkJAwQXBJLIQbRFayR5c+gJ35Vcz3bg954k7cd73zqjvhacJuL9RbrzPz8qPmZdgqP6EUKwy0PCNhaaPA==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.24.0
+      '@babel/helper-plugin-utils': 7.24.0
+    dev: false
+
   /@babel/plugin-syntax-jsx@7.23.3(@babel/core@7.24.0):
     resolution: {integrity: sha512-EB2MELswq55OHUoRZLGg/zC7QWUKfNLpE57m/S2yr1uEneIgsTgrSzXP3NXEsMkVn76OlaVVnzN+ugObuYGwhg==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.24.0
+      '@babel/helper-plugin-utils': 7.24.0
+    dev: false
+
+  /@babel/plugin-syntax-typescript@7.23.3(@babel/core@7.24.0):
+    resolution: {integrity: sha512-9EiNjVJOMwCO+43TqoTrgQ8jMwcAd0sWyXi9RPfIsLTj4R2MADDDQXELhffaUx/uJv2AYcxBgPwH6j4TIA4ytQ==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -789,6 +812,21 @@ packages:
       '@babel/types': 7.24.0
       '@stylexjs/shared': 0.5.1
       '@stylexjs/stylex': 0.5.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@stylexjs/nextjs-plugin@0.5.1(next@14.1.1):
+    resolution: {integrity: sha512-94fV3OmI5ZZUCiyJiPh8/03uujQBowzNtNTanGI0bPYI1TXueBCRXrsKjv9YwDedItVu66UWA1ynydC8IYot/g==}
+    peerDependencies:
+      next: '>=14.0.1'
+    dependencies:
+      '@babel/core': 7.24.0
+      '@babel/plugin-syntax-flow': 7.23.3(@babel/core@7.24.0)
+      '@babel/plugin-syntax-jsx': 7.23.3(@babel/core@7.24.0)
+      '@babel/plugin-syntax-typescript': 7.23.3(@babel/core@7.24.0)
+      '@stylexjs/babel-plugin': 0.5.1
+      next: 14.1.1(@babel/core@7.24.0)(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - supports-color
     dev: false
