@@ -1,13 +1,17 @@
 import { withSentryConfig } from "@sentry/nextjs";
-import stylexPlugin from "@stylexjs/nextjs-plugin";
+import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
+
+const withVanillaExtract = createVanillaExtractPlugin({
+  identifiers: ({ hash }) => `bumawiki_${hash}`,
+});
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withVanillaExtract({
   swcMinify: true,
   images: {
     domains: [],
   },
-};
+});
 
 export default withSentryConfig(
   nextConfig,
