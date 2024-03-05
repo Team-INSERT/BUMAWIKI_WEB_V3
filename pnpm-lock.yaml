@@ -10,7 +10,7 @@ dependencies:
     version: 7.104.0(next@14.1.1)(react@18.2.0)(webpack@5.90.3)
   '@tanstack/react-query':
     specifier: ^5.24.6
-    version: 5.24.6(react@18.2.0)
+    version: 5.25.0(react@18.2.0)
   '@types/react-beautiful-dnd':
     specifier: ^13.1.8
     version: 13.1.8
@@ -1101,16 +1101,16 @@ packages:
     dependencies:
       tslib: 2.6.2
 
-  /@tanstack/query-core@5.24.6:
-    resolution: {integrity: sha512-xYhxiMUPh1JzamVK8VwwkBpIBXVYRyIBW9gjSN+/BB4kL1nS86gnRWeW8L+sacCj1RiyEsysJe3GSvtbIpHdWw==}
+  /@tanstack/query-core@5.25.0:
+    resolution: {integrity: sha512-vlobHP64HTuSE68lWF1mEhwSRC5Q7gaT+a/m9S+ItuN+ruSOxe1rFnR9j0ACWQ314BPhBEVKfBQ6mHL0OWfdbQ==}
     dev: false
 
-  /@tanstack/react-query@5.24.6(react@18.2.0):
-    resolution: {integrity: sha512-eyIWwHiO1ZirYGzqs0kfRMkf8icuXroFunjnsgntk9YgGFbGoPs3Hxy9/OushNvpnkHT9RwPZb8UfEKzMzzEaQ==}
+  /@tanstack/react-query@5.25.0(react@18.2.0):
+    resolution: {integrity: sha512-u+n5R7mLO7RmeiIonpaCRVXNRWtZEef/aVZ/XGWRPa7trBIvGtzlfo0Ah7ZtnTYfrKEVwnZ/tzRCBcoiqJ/tFw==}
     peerDependencies:
       react: ^18.0.0
     dependencies:
-      '@tanstack/query-core': 5.24.6
+      '@tanstack/query-core': 5.25.0
       react: 18.2.0
     dev: false
 
