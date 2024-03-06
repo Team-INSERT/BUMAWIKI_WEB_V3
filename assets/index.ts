@@ -1,0 +1,17 @@
+export { default as AccidentIcon } from "./AccidentIcon";
+export { default as ArrowIcon } from "./ArrowIcon";
+export { default as CheckIcon } from "./CheckIcon";
+export { default as ClubIcon } from "./ClubIcon";
+export { default as FrameIcon } from "./FrameIcon";
+export { default as GithubIcon } from "./GithubIcon";
+export { default as InstagramIcon } from "./InstagramIcon";
+export { default as LikeIcon } from "./LikeIcon";
+export { default as PageNextIcon } from "./PageNextIcon";
+export { default as PagePrevIcon } from "./PagePrevIcon";
+export { default as PopularIcon } from "./PopularIcon";
+export { default as ScrollIcon } from "./ScrollIcon";
+export { default as SearchIcon } from "./SearchIcon";
+export { default as StudentIcon } from "./StudentIcon";
+export { default as TeacherIcon } from "./TeacherIcon";
+export { default as WriteIcon } from "./WriteIcon";
+export { default as Logo } from "./Logo";
