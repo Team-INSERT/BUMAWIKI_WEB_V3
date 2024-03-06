@@ -1,6 +1,7 @@
+import { theme, font } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
-  padding: 10,
-  background: "green",
+  backgroundColor: theme.classify,
+  ...font.D1,
 });
