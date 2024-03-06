@@ -15,7 +15,7 @@ const Footer = () => {
           <GithubIcon />
         </Link>
       </div>
-      <div className={styles.information}>
+      <div className={styles.informationBox}>
         <span className={styles.information}>
           buma.wiki | bumawiki@gmail.com | BSSM | TEAM OG | PROJECT BUMAWIKI
         </span>
