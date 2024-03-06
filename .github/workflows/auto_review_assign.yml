@@ -11,3 +11,4 @@ jobs:
         with:
           assignees: ${{ github.actor }}
           reviewers: ubinquitous, jyh071116, 5ewon
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
