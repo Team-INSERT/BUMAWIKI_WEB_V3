@@ -25,19 +25,19 @@ labels:
       - '\bfix\b'
   ":star2: refactor":
     include:
-      - '\brefactor\b:'
+      - '\brefactor\b'
   ":blue_book: documentation":
     include:
-      - '\bdocs\b:'
+      - '\bdocs\b'
   ":broom: chore":
     include:
-      - '\bchore\b:'
+      - '\bchore\b'
   ":framed_picture: feat":
     include:
-      - '\bfeat\b:'
+      - '\bfeat\b'
   ":test_tube: test":
     include:
-      - '\btest\b:'
+      - '\btest\b'
   ":toolbox: ci":
     include:
-      - '\bci\b:'
+      - '\bci\b'
