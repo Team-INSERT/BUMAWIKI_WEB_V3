@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [21.x]
+        node-version: [19.x]
     # env:
     # NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
     # NEXT_PUBLIC_FILE_SERVER_URL: ${{ secrets.NEXT_PUBLIC_FILE_SERVER_URL }}
@@ -39,10 +39,11 @@ jobs:
 
       - name: create env file
         run: touch .env
-
+      - run: corepack enable
+      - run: corepack prepare pnpm@latest-7 --activate
       - run: pnpm install
-      - run: pnpm build
       - run: pnpm lint
+      - run: pnpm build
 # echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env
 # echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env
 # echo NEXT_PUBLIC_FILE_SERVER_URL=${{ secrets.NEXT_PUBLIC_FILE_SERVER_URL }} >> .env
