@@ -1,15 +1,22 @@
 import React, { PropsWithChildren } from "react";
 import { Provider as JotaiProvider } from "jotai";
-import ReactQueryProvider from "./ReactQueryProvider";
-import LayoutProvider from "./LayoutProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      enabled: true,
+      retry: 0,
+    },
+  },
+});
 
 const AppProvider = ({ children }: PropsWithChildren) => {
   return (
-    <ReactQueryProvider>
-      <JotaiProvider>
-        <LayoutProvider>{children}</LayoutProvider>
-      </JotaiProvider>
-    </ReactQueryProvider>
+    <QueryClientProvider client={queryClient}>
+      <JotaiProvider>{children}</JotaiProvider>
+    </QueryClientProvider>
   );
 };
 

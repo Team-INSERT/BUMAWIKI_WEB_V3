@@ -29,6 +29,7 @@ module.exports = {
     // 'React' must be in scope when using JSX 에러 지우기(Next.js)
     "react/react-in-jsx-scope": "off",
     "react/jsx-no-useless-fragment": 0,
+    "react/jsx-key": 1,
     "react/button-has-type": 0,
     // ts파일에서 tsx구문 허용(Next.js)
     "@typescript-eslint/no-use-before-define": "off",
