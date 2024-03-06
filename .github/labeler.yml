@@ -4,7 +4,6 @@
 enable:
   issues: false
   prs: true
-# comments object allows you to specify a different message for issues and prs
 
 comments:
   issues: |
@@ -21,24 +20,24 @@ comments:
 #    - 'include' patterns will associate a label if any of these patterns match
 #    - 'exclude' patterns will ignore this label if any of these patterns match
 labels:
-  ":fix: fix":
+  "fix":
     include:
       - '\bfix\b'
-  ":star2: refactor":
+  "refactor":
     include:
-      - '\brefactor\b:'
-  ":blue_book: documentation":
+      - '\brefactor\b'
+  "docs":
     include:
-      - '\bdocs\b:'
-  ":broom: chore":
+      - '\bdocs\b'
+  "chore":
     include:
-      - '\bchore\b:'
-  ":framed_picture: feat":
+      - '\bchore\b'
+  "feat":
     include:
-      - '\bfeat\b:'
-  ":test_tube: test":
+      - '\bfeat\b'
+  "test":
     include:
-      - '\btest\b:'
-  ":toolbox: ci":
+      - '\btest\b'
+  "ci":
     include:
-      - '\bci\b:'
+      - '\bci\b'
