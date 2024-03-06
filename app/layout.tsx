@@ -2,6 +2,8 @@
 
 import "./globals.css";
 import AppProvider from "@/provider";
+import Header from "@/components/Header";
+import { container } from "./layout.css";
 
 export default function RootLayout({
   children,
@@ -11,7 +13,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>
+          <Header />
+          <div className={container}>{children}</div>
+        </AppProvider>
       </body>
     </html>
   );
