@@ -29,7 +29,11 @@ const Header = () => {
           <Logo />
         </i>
         {navigationList.map((nav) => (
-          <Link href={nav.href} className={styles.navigationItem}>
+          <Link
+            key={nav.item}
+            href={nav.href}
+            className={styles.navigationItem}
+          >
             {nav.icon}
             <span>{nav.item}</span>
           </Link>
