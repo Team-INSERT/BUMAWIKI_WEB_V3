@@ -45,3 +45,7 @@ export const searchButton = style({
   right: "12px",
   cursor: "pointer",
 });
+
+export const logo = style({
+  cursor: "pointer",
+});

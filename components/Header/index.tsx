@@ -25,7 +25,9 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <ul className={styles.navigationList}>
-        <Logo />
+        <i className={styles.logo}>
+          <Logo />
+        </i>
         {navigationList.map((nav) => (
           <Link href={nav.href} className={styles.navigationItem}>
             {nav.icon}
