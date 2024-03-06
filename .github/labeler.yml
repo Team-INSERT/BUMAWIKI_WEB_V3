@@ -4,7 +4,6 @@
 enable:
   issues: false
   prs: true
-# comments object allows you to specify a different message for issues and prs
 
 comments:
   issues: |
