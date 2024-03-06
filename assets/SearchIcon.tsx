@@ -1,8 +1,9 @@
-import React from "react";
+import React, { SVGProps } from "react";
 
-const SearchIcon = () => {
+const SearchIcon = ({ ...props }: SVGProps<SVGSVGElement>) => {
   return (
     <svg
+      {...props}
       width="16"
       height="16"
       viewBox="0 0 1664 1664"

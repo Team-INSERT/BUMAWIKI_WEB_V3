@@ -25,9 +25,7 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <ul className={styles.navigationList}>
-        <i className={styles.logo}>
-          <Logo />
-        </i>
+        <Logo className={styles.logo} />
         {navigationList.map((nav) => (
           <Link
             key={nav.item}
@@ -44,9 +42,7 @@ const Header = () => {
           placeholder="검색어를 입력하세요..."
           className={styles.searchInput}
         />
-        <i className={styles.searchButton}>
-          <SearchIcon />
-        </i>
+        <SearchIcon className={styles.searchButton} />
       </form>
     </div>
   );

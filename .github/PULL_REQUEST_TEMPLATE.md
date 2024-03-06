@@ -2,8 +2,6 @@
 
 ## What
 
-## Why
-
 ## How
 
 ## ScreenShot
