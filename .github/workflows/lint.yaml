@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [21.x]
     # env:
     # NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
     # NEXT_PUBLIC_FILE_SERVER_URL: ${{ secrets.NEXT_PUBLIC_FILE_SERVER_URL }}
