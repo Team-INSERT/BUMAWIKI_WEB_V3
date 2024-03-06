@@ -20,24 +20,24 @@ comments:
 #    - 'include' patterns will associate a label if any of these patterns match
 #    - 'exclude' patterns will ignore this label if any of these patterns match
 labels:
-  ":fix: fix":
+  "fix":
     include:
       - '\bfix\b'
-  ":star2: refactor":
+  "refactor":
     include:
       - '\brefactor\b'
-  ":blue_book: documentation":
+  "docs":
     include:
       - '\bdocs\b'
-  ":broom: chore":
+  "chore":
     include:
       - '\bchore\b'
-  ":framed_picture: feat":
+  "feat":
     include:
       - '\bfeat\b'
-  ":test_tube: test":
+  "test":
     include:
       - '\btest\b'
-  ":toolbox: ci":
+  "ci":
     include:
       - '\bci\b'
