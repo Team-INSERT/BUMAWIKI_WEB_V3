@@ -37,9 +37,9 @@ jobs:
       - name: create env file
         run: touch .env
 
-      - run: pnpm
-      - run: pnpm build
-      - run: pnpm lint
+      - run: npm
+      - run: npm build
+      - run: npm lint
 # echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env
 # echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env
 # echo NEXT_PUBLIC_FILE_SERVER_URL=${{ secrets.NEXT_PUBLIC_FILE_SERVER_URL }} >> .env
