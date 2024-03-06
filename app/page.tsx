@@ -1,8 +1,12 @@
 import React from "react";
-import * as styles from "./page.css";
+import Classify from "@/components/Classify";
 
 const Home = () => {
-  return <div className={styles.container} />;
+  return (
+    <div>
+      <Classify />
+    </div>
+  );
 };
 
 export default Home;
