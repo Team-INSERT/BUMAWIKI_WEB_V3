@@ -3,10 +3,11 @@ import { style } from "@vanilla-extract/css";
 
 export const container = style({
   width: "72vw",
-  ...flex.COLUMN_VERTICAL,
+  ...flex.COLUMN_START,
   borderLeft: `2px solid ${theme.gray}`,
   borderRight: `2px solid ${theme.gray}`,
   backgroundColor: theme.white,
+  margin: "0 20px 0 90px",
 });
 
 export const board = style({
