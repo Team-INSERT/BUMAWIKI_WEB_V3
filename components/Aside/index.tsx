@@ -14,7 +14,7 @@ const Aside = () => {
           <a className={styles.docsName} href="/">
             한예준(학생)
           </a>
-          <span className={styles.docsLastModified}>&nbsp; 3시간 전</span>
+          <span className={styles.docsLastModified}>3시간 전</span>
         </div>
       ))}
       <div className={styles.pageBox}>

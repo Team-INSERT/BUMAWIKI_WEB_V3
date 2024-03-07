@@ -40,6 +40,7 @@ export const docsName = style({
 });
 
 export const docsLastModified = style({
+  marginLeft: "5px",
   color: theme.boldgray,
   fontSize: "10px",
 });
