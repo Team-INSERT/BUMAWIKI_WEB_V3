@@ -1,20 +1,20 @@
 export const useDocs = () => {
   const translateClassify = (classify: string) => {
     switch (classify) {
-      case "학생":
-        return "student";
-      case "선생님":
-        return "teacher";
-      case "사건/사고":
-        return "accident";
-      case "동아리":
-        return "club";
-      case "틀":
-        return "frame";
-      case "인기":
-        return "popular";
-      case "부마위키":
-        return "";
+      case "student":
+        return "학생";
+      case "teacher":
+        return "선생님";
+      case "accident":
+        return "사건사고";
+      case "club":
+        return "동아리";
+      case "frame":
+        return "틀";
+      case "popular":
+        return "인기";
+      case "":
+        return "부마위키";
       default:
         return classify;
     }
