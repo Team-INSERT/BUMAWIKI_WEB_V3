@@ -8,8 +8,8 @@ interface PropsType extends PropsWithChildren {
 const Accordion = ({ title, children }: PropsType) => {
   return (
     <div className={styles.container}>
-      <details className="details">
-        <summary>
+      <details className={styles.details}>
+        <summary className={styles.summary}>
           <div className={styles.title}>{title}</div>
         </summary>
         {children}
