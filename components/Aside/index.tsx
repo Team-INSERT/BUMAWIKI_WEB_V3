@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { ArrowIcon } from "@/assets";
 import { theme } from "@/styles";
 import * as styles from "./style.css";
@@ -11,9 +12,9 @@ const Aside = () => {
       </div>
       {Array.from({ length: 12 }, (_, i) => (
         <div key={i} className={styles.docs}>
-          <a className={styles.docsName} href="/">
+          <Link className={styles.docsName} href="/">
             한예준(학생)
-          </a>
+          </Link>
           <span className={styles.docsLastModified}>3시간 전</span>
         </div>
       ))}
