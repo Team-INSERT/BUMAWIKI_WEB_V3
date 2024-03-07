@@ -7,6 +7,7 @@ export const container = style({
   height: "54px",
   backgroundColor: theme.primary,
   position: "fixed",
+  zIndex: 10,
   ...flex.BETWEEN,
 });
 
