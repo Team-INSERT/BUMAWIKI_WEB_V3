@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowIcon } from "@/assets";
+import { theme } from "@/styles";
 import * as styles from "./style.css";
 
 const Aside = () => {
@@ -24,7 +25,7 @@ const Aside = () => {
               width={11}
               height={11}
               viewBox="0 0 11 20"
-              fill="#274168"
+              fill={theme.primary}
             />
             이전
           </span>
@@ -37,7 +38,7 @@ const Aside = () => {
               width={11}
               height={11}
               viewBox="0 0 11 20"
-              fill="#274168"
+              fill={theme.primary}
             />
           </span>
         </button>
