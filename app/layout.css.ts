@@ -6,5 +6,5 @@ export const container = style({
   minHeight: "100svh",
   backgroundColor: theme.background,
   padding: "52px 20px 0 20px",
-  ...flex.COLUMN_VERTICAL,
+  ...flex.FLEX,
 });
