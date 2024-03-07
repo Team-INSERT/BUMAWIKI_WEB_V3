@@ -1,11 +1,11 @@
+import Container from "@/components/Container";
 import React from "react";
-import Classify from "@/components/Classify";
 
 const Home = () => {
   return (
-    <div>
-      <Classify />
-    </div>
+    <Container title="대문" classify="부마위키">
+      d
+    </Container>
   );
 };
 
