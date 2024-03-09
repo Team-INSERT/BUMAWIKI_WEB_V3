@@ -13,15 +13,11 @@ interface PageProps {
 }
 
 const Page = async ({ params: { title } }: PageProps) => {
-  const { translateClassify } = useDocs();
   const queryClient = getQueryClient();
   const docs = await queryClient.fetchQuery(docsQuery.getByTitle(title));
 
   return (
-    <Container
-      title={translateClassify(docs.docsType)}
-      classify={docs.docsType}
-    >
+    <Container title={docs.title} classify={docs.docsType}>
       {docs.docsType}
       <HydrationBoundary state={dehydrate(queryClient)}>
         {JSON.stringify(docs)}
