@@ -1,5 +1,4 @@
 import Container from "@/components/Container";
-import { useDocs } from "@/hooks/useDocs";
 import { docsQuery } from "@/services/docs/docsQuery";
 import React from "react";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
