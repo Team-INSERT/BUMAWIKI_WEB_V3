@@ -1,9 +1,9 @@
-import { flex, theme } from "@/styles";
+import { flex, font, theme } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
   width: "100%",
-  height: "100px",
+  padding: "20px 0",
 });
 
 export const title = style({
@@ -18,10 +18,9 @@ export const summary = style({
   height: "45px",
   borderBottom: `1.5px solid ${theme.gray}`,
   margin: "10px 0",
-  fontWeight: 800,
   color: theme.primary,
-  fontSize: "30px",
   cursor: "pointer",
+  ...font.H2,
   ...flex.FLEX,
   selectors: {
     [`${details}[open] > &`]: {
@@ -38,4 +37,10 @@ export const summary = style({
       background: "url('/assets/arrow_down.svg')",
     },
   },
+});
+
+export const content = style({
+  padding: "10px 20px",
+  gap: "12px",
+  ...flex.COLUMN_FLEX,
 });

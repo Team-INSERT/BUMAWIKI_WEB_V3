@@ -7,6 +7,7 @@ const theme = {
   classify: "#EC9F19",
   title: "#545454",
   link: "#0038FF",
+  red: "#ff0000",
 };
 
 export default theme;

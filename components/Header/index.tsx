@@ -9,6 +9,7 @@ import {
   TeacherIcon,
   Logo,
   SearchIcon,
+  MyPageIcon,
 } from "@/assets";
 import * as styles from "./style.css";
 
@@ -37,13 +38,19 @@ const Header = () => {
           </Link>
         ))}
       </ul>
-      <form className={styles.searchBox}>
-        <input
-          placeholder="검색어를 입력하세요..."
-          className={styles.searchInput}
-        />
-        <SearchIcon className={styles.searchButton} />
-      </form>
+      <div className={styles.utilityBox}>
+        <form className={styles.searchBox}>
+          <input
+            placeholder="검색어를 입력하세요..."
+            className={styles.searchInput}
+          />
+          <SearchIcon className={styles.searchButton} />
+        </form>
+        <Link href="/mypage" className={styles.navigationItem}>
+          <MyPageIcon />
+          <span>내정보</span>
+        </Link>
+      </div>
     </div>
   );
 };

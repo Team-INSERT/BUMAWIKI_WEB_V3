@@ -15,3 +15,4 @@ export { default as StudentIcon } from "./StudentIcon";
 export { default as TeacherIcon } from "./TeacherIcon";
 export { default as WriteIcon } from "./WriteIcon";
 export { default as Logo } from "./Logo";
+export { default as MyPageIcon } from "./MyPageIcon";

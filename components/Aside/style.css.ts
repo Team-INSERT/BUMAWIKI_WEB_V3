@@ -6,6 +6,7 @@ export const container = style({
   width: "240px",
   height: "fit-content",
   marginTop: "20px",
+  marginRight: "20px",
   top: "74px",
 });
 
