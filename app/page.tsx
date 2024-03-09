@@ -1,6 +1,7 @@
 import Container from "@/components/Container";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Accordion from "@/components/Accordion";
 import config from "@/config";
 import * as styles from "./page.css";
@@ -47,6 +48,25 @@ const Home = () => {
             </span>
           </p>
         </div>
+      </div>
+      <div className={styles.utility.body}>
+        <Link
+          className={styles.utility.href}
+          href="/docs/부마위키%20업데이트%20내역"
+        >
+          업데이트 내역
+        </Link>{" "}
+        |
+        <Link className={styles.utility.href} href="/docs/부마위키%20방명록">
+          방명록
+        </Link>{" "}
+        |
+        <Link
+          className={styles.utility.href}
+          href="https://forms.gle/rYmV7zpdgcMahzF36"
+        >
+          문의하기
+        </Link>
       </div>
       <div className={styles.table.container}>
         <div className={styles.table.body}>
@@ -98,7 +118,6 @@ const Home = () => {
       <Accordion title="개인정보처리방침">
         <div className={styles.outline.description}>{config.privacyPolicy}</div>
       </Accordion>
-      <Accordion title="부마위키 담벼락">ㅇ</Accordion>
     </Container>
   );
 };

@@ -38,6 +38,17 @@ export const introduce = {
   }),
 };
 
+export const utility = {
+  body: style({
+    width: "100%",
+    gap: "12px",
+    ...flex.CENTER,
+  }),
+  href: style({
+    color: theme.link,
+  }),
+};
+
 export const table = {
   container: style({
     width: "100%",
