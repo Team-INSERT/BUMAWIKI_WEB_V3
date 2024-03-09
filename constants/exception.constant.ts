@@ -1,4 +1,4 @@
-const exception = {
+export const exception = {
   code: {
     IMG_400_1: "IMG-400-1",
     DOCS_404_1: "DOCS-404-1",
@@ -20,5 +20,3 @@ const exception = {
     SERVER_ERROR: 500,
   },
 };
-
-export default exception;
