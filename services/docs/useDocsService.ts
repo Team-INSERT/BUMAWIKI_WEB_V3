@@ -1,17 +1,5 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { docsQuery } from "./docsQuery";
-
-export const useDocsList = ({ classify }: { classify: string }) => {
-  return useQuery(docsQuery.getList(classify));
-};
-
-export const useDocs = ({ title }: { title: string }) => {
-  return useQuery(docsQuery.getByTitle(title));
-};
-
-export const useSearch = ({ keyword }: { keyword: string }) => {
-  return useQuery(docsQuery.getByKeyword(keyword));
-};
 
 export const useCreateDocs = () => {
   return useMutation(docsQuery.create());
