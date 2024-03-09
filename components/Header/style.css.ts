@@ -50,3 +50,8 @@ export const searchButton = style({
 export const logo = style({
   cursor: "pointer",
 });
+
+export const utilityBox = style({
+  ...flex.HORIZONTAL,
+  gap: "32px",
+});
