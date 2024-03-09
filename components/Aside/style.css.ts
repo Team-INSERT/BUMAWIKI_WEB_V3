@@ -1,20 +1,29 @@
 import { style } from "@vanilla-extract/css";
 import { flex, font, theme } from "@/styles";
 
+export const body = style({
+  ...flex.COLUMN_FLEX,
+});
+
 export const container = style({
   position: "sticky",
-  width: "240px",
-  height: "fit-content",
+  width: "250px",
+  height: "502px",
+  background: theme.white,
   marginTop: "20px",
   marginRight: "20px",
+  border: `2px solid ${theme.gray}`,
+  borderTop: "none",
   top: "74px",
 });
 
 export const titleBox = style({
   backgroundColor: theme.primary,
   border: `2px solid ${theme.gray}`,
+  borderLeft: "none",
+  borderRight: "none",
   width: "100%",
-  height: "50px",
+  height: "46px",
   ...flex.VERTICAL,
 });
 
@@ -26,24 +35,34 @@ export const titleText = style({
 
 export const docs = style({
   width: "100%",
-  height: "40px",
+  height: "38px",
   backgroundColor: theme.white,
   border: `2px solid ${theme.gray}`,
+  borderLeft: "none",
+  borderRight: "none",
   borderTop: "none",
   ...flex.VERTICAL,
+
+  ":hover": {
+    opacity: 0.8,
+  },
 });
 
 export const docsName = style({
   color: theme.primary,
-  marginLeft: "10px",
-  fontSize: "14px",
-  fontWeight: 600,
+  marginLeft: "14px",
+  ...font.H6,
+
+  ":hover": {
+    textDecoration: "underline",
+  },
 });
 
 export const docsLastModified = style({
-  marginLeft: "5px",
+  marginLeft: "auto",
+  marginRight: "14px",
   color: theme.boldgray,
-  fontSize: "10px",
+  ...font.caption,
 });
 
 export const pageBox = style({
