@@ -3,8 +3,7 @@ import { style } from "@vanilla-extract/css";
 
 export const container = style({
   width: "100%",
-  height: "100%",
-  gap: "16px",
+  gap: "24px",
   ...flex.COLUMN_FLEX,
 });
 
@@ -28,4 +27,6 @@ export const classify = style({
 
 export const main = style({
   padding: "20px 0",
+  height: "fit-content",
+  ...flex.COLUMN_FLEX,
 });

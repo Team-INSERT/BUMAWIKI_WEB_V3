@@ -3,7 +3,6 @@ import { style } from "@vanilla-extract/css";
 
 export const container = style({
   width: "100%",
-  height: "100px",
 });
 
 export const title = style({
@@ -38,4 +37,10 @@ export const summary = style({
       background: "url('/assets/arrow_down.svg')",
     },
   },
+});
+
+export const content = style({
+  padding: "10px 20px",
+  gap: "12px",
+  ...flex.COLUMN_FLEX,
 });

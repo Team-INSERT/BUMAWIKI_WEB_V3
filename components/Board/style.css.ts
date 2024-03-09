@@ -13,8 +13,7 @@ export const container = style({
 export const board = style({
   width: "100%",
   height: "fit-content",
-  minHeight: "100svh",
-  overflow: "hidden",
+  minHeight: "120svh",
   padding: "30px",
   ...flex.COLUMN_FLEX,
 });

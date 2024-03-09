@@ -12,7 +12,7 @@ const Accordion = ({ title, children }: AccordionProps) => {
         <summary className={styles.summary}>
           <div className={styles.title}>{title}</div>
         </summary>
-        {children}
+        <div className={styles.content}>{children}</div>
       </details>
     </div>
   );
