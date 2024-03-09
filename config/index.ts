@@ -1,4 +1,5 @@
 interface Config {
+  baseURL?: string;
   nodeEnv: "development" | "production" | "test";
   clientUrl: string;
   serviceName: string;
