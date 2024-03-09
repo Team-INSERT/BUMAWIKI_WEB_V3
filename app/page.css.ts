@@ -32,6 +32,10 @@ export const introduce = {
     textAlign: "center",
     ...font.p2,
   }),
+  caution: style({
+    color: theme.red,
+    fontWeight: 600,
+  }),
 };
 
 export const table = {
