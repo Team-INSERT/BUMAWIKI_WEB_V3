@@ -9,6 +9,10 @@ export const useDocs = ({ title }: { title: string }) => {
   return useQuery(docsQuery.getByTitle(title));
 };
 
+export const useLastModified = (page: number) => {
+  return useQuery(docsQuery.getLastModifiedAt(page));
+};
+
 export const useSearch = ({ keyword }: { keyword: string }) => {
   return useQuery(docsQuery.getByKeyword(keyword));
 };

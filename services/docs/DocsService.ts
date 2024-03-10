@@ -13,6 +13,10 @@ class DocsService extends HttpClient {
     return this.get(`/find/all/title/${keyword}`);
   }
 
+  getLastModifiedAt(page: number) {
+    return this.get(`/find/modified?page=${page}`);
+  }
+
   create() {
     return this.post("/create", null);
   }
