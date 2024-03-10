@@ -2,8 +2,6 @@
 
 import Container from "@/components/Container";
 import React from "react";
-import getQueryClient from "@/app/getQueryClient";
-import { userQuery } from "@/services/user/userQuery";
 import { useUserService } from "@/services/user/useUserService";
 
 const Page = () => {
