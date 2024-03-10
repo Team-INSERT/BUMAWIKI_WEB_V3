@@ -21,6 +21,11 @@ export const docsQuery = {
     queryFn: () => DocsService.getByKeyword(keyword).then((r) => r.data),
   }),
 
+  getLastModifiedAt: (page: number) => ({
+    queryKey: queryKeys.docs(`lastModifiedAt ${page}`),
+    queryFn: () => DocsService.getLastModifiedAt(page).then((r) => r.data),
+  }),
+
   create: () => ({
     mutationFn: () => DocsService.create().then((r) => r.data),
   }),

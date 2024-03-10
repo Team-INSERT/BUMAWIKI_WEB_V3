@@ -6,7 +6,7 @@ export const useDocs = () => {
       case "TEACHER":
         return "선생님";
       case "ACCIDENT":
-        return "사건사고";
+        return "사건";
       case "CLUB":
         return "동아리";
       case "FRAME":
