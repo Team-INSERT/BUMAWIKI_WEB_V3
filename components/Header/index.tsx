@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { FormEvent, useState } from "react";
 import Link from "next/link";
 import {
   AccidentIcon,
@@ -11,6 +13,7 @@ import {
   SearchIcon,
   MyPageIcon,
 } from "@/assets";
+import { useRouter } from "next/navigation";
 import * as styles from "./style.css";
 
 const navigationList = [
@@ -23,6 +26,16 @@ const navigationList = [
 ];
 
 const Header = () => {
+  const [keyword, setKeyword] = useState("");
+  const router = useRouter();
+
+  const handleSubmitSearchByKeyword = (e: FormEvent) => {
+    e.preventDefault();
+    // 추후 커스텀 알레트로 수정
+    if (!keyword.trim()) alert("검색어를 입력해주세요!");
+    router.push(`/search/${keyword}`);
+  };
+
   return (
     <div className={styles.container}>
       <ul className={styles.navigationList}>
@@ -39,8 +52,13 @@ const Header = () => {
         ))}
       </ul>
       <div className={styles.utilityBox}>
-        <form className={styles.searchBox}>
+        <form
+          className={styles.searchBox}
+          onSubmit={handleSubmitSearchByKeyword}
+        >
           <input
+            onChange={({ target: { value } }) => setKeyword(value)}
+            value={keyword}
             placeholder="검색어를 입력하세요..."
             className={styles.searchInput}
           />
