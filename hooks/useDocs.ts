@@ -20,5 +20,9 @@ export const useDocs = () => {
     }
   };
 
-  return { translateClassify };
+  const getAccordionTitle = (key: string) => {
+    return `${translateClassify(String(key))}년`;
+  };
+
+  return { translateClassify, getAccordionTitle };
 };
