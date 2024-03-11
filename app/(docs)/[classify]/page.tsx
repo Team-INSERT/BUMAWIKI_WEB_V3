@@ -19,7 +19,6 @@ const Page = async ({ params: { classify } }: PageProps) => {
 
   return (
     <Container title={translateClassify(classify)} classify={classify}>
-      {classify}
       <HydrationBoundary state={dehydrate(queryClient)}>
         <DocsList docsList={docsList} />
       </HydrationBoundary>
