@@ -4,4 +4,5 @@ export interface DocsListItem {
   enroll: number;
   docsType: string;
   lastModifiedAt: Date;
+  thumbsUpsCounts: number;
 }

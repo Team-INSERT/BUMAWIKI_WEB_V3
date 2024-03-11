@@ -6,7 +6,6 @@ import {
   AccidentIcon,
   ClubIcon,
   FrameIcon,
-  PopularIcon,
   StudentIcon,
   TeacherIcon,
   Logo,
@@ -22,7 +21,6 @@ const navigationList = [
   { item: "사건/사고", href: "/accident", icon: <AccidentIcon /> },
   { item: "동아리", href: "/club", icon: <ClubIcon /> },
   { item: "틀", href: "/frame", icon: <FrameIcon /> },
-  { item: "인기", href: "/popular", icon: <PopularIcon /> },
 ];
 
 const Header = () => {

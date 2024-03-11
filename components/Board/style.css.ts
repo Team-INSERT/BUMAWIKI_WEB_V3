@@ -7,7 +7,7 @@ export const container = style({
   borderLeft: `2px solid ${theme.gray}`,
   borderRight: `2px solid ${theme.gray}`,
   backgroundColor: theme.white,
-  margin: "0 40px",
+  margin: "0 20px 0 40px",
 });
 
 export const board = style({
