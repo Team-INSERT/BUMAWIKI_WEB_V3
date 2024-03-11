@@ -1,4 +1,4 @@
-import { keyframes, style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { flex, font, theme } from "@/styles";
 import { popularAnimation } from "./keyframes.css";
 
