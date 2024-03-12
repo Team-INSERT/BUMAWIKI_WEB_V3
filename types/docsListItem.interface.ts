@@ -3,6 +3,8 @@ export interface DocsListItem {
   title: string;
   enroll: number;
   docsType: string;
+  simpleContents: string;
   lastModifiedAt: Date;
   thumbsUpsCounts: number;
+  thumbnail: string;
 }

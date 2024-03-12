@@ -10,7 +10,8 @@ interface ContainerProps extends PropsWithChildren {
 
 const Container = ({ classify, title, children }: ContainerProps) => {
   const { translateClassify } = useDocs();
-  const classifyHref = classify === "부마위키" ? "/" : `/${classify}`;
+  const classifyHref =
+    classify === "부마위키" ? "/" : `/${classify.toLowerCase()}`;
 
   return (
     <div className={styles.container}>
