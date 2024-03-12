@@ -36,7 +36,7 @@ const DocsList = ({ docsList }: DocsListProps) => {
                   </span>
                 </hgroup>
                 <p className={styles.simpleContents}>
-                  {docs.simpleContents.replace(/<[^>]+>/g, " ")} ...더보기
+                  {docs.simpleContents.replace(/<[^>]+>/g, " ")} ...
                 </p>
               </div>
               {docs.thumbnail && (
