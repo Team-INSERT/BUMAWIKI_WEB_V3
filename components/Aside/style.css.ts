@@ -2,19 +2,16 @@ import { style } from "@vanilla-extract/css";
 import { flex, font, theme } from "@/styles";
 
 export const body = style({
+  width: "300px",
+  height: "540px",
   ...flex.COLUMN_FLEX,
 });
 
 export const container = style({
-  position: "sticky",
-  width: "250px",
-  height: "502px",
   background: theme.white,
-  marginTop: "20px",
-  marginRight: "20px",
   border: `2px solid ${theme.gray}`,
+  height: "100%",
   borderTop: "none",
-  top: "74px",
 });
 
 export const titleBox = style({
@@ -33,6 +30,10 @@ export const titleText = style({
   ...font.H5,
 });
 
+export const list = style({
+  ...flex.COLUMN_FLEX,
+});
+
 export const docs = style({
   width: "100%",
   height: "38px",
@@ -45,6 +46,10 @@ export const docs = style({
 
   ":hover": {
     opacity: 0.8,
+  },
+
+  ":last-child": {
+    borderBottom: "none",
   },
 });
 

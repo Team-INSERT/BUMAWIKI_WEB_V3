@@ -8,3 +8,12 @@ export const container = style({
   padding: "52px 20px 0 20px",
   ...flex.FLEX,
 });
+
+export const asideBox = style({
+  height: "100%",
+  position: "sticky",
+  top: "70px",
+  width: "300px",
+  gap: "12px",
+  ...flex.COLUMN_FLEX,
+});

@@ -3,7 +3,8 @@ import Header from "@/components/Header";
 import Board from "@/components/Board";
 import Aside from "@/components/Aside";
 import Footer from "@/components/Footer";
-import { container } from "./layout.css";
+import Popular from "@/components/Popular";
+import * as styles from "./layout.css";
 import Providers from "./providers";
 
 export default function RootLayout({
@@ -16,9 +17,12 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          <div className={container}>
+          <div className={styles.container}>
             <Board>{children}</Board>
-            <Aside />
+            <div className={styles.asideBox}>
+              <Popular />
+              <Aside />
+            </div>
           </div>
           <Footer />
         </Providers>

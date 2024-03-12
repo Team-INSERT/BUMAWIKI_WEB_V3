@@ -5,5 +5,6 @@ export interface DocsListItem {
   docsType: string;
   simpleContents: string;
   lastModifiedAt: Date;
+  thumbsUpsCounts: number;
   thumbnail: string;
 }

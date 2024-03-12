@@ -35,20 +35,22 @@ const Aside = () => {
       <div className={styles.body}>
         <aside className={styles.container}>
           <div className={styles.titleBox}>
-            <span className={styles.titleText}>최근 수정된 문서</span>
+            <span className={styles.titleText}>최근 변경</span>
           </div>
-          {docsList?.map((docs: DocsListItem) => (
-            <Link
-              href={`/docs/${docs.title}`}
-              key={docs.id}
-              className={styles.docs}
-            >
-              <span className={styles.docsName}>{docs.title}</span>
-              <span className={styles.docsLastModified}>
-                {moment(docs.lastModifiedAt).fromNow()}
-              </span>
-            </Link>
-          ))}
+          <div className={styles.list}>
+            {docsList?.map((docs: DocsListItem) => (
+              <Link
+                href={`/docs/${docs.title}`}
+                key={docs.id}
+                className={styles.docs}
+              >
+                <span className={styles.docsName}>{docs.title}</span>
+                <span className={styles.docsLastModified}>
+                  {moment(docs.lastModifiedAt).fromNow()}
+                </span>
+              </Link>
+            ))}
+          </div>
         </aside>
         <div className={styles.pageBox}>
           <button

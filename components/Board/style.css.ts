@@ -2,12 +2,12 @@ import { theme, flex, font } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
-  width: "80%",
+  width: "73%",
   ...flex.COLUMN_START,
   borderLeft: `2px solid ${theme.gray}`,
   borderRight: `2px solid ${theme.gray}`,
   backgroundColor: theme.white,
-  margin: "0 40px",
+  margin: "0 20px 0 40px",
 });
 
 export const board = style({
