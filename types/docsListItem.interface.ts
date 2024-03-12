@@ -3,5 +3,7 @@ export interface DocsListItem {
   title: string;
   enroll: number;
   docsType: string;
+  simpleContents: string;
   lastModifiedAt: Date;
+  thumbnail: string;
 }

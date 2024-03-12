@@ -8,6 +8,7 @@ const theme = {
   title: "#545454",
   link: "#0038FF",
   red: "#ff0000",
+  hover: "#f2f3f7",
 };
 
 export default theme;

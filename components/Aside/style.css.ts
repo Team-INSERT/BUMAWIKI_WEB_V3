@@ -51,6 +51,10 @@ export const docs = style({
 export const docsName = style({
   color: theme.primary,
   marginLeft: "14px",
+  textOverflow: "ellipsis",
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  width: "70%",
   ...font.H6,
 
   ":hover": {

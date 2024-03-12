@@ -27,7 +27,7 @@ export class HttpClient {
       ...axiosConfig,
       baseURL: `${axiosConfig.baseURL}${url}`,
     });
-    HttpClient.clientConfig = { headers: { Authorization: "" } };
+    // HttpClient.clientConfig = { headers: { Authorization: "" } };
     this.setting();
   }
 
