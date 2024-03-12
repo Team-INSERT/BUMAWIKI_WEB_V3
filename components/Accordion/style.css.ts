@@ -18,7 +18,7 @@ export const summary = style({
   height: "45px",
   borderBottom: `1.5px solid ${theme.gray}`,
   margin: "10px 0",
-  color: theme.primary,
+  color: `${theme.primary}94`,
   cursor: "pointer",
   ...font.H2,
   ...flex.FLEX,
