@@ -3,7 +3,7 @@ import { style } from "@vanilla-extract/css";
 
 export const container = style({
   width: "73%",
-  ...flex.COLUMN_START,
+  ...flex.COLUMN_BETWEEN,
   borderLeft: `2px solid ${theme.gray}`,
   borderRight: `2px solid ${theme.gray}`,
   backgroundColor: theme.white,
@@ -13,8 +13,9 @@ export const container = style({
 export const board = style({
   width: "100%",
   height: "fit-content",
-  minHeight: "120svh",
+  // minHeight: "120svh",
   padding: "30px",
+  wordBreak: "break-all",
   ...flex.COLUMN_FLEX,
 });
 
