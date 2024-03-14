@@ -25,6 +25,7 @@
     "babel-plugin-transform-remove-imports": "^1.7.1",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.10",
+    "dompurify": "^3.0.9",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
