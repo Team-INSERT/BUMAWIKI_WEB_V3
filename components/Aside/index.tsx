@@ -8,16 +8,18 @@ import moment from "moment";
 import "moment/locale/ko";
 import { DocsListItem } from "@/types/docsListItem.interface";
 import { HydrationBoundary } from "@tanstack/react-query";
-import { useLastModified } from "@/services/docs/useDocsService";
+import { useLastModifiedDocsListQuery } from "@/services/docs/docs.query";
 import * as styles from "./style.css";
 
 const Aside = () => {
   const [page, setPage] = useState(0);
-  const { isSuccess, data } = useLastModified(page);
+  const { isSuccess, data, refetch } = useLastModifiedDocsListQuery(page);
   const [docsList, setDocsList] = useState(data);
 
   useEffect(() => {
-    if (isSuccess) setDocsList(data);
+    if (isSuccess) {
+      refetch().then((r) => setDocsList(r.data));
+    }
   }, [isSuccess, page]);
 
   const handleIncreasePageNumber = () => {
@@ -39,11 +41,7 @@ const Aside = () => {
           </div>
           <div className={styles.list}>
             {docsList?.map((docs: DocsListItem) => (
-              <Link
-                href={`/docs/${docs.title}`}
-                key={docs.id}
-                className={styles.docs}
-              >
+              <Link href={`/docs/${docs.title}`} key={docs.id} className={styles.docs}>
                 <span className={styles.docsName}>{docs.title}</span>
                 <span className={styles.docsLastModified}>
                   {moment(docs.lastModifiedAt).fromNow()}
@@ -53,10 +51,7 @@ const Aside = () => {
           </div>
         </aside>
         <div className={styles.pageBox}>
-          <button
-            className={styles.pageButton}
-            onClick={handleDecreasePageNumber}
-          >
+          <button className={styles.pageButton} onClick={handleDecreasePageNumber}>
             <span className={styles.pageButtonText}>
               <ArrowIcon
                 direction="left"
@@ -68,10 +63,7 @@ const Aside = () => {
               이전
             </span>
           </button>
-          <button
-            className={styles.pageButton}
-            onClick={handleIncreasePageNumber}
-          >
+          <button className={styles.pageButton} onClick={handleIncreasePageNumber}>
             <span className={styles.pageButtonText}>
               다음
               <ArrowIcon
