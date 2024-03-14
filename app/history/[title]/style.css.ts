@@ -27,7 +27,7 @@ export const hgroup = style({
 
 export const historyId = style({
   color: theme.primary,
-  ...font.H3,
+  ...font.H4,
 });
 
 export const createdAt = style({
@@ -39,8 +39,4 @@ export const author = style({
   cursor: "pointer",
   width: "fit-content",
   ...font.H6,
-
-  ":hover": {
-    textDecoration: "underline",
-  },
 });

@@ -11,8 +11,6 @@ interface DocsListProps {
 }
 
 const SearchResult = ({ result }: DocsListProps) => {
-  console.log(result);
-
   if (result instanceof AxiosError) {
     return (
       <div className={styles.searchNotFoundBox}>
