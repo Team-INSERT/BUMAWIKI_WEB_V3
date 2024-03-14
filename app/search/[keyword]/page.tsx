@@ -12,7 +12,7 @@ interface PageProps {
 
 const Page = async ({ params: { keyword } }: PageProps) => {
   const result = await useDocsByKeywordQuery({ keyword }).catch((e) => e);
-  // console.log(docsList);
+
   return (
     <Container title={`검색결과#${decodeURI(keyword)}`} docsType="user">
       <HydrationBoundary>

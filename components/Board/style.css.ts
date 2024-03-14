@@ -13,7 +13,6 @@ export const container = style({
 export const board = style({
   width: "100%",
   height: "fit-content",
-  // minHeight: "120svh",
   padding: "30px",
   wordBreak: "break-all",
   ...flex.COLUMN_FLEX,

@@ -13,9 +13,6 @@ export const decodeContent = (content: string) => {
     .replaceAll("</틀제목>", `<br><span>[ 펼치기 · 접기 ]</span></summary>`)
 
     .replace(/<행>(.*?)<\/행>/gi, "<tr>$1</tr>")
-
-    // .replaceAll("<행>", `<tr>`)
-    // .replaceAll("</행>", `</tr>`)
     .replace(/<열/gi, `<td class="frame_td" `)
     .replace(/스타일={{/gi, `style="`)
     .replace(/배경색=\(/gi, `;background-color:`)
@@ -23,8 +20,6 @@ export const decodeContent = (content: string) => {
     .replace(/<\/열>/gi, `</td>`)
     .replace(/가로병합={{/gi, ` colspan="`)
     .replace(/세로병합={{/gi, ` rowspan="`)
-
-    //
 
     .replace(/}}/gi, `"`)
     .replace(/\);/gi, "")

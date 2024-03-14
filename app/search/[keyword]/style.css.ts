@@ -16,7 +16,6 @@ export const container = style({
 export const docs = style({
   width: "78%",
   height: "100px",
-  //   padding: "0 10px",
   gap: "8px",
   ...flex.COLUMN_HORIZONTAL,
 });
