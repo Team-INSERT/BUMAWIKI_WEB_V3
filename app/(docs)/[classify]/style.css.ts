@@ -39,3 +39,7 @@ export const title = style({
 export const simpleContents = style({
   ...font.caption,
 });
+
+export const thumbnail = style({
+  objectFit: "cover",
+});
