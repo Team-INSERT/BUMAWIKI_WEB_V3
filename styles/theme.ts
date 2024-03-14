@@ -9,6 +9,9 @@ const theme = {
   link: "#0038FF",
   red: "#ff0000",
   hover: "#f2f3f7",
+  insert: "#CCFFD8",
+  delete: "#FFD7D5",
+  equal: "#F6F8FA",
 };
 
 export default theme;

@@ -1,14 +1,11 @@
-import Contribute from "@/types/contribute.interface";
+import { ContributeDocsType } from "@/types/contributeDocs.interface";
 import { atom } from "jotai";
 
 export const userContext = atom({
-  key: "userContext",
-  default: {
-    id: 0,
-    email: "",
-    nickName: "",
-    authority: "",
-    contributeDocs: [] as Array<Contribute>,
-    isLogin: false,
-  },
+  id: 0,
+  email: "",
+  nickName: "",
+  authority: "",
+  contributeDocs: [] as Array<ContributeDocsType>,
+  isLogin: false,
 });

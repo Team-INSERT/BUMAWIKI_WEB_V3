@@ -1,0 +1,51 @@
+import { flex, font, theme } from "@/styles";
+import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
+
+export const container = style({
+  width: "100%",
+  gap: "24px",
+  ...flex.COLUMN_FLEX,
+});
+
+export const author = style({
+  ...font.H6,
+
+  ":hover": {
+    textDecoration: "underline",
+  },
+});
+
+export const historyBox = style({
+  ...flex.COLUMN_FLEX,
+});
+
+export const historyContent = style({
+  width: "100%",
+  ...flex.VERTICAL,
+});
+
+const historyBase = style({
+  width: "100%",
+  padding: "6px 8px",
+  gap: "12px",
+  opacity: 0.7,
+  ...flex.VERTICAL,
+});
+
+export const history = styleVariants<Record<string, ComplexStyleRule>>({
+  INSERT: [historyBase, { background: theme.insert }],
+  DELETE: [historyBase, { background: theme.delete }],
+  EQUAL: [historyBase, { background: theme.equal }],
+});
+
+const historyOperationBase = style({
+  width: "20px",
+  height: "100%",
+  ...flex.CENTER,
+});
+
+export const historyOperation = styleVariants<Record<string, ComplexStyleRule>>({
+  INSERT: [historyOperationBase, { background: theme.insert }],
+  DELETE: [historyOperationBase, { background: theme.delete }],
+  EQUAL: [historyOperationBase, { background: theme.equal }],
+});

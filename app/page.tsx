@@ -24,16 +24,14 @@ const tableInformation = [
 
 const Home = () => {
   return (
-    <Container title="대문" classify="부마위키">
+    <Container title="대문" docsType="/">
       <div className={styles.introduce.body}>
         <div className={styles.introduce.box}>
           <h1 className={styles.introduce.title}>
-            여러분이 가꾸어 나가는{" "}
-            <b className={styles.introduce.highlight}>역사의 고서</b>
+            여러분이 가꾸어 나가는 <b className={styles.introduce.highlight}>역사의 고서</b>
           </h1>
           <h2 className={styles.introduce.subtitle}>
-            <b className={styles.introduce.highlight}>부마위키</b>에 오신 것을
-            환영합니다!
+            <b className={styles.introduce.highlight}>부마위키</b>에 오신 것을 환영합니다!
           </h2>
         </div>
         <div className={styles.introduce.box}>
@@ -43,17 +41,14 @@ const Home = () => {
             검증되지 않았거나 편향된 내용이 있을 수 있습니다.
             <br />
             <span className={styles.introduce.caution}>
-              ※ 타인에 대한 조롱 또는 비방, 비난으로 인해 발생하는 문제에 대한
-              책임은 본인에게 있습니다. 주의해주세요! ※
+              ※ 타인에 대한 조롱 또는 비방, 비난으로 인해 발생하는 문제에 대한 책임은 본인에게
+              있습니다. 주의해주세요! ※
             </span>
           </p>
         </div>
       </div>
       <div className={styles.utility.body}>
-        <Link
-          className={styles.utility.href}
-          href="/docs/부마위키%20업데이트%20내역"
-        >
+        <Link className={styles.utility.href} href="/docs/부마위키%20업데이트%20내역">
           업데이트 내역
         </Link>{" "}
         |
@@ -61,22 +56,15 @@ const Home = () => {
           방명록
         </Link>{" "}
         |
-        <Link
-          className={styles.utility.href}
-          href="https://forms.gle/rYmV7zpdgcMahzF36"
-        >
+        <Link className={styles.utility.href} href="https://forms.gle/rYmV7zpdgcMahzF36">
           문의하기
         </Link>
       </div>
       <div className={styles.table.container}>
         <div className={styles.table.body}>
           <div className={styles.table.thead}>
-            <h1 className={styles.table.title}>
-              부산소프트웨어마이스터고등학교
-            </h1>
-            <h2 className={styles.table.subtitle}>
-              Busan Software Meister High School
-            </h2>
+            <h1 className={styles.table.title}>부산소프트웨어마이스터고등학교</h1>
+            <h2 className={styles.table.subtitle}>Busan Software Meister High School</h2>
           </div>
           <Image
             width={999}
@@ -95,22 +83,14 @@ const Home = () => {
       </div>
       <Accordion title="개요">
         <div className={styles.outline.description}>{config.description}</div>
-        <div className={styles.outline.warning}>
-          {config.warningDescription}
-        </div>
+        <div className={styles.outline.warning}>{config.warningDescription}</div>
       </Accordion>
       <Accordion title="학과">
-        <div className={styles.outline.description}>
-          {config.departmentDescription}
-        </div>
+        <div className={styles.outline.description}>{config.departmentDescription}</div>
         <h2 className={styles.outline.departmentTitle}>소프트웨어개발과</h2>
-        <div className={styles.outline.description}>
-          {config.softwareDepartment}
-        </div>
+        <div className={styles.outline.description}>{config.softwareDepartment}</div>
         <h2 className={styles.outline.departmentTitle}>임베디드소프트웨어과</h2>
-        <div className={styles.outline.description}>
-          {config.embeddedDepartment}
-        </div>
+        <div className={styles.outline.description}>{config.embeddedDepartment}</div>
       </Accordion>
       <Accordion title="교가">
         <div className={styles.outline.description}>{config.schoolSong}</div>

@@ -88,3 +88,86 @@ button {
   padding: 0;
   cursor: pointer;
 }
+
+/* wiki */
+
+.frame_td {
+  height: 30px;
+  border: solid 2px #274168;
+}
+
+.frame_table {
+  border-collapse: collapse;
+  border: solid 2px #274168;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.frame_caption {
+  background-color: #274168;
+  color: white;
+  font-weight: 700;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.frame_caption::marker {
+  content: "";
+}
+
+.frame_details {
+  margin-bottom: 1em;
+  transition: all 1.5s ease-in-out;
+  max-height: 10em;
+  overflow: hidden;
+}
+
+.frame_details[open] {
+  max-height: 500em;
+}
+
+.frame_details[close] {
+  max-height: auto;
+}
+
+.analects {
+  width: 100%;
+  background-color: #ccc;
+  height: 50px;
+  border: 1px solid black;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.analects_text {
+  margin-left: 16px;
+}
+
+.subtitle {
+  color: #274168;
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: "Pretendard", sans-serif;
+}
+
+.link {
+  text-decoration: none;
+  color: blue;
+}
+
+.block {
+  width: 100%;
+  height: fit-content;
+  border: 1px solid black;
+  background-color: #f2f3f7;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}

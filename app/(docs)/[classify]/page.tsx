@@ -1,9 +1,8 @@
 import Container from "@/components/Container";
 import { useDocs } from "@/hooks/useDocs";
-import { docsQuery } from "@/services/docs/docsQuery";
 import React from "react";
-import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import getQueryClient from "@/app/getQueryClient";
+import { HydrationBoundary } from "@tanstack/react-query";
+import { useDocsListQuery } from "@/services/docs/docs.query";
 import DocsList from "./DocsList";
 
 interface PageProps {
@@ -14,12 +13,11 @@ interface PageProps {
 
 const Page = async ({ params: { classify } }: PageProps) => {
   const { translateClassify } = useDocs();
-  const queryClient = getQueryClient();
-  const docsList = await queryClient.fetchQuery(docsQuery.getList(classify));
+  const docsList = await useDocsListQuery({ classify });
 
   return (
-    <Container title={translateClassify(classify)} classify={classify}>
-      <HydrationBoundary state={dehydrate(queryClient)}>
+    <Container title={translateClassify(classify)} docsType={classify}>
+      <HydrationBoundary>
         <DocsList docsList={docsList} />
       </HydrationBoundary>
     </Container>

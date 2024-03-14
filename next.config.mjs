@@ -9,7 +9,13 @@ const withVanillaExtract = createVanillaExtractPlugin({
 const nextConfig = withVanillaExtract({
   swcMinify: true,
   images: {
-    domains: [],
+    domains: [
+      "bumawiki.kro.kr",
+      "lh3.googleusercontent.com",
+      "media.tenor.com",
+      "ifh.cc",
+      "velog.velcdn.com",
+    ],
   },
 });
 
