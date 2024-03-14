@@ -8,4 +8,8 @@ export interface DocsItem {
   lastModifiedAt: string;
   thumbsUpsCounts: number;
   youLikeThis: boolean;
+  contributors: Array<{
+    id: number;
+    nickName: string;
+  }>;
 }
