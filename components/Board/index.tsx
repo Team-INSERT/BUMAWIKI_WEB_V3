@@ -15,8 +15,8 @@ const Board = ({ children }: PropsWithChildren) => {
           alt="footer logo"
         />
         <span className={styles.subFooterNoticeText}>
-          부마위키는 공식 역사서 및 백과사전이 아니며 검증되지 않았거나,
-          편향적이거나, 잘못된 서술이 있을 수 있습니다.
+          부마위키는 공식 역사서 및 백과사전이 아니며 검증되지 않았거나, 편향적이거나, 잘못된 서술이
+          있을 수 있습니다.
           <br />
           질문이나 특정 사항에 대해 언제든지 문의주실 수 있습니다.
         </span>
