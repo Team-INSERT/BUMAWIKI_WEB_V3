@@ -1,6 +1,11 @@
 export const useDocs = () => {
   const translateClassify = (classify: string) => {
     switch (classify.toUpperCase()) {
+      case "/":
+        return "부마위키";
+      case "MYPAGE":
+      case "USER":
+        return "유저";
       case "STUDENT":
         return "학생";
       case "TEACHER":
@@ -23,6 +28,5 @@ export const useDocs = () => {
   const getAccordionTitle = (key: string) => {
     return `${translateClassify(String(key))}년`;
   };
-
   return { translateClassify, getAccordionTitle };
 };
