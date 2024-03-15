@@ -135,7 +135,7 @@ const Editor = () => {
             onKeyDown={(e) => setCursorPosition((e.target as HTMLTextAreaElement).selectionStart)}
             onChange={(e) => setDocs((prev) => ({ ...prev, contents: autoClosingTag(e) }))}
             value={docs.contents}
-            placeholder="문서 내용을 입력해주세요..."
+            placeholder="문서 내용을 입력해주세요. 사진 또는 동영상을 넣으려면 파일을 드래그&드롭하세요..."
             className={styles.textarea[String(isExampleOpen)]}
           />
         </div>
