@@ -6,7 +6,6 @@ import {
   AccidentIcon,
   ClubIcon,
   FrameIcon,
-  StudentIcon,
   TeacherIcon,
   Logo,
   SearchIcon,
@@ -18,7 +17,7 @@ import { TOKEN } from "@/constants/token.constant";
 import * as styles from "./style.css";
 
 const navigationList = [
-  { item: "학생", href: "/student", icon: <StudentIcon /> },
+  { item: "학생", href: "/student", icon: <MyPageIcon /> },
   { item: "선생님", href: "/teacher", icon: <TeacherIcon /> },
   { item: "사건/사고", href: "/accident", icon: <AccidentIcon /> },
   { item: "동아리", href: "/club", icon: <ClubIcon /> },
@@ -63,10 +62,15 @@ const Header = () => {
           <SearchIcon onClick={handleSubmitSearchByKeyword} className={styles.searchButton} />
         </form>
         {isLoggedIn ? (
-          <Link href="/mypage" className={styles.navigationItem}>
-            <MyPageIcon />
-            <span>내정보</span>
-          </Link>
+          <div className={styles.loginUtilityBox}>
+            <Link href="/create" className={styles.writeButton}>
+              문서 생성
+            </Link>
+            <Link href="/mypage" className={styles.navigationItem}>
+              <MyPageIcon />
+              <span>내정보</span>
+            </Link>
+          </div>
         ) : (
           <Link href={process.env.NEXT_PUBLIC_OAUTH_URL || "/"} className={styles.navigationItem}>
             <MyPageIcon />
