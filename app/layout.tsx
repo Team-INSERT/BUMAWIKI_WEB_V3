@@ -4,6 +4,7 @@ import Board from "@/components/Board";
 import Aside from "@/components/Aside";
 import Footer from "@/components/Footer";
 import Popular from "@/components/Popular";
+import ScrollButton from "@/components/ScrollButton";
 import * as styles from "./layout.css";
 import Providers from "./providers";
 
@@ -22,6 +23,7 @@ export default function RootLayout({
             <div className={styles.asideBox}>
               <Popular />
               <Aside />
+              <ScrollButton />
             </div>
           </div>
           <Footer />
