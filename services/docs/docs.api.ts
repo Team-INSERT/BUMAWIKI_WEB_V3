@@ -1,6 +1,7 @@
 import { http } from "@/apis";
 import { TOKEN } from "@/constants/token.constant";
 import { Storage } from "@/storage";
+import { CreateDocsType } from "@/types/createDocsType.interface";
 
 export const getDocsListByClassify = async (classify: string) => {
   const { data } = await http.get(`/docs/${classify}`);
@@ -22,8 +23,10 @@ export const getLastModifiedDocsList = async (page: number) => {
   return data;
 };
 
-export const requestCreateDocs = async () => {
-  const { data } = await http.post("/docs/create", null);
+export const requestCreateDocs = async (docs: CreateDocsType) => {
+  const { data } = await http.post("/docs/create", docs, {
+    headers: { Authorization: Storage.getItem(TOKEN.ACCESS) },
+  });
   return data;
 };
 
@@ -36,5 +39,13 @@ export const requestDeleteDocs = async (id: number) => {
   const { data } = await http.delete(`/docs/delete/${id}`, {
     headers: { Authorization: Storage.getItem(TOKEN.ACCESS) },
   });
+  return data;
+};
+
+export const requestUploadImage = async (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const { data } = await http.post("/s3", formData);
   return data;
 };
