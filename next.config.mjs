@@ -15,6 +15,7 @@ const nextConfig = withVanillaExtract({
       "media.tenor.com",
       "ifh.cc",
       "velog.velcdn.com",
+      "bumawiki.s3.ap-northeast-2.amazonaws.com",
     ],
   },
 });
