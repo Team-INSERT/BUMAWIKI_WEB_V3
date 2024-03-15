@@ -12,6 +12,7 @@ const theme = {
   insert: "#CCFFD8",
   delete: "#FFD7D5",
   equal: "#F6F8FA",
+  preview: "#F6FAFD",
 };
 
 export default theme;
