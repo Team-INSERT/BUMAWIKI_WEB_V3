@@ -4,7 +4,6 @@ import React, { useCallback, useState } from "react";
 import { decodeContent, getYear } from "@/utils";
 import { ArrowIcon } from "@/assets";
 import { useDocs } from "@/hooks/useDocs";
-import DOMPurify from "dompurify";
 import { useCreateDocsMutation, useUploadImageMutation } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
 import * as styles from "./style.css";
@@ -50,10 +49,6 @@ const Editor = () => {
     title: "",
     contents: "",
     docsType: "",
-  });
-
-  const sanitizeData = () => ({
-    __html: DOMPurify.sanitize(decodeContent(docs.contents)),
   });
 
   const uploadImage = async (file: File) => {
@@ -145,7 +140,10 @@ const Editor = () => {
           />
         </div>
         {/* eslint-disable-next-line react/no-danger */}
-        <div className={styles.previewBox} dangerouslySetInnerHTML={sanitizeData()} />
+        <div
+          className={styles.previewBox}
+          dangerouslySetInnerHTML={{ __html: decodeContent(docs.contents) }}
+        />
         <button onClick={handleCreateDocsClick} className={styles.writeButton}>
           생성하기
         </button>
