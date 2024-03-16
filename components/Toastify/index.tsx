@@ -1,4 +1,4 @@
-import InfoIcon from "@/assets/infoIcon";
+import InfoIcon from "@/assets/InfoIcon";
 import * as styles from "./style.css";
 
 interface Props {
