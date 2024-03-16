@@ -15,8 +15,8 @@ const Confirm = ({ content, onConfirm }: Props) => {
   };
 
   return (
-    <div className={styles.background} onClick={closeModal}>
-      <div className={styles.container} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.background}>
+      <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.logoWrapper}>
             <RoundLogo />
