@@ -14,7 +14,7 @@ const History = ({ title, historyList }: { title: string; historyList: Array<His
           key={String(history.thisVersionCreatedAt)}
         >
           <div className={styles.hgroup}>
-            <h1 className={styles.historyId}>#{history.index}</h1>
+            <h1 className={styles.historyId}>#{history.index + 1}</h1>
             <span className={styles.createdAt}>
               편집일 ·&nbsp;
               {dateText(history.thisVersionCreatedAt)}
