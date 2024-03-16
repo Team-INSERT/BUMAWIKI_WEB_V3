@@ -30,8 +30,14 @@ export const requestCreateDocs = async (docs: CreateDocsType) => {
   return data;
 };
 
-export const requestUpdateDocs = async (title: string) => {
-  const { data } = await http.post(`/docs/update/${title}`, {});
+export const requestUpdateDocs = async ({ title, content }: { title: string; content: string }) => {
+  const { data } = await http.put(
+    `/docs/update/${title}`,
+    { contents: content },
+    {
+      headers: { Authorization: Storage.getItem(TOKEN.ACCESS) },
+    },
+  );
   return data;
 };
 
