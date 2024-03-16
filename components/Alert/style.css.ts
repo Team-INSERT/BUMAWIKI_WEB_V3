@@ -7,7 +7,7 @@ export const background = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  backgroundColor: "#ececec10",
+  backgroundColor: "#ececec50",
   zIndex: "11",
   position: "fixed",
 });
