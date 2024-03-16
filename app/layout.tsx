@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Popular from "@/components/Popular";
 import Modal from "@/components/(modal)";
 import { ToastContainer } from "react-toastify";
+import ScrollButton from "@/components/ScrollButton";
 import * as styles from "./layout.css";
 import Providers from "./providers";
 import "react-toastify/dist/ReactToastify.css";
@@ -34,6 +35,7 @@ export default function RootLayout({
             <div className={styles.asideBox}>
               <Popular />
               <Aside />
+              <ScrollButton />
             </div>
           </div>
           <Footer />

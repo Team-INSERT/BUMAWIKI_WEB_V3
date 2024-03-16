@@ -3,7 +3,7 @@ import { TOKEN } from "@/constants/token.constant";
 import { Storage } from "@/storage";
 
 export const getMyInformation = async () => {
-  const { data } = await http.get("/user/", {
+  const { data } = await http.get("/user", {
     headers: { Authorization: Storage.getItem(TOKEN.ACCESS) },
   });
   return data;

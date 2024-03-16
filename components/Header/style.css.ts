@@ -1,4 +1,4 @@
-import { theme, flex } from "@/styles";
+import { theme, flex, font } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -53,5 +53,23 @@ export const logo = style({
 
 export const utilityBox = style({
   ...flex.HORIZONTAL,
-  gap: "32px",
+  gap: "24px",
+});
+
+export const loginUtilityBox = style({
+  gap: "18px",
+  ...flex.VERTICAL,
+});
+
+export const writeButton = style({
+  padding: "8px 14px",
+  color: theme.primary,
+  backgroundColor: theme.white,
+  borderRadius: "9999px",
+  ...font.btnBold,
+});
+
+export const textarea = style({
+  width: "100%",
+  height: "100%",
 });

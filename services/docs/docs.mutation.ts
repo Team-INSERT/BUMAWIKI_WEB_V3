@@ -1,5 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { requestCreateDocs, requestDeleteDocs, requestUpdateDocs } from "./docs.api";
+import {
+  requestCreateDocs,
+  requestDeleteDocs,
+  requestUpdateDocs,
+  requestUploadImage,
+} from "./docs.api";
 
 export const useCreateDocsMutation = () => {
   return useMutation({
@@ -20,5 +25,11 @@ export const useDeleteDocsMutation = () => {
       alert("성공");
       window.location.href = "/";
     },
+  });
+};
+
+export const useUploadImageMutation = () => {
+  return useMutation({
+    mutationFn: requestUploadImage,
   });
 };

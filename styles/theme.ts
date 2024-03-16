@@ -14,6 +14,7 @@ const theme = {
   equal: "#F6F8FA",
   cover: "#ececec50",
   line: "#f0f0f0",
+  preview: "#F6FAFD",
 };
 
 export default theme;
