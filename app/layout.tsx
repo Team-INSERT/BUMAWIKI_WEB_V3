@@ -4,7 +4,7 @@ import Board from "@/components/Board";
 import Aside from "@/components/Aside";
 import Footer from "@/components/Footer";
 import Popular from "@/components/Popular";
-import Modal from "@/modal/layout";
+import Modal from "@/components/(modal)";
 import { ToastContainer } from "react-toastify";
 import * as styles from "./layout.css";
 import Providers from "./providers";

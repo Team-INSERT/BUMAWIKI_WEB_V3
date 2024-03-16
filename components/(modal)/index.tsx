@@ -1,12 +1,12 @@
 "use client";
 
 import { useAtomValue } from "jotai";
-import modalContext from "../context/modal.context";
+import { modalContext } from "@/context/index";
 
 const Modal = () => {
   const modal = useAtomValue(modalContext);
 
-  return <div>{modal.component}</div>;
+  return <>{modal.component}</>;
 };
 
 export default Modal;

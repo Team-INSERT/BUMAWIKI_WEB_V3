@@ -1,15 +1,11 @@
-import InfoIcon from "@/assets/InfoIcon";
 import * as styles from "./style.css";
+import Image from "next/image";
 
-interface Props {
-  content: string;
-}
-
-const Tostify = ({ content }: Props) => {
+const Tostify = ({ content }: { content: string }) => {
   return (
     <div className={styles.container}>
       <div className={styles.contentBox}>
-        <InfoIcon />
+        <Image width={999} height={999} className={styles.icon} src="/assets/info.png" alt="INFO" />
         <div className={styles.content}>{content}</div>
       </div>
       <div className={styles.sideBar} />

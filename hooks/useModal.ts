@@ -1,15 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useAtom } from "jotai";
-import ModalState from "../type/ModalState.type";
-import modalContext from "../context/modal.context";
+import { modalContext } from "@/context/index";
 
 const useModal = () => {
   const [modal, setModal] = useAtom(modalContext);
 
   const openModal = React.useCallback(
-    ({ component }: ModalState) => {
-      setModal({ component });
-    },
+    ({ component }: { component: ReactNode }) => setModal({ component }),
     [setModal],
   );
 

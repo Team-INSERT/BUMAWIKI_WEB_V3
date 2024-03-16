@@ -1,4 +1,4 @@
-import { font, theme } from "@/styles";
+import { flex, font, theme } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const background = style({
@@ -7,8 +7,8 @@ export const background = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  backgroundColor: "#ececec50",
-  zIndex: "11",
+  backgroundColor: theme.cover,
+  zIndex: "20",
   position: "fixed",
 });
 
@@ -18,31 +18,25 @@ export const container = style({
   borderRadius: "12px",
   backgroundColor: theme.white,
   boxShadow: `0px 2px 5px 1px ${theme.gray}`,
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
   position: "absolute",
   margin: "0 auto",
+  ...flex.CENTER,
 });
 
 export const wrapper = style({
   width: "85%",
   height: "90%",
-  display: "flex",
-  alignItems: "center",
-  flexDirection: "column",
+  ...flex.COLUMN_VERTICAL,
 });
 
 export const logoWrapper = style({
-  margin: "3%",
+  padding: "3%",
 });
 
 export const contentBox = style({
   width: "100%",
   height: "30%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  ...flex.CENTER,
 });
 
 export const content = style({
@@ -50,23 +44,22 @@ export const content = style({
   height: "auto",
   textAlign: "center",
   whiteSpace: "normal",
-  ...font.H3,
   color: theme.primary,
+  ...font.H3,
 });
 
 export const buttonBox = style({
   width: "100%",
   height: "17%",
-  display: "flex",
-  alignItems: "center",
   marginTop: "3%",
   gap: "2%",
+  ...flex.BETWEEN,
 });
 
 export const cancelBtn = style({
   width: "20%",
   height: "100%",
-  backgroundColor: "#F0F0F0",
+  backgroundColor: theme.line,
   marginLeft: "auto",
   borderRadius: "8px",
   ...font.btn1,
@@ -76,6 +69,7 @@ export const confirmBtn = style({
   width: "25%",
   height: "100%",
   backgroundColor: theme.primary,
+  right: "0",
   color: theme.white,
   borderRadius: "8px",
   ...font.btn1,
@@ -84,6 +78,6 @@ export const confirmBtn = style({
 export const line = style({
   width: "100%",
   height: "2px",
-  backgroundColor: "#F0F0F0",
+  backgroundColor: theme.line,
   marginTop: "auto",
 });

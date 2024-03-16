@@ -1,14 +1,10 @@
 "use client";
 
-import useModal from "@/modal/hook/useModal";
+import useModal from "@/hooks/useModal";
 import RoundLogo from "@/assets/RoundLogo";
-import * as styles from "./style.css";
+import * as styles from "../style.css";
 
-interface Props {
-  content: string;
-}
-
-const Notice = ({ content }: Props) => {
+const Notice = ({ content }: { content: string }) => {
   const { closeModal } = useModal();
 
   return (
@@ -23,6 +19,7 @@ const Notice = ({ content }: Props) => {
           </div>
           <div className={styles.line} />
           <div className={styles.buttonBox}>
+            <div />
             <button className={styles.confirmBtn} onClick={closeModal}>
               확인
             </button>

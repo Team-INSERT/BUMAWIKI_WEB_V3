@@ -1,4 +1,4 @@
-import { font, theme } from "@/styles";
+import { flex, font, theme } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -8,25 +8,29 @@ export const container = style({
   position: "absolute",
   top: "0",
   left: "0",
-  display: "flex",
+  ...flex.FLEX,
 });
 
 export const contentBox = style({
-  width: "85%",
-  display: "flex",
-  alignItems: "center",
+  width: "100%",
   gap: "5%",
-  marginLeft: "auto",
+  padding: "5%",
+  ...flex.VERTICAL,
 });
 
 export const content = style({
   ...font.p1,
   fontWeight: "700",
+  ...flex.BETWEEN,
 });
 
 export const sideBar = style({
   width: "4%",
   height: "100%",
   backgroundColor: theme.primary,
-  marginLeft: "auto",
+});
+
+export const icon = style({
+  width: "23px",
+  height: "23px",
 });
