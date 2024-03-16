@@ -139,9 +139,9 @@ const Editor = () => {
             className={styles.textarea[String(isExampleOpen)]}
           />
         </div>
-        {/* eslint-disable-next-line react/no-danger */}
         <div
           className={styles.previewBox}
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: decodeContent(docs.contents) }}
         />
         <button onClick={handleCreateDocsClick} className={styles.writeButton}>
@@ -152,7 +152,13 @@ const Editor = () => {
           className={styles.wikiBoxHeader[String(isExampleOpen)]}
         >
           <span className={styles.wikiTitle}>부마위키 문법 예제 보기</span>
-          <ArrowIcon direction="down" fill="white" width={16} height={16} viewBox="0 0 26 30" />
+          <ArrowIcon
+            direction={isExampleOpen ? "up" : "down"}
+            fill="white"
+            width={16}
+            height={16}
+            viewBox="0 0 30 16"
+          />
         </header>
         {isExampleOpen && (
           <main className={styles.footer.body}>
