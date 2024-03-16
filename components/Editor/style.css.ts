@@ -36,8 +36,34 @@ export const previewBox = style({
   height: "100%",
   background: theme.preview,
   padding: "42px",
-  whiteSpace: "pre-wrap",
+  gap: "12px",
   ...font.p1,
+  ...flex.COLUMN_FLEX,
+});
+
+export const previewTitle = style({
+  color: theme.primary,
+  ...font.H1,
+});
+
+export const classifyBox = style({
+  width: "100%",
+  padding: "8px 14px",
+  border: `1px solid ${theme.gray}`,
+  borderRadius: "4px",
+  cursor: "pointer",
+  ...font.btn3,
+});
+
+export const classify = style({
+  color: theme.classify,
+  fontWeight: 500,
+});
+
+export const preview = style({
+  width: "100%",
+  height: "100%",
+  whiteSpace: "pre-wrap",
 });
 
 export const enrollList = style({

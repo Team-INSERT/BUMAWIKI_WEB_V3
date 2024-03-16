@@ -39,7 +39,7 @@ const wikiExampleList = [
 
 const Editor = () => {
   const [isExampleOpen, setIsExampleOpen] = useState(false);
-  const { autoClosingTag, getDocsTypeByClassify } = useDocs();
+  const { autoClosingTag, getDocsTypeByClassify, translateClassify } = useDocs();
   const { mutateAsync: create } = useCreateDocsMutation();
   const { mutateAsync: upload } = useUploadImageMutation();
   const router = useRouter();
@@ -139,11 +139,19 @@ const Editor = () => {
             className={styles.textarea[String(isExampleOpen)]}
           />
         </div>
-        <div
-          className={styles.previewBox}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: decodeContent(docs.contents) }}
-        />
+        <div className={styles.previewBox}>
+          <h1 className={styles.previewTitle}>{docs.title}</h1>
+          {docs.docsType && (
+            <div className={styles.classifyBox}>
+              분류 : <span className={styles.classify}>{translateClassify(docs.docsType)}</span>
+            </div>
+          )}
+          <div
+            className={styles.preview}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: decodeContent(docs.contents) }}
+          />
+        </div>
         <button onClick={handleCreateDocsClick} className={styles.writeButton}>
           생성하기
         </button>
