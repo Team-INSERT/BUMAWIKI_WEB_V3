@@ -11,7 +11,6 @@ export { default as PagePrevIcon } from "./PagePrevIcon";
 export { default as PopularIcon } from "./PopularIcon";
 export { default as ScrollIcon } from "./ScrollIcon";
 export { default as SearchIcon } from "./SearchIcon";
-export { default as StudentIcon } from "./StudentIcon";
 export { default as TeacherIcon } from "./TeacherIcon";
 export { default as WriteIcon } from "./WriteIcon";
 export { default as Logo } from "./Logo";

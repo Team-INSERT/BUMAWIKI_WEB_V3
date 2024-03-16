@@ -3,8 +3,8 @@ import { flex, theme } from "@/styles";
 
 export const scrollButtonWrap = style({
   position: "fixed",
-  right: "13%",
-  bottom: "5%",
+  left: "2%",
+  bottom: "3%",
   zIndex: "2",
   ...flex.FLEX,
 });
