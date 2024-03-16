@@ -208,3 +208,11 @@ button {
   display: inline-block;
   animation: spin 0.6s linear infinite;
 }
+
+.link {
+  color: #0038ff;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

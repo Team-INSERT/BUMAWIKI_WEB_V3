@@ -47,8 +47,8 @@ export const decodeContent = (content: string) => {
     )
     .replace(/<빙글빙글>([\s\S]*?)<\/빙글빙글>/gi, "<div class='spin'>$1</div>")
     .replace(/<삐슝빠슝>([\s\S]*?)<\/삐슝빠슝>/gi, "<div class='shake'>$1</div>")
-    .replace(/<링크 문서=\{(.*?)\}>(.*?)<\/링크>/g, '<a href="/docs/$1">$2</a>')
-    .replace(/<외부링크 문서=\{(.*?)\}>(.*?)<\/외부링크>/g, '<a href="$1">$2</a>')
+    .replace(/<링크 문서=\{(.*?)\}>(.*?)<\/링크>/g, "<a class='link' href='/docs/$1'>$2</a>")
+    .replace(/<외부링크 문서=\{(.*?)\}>(.*?)<\/외부링크>/g, "<a class='link' href='$1'>$2</a>")
     .replace(/<사진 \{(.*?)\}>(.*?)<\/사진>/g, '<img style="width: $1" src="$2" />')
     .replace(/<비디오 \{(.*?)\}>(.*?)<\/비디오>/g, '<video style="width: $1" src="$2" controls />')
 
