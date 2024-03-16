@@ -44,8 +44,9 @@
   }
 }
 
-/* body {
-} */
+body {
+  overflow-x: hidden;
+}
 
 ul,
 li {
