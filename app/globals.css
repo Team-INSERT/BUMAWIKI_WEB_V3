@@ -171,3 +171,12 @@ button {
   align-items: center;
   padding-left: 20px;
 }
+
+/* toastify */
+
+.toastify .Toastify__toast {
+  background-color: white;
+  right: 100px;
+  width: 400px;
+  color: #274168;
+}
