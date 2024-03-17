@@ -13,8 +13,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { EditorPropsType } from "@/types/editorPropType.interface";
 import useModal from "@/hooks/useModal";
+import { DOCS } from "@/services/docs/docs.key";
 import { useQueryClient } from "@tanstack/react-query";
-import getQueryClient from "@/app/getQueryClient";
 import * as styles from "./style.css";
 import DragDropUpload from "../DragDropUpload";
 import Confirm from "../(modal)/Confirm";
@@ -56,7 +56,7 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
   const { mutateAsync: update } = useUpdateDocsMutation();
   const router = useRouter();
   const [cursorPosition, setCursorPosition] = useState(0);
-  const queryClient = useQueryClient(getQueryClient());
+  const queryClient = useQueryClient();
   const { openModal } = useModal();
   const [docs, setDocs] = useState({
     enroll: 0,
@@ -118,7 +118,6 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
   };
 
   const handleEditDocsClick = async () => {
-    if (!docs.contents.trim()) return toast(<Toastify content="내용이 없습니다!" />);
     if (contents === docs.contents.trim())
       return toast(<Toastify content="변경된 사항이 없습니다!" />);
     try {
@@ -127,7 +126,8 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
         contents: docs.contents,
       });
       toast(<Toastify content="문서가 수정되었습니다!" />);
-      // await queryClient.refetchQueries();
+      queryClient.refetchQueries({ queryKey: DOCS.TITLE(docs.title) });
+      // await queryClient.invalidateQueries(DOCS.TITLE(docs.title));
       // router.push(`/docs/${docs.title}`);
       window.location.href = `/docs/${docs.title}`;
     } catch (err) {

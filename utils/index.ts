@@ -4,10 +4,12 @@ import "dayjs/locale/ko";
 
 export const decodeContent = (content: string) => {
   const decoded = content
+    .replace(/<<(.*?)>>:{(.*?)}/gi, `<이미지%@T src="$1" width="$2%" />`)
     /** xss */
     .replace(/<([A-Za-z]+)[^>]*>.*?<\/\1>/gi, "")
     .replace(/<([A-Za-z]+)[^>]*\/>/gi, "")
     .replace(/<([A-Za-z]+)([^>]*)\/?\s*>/gi, "")
+    .replaceAll("이미지%@T", "img")
     /** */
     .replaceAll(
       "<틀>",
@@ -27,7 +29,7 @@ export const decodeContent = (content: string) => {
     .replace(/세로병합={{/gi, ` rowspan="`)
 
     .replace(/}}/gi, `"`)
-    .replace(/\);/gi, "")
+    .replace(/include\((.*?)\);/gi, "틀 개발중!\n\n")
 
     .replace(/<항목>([\s\S]*?)<\/항목>/gi, "<li style='list-style: disc';>$1</li>")
     .replace(/<어록>([\s\S]*?)<\/어록>/gi, "<div class='analects';>$1</div>")
@@ -53,15 +55,14 @@ export const decodeContent = (content: string) => {
     .replace(/<비디오 \{(.*?)\}>(.*?)<\/비디오>/g, '<video style="width: $1" src="$2" controls />')
 
     // deprecated
-    .replace(/<<사진>>:{.*?}/gi, `<div class="image-preview">$1</div>`)
     .replace(
       /(?<=<<<|<<|>>|>>>)\s*http:\/\/bumawiki\.kro\.kr\/api\/\s*/g,
       process.env.NEXT_PUBLIC_SERVER_URL || "",
     )
     .replace(/(?<=<<<|<<)\s+|\s+(?=>>>|>>)/g, "%20")
-    .replace(/<</gi, `<img src="`)
-    .replace(/>>:{/gi, `" alt='' style="width:`)
-    .replace(/}/gi, `%; !important"/>`)
+    // .replace(/<</gi, `<img src="`)
+    // .replace(/>>:{/gi, `" alt='' style="width:`)
+    // .replace(/}/gi, `%; !important"/>`)
     .replace(/&#.*;/gi, ``);
 
   return decoded;
