@@ -14,8 +14,8 @@ import {
 import { useRouter } from "next/navigation";
 import { Storage } from "@/storage";
 import { TOKEN } from "@/constants/token.constant";
-import * as styles from "./style.css";
 import { toast } from "react-toastify";
+import * as styles from "./style.css";
 import Toastify from "../Toastify";
 
 const navigationList = [

@@ -29,6 +29,10 @@ export const titleInput = style({
   "::placeholder": {
     color: theme.boldgray,
   },
+
+  ":disabled": {
+    backgroundColor: "transparent",
+  },
 });
 
 export const previewBox = style({

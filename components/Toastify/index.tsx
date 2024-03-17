@@ -1,5 +1,5 @@
-import * as styles from "./style.css";
 import Image from "next/image";
+import * as styles from "./style.css";
 
 const Tostify = ({ content }: { content: string }) => {
   return (

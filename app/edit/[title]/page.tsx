@@ -9,10 +9,10 @@ interface PageProps {
 }
 
 const Page = async ({ params: { title } }: PageProps) => {
-  const doc = await useDocsByTitleQuery({ title });
+  const docs = await useDocsByTitleQuery({ title });
   return (
     <div>
-      <Editor contents={doc.contents} title={doc.title} mode="EDIT" />
+      <Editor {...docs} mode="EDIT" />
     </div>
   );
 };

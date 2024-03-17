@@ -21,7 +21,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <ToastContainer
-            autoClose={5000}
+            autoClose={3000}
             hideProgressBar
             closeOnClick
             pauseOnHover
