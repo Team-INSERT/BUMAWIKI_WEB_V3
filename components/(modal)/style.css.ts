@@ -8,7 +8,7 @@ export const background = style({
   justifyContent: "center",
   alignItems: "center",
   backgroundColor: theme.cover,
-  zIndex: "20",
+  zIndex: "30",
   position: "fixed",
 });
 
