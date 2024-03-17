@@ -10,6 +10,7 @@ export const useLoginMutation = () => {
       Storage.setItem(TOKEN.ACCESS, accessToken);
       Storage.setItem(TOKEN.REFRESH, refreshToken);
       window.history.go(-2);
+      window.location.reload();
     },
   });
 };
