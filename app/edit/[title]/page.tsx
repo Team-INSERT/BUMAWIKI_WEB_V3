@@ -12,7 +12,7 @@ const Page = async ({ params: { title } }: PageProps) => {
   const doc = await useDocsByTitleQuery({ title });
   return (
     <div>
-      <Editor content={doc.contents} title={doc.title} isEdit />
+      <Editor contents={doc.contents} title={doc.title} mode="EDIT" />
     </div>
   );
 };
