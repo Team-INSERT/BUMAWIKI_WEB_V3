@@ -6,9 +6,9 @@ export const decodeContent = (content: string) => {
   const decoded = content
     .replace(/<<(.*?)>>:{(.*?)}/gi, `<이미지%@T src="$1" width="$2%" />`)
     /** xss */
-    .replace(/<([A-Za-z]+)[^>]*>.*?<\/\1>/gi, "")
-    .replace(/<([A-Za-z]+)[^>]*\/>/gi, "")
-    .replace(/<([A-Za-z]+)([^>]*)\/?\s*>/gi, "")
+    // .replace(/<([A-Za-z]+)[^>]*>.*?<\/\1>/gi, "")
+    // .replace(/<([A-Za-z]+)[^>]*\/>/gi, "")
+    // .replace(/<([A-Za-z]+)([^>]*)\/?\s*>/gi, "")
     .replaceAll("이미지%@T", "img")
     /** */
     .replaceAll(
