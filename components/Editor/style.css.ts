@@ -41,6 +41,7 @@ export const previewBox = style({
   background: theme.preview,
   padding: "42px",
   gap: "12px",
+  overflowY: "scroll",
   ...font.p1,
   ...flex.COLUMN_FLEX,
 });
@@ -123,6 +124,7 @@ export const docsType = styleVariants<Record<string, ComplexStyleRule>>({
 });
 
 const textareaBase = style({
+  whiteSpace: "pre-wrap",
   width: "100%",
   marginTop: "12px",
   ...font.p1,
