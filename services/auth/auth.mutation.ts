@@ -9,7 +9,8 @@ export const useLoginMutation = () => {
     onSuccess: ({ accessToken, refreshToken }) => {
       Storage.setItem(TOKEN.ACCESS, accessToken);
       Storage.setItem(TOKEN.REFRESH, refreshToken);
-      window.history.go(-2);
+      // window.history.go(-2);
+      window.location.href = "/";
     },
   });
 };
