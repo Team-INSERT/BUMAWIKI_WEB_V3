@@ -12,6 +12,7 @@ import {
 import { useRouter } from "next/navigation";
 import * as styles from "./style.css";
 import DragDropUpload from "../DragDropUpload";
+import { EditorPropsType } from "@/types/editorPropType.interface";
 
 const wikiExampleList = [
   [
@@ -41,13 +42,7 @@ const wikiExampleList = [
   ],
 ];
 
-interface Props {
-  content?: string;
-  title?: string;
-  isEdit: boolean;
-}
-
-const Editor = ({ content, title, isEdit }: Props) => {
+const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
   const [isExampleOpen, setIsExampleOpen] = useState(false);
   const { autoClosingTag, getDocsTypeByClassify, translateClassify } = useDocs();
   const { mutateAsync: create } = useCreateDocsMutation();
@@ -57,33 +52,19 @@ const Editor = ({ content, title, isEdit }: Props) => {
   const [cursorPosition, setCursorPosition] = useState(0);
   const [docs, setDocs] = useState({
     enroll: 0,
-    title: "",
-    contents: "",
+    title,
+    contents,
     docsType: "",
   });
 
   const onClickUndo = () => {
-    if (content) {
+    if (contents) {
       setDocs((prev) => ({
         ...prev,
-        contents: content,
+        contents,
       }));
     }
   };
-
-  const updateContents = ({ content, title }: any) => {
-    setDocs((prev) => ({
-      ...prev,
-      title: title,
-      contents: content,
-    }));
-  };
-
-  useEffect(() => {
-    if (content !== undefined && title !== undefined) {
-      updateContents({ content, title });
-    }
-  }, []);
 
   const uploadImage = async (file: File) => {
     if (!file) return;
@@ -122,17 +103,29 @@ const Editor = ({ content, title, isEdit }: Props) => {
   };
 
   const handleEditDocsClick = async () => {
-    if (content === docs.contents.trim()) return alert("변경사항이 없습니다.");
+    if (contents === docs.contents.trim()) return alert("변경사항이 없습니다.");
     try {
       await update({
         title: docs.title,
-        content: docs.contents,
+        contents: docs.contents,
       });
       alert("성공!");
       router.push(`/docs/${docs.title}`);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const buttonMode = {
+    EDIT: {
+      function: handleEditDocsClick,
+      text: "저장하기",
+    },
+
+    CREATE: {
+      function: handleCreateDocsClick,
+      text: "생성하기",
+    },
   };
 
   return (
@@ -144,11 +137,9 @@ const Editor = ({ content, title, isEdit }: Props) => {
             value={docs.title}
             placeholder="제목을 입력해주세요"
             className={styles.titleInput}
-            disabled={isEdit}
+            disabled={mode === "EDIT"}
           />
-          {isEdit ? (
-            ""
-          ) : (
+          {mode === "CREATE" && (
             <div className={styles.enrollList}>
               |
               {getYear().map((year) => (
@@ -165,7 +156,7 @@ const Editor = ({ content, title, isEdit }: Props) => {
             </div>
           )}
           <div className={styles.separator} />
-          {isEdit ? (
+          {mode === "EDIT" ? (
             <div>
               <button onClick={onClickUndo} className={styles.undoBtn}>
                 되돌리기
@@ -213,15 +204,9 @@ const Editor = ({ content, title, isEdit }: Props) => {
             dangerouslySetInnerHTML={{ __html: decodeContent(docs.contents) }}
           />
         </div>
-        {isEdit ? (
-          <button onClick={handleEditDocsClick} className={styles.writeButton}>
-            저장하기
-          </button>
-        ) : (
-          <button onClick={handleCreateDocsClick} className={styles.writeButton}>
-            생성하기
-          </button>
-        )}
+        <button onClick={buttonMode[mode].function} className={styles.writeButton}>
+          {buttonMode[mode].text}
+        </button>
         <header
           onClick={() => setIsExampleOpen((prev) => !prev)}
           className={styles.wikiBoxHeader[String(isExampleOpen)]}
