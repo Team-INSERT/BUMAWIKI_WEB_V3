@@ -15,6 +15,8 @@ import { useRouter } from "next/navigation";
 import { Storage } from "@/storage";
 import { TOKEN } from "@/constants/token.constant";
 import * as styles from "./style.css";
+import { toast } from "react-toastify";
+import Toastify from "../Toastify";
 
 const navigationList = [
   { item: "학생", href: "/student", icon: <MyPageIcon /> },
@@ -31,8 +33,7 @@ const Header = () => {
 
   const handleSubmitSearchByKeyword = (e: FormEvent) => {
     e.preventDefault();
-    // 추후 커스텀 알레트로 수정
-    if (!keyword.trim()) return alert("검색어를 입력해주세요!");
+    if (!keyword.trim()) return toast(<Toastify content="검색어를 입력해주세요!" />);
     router.push(`/search/${keyword}`);
   };
 
