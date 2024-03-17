@@ -24,6 +24,10 @@ export const useDocs = () => {
         return "틀";
       case "POPULAR":
         return "인기";
+      case "NOTICE":
+        return "공지";
+      case "READONLY":
+        return "읽기전용";
       case "":
         return "부마위키";
       default:
