@@ -1,7 +1,8 @@
 import Container from "@/components/Container";
 import React from "react";
-import { HydrationBoundary } from "@tanstack/react-query";
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { useDocsByTitleQuery } from "@/services/docs/docs.query";
+import getQueryClient from "@/app/getQueryClient";
 import Docs from "./Docs";
 
 interface PageProps {
@@ -11,14 +12,15 @@ interface PageProps {
 }
 
 const Page = async ({ params: { title } }: PageProps) => {
+  const queryClient = getQueryClient();
   const docs = await useDocsByTitleQuery({ title });
 
   return (
-    <Container {...docs}>
-      <HydrationBoundary>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Container {...docs}>
         <Docs docs={docs} />
-      </HydrationBoundary>
-    </Container>
+      </Container>
+    </HydrationBoundary>
   );
 };
 

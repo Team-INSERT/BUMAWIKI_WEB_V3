@@ -3,7 +3,6 @@ import { style } from "@vanilla-extract/css";
 
 export const container = style({
   width: "100%",
-  padding: "20px 0",
 });
 
 export const title = style({
@@ -11,7 +10,9 @@ export const title = style({
   lineHeight: "45px",
 });
 
-export const details = style({});
+export const details = style({
+  paddingBottom: "50px",
+});
 
 export const summary = style({
   width: "100%",

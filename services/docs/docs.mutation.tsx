@@ -1,12 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import Toastify from "@/components/Toastify";
 import {
   requestCreateDocs,
   requestDeleteDocs,
   requestUpdateDocs,
   requestUploadImage,
 } from "./docs.api";
-import { toast } from "react-toastify";
-import Toastify from "@/components/Toastify";
 
 export const useCreateDocsMutation = () => {
   return useMutation({

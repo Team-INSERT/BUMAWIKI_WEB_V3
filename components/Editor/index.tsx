@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { decodeContent, getYear } from "@/utils";
 import { ArrowIcon } from "@/assets";
 import { useDocs } from "@/hooks/useDocs";
@@ -10,13 +10,15 @@ import {
   useUpdateDocsMutation,
 } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { EditorPropsType } from "@/types/editorPropType.interface";
+import useModal from "@/hooks/useModal";
+import { useQueryClient } from "@tanstack/react-query";
+import getQueryClient from "@/app/getQueryClient";
 import * as styles from "./style.css";
 import DragDropUpload from "../DragDropUpload";
-import { EditorPropsType } from "@/types/editorPropType.interface";
-import { toast } from "react-toastify";
-import Toastify from "../Toastify";
-import useModal from "@/hooks/useModal";
 import Confirm from "../(modal)/Confirm";
+import Toastify from "../Toastify";
 
 const wikiExampleList = [
   [
@@ -46,7 +48,7 @@ const wikiExampleList = [
   ],
 ];
 
-const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
+const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsType) => {
   const [isExampleOpen, setIsExampleOpen] = useState(false);
   const { autoClosingTag, getDocsTypeByClassify, translateClassify } = useDocs();
   const { mutateAsync: create } = useCreateDocsMutation();
@@ -54,12 +56,13 @@ const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
   const { mutateAsync: update } = useUpdateDocsMutation();
   const router = useRouter();
   const [cursorPosition, setCursorPosition] = useState(0);
+  const queryClient = useQueryClient(getQueryClient());
   const { openModal } = useModal();
   const [docs, setDocs] = useState({
     enroll: 0,
     title,
     contents,
-    docsType: "",
+    docsType,
   });
 
   const handleOpenComfirm = () => {
@@ -83,10 +86,9 @@ const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
     if (!file) return;
     const { url } = await upload(file);
     setDocs((prev) => {
-      const { contents } = prev;
-      const first = contents.substring(0, cursorPosition);
+      const first = prev.contents.substring(0, cursorPosition);
       const middle = `<사진 {200px}>${url}</사진>`;
-      const last = contents.substring(cursorPosition, contents.length);
+      const last = prev.contents.substring(cursorPosition, prev.contents.length);
       return {
         ...prev,
         contents: `${first}${middle}${last}`,
@@ -116,6 +118,7 @@ const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
   };
 
   const handleEditDocsClick = async () => {
+    if (!docs.contents.trim()) return toast(<Toastify content="내용이 없습니다!" />);
     if (contents === docs.contents.trim())
       return toast(<Toastify content="변경된 사항이 없습니다!" />);
     try {
@@ -124,7 +127,9 @@ const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
         contents: docs.contents,
       });
       toast(<Toastify content="문서가 수정되었습니다!" />);
-      router.push(`/docs/${docs.title}`);
+      // await queryClient.refetchQueries();
+      // router.push(`/docs/${docs.title}`);
+      window.location.href = `/docs/${docs.title}`;
     } catch (err) {
       console.log(err);
     }
@@ -186,13 +191,13 @@ const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
                 "전공동아리",
                 "사설동아리",
                 "틀",
-              ].map((docsType) => (
+              ].map((type) => (
                 <button
-                  onClick={() => setDocs((prev) => ({ ...prev, docsType }))}
-                  key={docsType}
-                  className={styles.docsType[String(docsType === docs.docsType)]}
+                  onClick={() => setDocs((prev) => ({ ...prev, docsType: type }))}
+                  key={type}
+                  className={styles.docsType[String(type === docs.docsType)]}
                 >
-                  {docsType}
+                  {type}
                 </button>
               ))}
             </div>
