@@ -13,6 +13,10 @@ import { useRouter } from "next/navigation";
 import * as styles from "./style.css";
 import DragDropUpload from "../DragDropUpload";
 import { EditorPropsType } from "@/types/editorPropType.interface";
+import { toast } from "react-toastify";
+import Toastify from "../Toastify";
+import useModal from "@/hooks/useModal";
+import Confirm from "../(modal)/Confirm";
 
 const wikiExampleList = [
   [
@@ -50,12 +54,21 @@ const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
   const { mutateAsync: update } = useUpdateDocsMutation();
   const router = useRouter();
   const [cursorPosition, setCursorPosition] = useState(0);
+  const { openModal } = useModal();
   const [docs, setDocs] = useState({
     enroll: 0,
     title,
     contents,
     docsType: "",
   });
+
+  const handleOpenComfirm = () => {
+    if (contents !== docs.contents.trim()) {
+      openModal({
+        component: <Confirm content="변경 사항을 삭제하시겠습니까?" onConfirm={onClickUndo} />,
+      });
+    }
+  };
 
   const onClickUndo = () => {
     if (contents) {
@@ -89,13 +102,13 @@ const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
   );
 
   const handleCreateDocsClick = async () => {
-    if (!docs.title.trim()) return alert("제목을 입력해주세요!");
-    if (!docs.enroll) return alert("문서 연도를 선택해주세요!");
-    if (!docs.docsType) return alert("문서 분류를 선택해주세요!");
-    if (!docs.contents.trim()) return alert("내용을 입력해주세요!");
+    if (!docs.title.trim()) return toast(<Toastify content="제목을 입력해주세요!" />);
+    if (!docs.enroll) return toast(<Toastify content="문서 연도를 선택해주세요!" />);
+    if (!docs.docsType) return toast(<Toastify content="문서 분류를 선택해주세요!" />);
+    if (!docs.contents.trim()) return toast(<Toastify content="내용을 입력해주세요!" />);
     try {
       await create({ ...docs, docsType: getDocsTypeByClassify(docs.docsType) });
-      alert("성공!");
+      toast(<Toastify content="문서가 생성되었습니다!" />);
       router.push(`/docs/${docs.title}`);
     } catch (err) {
       console.log(err);
@@ -103,13 +116,14 @@ const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
   };
 
   const handleEditDocsClick = async () => {
-    if (contents === docs.contents.trim()) return alert("변경사항이 없습니다.");
+    if (contents === docs.contents.trim())
+      return toast(<Toastify content="변경된 사항이 없습니다!" />);
     try {
       await update({
         title: docs.title,
         contents: docs.contents,
       });
-      alert("성공!");
+      toast(<Toastify content="문서가 수정되었습니다!" />);
       router.push(`/docs/${docs.title}`);
     } catch (err) {
       console.log(err);
@@ -158,7 +172,7 @@ const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
           <div className={styles.separator} />
           {mode === "EDIT" ? (
             <div>
-              <button onClick={onClickUndo} className={styles.undoBtn}>
+              <button onClick={handleOpenComfirm} className={styles.undoBtn}>
                 되돌리기
               </button>
             </div>
