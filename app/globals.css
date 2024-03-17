@@ -173,6 +173,14 @@ button {
   padding-left: 20px;
 }
 
+/* toastify */
+
+.toastify .Toastify__toast {
+  background-color: white;
+  right: 80px;
+  width: 400px;
+  color: #274168;
+
 @keyframes shake {
   0% {
     transform: translateX(10px);

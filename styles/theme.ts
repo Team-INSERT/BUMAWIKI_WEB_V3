@@ -12,6 +12,8 @@ const theme = {
   insert: "#CCFFD8",
   delete: "#FFD7D5",
   equal: "#F6F8FA",
+  cover: "#ececec50",
+  line: "#f0f0f0",
   preview: "#F6FAFD",
 };
 
