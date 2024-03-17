@@ -91,6 +91,14 @@ export const separator = style({
   borderBottom: `5px solid ${theme.primary}`,
 });
 
+export const undoBtn = style({
+  padding: "8px 16px",
+  background: theme.primary,
+  color: theme.white,
+  borderRadius: "4px",
+  ...font.H6,
+});
+
 export const docsTypeList = style({
   width: "100%",
   flexWrap: "wrap",

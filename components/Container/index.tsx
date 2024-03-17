@@ -8,6 +8,8 @@ import { dateText } from "@/utils";
 import { useDeleteDocsMutation } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
 import * as styles from "./style.css";
+import { toast } from "react-toastify";
+import Toastify from "../Toastify";
 
 interface ContainerProps extends PropsWithChildren {
   docsType: string;
@@ -31,7 +33,7 @@ const Container = ({
   const router = useRouter();
 
   const handleDocsEditClick = () => {
-    if (!isLoggedIn) alert("로그인 후 이용 가능합니다.");
+    if (!isLoggedIn) return toast(<Toastify content="로그인 후 이용 가능합니다." />);
     router.push(`/edit/${title}`);
   };
 

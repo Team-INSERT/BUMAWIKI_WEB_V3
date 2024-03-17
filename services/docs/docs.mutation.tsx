@@ -5,6 +5,8 @@ import {
   requestUpdateDocs,
   requestUploadImage,
 } from "./docs.api";
+import { toast } from "react-toastify";
+import Toastify from "@/components/Toastify";
 
 export const useCreateDocsMutation = () => {
   return useMutation({
@@ -22,7 +24,7 @@ export const useDeleteDocsMutation = () => {
   return useMutation({
     mutationFn: requestDeleteDocs,
     onSuccess: () => {
-      alert("성공");
+      toast(<Toastify content="성공" />);
       window.location.href = "/";
     },
   });

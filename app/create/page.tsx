@@ -4,7 +4,7 @@ import React from "react";
 const Page = () => {
   return (
     <div>
-      <Editor />
+      <Editor mode="CREATE" />
     </div>
   );
 };

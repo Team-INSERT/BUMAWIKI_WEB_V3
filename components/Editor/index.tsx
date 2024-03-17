@@ -1,13 +1,22 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { decodeContent, getYear } from "@/utils";
 import { ArrowIcon } from "@/assets";
 import { useDocs } from "@/hooks/useDocs";
-import { useCreateDocsMutation, useUploadImageMutation } from "@/services/docs/docs.mutation";
+import {
+  useCreateDocsMutation,
+  useUploadImageMutation,
+  useUpdateDocsMutation,
+} from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
 import * as styles from "./style.css";
 import DragDropUpload from "../DragDropUpload";
+import { EditorPropsType } from "@/types/editorPropType.interface";
+import { toast } from "react-toastify";
+import Toastify from "../Toastify";
+import useModal from "@/hooks/useModal";
+import Confirm from "../(modal)/Confirm";
 
 const wikiExampleList = [
   [
@@ -37,19 +46,38 @@ const wikiExampleList = [
   ],
 ];
 
-const Editor = () => {
+const Editor = ({ contents = "", title = "", mode }: EditorPropsType) => {
   const [isExampleOpen, setIsExampleOpen] = useState(false);
   const { autoClosingTag, getDocsTypeByClassify, translateClassify } = useDocs();
   const { mutateAsync: create } = useCreateDocsMutation();
   const { mutateAsync: upload } = useUploadImageMutation();
+  const { mutateAsync: update } = useUpdateDocsMutation();
   const router = useRouter();
   const [cursorPosition, setCursorPosition] = useState(0);
+  const { openModal } = useModal();
   const [docs, setDocs] = useState({
     enroll: 0,
-    title: "",
-    contents: "",
+    title,
+    contents,
     docsType: "",
   });
+
+  const handleOpenComfirm = () => {
+    if (contents !== docs.contents.trim()) {
+      openModal({
+        component: <Confirm content="변경 사항을 삭제하시겠습니까?" onConfirm={onClickUndo} />,
+      });
+    }
+  };
+
+  const onClickUndo = () => {
+    if (contents) {
+      setDocs((prev) => ({
+        ...prev,
+        contents,
+      }));
+    }
+  };
 
   const uploadImage = async (file: File) => {
     if (!file) return;
@@ -74,17 +102,44 @@ const Editor = () => {
   );
 
   const handleCreateDocsClick = async () => {
-    if (!docs.title.trim()) return alert("제목을 입력해주세요!");
-    if (!docs.enroll) return alert("문서 연도를 선택해주세요!");
-    if (!docs.docsType) return alert("문서 분류를 선택해주세요!");
-    if (!docs.contents.trim()) return alert("내용을 입력해주세요!");
+    if (!docs.title.trim()) return toast(<Toastify content="제목을 입력해주세요!" />);
+    if (!docs.enroll) return toast(<Toastify content="문서 연도를 선택해주세요!" />);
+    if (!docs.docsType) return toast(<Toastify content="문서 분류를 선택해주세요!" />);
+    if (!docs.contents.trim()) return toast(<Toastify content="내용을 입력해주세요!" />);
     try {
       await create({ ...docs, docsType: getDocsTypeByClassify(docs.docsType) });
-      alert("성공!");
+      toast(<Toastify content="문서가 생성되었습니다!" />);
       router.push(`/docs/${docs.title}`);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleEditDocsClick = async () => {
+    if (contents === docs.contents.trim())
+      return toast(<Toastify content="변경된 사항이 없습니다!" />);
+    try {
+      await update({
+        title: docs.title,
+        contents: docs.contents,
+      });
+      toast(<Toastify content="문서가 수정되었습니다!" />);
+      router.push(`/docs/${docs.title}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const buttonMode = {
+    EDIT: {
+      function: handleEditDocsClick,
+      text: "저장하기",
+    },
+
+    CREATE: {
+      function: handleCreateDocsClick,
+      text: "생성하기",
+    },
   };
 
   return (
@@ -96,41 +151,52 @@ const Editor = () => {
             value={docs.title}
             placeholder="제목을 입력해주세요"
             className={styles.titleInput}
+            disabled={mode === "EDIT"}
           />
-          <div className={styles.enrollList}>
-            |
-            {getYear().map((year) => (
-              <div key={year}>
-                <span
-                  onClick={() => setDocs((prev) => ({ ...prev, enroll: year }))}
-                  className={styles.year[String(year === docs.enroll)]}
-                >
-                  &nbsp;{year}&nbsp;
-                </span>
-                |
-              </div>
-            ))}
-          </div>
+          {mode === "CREATE" && (
+            <div className={styles.enrollList}>
+              |
+              {getYear().map((year) => (
+                <div key={year}>
+                  <span
+                    onClick={() => setDocs((prev) => ({ ...prev, enroll: year }))}
+                    className={styles.year[String(year === docs.enroll)]}
+                  >
+                    &nbsp;{year}&nbsp;
+                  </span>
+                  |
+                </div>
+              ))}
+            </div>
+          )}
           <div className={styles.separator} />
-          <div className={styles.docsTypeList}>
-            {[
-              "사건",
-              "일반선생님",
-              "전공선생님",
-              "멘토선생님",
-              "전공동아리",
-              "사설동아리",
-              "틀",
-            ].map((docsType) => (
-              <button
-                onClick={() => setDocs((prev) => ({ ...prev, docsType }))}
-                key={docsType}
-                className={styles.docsType[String(docsType === docs.docsType)]}
-              >
-                {docsType}
+          {mode === "EDIT" ? (
+            <div>
+              <button onClick={handleOpenComfirm} className={styles.undoBtn}>
+                되돌리기
               </button>
-            ))}
-          </div>
+            </div>
+          ) : (
+            <div className={styles.docsTypeList}>
+              {[
+                "사건",
+                "일반선생님",
+                "전공선생님",
+                "멘토선생님",
+                "전공동아리",
+                "사설동아리",
+                "틀",
+              ].map((docsType) => (
+                <button
+                  onClick={() => setDocs((prev) => ({ ...prev, docsType }))}
+                  key={docsType}
+                  className={styles.docsType[String(docsType === docs.docsType)]}
+                >
+                  {docsType}
+                </button>
+              ))}
+            </div>
+          )}
           <textarea
             onKeyDown={(e) => setCursorPosition((e.target as HTMLTextAreaElement).selectionStart)}
             onChange={(e) => setDocs((prev) => ({ ...prev, contents: autoClosingTag(e) }))}
@@ -152,8 +218,8 @@ const Editor = () => {
             dangerouslySetInnerHTML={{ __html: decodeContent(docs.contents) }}
           />
         </div>
-        <button onClick={handleCreateDocsClick} className={styles.writeButton}>
-          생성하기
+        <button onClick={buttonMode[mode].function} className={styles.writeButton}>
+          {buttonMode[mode].text}
         </button>
         <header
           onClick={() => setIsExampleOpen((prev) => !prev)}
@@ -161,7 +227,7 @@ const Editor = () => {
         >
           <span className={styles.wikiTitle}>부마위키 문법 예제 보기</span>
           <ArrowIcon
-            direction={isExampleOpen ? "up" : "down"}
+            direction={isExampleOpen ? "down" : "up"}
             fill="white"
             width={16}
             height={16}
