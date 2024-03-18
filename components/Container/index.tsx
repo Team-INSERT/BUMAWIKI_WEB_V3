@@ -8,8 +8,10 @@ import { dateText } from "@/utils";
 import { useDeleteDocsMutation } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import useModal from "@/hooks/useModal";
 import * as styles from "./style.css";
 import Toastify from "../Toastify";
+import Confirm from "../(modal)/Confirm";
 
 interface ContainerProps extends PropsWithChildren {
   docsType: string;
@@ -30,7 +32,16 @@ const Container = ({
   const { translateClassify } = useDocs();
   const { mutate } = useDeleteDocsMutation();
   const { isAdmin, isLoggedIn } = useUser();
+  const { openModal } = useModal();
   const router = useRouter();
+
+  const handleDeleteDocsClick = (docsId: number) => {
+    openModal({
+      component: (
+        <Confirm content="정말 문서를 삭제하시겠습니까?" onConfirm={() => mutate(docsId)} />
+      ),
+    });
+  };
 
   const handleDocsEditClick = () => {
     if (!isLoggedIn) return toast(<Toastify content="로그인 후 이용 가능합니다." />);
@@ -55,7 +66,7 @@ const Container = ({
               역사
             </Link>
             {isAdmin && id && (
-              <button onClick={() => mutate(id)} className={styles.deleteButton}>
+              <button onClick={() => handleDeleteDocsClick(id)} className={styles.deleteButton}>
                 삭제
               </button>
             )}
