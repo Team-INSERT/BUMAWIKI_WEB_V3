@@ -196,6 +196,7 @@ export const footer = {
   }),
   tItem: style({
     width: "82%",
+    cursor: "pointer",
     height: "100%",
     ...flex.COLUMN_FLEX,
   }),
