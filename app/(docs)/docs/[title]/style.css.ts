@@ -10,6 +10,7 @@ export const container = style({
 export const body = style({
   width: "100%",
   whiteSpace: "pre-wrap",
+  ...font.p1,
 });
 
 export const contributorsBox = style({

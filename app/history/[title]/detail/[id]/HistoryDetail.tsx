@@ -41,7 +41,9 @@ const HistoryDetail = ({
           return (
             <div key={id} className={styles.historyContent}>
               <div className={styles.historyOperation[dif.operation]}>{operationIcon}</div>
-              <div className={styles.history[dif.operation]}>{dif.text}</div>
+              <div className={styles.history[dif.operation]}>
+                {dif.text.replaceAll("<br>", "\n")}
+              </div>
             </div>
           );
         })}
