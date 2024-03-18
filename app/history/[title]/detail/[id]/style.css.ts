@@ -28,6 +28,7 @@ const historyBase = style({
   width: "100%",
   padding: "6px 8px",
   gap: "12px",
+  whiteSpace: "pre-wrap",
   opacity: 0.7,
   ...flex.VERTICAL,
 });

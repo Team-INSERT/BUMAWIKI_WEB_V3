@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import { decodeContent, getYear } from "@/utils";
 import { ArrowIcon } from "@/assets";
 import { useDocs } from "@/hooks/useDocs";
@@ -65,15 +65,17 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
     docsType,
   });
 
-  const handleOpenComfirm = () => {
+  const handleOpenConfirm = () => {
     if (contents !== docs.contents.trim()) {
       openModal({
-        component: <Confirm content="변경 사항을 삭제하시겠습니까?" onConfirm={onClickUndo} />,
+        component: (
+          <Confirm content="변경 사항을 삭제하시겠습니까?" onConfirm={handleDocsUndoClick} />
+        ),
       });
     }
   };
 
-  const onClickUndo = () => {
+  const handleDocsUndoClick = () => {
     if (contents) {
       setDocs((prev) => ({
         ...prev,
@@ -87,7 +89,7 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
     const { url } = await upload(file);
     setDocs((prev) => {
       const first = prev.contents.substring(0, cursorPosition);
-      const middle = `<사진 {200px}>${url}</사진>`;
+      const middle = `\n<사진 {200px}>${url}</사진>\n`;
       const last = prev.contents.substring(cursorPosition, prev.contents.length);
       return {
         ...prev,
@@ -135,6 +137,10 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
     }
   };
 
+  const handleDocsContentsChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setDocs((prev) => ({ ...prev, contents: autoClosingTag(e).replaceAll("<br>", "\n") }));
+  };
+
   const buttonMode = {
     EDIT: {
       function: handleEditDocsClick,
@@ -177,7 +183,7 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
           <div className={styles.separator} />
           {mode === "EDIT" ? (
             <div>
-              <button onClick={handleOpenComfirm} className={styles.undoBtn}>
+              <button onClick={handleOpenConfirm} className={styles.undoBtn}>
                 되돌리기
               </button>
             </div>
@@ -204,9 +210,7 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
           )}
           <textarea
             onKeyDown={(e) => setCursorPosition((e.target as HTMLTextAreaElement).selectionStart)}
-            onChange={(e) =>
-              setDocs((prev) => ({ ...prev, contents: autoClosingTag(e).replaceAll("<br>", "\n") }))
-            }
+            onChange={handleDocsContentsChange}
             value={docs.contents.replaceAll("<br>", "\n")}
             placeholder="문서 내용을 입력해주세요. 사진 또는 동영상을 넣으려면 파일을 드래그&드롭하세요..."
             className={styles.textarea[String(isExampleOpen)]}
