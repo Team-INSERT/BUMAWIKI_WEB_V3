@@ -74,3 +74,8 @@ export const main = style({
   height: "fit-content",
   ...flex.COLUMN_FLEX,
 });
+
+export const warning = style({
+  color: theme.red,
+  ...font.H6,
+});
