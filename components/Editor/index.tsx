@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { decodeContent, getYear } from "@/utils";
 import { ArrowIcon } from "@/assets";
 import { useDocs } from "@/hooks/useDocs";
@@ -19,6 +19,7 @@ import * as styles from "./style.css";
 import DragDropUpload from "../DragDropUpload";
 import Confirm from "../(modal)/Confirm";
 import Toastify from "../Toastify";
+import PasteUpload from "../PasteUpload";
 
 const wikiExampleList = [
   [
@@ -141,6 +142,11 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
     setDocs((prev) => ({ ...prev, contents: autoClosingTag(e).replaceAll("<br>", "\n") }));
   };
 
+  const handleTagCopyClick = async (tag: string) => {
+    await navigator.clipboard.writeText(`<${tag}></${tag}>`);
+    toast(<Toastify content="클립보드에 복사되었어요!" />);
+  };
+
   const buttonMode = {
     EDIT: {
       function: handleEditDocsClick,
@@ -252,7 +258,10 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
                 {list.map((ex) => (
                   <article className={styles.footer.box} key={ex.name}>
                     <hgroup className={styles.footer.tHead}>{ex.name}</hgroup>
-                    <section className={styles.footer.tItem}>
+                    <section
+                      className={styles.footer.tItem}
+                      onClick={() => handleTagCopyClick(ex.name)}
+                    >
                       <figure className={styles.footer.tCell.top}>{ex.example}</figure>
                       <figure
                         className={styles.footer.tCell.bottom}
@@ -268,6 +277,7 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
         )}
       </div>
       <DragDropUpload onUpload={onDragDropUpload} />
+      <PasteUpload onUpload={onDragDropUpload} />
     </>
   );
 };
