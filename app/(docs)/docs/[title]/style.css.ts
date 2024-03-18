@@ -42,3 +42,8 @@ export const contributor = style({
     textDecoration: "underline",
   },
 });
+
+export const warning = style({
+  color: theme.red,
+  ...font.H6,
+});

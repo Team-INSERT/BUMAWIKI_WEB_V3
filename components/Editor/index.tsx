@@ -218,7 +218,7 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorPropsT
             onKeyDown={(e) => setCursorPosition((e.target as HTMLTextAreaElement).selectionStart)}
             onChange={handleDocsContentsChange}
             value={docs.contents.replaceAll("<br>", "\n")}
-            placeholder="문서 내용을 입력해주세요. 사진 또는 동영상을 넣으려면 파일을 드래그&드롭하세요..."
+            placeholder="문서 내용을 입력해주세요. 사진 또는 동영상을 넣으려면 파일을 드래그&드롭하세요."
             className={styles.textarea[String(isExampleOpen)]}
           />
         </div>
