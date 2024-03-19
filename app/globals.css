@@ -137,12 +137,11 @@ button {
 .analects {
   width: 100%;
   background-color: #eee;
-  height: 36px;
   border: 1px solid #ccc;
   font-weight: 600;
   display: flex;
   align-items: center;
-  padding-left: 20px;
+  padding: 10px 20px;
 }
 
 .analects_text {
