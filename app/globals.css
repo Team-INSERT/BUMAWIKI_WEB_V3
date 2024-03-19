@@ -175,6 +175,10 @@ button {
 
 /* toastify */
 
+.toastify {
+  margin-top: 30px;
+}
+
 .toastify .Toastify__toast {
   background-color: white;
   right: 80px;
