@@ -16,6 +16,9 @@ const nextConfig = withVanillaExtract({
       "ifh.cc",
       "velog.velcdn.com",
       "bumawiki.s3.ap-northeast-2.amazonaws.com",
+      "cdn.discordapp.com",
+      "previews.123rf.com",
+      "yt3.googleusercontent.com",
     ],
   },
 });
