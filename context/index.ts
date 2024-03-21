@@ -6,6 +6,7 @@ export const userContext = atom({
   id: 0,
   email: "",
   nickName: "",
+  name: "",
   authority: "",
   contributeDocs: [] as Array<ContributeDocsType>,
   isLogin: false,
