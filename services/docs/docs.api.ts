@@ -1,6 +1,5 @@
 import { http } from "@/apis";
-import { TOKEN } from "@/constants/token.constant";
-import { Storage } from "@/storage";
+import { authorization } from "@/apis/header";
 import { CreateDocsType } from "@/types/createDocsType.interface";
 
 export const getDocsListByClassify = async (classify: string) => {
@@ -24,9 +23,7 @@ export const getLastModifiedDocsList = async (page: number) => {
 };
 
 export const requestCreateDocs = async (docs: CreateDocsType) => {
-  const { data } = await http.post("/docs/create", docs, {
-    headers: { Authorization: Storage.getItem(TOKEN.ACCESS) },
-  });
+  const { data } = await http.post("/docs/create", docs, authorization());
   return data;
 };
 
@@ -37,20 +34,12 @@ export const requestUpdateDocs = async ({
   title: string;
   contents: string;
 }) => {
-  const { data } = await http.put(
-    `/docs/update/${title}`,
-    { contents },
-    {
-      headers: { Authorization: Storage.getItem(TOKEN.ACCESS) },
-    },
-  );
+  const { data } = await http.put(`/docs/update/${title}`, { contents }, authorization());
   return data;
 };
 
 export const requestDeleteDocs = async (id: number) => {
-  const { data } = await http.delete(`/docs/delete/${id}`, {
-    headers: { Authorization: Storage.getItem(TOKEN.ACCESS) },
-  });
+  const { data } = await http.delete(`/docs/delete/${id}`, authorization());
   return data;
 };
 
