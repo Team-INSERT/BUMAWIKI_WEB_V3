@@ -1,7 +1,9 @@
-import Container from "@/components/Container";
 import React from "react";
-import { HydrationBoundary } from "@tanstack/react-query";
-import { useDocsByKeywordQuery } from "@/services/docs/docs.query";
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
+import getQueryClient from "@/app/getQueryClient";
+import { docsQuery } from "@/services/docs/docs.query";
+import { generateOpenGraph } from "@/utils";
+import { Metadata } from "next";
 import SearchResult from "./SearchResult";
 
 interface PageProps {
@@ -10,15 +12,21 @@ interface PageProps {
   };
 }
 
+export const generateMetadata = async ({ params: { keyword } }: PageProps): Promise<Metadata> => {
+  return generateOpenGraph({
+    title: `검색 결과#${decodeURI(keyword)}`,
+    description: `부마위키의 "${decodeURI(keyword)}" 검색 결과입니다.`,
+  });
+};
+
 const Page = async ({ params: { keyword } }: PageProps) => {
-  const result = await useDocsByKeywordQuery({ keyword }).catch((e) => e);
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(docsQuery.keyword(keyword));
 
   return (
-    <Container title={`검색결과#${decodeURI(keyword)}`} docsType="user">
-      <HydrationBoundary>
-        <SearchResult result={result} />
-      </HydrationBoundary>
-    </Container>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <SearchResult keyword={keyword} />
+    </HydrationBoundary>
   );
 };
 

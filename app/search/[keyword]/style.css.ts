@@ -61,3 +61,9 @@ export const searchCreateLink = style({
     textDecoration: "underline",
   },
 });
+
+export const loader = style({
+  width: "100%",
+  height: "100vh",
+  ...flex.CENTER,
+});
