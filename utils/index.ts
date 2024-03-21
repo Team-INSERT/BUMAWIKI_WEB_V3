@@ -111,7 +111,8 @@ export const generateOpenGraph = <OG extends { title: string; description: strin
     type: "website",
     title: `부마위키 - ${title}`,
     description,
-    images: "/meta-img.png",
+    images:
+      "https://bumawiki.s3.ap-northeast-2.amazonaws.com/file2a809fd7-66f4-421e-9b64-005b34ea8020",
   },
 });
 
