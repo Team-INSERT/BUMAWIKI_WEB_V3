@@ -1,40 +1,37 @@
-import getQueryClient from "@/app/getQueryClient";
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/react-query";
+import { DocsListType } from "@/types/docsList.interface";
+import { DocsItem } from "@/types/docsItem.interface";
+import { DocsListItem } from "@/types/docsListItem.interface";
 import {
   getDocsByKeyword,
   getDocsByTitle,
   getDocsListByClassify,
   getLastModifiedDocsList,
 } from "./docs.api";
-import { DOCS } from "./docs.key";
 
-export const useDocsListQuery = ({ classify }: { classify: string }) => {
-  const queryClient = getQueryClient();
-  return queryClient.fetchQuery({
-    queryKey: DOCS.LIST(classify),
-    queryFn: () => getDocsListByClassify(classify),
-  });
-};
+type QueryOptions<Classify extends string> = Classify extends "popular"
+  ? Array<DocsListItem>
+  : DocsListType;
 
-export const useDocsByTitleQuery = ({ title }: { title: string }) => {
-  const queryClient = getQueryClient();
-  return queryClient.fetchQuery({
-    queryKey: DOCS.TITLE(title),
-    queryFn: () => getDocsByTitle(title),
-  });
-};
-
-export const useDocsByKeywordQuery = ({ keyword }: { keyword: string }) => {
-  const queryClient = getQueryClient();
-  return queryClient.fetchQuery({
-    queryKey: DOCS.KEYWORD(keyword),
-    queryFn: () => getDocsByKeyword(keyword),
-  });
-};
-
-export const useLastModifiedDocsListQuery = (page: number) => {
-  return useQuery({
-    queryKey: DOCS.LASTMODIFY,
-    queryFn: () => getLastModifiedDocsList(page),
-  });
+export const docsQuery = {
+  list: <Classify extends string>(classify: Classify) =>
+    queryOptions<QueryOptions<Classify>>({
+      queryKey: ["query.docsList", classify],
+      queryFn: () => getDocsListByClassify(classify),
+    }),
+  title: <Title extends string>(title: Title) =>
+    queryOptions<DocsItem>({
+      queryKey: ["query.docsTitle", title],
+      queryFn: () => getDocsByTitle(title),
+    }),
+  keyword: <Keyword extends string>(keyword: Keyword) =>
+    queryOptions<Array<DocsListItem>>({
+      queryKey: ["query.docsKeyword", keyword],
+      queryFn: () => getDocsByKeyword(keyword),
+    }),
+  lastModified: <Page extends number>(page: Page) =>
+    queryOptions({
+      queryKey: ["query.lastModifiedAt", page],
+      queryFn: () => getLastModifiedDocsList(page),
+    }),
 };
