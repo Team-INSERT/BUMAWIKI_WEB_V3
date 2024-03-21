@@ -5,6 +5,7 @@ import { docsQuery } from "@/services/docs/docs.query";
 import { likeQuery } from "@/services/like/like.query";
 import { Metadata } from "next";
 import { generateOpenGraph } from "@/utils";
+import { notFound } from "next/navigation";
 import Docs from "./Docs";
 
 interface PageProps {
@@ -14,13 +15,17 @@ interface PageProps {
 }
 
 export const generateMetadata = async ({ params: { title } }: PageProps): Promise<Metadata> => {
-  const queryClient = getQueryClient();
-  const data = await queryClient.fetchQuery(docsQuery.title(title));
+  try {
+    const queryClient = getQueryClient();
+    const data = await queryClient.fetchQuery(docsQuery.title(title));
 
-  return generateOpenGraph({
-    title: data.title,
-    description: data.contents,
-  });
+    return generateOpenGraph({
+      title: data.title,
+      description: data.contents,
+    });
+  } catch {
+    notFound();
+  }
 };
 
 const Page = async ({ params: { title } }: PageProps) => {
