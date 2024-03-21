@@ -1,12 +1,6 @@
 import { flex, font, theme } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
-export const container = style({
-  width: "100%",
-  gap: "16px",
-  ...flex.COLUMN_FLEX,
-});
-
 export const historyBox = style({
   width: "100%",
   padding: "10px",
