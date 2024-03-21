@@ -10,10 +10,7 @@ const Providers = ({ children }: PropsWithChildren) => {
       new QueryClient({
         defaultOptions: {
           queries: {
-            // refetchOnWindowFocus: false,
-            // enabled: true,
-            // retry: 0,
-            staleTime: 600 * 1000,
+            staleTime: 60 * 1000,
           },
         },
       }),
