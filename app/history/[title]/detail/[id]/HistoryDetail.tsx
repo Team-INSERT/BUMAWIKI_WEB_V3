@@ -1,5 +1,10 @@
-import React from "react";
+"use client";
+
+import React, { FC } from "react";
 import Link from "next/link";
+import Container from "@/components/Container";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { historyQuery } from "@/services/history/history.query";
 import * as styles from "./style.css";
 
 interface HistoryType {
@@ -7,48 +12,45 @@ interface HistoryType {
   text: string;
 }
 
-interface VersionDocs {
-  userId: number;
-  nickName: string;
-}
+const HistoryDetail: FC<{ id: number; title: string }> = ({ id, title }) => {
+  const { data: history } = useSuspenseQuery(historyQuery.detail({ id, title }));
 
-const HistoryDetail = ({
-  diff,
-  versionDocs,
-}: {
-  diff: Array<HistoryType>;
-  versionDocs: VersionDocs;
-}) => {
   return (
-    <div className={styles.container}>
-      <Link href={`/user/${versionDocs.userId}`} className={styles.author}>
-        작성자 · {versionDocs.nickName}
-      </Link>
-      <div className={styles.historyBox}>
-        {diff.map((dif, id) => {
-          const operationIcon = (() => {
-            switch (dif.operation) {
-              case "INSERT":
-                return "+";
-              case "DELETE":
-                return "-";
-              case "EQUAL":
-                return "";
-              default:
-                return dif.operation;
-            }
-          })();
-          return (
-            <div key={id} className={styles.historyContent}>
-              <div className={styles.historyOperation[dif.operation]}>{operationIcon}</div>
-              <div className={styles.history[dif.operation]}>
-                {dif.text.replaceAll("<br>", "\n")}
+    <Container
+      title={`${history.title}#${id}`}
+      docsType={history.docsType}
+      lastModifiedAt={history.versionDocs.thisVersionCreatedAt}
+    >
+      <div className={styles.container}>
+        <Link href={`/user/${history.versionDocs.userId}`} className={styles.author}>
+          작성자 · {history.versionDocs.nickName}
+        </Link>
+        <div className={styles.historyBox}>
+          {history.diff.map((dif: HistoryType, historyId: number) => {
+            const operationIcon = (() => {
+              switch (dif.operation) {
+                case "INSERT":
+                  return "+";
+                case "DELETE":
+                  return "-";
+                case "EQUAL":
+                  return "";
+                default:
+                  return dif.operation;
+              }
+            })();
+            return (
+              <div key={historyId} className={styles.historyContent}>
+                <div className={styles.historyOperation[dif.operation]}>{operationIcon}</div>
+                <div className={styles.history[dif.operation]}>
+                  {dif.text.replaceAll("<br>", "\n")}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
