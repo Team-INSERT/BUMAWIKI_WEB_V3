@@ -110,7 +110,7 @@ export const generateOpenGraph = <OG extends { title: string; description: strin
     type: "website",
     title: `부마위키 - ${title}`,
     description,
-    images: [{ url: "/images/meta-img.png" }],
+    images: [{ url: "/meta-img.png" }],
   },
 });
 
