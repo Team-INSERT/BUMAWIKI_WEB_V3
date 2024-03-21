@@ -5,4 +5,5 @@ export interface ContributeDocsType {
   createTime: Date;
   title: string;
   versionDocsId: number;
+  docsType: string;
 }

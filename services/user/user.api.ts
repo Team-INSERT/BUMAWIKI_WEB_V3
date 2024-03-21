@@ -10,3 +10,8 @@ export const getUserById = async (id: number) => {
   const { data } = await http.get(`/user/id/${id}`);
   return data;
 };
+
+export const getMyLikeList = async () => {
+  const { data } = await http.get("/thumbs/up/get", authorization());
+  return data;
+};

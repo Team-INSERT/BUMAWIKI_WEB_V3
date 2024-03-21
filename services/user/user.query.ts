@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { getMyInformation, getUserById } from "./user.api";
+import { getMyInformation, getMyLikeList, getUserById } from "./user.api";
 
 export const userQuery = {
   my: () =>
@@ -11,5 +11,10 @@ export const userQuery = {
     queryOptions({
       queryKey: ["query.user", id],
       queryFn: () => getUserById(id),
+    }),
+  like: () =>
+    queryOptions({
+      queryKey: ["query.userLike"],
+      queryFn: getMyLikeList,
     }),
 };
