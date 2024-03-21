@@ -114,6 +114,10 @@ export const generateOpenGraph = <OG extends { title: string; description: strin
     images:
       "https://bumawiki.s3.ap-northeast-2.amazonaws.com/file2a809fd7-66f4-421e-9b64-005b34ea8020",
   },
+  other: {
+    "og:image":
+      "https://bumawiki.s3.ap-northeast-2.amazonaws.com/file2a809fd7-66f4-421e-9b64-005b34ea8020",
+  },
 });
 
 export const translateClassify = (classify: string) => {
