@@ -5,7 +5,7 @@ export interface DocsItem {
   contents: string;
   docsType: string;
   view: number;
-  lastModifiedAt: string;
+  lastModifiedAt: Date;
   thumbsUpsCounts: number;
   youLikeThis: boolean;
   contributors: Array<{

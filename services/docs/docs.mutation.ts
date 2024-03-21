@@ -1,6 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import Toastify from "@/components/Toastify";
 import {
   requestCreateDocs,
   requestDeleteDocs,
@@ -23,10 +21,6 @@ export const useUpdateDocsMutation = () => {
 export const useDeleteDocsMutation = () => {
   return useMutation({
     mutationFn: requestDeleteDocs,
-    onSuccess: () => {
-      toast(<Toastify content="성공" />);
-      window.location.href = "/";
-    },
   });
 };
 

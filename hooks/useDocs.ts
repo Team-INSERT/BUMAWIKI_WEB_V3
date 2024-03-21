@@ -1,40 +1,7 @@
+import { translateClassify } from "@/utils";
 import { ChangeEvent } from "react";
 
 export const useDocs = () => {
-  const translateClassify = (classify: string) => {
-    switch (classify.toUpperCase()) {
-      case "/":
-        return "부마위키";
-      case "MYPAGE":
-      case "USER":
-        return "유저";
-      case "STUDENT":
-        return "학생";
-      case "MAJOR_TEACHER":
-        return "전공교과 선생님";
-      case "TEACHER":
-        return "보통교과 선생님";
-      case "MENTOR_TEACHER":
-        return "멘토 선생님";
-      case "ACCIDENT":
-        return "사건";
-      case "CLUB":
-        return "동아리";
-      case "FRAME":
-        return "틀";
-      case "POPULAR":
-        return "인기";
-      case "NOTICE":
-        return "공지";
-      case "READONLY":
-        return "읽기전용";
-      case "":
-        return "부마위키";
-      default:
-        return classify;
-    }
-  };
-
   const getAccordionTitle = (key: string) => {
     return `${translateClassify(String(key))}년`;
   };

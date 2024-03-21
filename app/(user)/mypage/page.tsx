@@ -1,26 +1,14 @@
-"use client";
-
-import Container from "@/components/Container";
-import { useMyInformationQuery } from "@/services/user/user.query";
 import React from "react";
-import Link from "next/link";
-import { link } from "../style.css";
+import { generateOpenGraph } from "@/utils";
 import MyPage from "./MyPage";
 
-const Page = () => {
-  const { isSuccess, data } = useMyInformationQuery();
+export const metadata = generateOpenGraph({
+  title: "마이페이지",
+  description: "부마위키의 마이페이지입니다.",
+});
 
-  return (
-    <Container title="마이페이지" docsType="mypage">
-      {isSuccess ? (
-        <MyPage user={data} />
-      ) : (
-        <Link className={link} href={process.env.NEXT_PUBLIC_OAUTH_URL || ""}>
-          로그인 후 이용해주세요.
-        </Link>
-      )}
-    </Container>
-  );
+const Page = () => {
+  return <MyPage />;
 };
 
 export default Page;

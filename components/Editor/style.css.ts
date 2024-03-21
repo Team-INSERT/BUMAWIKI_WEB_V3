@@ -99,6 +99,7 @@ export const separator = style({
 export const undoBtn = style({
   padding: "8px 16px",
   background: theme.primary,
+  width: "fit-content",
   color: theme.white,
   borderRadius: "4px",
   ...font.H6,

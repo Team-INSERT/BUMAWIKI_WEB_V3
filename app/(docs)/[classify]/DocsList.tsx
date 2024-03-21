@@ -1,21 +1,22 @@
+"use client";
+
 import Accordion from "@/components/Accordion";
 import { useDocs } from "@/hooks/useDocs";
-import { DocsListType } from "@/types/docsList.interface";
-import React from "react";
-import { dateText } from "@/utils";
+import React, { FC } from "react";
+import { contentsCleaner, dateText } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { docsQuery } from "@/services/docs/docs.query";
+import Container from "@/components/Container";
 import * as styles from "./style.css";
 
-interface DocsListProps {
-  docsList: DocsListType;
-}
-
-const DocsList = ({ docsList }: DocsListProps) => {
-  const { getAccordionTitle } = useDocs();
+const DocsList: FC<{ classify: string }> = ({ classify }) => {
+  const { getAccordionTitle, translateClassify } = useDocs();
+  const { data: docsList } = useSuspenseQuery(docsQuery.list(classify));
 
   return (
-    <div>
+    <Container title={translateClassify(classify)} docsType={classify}>
       {docsList.keys.map((key: string) => (
         <Accordion title={getAccordionTitle(key)} key={key}>
           {docsList.data[key].map((docs) => (
@@ -28,9 +29,7 @@ const DocsList = ({ docsList }: DocsListProps) => {
                     {dateText(docs.lastModifiedAt)}
                   </span>
                 </hgroup>
-                <p className={styles.simpleContents}>
-                  {docs.simpleContents.replace(/<[^>]+>/g, " ")} ...
-                </p>
+                <p className={styles.simpleContents}>{contentsCleaner(docs.simpleContents)} ...</p>
               </div>
               {docs.thumbnail && (
                 <Image
@@ -45,7 +44,7 @@ const DocsList = ({ docsList }: DocsListProps) => {
           ))}
         </Accordion>
       ))}
-    </div>
+    </Container>
   );
 };
 

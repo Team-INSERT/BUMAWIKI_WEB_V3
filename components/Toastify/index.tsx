@@ -1,7 +1,7 @@
 import Image from "next/image";
 import * as styles from "./style.css";
 
-const Tostify = ({ content }: { content: string }) => {
+const Toastify = ({ content }: { content: string }) => {
   return (
     <div className={styles.container}>
       <div className={styles.contentBox}>
@@ -13,4 +13,4 @@ const Tostify = ({ content }: { content: string }) => {
   );
 };
 
-export default Tostify;
+export default Toastify;

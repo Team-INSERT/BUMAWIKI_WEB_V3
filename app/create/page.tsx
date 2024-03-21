@@ -1,12 +1,14 @@
-import Editor from "@/components/Editor";
+import EditorContainer from "@/components/Editor";
+import { generateOpenGraph } from "@/utils";
 import React from "react";
 
+export const metadata = generateOpenGraph({
+  title: "문서 생성",
+  description: "부마위키 문서 생성 페이지입니다.",
+});
+
 const Page = () => {
-  return (
-    <div>
-      <Editor mode="CREATE" />
-    </div>
-  );
+  return <EditorContainer mode="CREATE" />;
 };
 
 export default Page;

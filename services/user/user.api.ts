@@ -1,11 +1,8 @@
 import { http } from "@/apis";
-import { TOKEN } from "@/constants/token.constant";
-import { Storage } from "@/storage";
+import { authorization } from "@/apis/header";
 
 export const getMyInformation = async () => {
-  const { data } = await http.get("/user", {
-    headers: { Authorization: Storage.getItem(TOKEN.ACCESS) },
-  });
+  const { data } = await http.get("/user", authorization());
   return data;
 };
 

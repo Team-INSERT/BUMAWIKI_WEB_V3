@@ -1,8 +1,9 @@
-import Container from "@/components/Container";
 import React from "react";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import getQueryClient from "@/app/getQueryClient";
-import { useHistoryListQuery } from "@/services/history/history.query";
+import { historyQuery } from "@/services/history/history.query";
+import { Metadata } from "next";
+import { generateOpenGraph } from "@/utils";
 import History from "./History";
 
 interface PageProps {
@@ -11,17 +12,21 @@ interface PageProps {
   };
 }
 
+export const generateMetadata = async ({ params: { title } }: PageProps): Promise<Metadata> => {
+  return generateOpenGraph({
+    title: `역사#${decodeURI(title)}`,
+    description: `${decodeURI(title)} 문서의 역사입니다.`,
+  });
+};
+
 const Page = async ({ params: { title } }: PageProps) => {
   const queryClient = getQueryClient();
-  const historyList = await useHistoryListQuery({ title });
-  const decodedTitle = decodeURI(title);
+  await queryClient.prefetchQuery(historyQuery.list(title));
 
   return (
-    <Container title={decodedTitle} docsType={decodedTitle}>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <History title={decodedTitle} historyList={historyList.versionDocsResponseDto} />
-      </HydrationBoundary>
-    </Container>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <History title={title} />
+    </HydrationBoundary>
   );
 };
 

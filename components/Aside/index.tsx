@@ -1,84 +1,18 @@
-"use client";
+import getQueryClient from "@/app/getQueryClient";
+import { docsQuery } from "@/services/docs/docs.query";
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
+import React from "react";
+import Aside from "./Aside";
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { ArrowIcon } from "@/assets";
-import { theme } from "@/styles";
-import moment from "moment";
-import "moment/locale/ko";
-import { DocsListItem } from "@/types/docsListItem.interface";
-import { HydrationBoundary } from "@tanstack/react-query";
-import { useLastModifiedDocsListQuery } from "@/services/docs/docs.query";
-import * as styles from "./style.css";
-
-const Aside = () => {
-  const [page, setPage] = useState(0);
-  const { isSuccess, data, refetch } = useLastModifiedDocsListQuery(page);
-  const [docsList, setDocsList] = useState(data);
-
-  useEffect(() => {
-    if (isSuccess) {
-      refetch().then((r) => setDocsList(r.data));
-    }
-  }, [isSuccess, page]);
-
-  const handleIncreasePageNumber = () => {
-    if (docsList.length !== 12) return;
-    setPage((prev) => prev + 1);
-  };
-
-  const handleDecreasePageNumber = () => {
-    if (page === 0) return;
-    setPage((prev) => prev - 1);
-  };
+const Page = async () => {
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(docsQuery.lastModified(0));
 
   return (
-    <HydrationBoundary>
-      <div className={styles.body}>
-        <aside className={styles.container}>
-          <div className={styles.titleBox}>
-            <span className={styles.titleText}>최근 변경</span>
-          </div>
-          <div className={styles.list}>
-            {docsList?.map((docs: DocsListItem) => (
-              <Link href={`/docs/${docs.title}`} key={docs.id} className={styles.docs}>
-                <span className={styles.docsName}>{docs.title}</span>
-                <span className={styles.docsLastModified}>
-                  {moment(docs.lastModifiedAt).fromNow()}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </aside>
-        <div className={styles.pageBox}>
-          <button className={styles.pageButton} onClick={handleDecreasePageNumber}>
-            <span className={styles.pageButtonText}>
-              <ArrowIcon
-                direction="left"
-                width={11}
-                height={11}
-                viewBox="0 0 11 20"
-                fill={theme.primary}
-              />
-              이전
-            </span>
-          </button>
-          <button className={styles.pageButton} onClick={handleIncreasePageNumber}>
-            <span className={styles.pageButtonText}>
-              다음
-              <ArrowIcon
-                direction="right"
-                width={11}
-                height={11}
-                viewBox="0 0 11 20"
-                fill={theme.primary}
-              />
-            </span>
-          </button>
-        </div>
-      </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Aside />
     </HydrationBoundary>
   );
 };
 
-export default Aside;
+export default Page;

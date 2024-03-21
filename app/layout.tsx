@@ -7,9 +7,15 @@ import Popular from "@/components/Popular";
 import Modal from "@/components/(modal)";
 import { ToastContainer } from "react-toastify";
 import ScrollButton from "@/components/ScrollButton";
+import { generateOpenGraph } from "@/utils";
+import "react-toastify/dist/ReactToastify.css";
 import * as styles from "./layout.css";
 import Providers from "./providers";
-import "react-toastify/dist/ReactToastify.css";
+
+export const metadata = generateOpenGraph({
+  title: "역사의 고서",
+  description: "우리의 손으로 써내려 나가는 역사의 고서, 부마위키",
+});
 
 export default function RootLayout({
   children,

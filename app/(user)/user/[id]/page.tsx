@@ -1,7 +1,9 @@
-import Container from "@/components/Container";
 import React from "react";
-import { HydrationBoundary } from "@tanstack/react-query";
-import { useUserByIdQuery } from "@/services/user/user.query";
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
+import getQueryClient from "@/app/getQueryClient";
+import { userQuery } from "@/services/user/user.query";
+import { Metadata } from "next";
+import { generateOpenGraph, translateAuthority } from "@/utils";
 import User from "./User";
 
 interface PageProps {
@@ -10,15 +12,24 @@ interface PageProps {
   };
 }
 
+export const generateMetadata = async ({ params: { id } }: PageProps): Promise<Metadata> => {
+  const queryClient = getQueryClient();
+  const data = await queryClient.fetchQuery(userQuery.id(id));
+
+  return generateOpenGraph({
+    title: data.nickName,
+    description: `부마위키 - ${data.nickName} (${translateAuthority(data.authority)})`,
+  });
+};
+
 const Page = async ({ params: { id } }: PageProps) => {
-  const user = await useUserByIdQuery({ id });
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(userQuery.id(id));
 
   return (
-    <Container title={user.nickName} docsType="user">
-      <HydrationBoundary>
-        <User user={user} />
-      </HydrationBoundary>
-    </Container>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <User id={id} />
+    </HydrationBoundary>
   );
 };
 
