@@ -7,10 +7,22 @@ export const container = style({
   ...flex.COLUMN_FLEX,
 });
 
+export const header = style({
+  width: "100%",
+  ...flex.BETWEEN,
+});
+
 export const body = style({
   width: "100%",
   whiteSpace: "pre-wrap",
   ...font.p1,
+});
+
+export const likeButton = style({
+  gap: "6px",
+  cursor: "pointer",
+  ...font.H6,
+  ...flex.VERTICAL,
 });
 
 export const contributorsBox = style({
