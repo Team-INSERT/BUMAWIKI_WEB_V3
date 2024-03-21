@@ -12,6 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import * as styles from "./layout.css";
 import Providers from "./providers";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = generateOpenGraph({
   title: "역사의 고서",
   description: "우리의 손으로 써내려 나가는 역사의 고서, 부마위키",
