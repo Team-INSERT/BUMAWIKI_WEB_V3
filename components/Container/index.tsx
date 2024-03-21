@@ -9,6 +9,8 @@ import { useDeleteDocsMutation } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import useModal from "@/hooks/useModal";
+import { useQueryClient } from "@tanstack/react-query";
+import { docsQuery } from "@/services/docs/docs.query";
 import * as styles from "./style.css";
 import Toastify from "../Toastify";
 import Confirm from "../(modal)/Confirm";
@@ -31,20 +33,33 @@ const Container = ({
 }: ContainerProps) => {
   const { translateClassify } = useDocs();
   const { mutate } = useDeleteDocsMutation();
-  const { isAdmin, isLoggedIn } = useUser();
+  const { isAdmin, user, isLoggedIn } = useUser();
   const { openModal } = useModal();
+  const queryClient = useQueryClient();
   const router = useRouter();
 
-  const handleDeleteDocsClick = (docsId: number) => {
+  const deleteDocs = () => {
+    if (id)
+      mutate(id, {
+        onSuccess: () => {
+          queryClient.invalidateQueries(docsQuery.list(docsType.toLowerCase()));
+          queryClient.invalidateQueries(docsQuery.lastModified(0));
+          router.push("/");
+          toast(<Toastify content="문서를 삭제했어요!" />);
+        },
+      });
+  };
+
+  const handleDeleteDocsClick = () => {
     openModal({
-      component: (
-        <Confirm content="정말 문서를 삭제하시겠습니까?" onConfirm={() => mutate(docsId)} />
-      ),
+      component: <Confirm content="정말 문서를 삭제하시겠습니까?" onConfirm={deleteDocs} />,
     });
   };
 
   const handleDocsEditClick = () => {
     if (!isLoggedIn) return toast(<Toastify content="로그인 후 이용 가능합니다." />);
+    if (title.includes(user.name))
+      return toast(<Toastify content="자신과 관련된 문서는 수정할 수 없습니다." />);
     router.push(`/edit/${title}`);
   };
 
@@ -66,7 +81,7 @@ const Container = ({
               역사
             </Link>
             {isAdmin && id && (
-              <button onClick={() => handleDeleteDocsClick(id)} className={styles.deleteButton}>
+              <button onClick={handleDeleteDocsClick} className={styles.deleteButton}>
                 삭제
               </button>
             )}
