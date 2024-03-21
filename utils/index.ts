@@ -1,4 +1,5 @@
 import { details, summary } from "@/components/Accordion/style.css";
+import { openGraphImage } from "@/app/shared-metadata";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
@@ -110,7 +111,7 @@ export const generateOpenGraph = <OG extends { title: string; description: strin
     type: "website",
     title: `부마위키 - ${title}`,
     description,
-    images: [{ url: "/meta-img.png" }],
+    ...openGraphImage,
   },
 });
 
