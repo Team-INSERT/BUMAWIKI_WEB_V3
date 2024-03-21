@@ -1,19 +1,16 @@
-import getQueryClient from "@/app/getQueryClient";
+import { queryOptions } from "@tanstack/react-query";
+import { HistoryType } from "@/types/history.interface";
 import { getHistoryDetail, getHistoryList } from "./history.api";
-import { HISTORY } from "./history.key";
 
-export const useHistoryListQuery = ({ title }: { title: string }) => {
-  const queryClient = getQueryClient();
-  return queryClient.fetchQuery({
-    queryKey: HISTORY.LIST(title),
-    queryFn: () => getHistoryList(title),
-  });
-};
-
-export const useHistoryDetailQuery = ({ title, id }: { title: string; id: number }) => {
-  const queryClient = getQueryClient();
-  return queryClient.fetchQuery({
-    queryKey: HISTORY.DETAIL(title, id),
-    queryFn: () => getHistoryDetail(title, id),
-  });
+export const historyQuery = {
+  list: <Title extends string>(title: Title) =>
+    queryOptions<{ versionDocsResponseDto: Array<HistoryType> }>({
+      queryKey: ["query.historyList", title],
+      queryFn: () => getHistoryList(title),
+    }),
+  detail: <Detail extends { title: string; id: number }>({ title, id }: Detail) =>
+    queryOptions({
+      queryKey: ["query.historyDetail", title, id],
+      queryFn: () => getHistoryDetail(title, id),
+    }),
 };
