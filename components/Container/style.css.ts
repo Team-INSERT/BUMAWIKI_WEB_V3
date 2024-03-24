@@ -5,6 +5,12 @@ export const container = style({
   width: "100%",
   gap: "32px",
   ...flex.COLUMN_FLEX,
+
+  "@media": {
+    "(max-width: 950px)": {
+      overflow: "hidden",
+    },
+  },
 });
 
 export const hgroup = style({
