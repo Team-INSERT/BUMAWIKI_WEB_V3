@@ -106,6 +106,12 @@ export const table = {
     backgroundColor: theme.primary,
     ...font.H6,
     ...flex.CENTER,
+
+    "@media": {
+      "(max-width: 400px)": {
+        ...font.p3,
+      },
+    },
   }),
   tContent: style({
     width: "100%",
