@@ -94,12 +94,13 @@ button {
 
 .frame_td {
   height: 30px;
-  border: solid 2px #274168;
+  /* border: solid 2px #274168; */
 }
 
 .frame_table {
+  width: 100%;
   border-collapse: collapse;
-  border: solid 2px #274168;
+  border-bottom: solid 20px #274168;
   margin: auto;
   text-align: center;
   padding: 10px;
@@ -120,10 +121,11 @@ button {
 }
 
 .frame_details {
+  width: 500px;
   margin-bottom: 1em;
   transition: all 1.5s ease-in-out;
   max-height: 10em;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .frame_details[open] {
@@ -184,6 +186,15 @@ button {
   right: 80px;
   width: 400px;
   color: #274168;
+
+  @media (max-width: 600px) {
+    top: 50px;
+    width: 50vw;
+    margin-top: 10px;
+    right: 10px;
+    margin-left: auto;
+    border-radius: 2px;
+  }
 }
 
 @keyframes shake {

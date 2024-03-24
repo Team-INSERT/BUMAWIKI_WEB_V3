@@ -48,7 +48,7 @@ const Header = () => {
         {navigationList.map((nav) => (
           <Link key={nav.item} href={nav.href} className={styles.navigationItem}>
             {nav.icon}
-            <span>{nav.item}</span>
+            <span className={styles.ItemText}>{nav.item}</span>
           </Link>
         ))}
       </ul>
@@ -69,13 +69,13 @@ const Header = () => {
             </Link>
             <Link href="/mypage" className={styles.navigationItem}>
               <MyPageIcon />
-              <span>내정보</span>
+              <span className={styles.ItemText}>내정보</span>
             </Link>
           </div>
         ) : (
           <Link href={process.env.NEXT_PUBLIC_OAUTH_URL || "/"} className={styles.navigationItem}>
             <MyPageIcon />
-            <span>로그인</span>
+            <span className={styles.ItemText}>로그인</span>
           </Link>
         )}
       </div>

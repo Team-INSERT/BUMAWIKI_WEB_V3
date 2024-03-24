@@ -6,6 +6,12 @@ export const body = style({
   width: "300px",
   height: "90px",
   ...flex.COLUMN_FLEX,
+
+  "@media": {
+    "(max-width: 950px)": {
+      width: "100%",
+    },
+  },
 });
 
 export const container = style({

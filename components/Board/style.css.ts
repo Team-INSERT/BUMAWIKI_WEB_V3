@@ -8,6 +8,13 @@ export const container = style({
   borderRight: `2px solid ${theme.gray}`,
   backgroundColor: theme.white,
   margin: "0 20px 0 40px",
+
+  "@media": {
+    "(max-width: 768px)": {
+      width: "100%",
+      margin: "20px 0",
+    },
+  },
 });
 
 export const board = style({
@@ -23,6 +30,12 @@ export const subFooter = style({
   borderTop: `2px solid ${theme.gray}`,
   padding: "10px 0",
   ...flex.COLUMN_FLEX,
+
+  "@media": {
+    "(max-width: 950px)": {
+      display: "none",
+    },
+  },
 });
 
 export const subFooterLogo = style({

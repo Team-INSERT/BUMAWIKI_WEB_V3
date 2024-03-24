@@ -14,6 +14,12 @@ export const container = style({
 export const navigationList = style({
   gap: "5vw",
   ...flex.HORIZONTAL,
+
+  "@media": {
+    "(max-width: 950px)": {
+      gap: "3vw",
+    },
+  },
 });
 
 export const navigationItem = style({
@@ -39,6 +45,14 @@ export const searchInput = style({
   fontWeight: 500,
   backgroundColor: theme.white,
   border: `1px solid ${theme.gray}`,
+
+  "@media": {
+    "(max-width: 950px)": {
+      "::placeholder": {
+        opacity: 0,
+      },
+    },
+  },
 });
 
 export const searchButton = style({
@@ -49,6 +63,14 @@ export const searchButton = style({
 
 export const logo = style({
   cursor: "pointer",
+});
+
+export const ItemText = style({
+  "@media": {
+    "(max-width: 950px)": {
+      display: "none",
+    },
+  },
 });
 
 export const utilityBox = style({
@@ -67,6 +89,12 @@ export const writeButton = style({
   backgroundColor: theme.white,
   borderRadius: "9999px",
   ...font.btnBold,
+
+  "@media": {
+    "(max-width: 768px)": {
+      display: "none",
+    },
+  },
 });
 
 export const textarea = style({

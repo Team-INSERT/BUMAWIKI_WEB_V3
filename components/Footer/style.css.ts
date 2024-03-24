@@ -7,6 +7,12 @@ export const container = style({
   backgroundColor: "#fff",
   border: "1px solid #ccc",
   ...flex.COLUMN_CENTER,
+
+  "@media": {
+    "(max-width: 950px)": {
+      height: "30vh",
+    },
+  },
 });
 
 export const footerLinkBox = style({

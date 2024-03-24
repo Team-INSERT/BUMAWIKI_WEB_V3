@@ -11,6 +11,12 @@ export const container = style({
     opacity: 0.8,
     background: theme.hover,
   },
+
+  "@media": {
+    "(max-width: 950px)": {
+      height: "15vh",
+    },
+  },
 });
 
 export const docs = style({
@@ -29,6 +35,12 @@ export const titleBox = style({
 export const lastModifiedAt = style({
   color: theme.boldgray,
   ...font.p2,
+
+  "@media": {
+    "(max-width: 950px)": {
+      ...font.p3,
+    },
+  },
 });
 
 export const title = style({
@@ -42,4 +54,10 @@ export const simpleContents = style({
 
 export const thumbnail = style({
   objectFit: "cover",
+
+  "@media": {
+    "(max-width: 950px)": {
+      display: "none",
+    },
+  },
 });

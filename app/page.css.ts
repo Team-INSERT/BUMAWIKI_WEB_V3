@@ -19,6 +19,13 @@ export const introduce = {
   title: style({
     color: theme.title,
     ...font.H1,
+
+    "@media": {
+      // for fold
+      "(max-width: 400px)": {
+        ...font.H2,
+      },
+    },
   }),
   highlight: style({
     color: theme.primary,
@@ -58,6 +65,12 @@ export const table = {
   body: style({
     width: "70%",
     ...flex.COLUMN_FLEX,
+
+    "@media": {
+      "(max-width: 768px)": {
+        width: "100%",
+      },
+    },
   }),
   thead: style({
     width: "100%",

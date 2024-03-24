@@ -33,4 +33,12 @@ export const sideBar = style({
 export const icon = style({
   width: "23px",
   height: "23px",
+
+  "@media": {
+    "(max-width: 600px)": {
+      width: "18px",
+      height: "18px",
+      margin: "10px",
+    },
+  },
 });
