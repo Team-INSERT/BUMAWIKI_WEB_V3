@@ -48,6 +48,7 @@ export const searchInput = style({
 
   "@media": {
     "(max-width: 950px)": {
+      height: "25px",
       "::placeholder": {
         opacity: 0,
       },
@@ -59,6 +60,12 @@ export const searchButton = style({
   position: "absolute",
   right: "12px",
   cursor: "pointer",
+
+  "@media": {
+    "(max-width: 950px)": {
+      right: "5px",
+    },
+  },
 });
 
 export const logo = style({

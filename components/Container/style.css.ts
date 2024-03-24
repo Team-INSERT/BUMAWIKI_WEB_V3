@@ -28,6 +28,12 @@ export const editButton = style({
   color: theme.white,
   borderRadius: "4px",
   ...font.H6,
+
+  "@media": {
+    "(max-width: 400px)": {
+      display: "none",
+    },
+  },
 });
 
 export const historyButton = style({

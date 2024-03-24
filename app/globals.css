@@ -94,13 +94,12 @@ button {
 
 .frame_td {
   height: 30px;
-  /* border: solid 2px #274168; */
+  border: solid 2px #274168;
 }
 
 .frame_table {
-  width: 100%;
   border-collapse: collapse;
-  border-bottom: solid 20px #274168;
+  border: solid 2px #274168;
   margin: auto;
   text-align: center;
   padding: 10px;
@@ -121,11 +120,10 @@ button {
 }
 
 .frame_details {
-  width: 500px;
   margin-bottom: 1em;
   transition: all 1.5s ease-in-out;
   max-height: 10em;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .frame_details[open] {
@@ -145,6 +143,10 @@ button {
   display: flex;
   align-items: center;
   padding-left: 20px;
+
+  @media (max-width: 400px) {
+    padding-right: 20px;
+  }
 }
 
 .analects_text {

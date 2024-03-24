@@ -18,6 +18,12 @@ export const docs = style({
   height: "100px",
   gap: "8px",
   ...flex.COLUMN_HORIZONTAL,
+
+  "@media": {
+    "(max-width: 950px)": {
+      width: "100%",
+    },
+  },
 });
 
 export const titleBox = style({
@@ -28,11 +34,23 @@ export const titleBox = style({
 export const lastModifiedAt = style({
   color: theme.boldgray,
   ...font.p2,
+
+  "@media": {
+    "(max-width: 950px)": {
+      ...font.p4,
+    },
+  },
 });
 
 export const title = style({
   color: theme.primary,
   ...font.H4,
+
+  "@media": {
+    "(max-width: 950px)": {
+      ...font.H6,
+    },
+  },
 });
 
 export const simpleContents = style({
@@ -41,6 +59,12 @@ export const simpleContents = style({
 
 export const thumbnail = style({
   objectFit: "cover",
+
+  "@media": {
+    "(max-width: 950px)": {
+      display: "none",
+    },
+  },
 });
 
 export const searchNotFoundBox = style({
@@ -59,5 +83,11 @@ export const searchCreateLink = style({
 
   ":hover": {
     textDecoration: "underline",
+  },
+
+  "@media": {
+    "(max-width: 950px)": {
+      display: "none",
+    },
   },
 });

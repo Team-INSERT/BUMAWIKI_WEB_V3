@@ -25,6 +25,12 @@ export const docs = style({
   //   padding: "0 10px",
   gap: "8px",
   ...flex.COLUMN_HORIZONTAL,
+
+  "@media": {
+    "(max-width: 950px)": {
+      width: "100%",
+    },
+  },
 });
 
 export const titleBox = style({
@@ -38,7 +44,7 @@ export const lastModifiedAt = style({
 
   "@media": {
     "(max-width: 950px)": {
-      ...font.p3,
+      ...font.p4,
     },
   },
 });
@@ -46,6 +52,12 @@ export const lastModifiedAt = style({
 export const title = style({
   color: theme.primary,
   ...font.H4,
+
+  "@media": {
+    "(max-width: 400px)": {
+      ...font.H6,
+    },
+  },
 });
 
 export const simpleContents = style({

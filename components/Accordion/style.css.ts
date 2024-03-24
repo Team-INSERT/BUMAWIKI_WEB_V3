@@ -37,6 +37,15 @@ export const summary = style({
       background: "url('/assets/arrow_down.svg')",
     },
   },
+
+  "@media": {
+    "(max-width: 800px)": {
+      lineHeight: "200%",
+    },
+    "(max-width: 400px)": {
+      lineHeight: "250%",
+    },
+  },
 });
 
 export const content = style({
