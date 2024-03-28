@@ -181,6 +181,8 @@ export const tradeStatusText = (status: string) => {
       return "판매 완료";
     case "CANCELLED":
       return "거래 취소";
+    case "DELISTING":
+      return "상장 폐지";
     default:
       return status;
   }

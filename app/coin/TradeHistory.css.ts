@@ -63,4 +63,5 @@ export const tradeStatusCircle = styleVariants<Record<string, ComplexStyleRule>>
   BOUGHT: [tradeStatusCircleBase, { backgroundColor: theme.buy }],
   SOLD: [tradeStatusCircleBase, { backgroundColor: theme.sell }],
   CANCELLED: [tradeStatusCircleBase, { backgroundColor: theme.gray }],
+  DELISTING: [tradeStatusCircleBase, { backgroundColor: theme.black }],
 });
