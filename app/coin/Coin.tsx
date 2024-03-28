@@ -46,8 +46,8 @@ const tradeText: Record<
 
 const Coin = () => {
   const queryClient = useQueryClient();
-  const { data: market, refetch: marketRefetch } = useSuspenseQuery(coinQuery.price());
-  const { data: wallet, error, refetch: walletRefetch } = useQuery(coinQuery.myWallet());
+  const { data: market, refetch } = useSuspenseQuery(coinQuery.price());
+  const { data: wallet, error } = useQuery(coinQuery.myWallet());
 
   const { mutate: dailyReward } = useDailyRewardMutation();
   const { mutate: buy } = useBuyCoinMutation();
@@ -56,16 +56,6 @@ const Coin = () => {
   const { openModal } = useModal();
   const [tradeMode, setTradeMode] = useState("BUY");
   const [requestAmount, setRequestAmount] = useState(0);
-
-  const differenceInSeconds = dayjs().diff(dayjs(market.startedTime), "second");
-  const remainingSeconds = 3 * 60 - differenceInSeconds;
-
-  useEffect(() => {
-    setInterval(() => {
-      marketRefetch();
-      walletRefetch();
-    }, remainingSeconds * 1000);
-  }, [market.startedTime]);
 
   if (isAxiosError(error) && error.response?.data.status === 404) {
     openModal({
@@ -254,7 +244,13 @@ const Coin = () => {
           )}
         </div>
       </div>
-      <Graph updatedAt={market.startedTime} marketPrice={market.price} />
+      <Graph
+        refetch={() => {
+          refetch();
+        }}
+        updatedAt={market.startedTime}
+        marketPrice={market.price}
+      />
       <Accordion title="거래 내역 보기" open={false}>
         <TradeHistory id={wallet.id} />
       </Accordion>

@@ -2,7 +2,7 @@
 
 import { coinQuery } from "@/services/coin/coin.query";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
@@ -52,16 +52,27 @@ const cycleList = [
 interface GraphProps {
   updatedAt: Date;
   marketPrice: number;
+  refetch: () => void;
 }
 
-const Graph: FC<GraphProps> = ({ updatedAt, marketPrice }) => {
+const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
   const [cycle, setCycle] = useState("threeHours");
-  const { data: coin } = useSuspenseQuery(coinQuery.graph(cycle));
+  const { data: coin, refetch: graphRefetch } = useSuspenseQuery(coinQuery.graph(cycle));
 
   const labels = coin.map(({ startedTime }: { startedTime: Date }) =>
     dayjs(startedTime).format("M/D H:m"),
   );
   const data = coin.map(({ price }: { price: string }) => price);
+
+  const differenceInSeconds = dayjs().diff(dayjs(updatedAt), "second");
+  const remainingSeconds = 3 * 60 - differenceInSeconds;
+
+  useEffect(() => {
+    setInterval(() => {
+      refetch();
+      graphRefetch();
+    }, remainingSeconds * 1000);
+  }, [updatedAt]);
 
   return (
     <div className={styles.chartContainer}>
