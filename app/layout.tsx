@@ -1,14 +1,15 @@
 import "./globals.css";
-import { ReactNode } from "react";
 import Header from "@/components/Header";
 import Board from "@/components/Board";
 import Aside from "@/components/Aside";
 import Footer from "@/components/Footer";
 import Popular from "@/components/Popular";
 import Modal from "@/components/(modal)";
+import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 import ScrollButton from "@/components/ScrollButton";
 import { generateOpenGraph } from "@/utils";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "react-toastify/dist/ReactToastify.css";
 import * as styles from "./layout.css";
 import Providers from "./providers";
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
         <Providers>
           <ToastContainer
             autoClose={3000}
