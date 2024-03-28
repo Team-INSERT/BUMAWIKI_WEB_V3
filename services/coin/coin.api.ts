@@ -7,7 +7,7 @@ export const getMyCoinWallet = async () => {
 };
 
 export const getTradeHistoryById = async (id: number) => {
-  const { data } = await http.get(`/coins/trades/${id}`, authorization());
+  const { data } = await http.get(`/coins/trades/${id}?size=200`, authorization());
   return data;
 };
 
