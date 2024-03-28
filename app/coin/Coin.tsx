@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/Container";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
@@ -18,6 +18,7 @@ import {
 import CreateCoinAccount from "@/components/(modal)/CreateCoinAccount";
 import { AxiosError, isAxiosError } from "axios";
 import Accordion from "@/components/Accordion";
+import dayjs from "dayjs";
 import Link from "next/link";
 import * as styles from "./style.css";
 import Graph from "./Graph";
@@ -45,8 +46,8 @@ const tradeText: Record<
 
 const Coin = () => {
   const queryClient = useQueryClient();
-  const { data: market } = useSuspenseQuery(coinQuery.price());
-  const { data: wallet, error } = useQuery(coinQuery.myWallet());
+  const { data: market, refetch: marketRefetch } = useSuspenseQuery(coinQuery.price());
+  const { data: wallet, error, refetch: walletRefetch } = useQuery(coinQuery.myWallet());
 
   const { mutate: dailyReward } = useDailyRewardMutation();
   const { mutate: buy } = useBuyCoinMutation();
@@ -55,6 +56,16 @@ const Coin = () => {
   const { openModal } = useModal();
   const [tradeMode, setTradeMode] = useState("BUY");
   const [requestAmount, setRequestAmount] = useState(0);
+
+  const differenceInSeconds = dayjs().diff(dayjs(market.startedTime), "second");
+  const remainingSeconds = 3 * 60 - differenceInSeconds;
+
+  useEffect(() => {
+    setInterval(() => {
+      marketRefetch();
+      walletRefetch();
+    }, remainingSeconds * 1000);
+  }, [market.startedTime]);
 
   if (isAxiosError(error) && error.response?.data.status === 404) {
     openModal({
@@ -131,7 +142,7 @@ const Coin = () => {
   return (
     <Container title="부마코인" docsType="코인">
       <h1 className={styles.warningText}>
-        ※ 코인 가격이 0이 되면 상장 폐지되어 보유 중이던 코인이 삭제되고 초기화됩니다.※
+        ※ 코인 가격이 0이 되면 상장 폐지되어 보유 중이던 코인이 삭제됩니다.※
       </h1>
       <div className={styles.informationContainer}>
         <div className={styles.utilityBox}>

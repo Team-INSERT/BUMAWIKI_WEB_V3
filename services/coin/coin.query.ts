@@ -24,13 +24,11 @@ export const coinQuery = {
     queryOptions({
       queryKey: ["query.graph", cycle],
       queryFn: () => getCoinGraph(cycle),
-      gcTime: 20 * 1000,
     }),
   price: () =>
     queryOptions({
       queryKey: ["query.price"],
       queryFn: getCoinCurrentPrice,
-      gcTime: 20 * 1000,
     }),
   rank: () =>
     queryOptions<Array<CoinRank>>({
