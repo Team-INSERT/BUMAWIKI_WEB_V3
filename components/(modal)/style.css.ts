@@ -43,9 +43,9 @@ export const content = style({
   width: "90%",
   height: "auto",
   textAlign: "center",
-  whiteSpace: "normal",
+  whiteSpace: "pre-wrap",
   color: theme.primary,
-  ...font.H3,
+  ...font.H4,
 });
 
 export const buttonBox = style({

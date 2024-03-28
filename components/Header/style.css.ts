@@ -12,7 +12,7 @@ export const container = style({
 });
 
 export const navigationList = style({
-  gap: "5vw",
+  gap: "4.5vw",
   ...flex.HORIZONTAL,
 });
 

@@ -13,7 +13,10 @@ http.interceptors.response.use(
     const originalRequest = error.config;
     const { code } = error.response.data;
 
-    if (code?.includes(exception.code.TOKEN_403_2) && !originalRequest.isLooping) {
+    if (
+      (code?.includes(exception.code.TOKEN_403_2) || code?.includes(exception.code.TOKEN_403_1)) &&
+      !originalRequest.isLooping
+    ) {
       originalRequest.isLooping = true;
       originalRequest.headers.Authorization = await refresh();
       return http(originalRequest);

@@ -11,6 +11,7 @@ const Providers = ({ children }: PropsWithChildren) => {
         defaultOptions: {
           queries: {
             staleTime: 60 * 1000,
+            retry: 0,
           },
         },
       }),

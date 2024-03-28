@@ -15,6 +15,8 @@ const theme = {
   cover: "#ececec50",
   line: "#f0f0f0",
   preview: "#F6FAFD",
+  buy: "#F75467",
+  sell: "#0083B6",
 };
 
 export default theme;
