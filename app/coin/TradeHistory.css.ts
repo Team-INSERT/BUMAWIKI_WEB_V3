@@ -17,6 +17,12 @@ export const tradeListBox = style({
 export const hgroup = style({
   gap: "8px",
   ...flex.VERTICAL,
+
+  "@media": {
+    "screen and (max-width: 480px)": {
+      ...flex.COLUMN_CENTER,
+    },
+  },
 });
 
 export const tradeId = style({

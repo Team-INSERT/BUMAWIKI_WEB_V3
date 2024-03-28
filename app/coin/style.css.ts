@@ -12,6 +12,12 @@ export const informationContainer = style({
 export const utilityBox = style({
   gap: "12px",
   ...flex.VERTICAL,
+
+  "@media": {
+    "screen and (max-width: 480px)": {
+      ...flex.COLUMN_FLEX,
+    },
+  },
 });
 
 export const moneyBox = style({
@@ -55,6 +61,12 @@ export const tradeToggleBase = style({
   cursor: "pointer",
   ...font.H6,
   ...flex.CENTER,
+
+  "@media": {
+    "screen and (max-width: 480px)": {
+      width: "30%",
+    },
+  },
 });
 
 export const tradeToggle = styleVariants<Record<string, ComplexStyleRule>>({
@@ -118,6 +130,12 @@ export const chartContainer = style({
 export const chartHeader = style({
   gap: "12px",
   ...flex.BETWEEN,
+
+  "@media": {
+    "screen and (max-width: 480px)": {
+      ...flex.COLUMN_FLEX,
+    },
+  },
 });
 
 export const chartCoinBox = style({
@@ -137,7 +155,7 @@ export const chartCoinTitle = style({
 
 export const chartCoinDate = style({
   color: theme.gray,
-  ...font.H6,
+  ...font.btn2,
 });
 
 export const chartTitle = style({

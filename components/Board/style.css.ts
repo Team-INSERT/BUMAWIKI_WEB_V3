@@ -8,6 +8,13 @@ export const container = style({
   borderRight: `2px solid ${theme.gray}`,
   backgroundColor: theme.white,
   margin: "0 20px 0 40px",
+
+  "@media": {
+    "screen and (max-width: 480px)": {
+      width: "100%",
+      margin: "0",
+    },
+  },
 });
 
 export const board = style({

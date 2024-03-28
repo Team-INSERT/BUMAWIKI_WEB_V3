@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/Container";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
@@ -18,7 +18,6 @@ import {
 import CreateCoinAccount from "@/components/(modal)/CreateCoinAccount";
 import { AxiosError, isAxiosError } from "axios";
 import Accordion from "@/components/Accordion";
-import dayjs from "dayjs";
 import Link from "next/link";
 import * as styles from "./style.css";
 import Graph from "./Graph";
