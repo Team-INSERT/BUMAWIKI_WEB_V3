@@ -159,3 +159,8 @@ export const category = styleVariants({
   DISABLED: [categoryBase],
   ENABLED: [categoryBase, { backgroundColor: theme.gray }],
 });
+
+export const warningText = style({
+  color: theme.red,
+  ...font.H5,
+});

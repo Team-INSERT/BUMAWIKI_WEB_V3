@@ -130,6 +130,9 @@ const Coin = () => {
 
   return (
     <Container title="부마코인" docsType="코인">
+      <h1 className={styles.warningText}>
+        ※ 코인 가격이 0이 되면 상장 폐지되어 보유 중이던 코인이 삭제되고 초기화됩니다.※
+      </h1>
       <div className={styles.informationContainer}>
         <div className={styles.utilityBox}>
           <Link href="/coin/rank" className={styles.tradeButton}>
