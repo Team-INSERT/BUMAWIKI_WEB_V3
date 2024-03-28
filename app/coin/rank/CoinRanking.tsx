@@ -42,7 +42,7 @@ const CoinRanking = () => {
                 <hgroup className={styles.rankingListItemHGroup}>
                   <main className={styles.rankingListItemBody}>
                     <Image src="/assets/bumamoney.png" width={30} height={15} alt="moneyicon" />
-                    {moneyText(ranking.totalMoney)}₩
+                    {moneyText(ranking.money)}₩
                   </main>
                   <main className={styles.rankingListItemBody}>
                     <Image src="/assets/bumacoin.png" width={24} height={24} alt="moneyicon" />
