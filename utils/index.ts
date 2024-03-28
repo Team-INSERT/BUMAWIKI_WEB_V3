@@ -6,9 +6,9 @@ export const decodeContent = (content: string) => {
   const decoded = content
     .replace(/<<(.*?)>>:{(.*?)}/gi, `<이미지%@T src="$1" width="$2%" />`)
     /** xss */
-    // .replace(/<([A-Za-z]+)[^>]*>.*?<\/\1>/gi, "")
-    // .replace(/<([A-Za-z]+)[^>]*\/>/gi, "")
-    // .replace(/<([A-Za-z]+)([^>]*)\/?\s*>/gi, "")
+    .replace(/<([A-Za-z]+)[^>]*>.*?<\/\1>/gi, "")
+    .replace(/<([A-Za-z]+)[^>]*\/>/gi, "")
+    .replace(/<([A-Za-z]+)([^>]*)\/?\s*>/gi, "")
     .replaceAll("이미지%@T", "img")
     /** */
     .replaceAll(
@@ -72,6 +72,7 @@ export const decodeContent = (content: string) => {
 };
 
 export const dateText = (date: Date) => {
+  if (!date) return;
   return dayjs(date).locale("ko").format("YYYY년 M월 D일 A h시 m분");
 };
 
@@ -156,4 +157,31 @@ export const translateClassify = (classify: string) => {
 
 export const contentsCleaner = (contents: string) => {
   return `${contents.replace(/<[^>]+>/g, " ")} ...`;
+};
+
+export const moneyText = (str: number) => {
+  const parts = String(str)
+    .replace(/\D/g, "")
+    .split("")
+    .reverse()
+    .join("")
+    .match(/.{1,3}/g);
+  return parts?.join(",").split("").reverse().join("");
+};
+
+export const tradeStatusText = (status: string) => {
+  switch (status) {
+    case "BUYING":
+      return "구매 요청 중";
+    case "SELLING":
+      return "판매 요청 중";
+    case "BOUGHT":
+      return "구매 완료";
+    case "SOLD":
+      return "판매 완료";
+    case "CANCELLED":
+      return "거래 취소";
+    default:
+      return status;
+  }
 };
