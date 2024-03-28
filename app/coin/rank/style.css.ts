@@ -1,9 +1,10 @@
 import { flex, font, theme } from "@/styles";
-import { style } from "@vanilla-extract/css";
+import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
 
 export const rankingBox = style({
   width: "100%",
-  gap: "12px",
+  gap: "6px",
+  marginTop: "20px",
   ...flex.COLUMN_FLEX,
 });
 
@@ -18,10 +19,14 @@ export const backButton = style({
 
 export const rankingListItem = style({
   width: "100%",
-  padding: "16px 8px",
-  borderBottom: `1px solid ${theme.primary}`,
-  gap: "8px",
+  padding: "16px 22px",
+  boxShadow: "0 0 20px 0 #00000011",
+  gap: "14px",
   cursor: "pointer",
+  ...flex.VERTICAL,
+});
+
+export const informationBox = style({
   ...flex.COLUMN_FLEX,
 });
 
@@ -31,18 +36,45 @@ export const rankingListItemHGroup = style({
   ...flex.VERTICAL,
 });
 
-export const rankingListItemRankText = style({
+const rankingListItemRankTextBase = style({
   color: theme.primary,
   ...font.H2,
 });
 
-export const rankingListItemNameText = style({
-  ...font.H4,
+export const rankingListItemRankText = styleVariants<Record<string, ComplexStyleRule>>({
+  1: [rankingListItemRankTextBase, { ...font.H1 }],
+  2: [rankingListItemRankTextBase, { ...font.H2 }],
+  3: [rankingListItemRankTextBase, { ...font.H2 }],
+  default: [rankingListItemRankTextBase],
+});
+
+const rankingListItemNameTextBase = style({
+  color: theme.primary,
+  ...font.H3,
+});
+
+export const rankingListItemNameText = styleVariants<Record<string, ComplexStyleRule>>({
+  1: [rankingListItemNameTextBase, { ...font.H2 }],
+  2: [rankingListItemNameTextBase, { ...font.H2 }],
+  3: [rankingListItemNameTextBase, { ...font.H3 }],
+  default: [rankingListItemNameTextBase],
 });
 
 export const rankingListItemBody = style({
   width: "100%",
   gap: "8px",
+  color: theme.primary,
   ...flex.VERTICAL,
-  ...font.H5,
+  ...font.btn2,
+});
+
+const tierBase = style({
+  height: "auto",
+});
+
+export const tier = styleVariants<Record<string, ComplexStyleRule>>({
+  1: [tierBase, { width: "80px" }],
+  2: [tierBase, { width: "70px" }],
+  3: [tierBase, { width: "60px" }],
+  default: [tierBase, { width: "50px" }],
 });

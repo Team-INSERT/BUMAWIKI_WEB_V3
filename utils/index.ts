@@ -185,3 +185,17 @@ export const tradeStatusText = (status: string) => {
       return status;
   }
 };
+
+export const tierIconMaker = (max: number, curr: number) => {
+  const percentage = (curr / max) * 100;
+  if (curr === 1) return 1;
+
+  if (percentage >= 60) return 9;
+  if (percentage >= 52) return 8;
+  if (percentage >= 40) return 7;
+  if (percentage >= 24) return 6;
+  if (percentage >= 12) return 5;
+  if (percentage >= 9) return 4;
+  if (percentage >= 4) return 3;
+  return 2;
+};
