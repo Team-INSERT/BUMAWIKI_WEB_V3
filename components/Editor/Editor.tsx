@@ -116,7 +116,8 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorProps)
       docs.title.includes("#") ||
       docs.title.includes("?") ||
       docs.title.includes("/") ||
-      docs.title.includes("\\");
+      docs.title.includes("\\") ||
+      docs.title.includes("%");
     if (!docs.title.trim()) return toast(<Toastify content="제목을 입력해주세요!" />);
     if (isInvalid) return toast(<Toastify content="문서명에는 #, ?, /를 넣을 수 없습니다." />);
     if (!docs.enroll) return toast(<Toastify content="문서 연도를 선택해주세요!" />);
