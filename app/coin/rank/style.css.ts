@@ -27,6 +27,7 @@ export const rankingListItem = style({
 });
 
 export const informationBox = style({
+  width: "100%",
   ...flex.COLUMN_FLEX,
 });
 
@@ -38,30 +39,34 @@ export const rankingListItemHGroup = style({
 
 const rankingListItemRankTextBase = style({
   color: theme.primary,
-  ...font.H2,
+  ...font.H4,
 });
 
 export const rankingListItemRankText = styleVariants<Record<string, ComplexStyleRule>>({
-  1: [rankingListItemRankTextBase, { ...font.H1 }],
-  2: [rankingListItemRankTextBase, { ...font.H2 }],
-  3: [rankingListItemRankTextBase, { ...font.H2 }],
+  1: [rankingListItemRankTextBase, { ...font.H2 }],
+  2: [rankingListItemRankTextBase, { ...font.H3 }],
   default: [rankingListItemRankTextBase],
 });
 
 const rankingListItemNameTextBase = style({
   color: theme.primary,
-  ...font.H3,
+  ...font.H5,
 });
 
 export const rankingListItemNameText = styleVariants<Record<string, ComplexStyleRule>>({
-  1: [rankingListItemNameTextBase, { ...font.H2 }],
-  2: [rankingListItemNameTextBase, { ...font.H2 }],
-  3: [rankingListItemNameTextBase, { ...font.H3 }],
+  1: [rankingListItemNameTextBase, { ...font.H3 }],
+  2: [rankingListItemNameTextBase, { ...font.H4 }],
   default: [rankingListItemNameTextBase],
 });
 
-export const rankingListItemBody = style({
+export const rankingListItemInformation = style({
   width: "100%",
+  gap: "6px",
+  ...flex.COLUMN_FLEX,
+});
+
+export const rankingListItemBody = style({
+  width: "20%",
   gap: "8px",
   color: theme.primary,
   ...flex.VERTICAL,
@@ -77,4 +82,8 @@ export const tier = styleVariants<Record<string, ComplexStyleRule>>({
   2: [tierBase, { width: "70px" }],
   3: [tierBase, { width: "60px" }],
   default: [tierBase, { width: "50px" }],
+});
+
+export const totalMoney = style({
+  ...font.p3,
 });

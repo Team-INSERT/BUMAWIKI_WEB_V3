@@ -21,7 +21,7 @@ const CoinRanking = () => {
       <ul className={styles.rankingBox}>
         {rankingList.map((ranking, index) => {
           const rank = index + 1;
-          const tierStyle = rank <= 3 ? rank : "default";
+          const tierStyle = rank <= 2 ? rank : "default";
 
           return (
             <li key={index} className={styles.rankingListItem}>
@@ -39,10 +39,19 @@ const CoinRanking = () => {
                     {ranking.username}
                   </span>
                 </hgroup>
-                <main className={styles.rankingListItemBody}>
-                  <Image src="/assets/bumamoney.png" width={30} height={15} alt="moneyicon" />
-                  {moneyText(ranking.totalMoney)}₩
-                </main>
+                <hgroup className={styles.rankingListItemHGroup}>
+                  <main className={styles.rankingListItemBody}>
+                    <Image src="/assets/bumamoney.png" width={30} height={15} alt="moneyicon" />
+                    {moneyText(ranking.totalMoney)}₩
+                  </main>
+                  <main className={styles.rankingListItemBody}>
+                    <Image src="/assets/bumacoin.png" width={24} height={24} alt="moneyicon" />
+                    {moneyText(ranking.coin)}주
+                  </main>
+                </hgroup>
+                <span className={styles.totalMoney}>
+                  총 이익 · {moneyText(ranking.totalMoney)}₩
+                </span>
               </div>
             </li>
           );
