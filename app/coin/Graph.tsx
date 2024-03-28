@@ -1,7 +1,7 @@
 "use client";
 
 import { coinQuery } from "@/services/coin/coin.query";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Line } from "react-chartjs-2";
@@ -56,6 +56,9 @@ interface GraphProps {
 }
 
 const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
+  const differenceInSeconds = dayjs().diff(dayjs(updatedAt), "second");
+  const remainingSeconds = 3 * 60 - differenceInSeconds;
+
   const [cycle, setCycle] = useState("threeHours");
   const { data: coin, refetch: graphRefetch } = useQuery(coinQuery.graph(cycle));
 
@@ -63,9 +66,6 @@ const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
     dayjs(startedTime).format("M/D H:m"),
   );
   const data = coin.map(({ price }: { price: string }) => price);
-
-  const differenceInSeconds = dayjs().diff(dayjs(updatedAt), "second");
-  const remainingSeconds = 3 * 60 - differenceInSeconds;
 
   useEffect(() => {
     setTimeout(() => {
@@ -78,10 +78,11 @@ const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
     <div className={styles.chartContainer}>
       <div className={styles.chartHeader}>
         <div className={styles.chartCoinBox}>
-          <Image alt="bumacoin" src="/assets/bumacoin.png" width={54} height={54} />
+          <Image alt="bumacoin" src="/assets/bumacoin.png" width={62} height={62} />
           <div className={styles.chartCoinInfoBox}>
             <span className={styles.chartCoinTitle}>₩{moneyText(marketPrice)}</span>
             <span className={styles.chartCoinDate}>{dateText(updatedAt)}</span>
+            <span className={styles.chartCoinDate}>3분마다 업데이트됩니다.</span>
           </div>
         </div>
         <div className={styles.categoryBox}>
