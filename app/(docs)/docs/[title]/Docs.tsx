@@ -3,7 +3,7 @@
 import React, { FC, Suspense } from "react";
 import "dayjs/locale/ko";
 import { decodeContent } from "@/utils";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
 import { useQueries, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
