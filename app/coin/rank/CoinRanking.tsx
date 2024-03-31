@@ -24,7 +24,11 @@ const CoinRanking = () => {
           const tierStyle = rank <= 2 ? rank : "default";
 
           return (
-            <li key={index} className={styles.rankingListItem}>
+            <Link
+              href={`/coin/trade/${ranking.coinAccountId}`}
+              key={index}
+              className={styles.rankingListItem}
+            >
               <Image
                 src={`/assets/tier/${tierIconMaker(rankingListMax, rank)}.png`}
                 width={999}
@@ -53,7 +57,7 @@ const CoinRanking = () => {
                   총 이익 · {moneyText(ranking.totalMoney)}₩
                 </span>
               </div>
-            </li>
+            </Link>
           );
         })}
       </ul>
