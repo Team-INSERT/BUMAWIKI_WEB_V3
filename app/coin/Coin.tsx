@@ -19,6 +19,7 @@ import CreateCoinAccount from "@/components/(modal)/CreateCoinAccount";
 import { AxiosError, isAxiosError } from "axios";
 import Accordion from "@/components/Accordion";
 import Link from "next/link";
+import WalletIcon from "@/assets/WalletIcon";
 import * as styles from "./style.css";
 import Graph from "./Graph";
 import TradeHistory from "./TradeHistory";
@@ -65,6 +66,7 @@ const Coin = () => {
 
   if (!wallet) return <div>로그인 후 이용해주세요.</div>;
 
+  const totalMoney = market.price * wallet.coin + wallet.money;
   const maxAmountMoney = Math.floor(wallet.money / market.price);
   const tradeBeforeLeftMoney = wallet.money - requestAmount * market.price;
   const tradeRequestMoney = wallet.money - tradeBeforeLeftMoney;
@@ -143,6 +145,13 @@ const Coin = () => {
           </button>
         </div>
         <div className={styles.utilityBox}>
+          <div className={styles.moneyBox}>
+            <div className={styles.moneyName}>보유 총액</div>
+            <div className={styles.moneyAmount}>
+              <WalletIcon />
+              <div className={styles.moneyAmount}>{moneyText(totalMoney)}</div>
+            </div>
+          </div>
           <div className={styles.moneyBox}>
             <div className={styles.moneyName}>보유 코인</div>
             <div className={styles.moneyAmount}>

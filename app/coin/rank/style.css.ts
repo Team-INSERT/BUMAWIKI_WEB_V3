@@ -70,7 +70,7 @@ export const rankingListItemBody = style({
   gap: "8px",
   color: theme.primary,
   ...flex.VERTICAL,
-  ...font.btn2,
+  ...font.btn3,
 });
 
 const tierBase = style({
@@ -85,5 +85,7 @@ export const tier = styleVariants<Record<string, ComplexStyleRule>>({
 });
 
 export const totalMoney = style({
-  ...font.p3,
+  gap: "6px",
+  ...flex.VERTICAL,
+  ...font.H6,
 });

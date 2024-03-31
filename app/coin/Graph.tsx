@@ -1,7 +1,7 @@
 "use client";
 
 import { coinQuery } from "@/services/coin/coin.query";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Line } from "react-chartjs-2";
@@ -60,7 +60,7 @@ const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
   const remainingSeconds = 3 * 60 - differenceInSeconds;
 
   const [cycle, setCycle] = useState("threeHours");
-  const { data: coin, refetch: graphRefetch } = useQuery(coinQuery.graph(cycle));
+  const { data: coin, refetch: graphRefetch } = useSuspenseQuery(coinQuery.graph(cycle));
 
   const labels = coin.map(({ startedTime }: { startedTime: Date }) =>
     dayjs(startedTime).format("M/D H:m"),
