@@ -112,7 +112,7 @@ const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
               label: "부마코인",
               borderColor: "#274168",
               borderWidth: 1.5,
-              background: "#274168AA",
+              backgroundColor: "#274168AA",
             },
           ],
         }}
