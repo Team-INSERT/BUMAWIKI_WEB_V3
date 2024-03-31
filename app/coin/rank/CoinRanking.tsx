@@ -7,6 +7,7 @@ import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
 import Link from "next/link";
 import { moneyText, tierIconMaker } from "@/utils";
+import WalletIcon from "@/assets/WalletIcon";
 import * as styles from "./style.css";
 
 const CoinRanking = () => {
@@ -43,19 +44,19 @@ const CoinRanking = () => {
                     {ranking.username}
                   </span>
                 </hgroup>
+                <span className={styles.totalMoney}>
+                  <WalletIcon /> {moneyText(ranking.totalMoney)}₩
+                </span>
                 <hgroup className={styles.rankingListItemHGroup}>
                   <main className={styles.rankingListItemBody}>
-                    <Image src="/assets/bumamoney.png" width={30} height={15} alt="moneyicon" />
+                    <Image src="/assets/bumamoney.png" width={24} height={12} alt="moneyicon" />
                     {moneyText(ranking.money)}₩
                   </main>
                   <main className={styles.rankingListItemBody}>
-                    <Image src="/assets/bumacoin.png" width={24} height={24} alt="moneyicon" />
+                    <Image src="/assets/bumacoin.png" width={18} height={18} alt="moneyicon" />
                     {moneyText(ranking.coin)}주
                   </main>
                 </hgroup>
-                <span className={styles.totalMoney}>
-                  총 이익 · {moneyText(ranking.totalMoney)}₩
-                </span>
               </div>
             </Link>
           );
