@@ -28,7 +28,7 @@ const Aside = () => {
       <div className={styles.body}>
         <aside className={styles.container}>
           <div className={styles.titleBox}>
-            <span className={styles.titleText}>최근 변경</span>
+            <span className={styles.titleText}>옛날 변경</span>
           </div>
           <div className={styles.list}>
             {docsList?.map((docs: DocsListItem) => (
