@@ -7,7 +7,7 @@ export const container = style({
   position: "fixed",
   left: "0",
   top: "54px",
-  backgroundColor: theme.gray,
+  background: theme.gray,
   zIndex: 20,
   ...flex.VERTICAL,
 });
@@ -31,7 +31,7 @@ export const titleInput = style({
   },
 
   ":disabled": {
-    backgroundColor: "transparent",
+    background: "transparent",
   },
 });
 
@@ -139,7 +139,7 @@ export const textarea = styleVariants<Record<string, ComplexStyleRule>>({
 const wikiBoxHeaderBase = style({
   width: "100%",
   height: "fit-content",
-  backgroundColor: theme.primary,
+  background: theme.primary,
   left: 0,
   bottom: 0,
   position: "fixed",
@@ -191,7 +191,7 @@ export const footer = {
     height: "100%",
     borderRight: `1px solid ${theme.gray}`,
     color: theme.white,
-    backgroundColor: theme.primary,
+    background: theme.primary,
     textAlign: "center",
     ...flex.CENTER,
   }),

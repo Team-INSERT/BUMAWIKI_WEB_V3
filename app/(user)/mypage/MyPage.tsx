@@ -22,7 +22,7 @@ const MyPage = () => {
     return (
       <Container title="마이페이지" docsType="mypage">
         <Link className={styles.link} href={process.env.NEXT_PUBLIC_OAUTH_URL || ""}>
-          로그인 후 이용해주세요.
+          로그인!!!!!!!!!!!!!!!!!!!!!!!!해주세요.
         </Link>
       </Container>
     );

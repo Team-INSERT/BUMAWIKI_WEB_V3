@@ -6,7 +6,7 @@ export const container = style({
   ...flex.COLUMN_BETWEEN,
   borderLeft: `2px solid ${theme.gray}`,
   borderRight: `2px solid ${theme.gray}`,
-  backgroundColor: theme.white,
+  background: theme.white,
   margin: "0 20px 0 40px",
 
   "@media": {

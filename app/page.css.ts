@@ -2,7 +2,7 @@ import { theme, font, flex } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
-  backgroundColor: theme.classify,
+  background: theme.classify,
   ...font.D1,
 });
 
@@ -64,7 +64,7 @@ export const table = {
     padding: "14px 0",
     border: `2px solid ${theme.gray}`,
     color: theme.white,
-    backgroundColor: theme.primary,
+    background: theme.primary,
     ...flex.COLUMN_CENTER,
   }),
   title: style({
@@ -90,7 +90,7 @@ export const table = {
     width: "18%",
     height: "100%",
     color: theme.white,
-    backgroundColor: theme.primary,
+    background: theme.primary,
     ...font.H6,
     ...flex.CENTER,
   }),

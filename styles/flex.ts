@@ -14,8 +14,8 @@ const flexGenerator = ({ direction, align, justify }: PropsType) => ({
 const flex = {
   FLEX: flexGenerator({ align: "none", justify: "none" }),
   CENTER: flexGenerator({ align: "center", justify: "center" }),
-  VERTICAL: flexGenerator({ align: "center" }),
-  HORIZONTAL: flexGenerator({ justify: "center" }),
+  HORIZONTAL: flexGenerator({ align: "center" }),
+  VERTICAL: flexGenerator({ justify: "center" }),
   START: flexGenerator({ align: "center", justify: "flex-start" }),
   BETWEEN: flexGenerator({ align: "center", justify: "space-between" }),
   END: flexGenerator({ align: "center", justify: "flex-end" }),

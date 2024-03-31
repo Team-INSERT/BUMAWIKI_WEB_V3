@@ -7,19 +7,22 @@ import config from "@/config";
 import * as styles from "./page.css";
 
 const tableInformation = [
-  { name: "교훈", content: "創意(창의), 誠實(성실)" },
-  { name: "개교", content: "1970년 3월 26일 (가락종합고등학교)" },
-  { name: "유형", content: "마이스터고등학교" },
-  { name: "성별", content: "남녀공학" },
-  { name: "형태", content: "공립학교" },
-  { name: "교목", content: "소나무 (꿋꿋한 절개와 의지를 보이다)" },
-  { name: "교화", content: "목련 (우애있고 사랑스러우며 고귀하다)" },
+  {
+    name: "교훈",
+    content: "여럽분 고등학교 시절이 얼마안남았읍니다 공부하지말고 노세요!!! 노는게 제일좋아",
+  },
+  { name: "개교", content: "2024년 4월 1일 월요일" },
+  { name: "유형", content: "물티슈" },
+  { name: "성별", content: "크레파스" },
+  { name: "형태", content: "직사각형" },
+  { name: "교목", content: "바오밥 나무" },
+  { name: "교화", content: "대마" },
   {
     name: "교조",
-    content: "솔개 (유연하고 민첩하며 늠름한 기상으로 높이 날아 세계를 보다)",
+    content: "비둘기",
   },
-  { name: "관할 교육청", content: "부산광역시교육청" },
-  { name: "주소", content: "부산광역시 강서구 가락대로 1393 (가락동)" },
+  { name: "관할 교육청", content: "아이슬란드 마우이 부족 광역 교육청" },
+  { name: "주소", content: "Cambridge, Massachusetts, U.S." },
 ];
 
 const Home = () => {
@@ -28,49 +31,50 @@ const Home = () => {
       <div className={styles.introduce.body}>
         <div className={styles.introduce.box}>
           <h1 className={styles.introduce.title}>
-            여러분이 가꾸어 나가는 <b className={styles.introduce.highlight}>역사의 고서</b>
+            이사이트는 해킹당했다{" "}
+            <b className={styles.introduce.highlight}>우하ㅏ하핳하ㅏ하하하핳</b>
           </h1>
           <h2 className={styles.introduce.subtitle}>
-            <b className={styles.introduce.highlight}>부마위키</b>에 오신 것을 환영합니다!
+            <b className={styles.introduce.highlight}>너ㅔ접속하면 IP다터어간다!!ㅏ!ㅡㅏ$ㅜ</b>
+            으앟아ㅏㅇ아ㅏㅇ아아악 우ㅏㅜ아아아앙ㅇ
           </h2>
         </div>
         <div className={styles.introduce.box}>
           <p className={styles.introduce.description}>
-            부마위키는 부산소마고 학생이라면 누구나 기여할 수 있는 위키입니다.
+            나는야 퉁튤ㅇㅌ퉁ㅇ이 ~~~~ ~ ~ 골몯때장릴란ㄹ내 ~~~~~
             <br />
-            검증되지 않았거나 편향된 내용이 있을 수 있습니다.
+            우앟앟하핳핳ㅎ 여기는 거짓말밖에 없지롱 어쩔건데 어쩔건데 우쩔간ㄷ ㅔㅎㅎㅎㅎㅎ
             <br />
             <span className={styles.introduce.caution}>
-              ※ 타인에 대한 조롱 또는 비방, 비난으로 인해 발생하는 문제에 대한 책임은 본인에게
-              있습니다. 주의해주세요! ※
+              ※ 제로투 뿌빠빠빠 뿌빠빠빠ㅃ 뿌빠빠빠ㅏㅃ 뿌빠빠ㅏ ※
             </span>
           </p>
         </div>
       </div>
       <div className={styles.utility.body}>
-        <Link className={styles.utility.href} href="/docs/부마위키%20업데이트%20내역">
-          업데이트 내역
+        <Link className={styles.utility.href} href="https://google.com">
+          누르면 100만원 얻는 버튼
         </Link>{" "}
         |
-        <Link className={styles.utility.href} href="/docs/부마위키%20방명록">
-          방명록
+        <Link className={styles.utility.href} href="https://google.com">
+          누르면 1000만원 얻는 버튼
         </Link>{" "}
         |
-        <Link className={styles.utility.href} href="https://forms.gle/rYmV7zpdgcMahzF36">
-          문의하기
+        <Link className={styles.utility.href} href="https://google.com">
+          누르면 10000만원 얻는 버튼
         </Link>
       </div>
       <div className={styles.table.container}>
         <div className={styles.table.body}>
           <div className={styles.table.thead}>
-            <h1 className={styles.table.title}>부산소프트웨어마이스터고등학교</h1>
-            <h2 className={styles.table.subtitle}>Busan Software Meister High School</h2>
+            <h1 className={styles.table.title}>Harvard University</h1>
+            <h2 className={styles.table.subtitle}>Universitas Harvardiana</h2>
           </div>
           <Image
             width={999}
             height={999}
             className={styles.table.primaryImage}
-            src="/assets/school.jpeg"
+            src="/assets/fake.gif"
             alt="학교"
           />
           {tableInformation.map((info) => (
@@ -87,9 +91,9 @@ const Home = () => {
       </Accordion>
       <Accordion title="학과">
         <div className={styles.outline.description}>{config.departmentDescription}</div>
-        <h2 className={styles.outline.departmentTitle}>소프트웨어개발과</h2>
+        <h2 className={styles.outline.departmentTitle}>치킨집</h2>
         <div className={styles.outline.description}>{config.softwareDepartment}</div>
-        <h2 className={styles.outline.departmentTitle}>임베디드소프트웨어과</h2>
+        <h2 className={styles.outline.departmentTitle}>공 장</h2>
         <div className={styles.outline.description}>{config.embeddedDepartment}</div>
       </Accordion>
       <Accordion title="교가">

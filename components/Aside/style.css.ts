@@ -4,6 +4,7 @@ import { flex, font, theme } from "@/styles";
 export const body = style({
   width: "300px",
   height: "540px",
+  transform: "rotateY(180deg)",
   ...flex.COLUMN_FLEX,
 });
 
@@ -15,7 +16,7 @@ export const container = style({
 });
 
 export const titleBox = style({
-  backgroundColor: theme.primary,
+  background: theme.primary,
   border: `2px solid ${theme.gray}`,
   borderLeft: "none",
   borderRight: "none",
@@ -37,7 +38,7 @@ export const list = style({
 export const docs = style({
   width: "100%",
   height: "38px",
-  backgroundColor: theme.white,
+  background: theme.white,
   border: `2px solid ${theme.gray}`,
   borderLeft: "none",
   borderRight: "none",
@@ -81,7 +82,7 @@ export const pageBox = style({
 export const pageButton = style({
   width: "56px",
   height: "24px",
-  backgroundColor: theme.white,
+  background: theme.white,
   margin: "6px 2px",
   border: `2px solid ${theme.gray}`,
   borderRadius: "3px",

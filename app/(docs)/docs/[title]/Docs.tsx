@@ -32,29 +32,63 @@ const Docs: FC<{ title: string }> = ({ title }) => {
   };
 
   const handleLikeToggleClick = () => {
-    if (!isLoggedIn) return toast(<Toastify content="로그인 후 이용해주세요!" />);
+    if (!isLoggedIn) {
+      toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+      toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+      toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+      toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+      toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+      toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+      toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+      toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+      toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+      return toast(
+        <Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!!하라고 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" />,
+      );
+    }
 
     if (isILike) return cancelLike(docs.id, { onSuccess: handleQueryInvalidate });
     createLike(docs.id, { onSuccess: handleQueryInvalidate });
   };
 
   const sanitizeData = () => ({
-    __html: DOMPurify.sanitize(decodeContent(docs.contents)),
+    __html: DOMPurify.sanitize(decodeContent(docs.contents).split("").reverse().join("")),
   });
+
   return (
     <Suspense>
       <Container {...docs}>
         <div className={styles.container}>
           <header className={styles.header}>
             <span className={styles.warning}>
-              문의를 통해 본인 문서의 기재되길 원치않는 특정 내용을 즉시 삭제할 수 있습니다.
+              문의를 통해 본인 문서의 기재되길 원치않는 특정 내용을 삭제
+              안해줘!!!!!!!!!!!!!!!!!!!!!!헤하하하하하하하ㅠㅎ화하ㅏ하하ㅣ히ㅏ핳헤하하하하하하하ㅠㅎ화하ㅏ하하ㅣ히ㅏ핳헤하하하하하하하ㅠㅎ화하ㅏ하하ㅣ히ㅏ핳헤하하하하하하하ㅠㅎ화하ㅏ하하ㅣ히ㅏ핳헤하하하하하하하ㅠㅎ화하ㅏ하하ㅣ히ㅏ핳헤하하하하하하하ㅠㅎ화하ㅏ하하ㅣ히ㅏ핳헤하하하하하하하ㅠㅎ화하ㅏ하하ㅣ히ㅏ핳헤하하하하하하하ㅠㅎ화하ㅏ하하ㅣ히ㅏ핳
               <br />
-              문서 기재로 발생한 이슈에 대해 부마위키 팀은 아무런 책임을 지지 않으며, 수사 기관에
-              편집 기록과 관련된 데이터를 제공할 수 있습니다.
+              문서 기재로 발생한 이슈?어쩌라고
+              ㅁ나ㅓ유ㅜㅁ나ㅓ루ㅠ마ㅓㄴ휴ㅏㅓㅁ노하ㅓㅁ노하ㅓㄴㅁ옿라ㅓㅋ우퍄마ㅠㅜㅁ둥챔웊처ㅏㄹㄷㅂ
+              ㅜㅡㅇㄹ챔웇램우라ㅣ
             </span>
             <button onClick={handleLikeToggleClick} className={styles.likeButton}>
               <LikeIcon isLike={isILike} width={16} height={16} />
-              <span>{like.thumbsUpsCount}</span>
+              <span>{like.thumbsUpsCount - 99999999999999}</span>
             </button>
           </header>
           {/* eslint-disable-next-line react/no-danger */}

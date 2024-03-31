@@ -48,7 +48,7 @@ const Header = () => {
       <ul className={styles.navigationList}>
         <Logo className={styles.logo} />
         {navigationList.map((nav) => (
-          <Link key={nav.item} href={nav.href} className={styles.navigationItem}>
+          <Link key={nav.item} href={nav.href} className="ff">
             {nav.icon}
             <span>{nav.item}</span>
           </Link>

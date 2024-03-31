@@ -4,7 +4,7 @@ import { style } from "@vanilla-extract/css";
 export const container = style({
   width: "100vw",
   height: "22vh",
-  backgroundColor: "#fff",
+  background: "#fff",
   border: "1px solid #ccc",
   ...flex.COLUMN_CENTER,
 });
@@ -20,7 +20,7 @@ export const separator = style({
   margin: "0 20px 0 20px",
   width: "2px",
   height: "25px",
-  backgroundColor: "black",
+  background: "black",
 });
 
 export const informationBox = style({

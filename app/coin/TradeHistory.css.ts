@@ -10,7 +10,7 @@ export const tradeListBox = style({
   ...flex.COLUMN_FLEX,
 
   ":hover": {
-    backgroundColor: theme.hover,
+    background: theme.hover,
   },
 });
 
@@ -51,7 +51,7 @@ export const informationBox = style({
 export const cancelButton = style({
   width: "fit-content",
   padding: "6px 14px",
-  backgroundColor: theme.red,
+  background: theme.red,
   borderRadius: "6px",
   color: theme.white,
   ...font.btn3,
@@ -64,10 +64,10 @@ export const tradeStatusCircleBase = style({
 });
 
 export const tradeStatusCircle = styleVariants<Record<string, ComplexStyleRule>>({
-  BUYING: [tradeStatusCircleBase, { backgroundColor: theme.insert }],
-  SELLING: [tradeStatusCircleBase, { backgroundColor: theme.insert }],
-  BOUGHT: [tradeStatusCircleBase, { backgroundColor: theme.buy }],
-  SOLD: [tradeStatusCircleBase, { backgroundColor: theme.sell }],
-  CANCELLED: [tradeStatusCircleBase, { backgroundColor: theme.gray }],
-  DELISTING: [tradeStatusCircleBase, { backgroundColor: theme.black }],
+  BUYING: [tradeStatusCircleBase, { background: theme.insert }],
+  SELLING: [tradeStatusCircleBase, { background: theme.insert }],
+  BOUGHT: [tradeStatusCircleBase, { background: theme.buy }],
+  SOLD: [tradeStatusCircleBase, { background: theme.sell }],
+  CANCELLED: [tradeStatusCircleBase, { background: theme.gray }],
+  DELISTING: [tradeStatusCircleBase, { background: theme.black }],
 });

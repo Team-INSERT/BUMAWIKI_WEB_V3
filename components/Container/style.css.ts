@@ -24,7 +24,7 @@ export const utilityBox = style({
 
 export const editButton = style({
   padding: "6px 16px",
-  backgroundColor: theme.primary,
+  background: theme.primary,
   color: theme.white,
   borderRadius: "4px",
   ...font.H6,

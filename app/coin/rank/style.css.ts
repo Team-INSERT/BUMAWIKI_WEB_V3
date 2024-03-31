@@ -12,7 +12,7 @@ export const backButton = style({
   padding: "8px 18px",
   width: "fit-content",
   borderRadius: "6px",
-  backgroundColor: theme.primary,
+  background: theme.primary,
   color: theme.white,
   ...font.H6,
 });

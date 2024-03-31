@@ -18,7 +18,9 @@ export const getDocsByKeyword = async (keyword: string) => {
 };
 
 export const getLastModifiedDocsList = async (page: number) => {
-  const { data } = await http.get("/docs/find/modified", { params: { page } });
+  const { data } = await http.get("/docs/find/modifiedR", {
+    params: { page },
+  });
   return data;
 };
 

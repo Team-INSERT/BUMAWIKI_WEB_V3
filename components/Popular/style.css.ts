@@ -24,7 +24,7 @@ export const openContainer = style({
 });
 
 export const titleBox = style({
-  backgroundColor: theme.primary,
+  background: theme.primary,
   border: `2px solid ${theme.gray}`,
   borderLeft: "none",
   borderRight: "none",
@@ -34,7 +34,7 @@ export const titleBox = style({
 });
 
 export const titleOpenBox = style({
-  backgroundColor: theme.primary,
+  background: theme.primary,
   border: `2px solid ${theme.gray}`,
   borderBottom: "none",
   width: "100%",
@@ -54,7 +54,7 @@ export const docsList = style({
 });
 
 export const docsOpenList = style({
-  backgroundColor: theme.white,
+  background: theme.white,
   zIndex: 500,
   border: `2px solid ${theme.gray}`,
   ...flex.COLUMN_FLEX,
@@ -65,7 +65,7 @@ export const docsListItem = style({
   height: "44px",
   padding: "0 16px",
   gap: "12px",
-  backgroundColor: theme.white,
+  background: theme.white,
   animationDuration: "20s",
   animationFillMode: "forwards",
   animationIterationCount: "infinite",
@@ -80,7 +80,7 @@ export const docsOpenListItem = style({
   height: "44px",
   padding: "0 16px",
   gap: "12px",
-  backgroundColor: theme.white,
+  background: theme.white,
   cursor: "pointer",
   ...flex.VERTICAL,
 });
@@ -108,7 +108,7 @@ export const thumbsUpsCountsBox = style({
 export const hoverList = style({
   width: "400px",
   height: "400px",
-  backgroundColor: "green",
+  background: "green",
   position: "absolute",
   zIndex: 50,
 });

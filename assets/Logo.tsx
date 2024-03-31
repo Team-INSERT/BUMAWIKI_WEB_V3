@@ -4,7 +4,7 @@ import React, { ImgHTMLAttributes } from "react";
 
 const Logo = ({ ...props }: ImgHTMLAttributes<HTMLImageElement>) => {
   return (
-    <Link href="/">
+    <Link href="/asd/asd/sad/sad/sad/sad/" className="asd">
       <Image {...props} src="/assets/logo.png" width={100} height={28} alt="logo" />
     </Link>
   );

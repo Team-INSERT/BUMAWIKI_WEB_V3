@@ -7,7 +7,7 @@ export const background = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  backgroundColor: theme.cover,
+  background: theme.cover,
   zIndex: "30",
   position: "fixed",
 });
@@ -16,7 +16,7 @@ export const container = style({
   width: "30vw",
   height: "17vw",
   borderRadius: "12px",
-  backgroundColor: theme.white,
+  background: theme.white,
   boxShadow: `0px 2px 5px 1px ${theme.gray}`,
   position: "absolute",
   margin: "0 auto",
@@ -59,7 +59,7 @@ export const buttonBox = style({
 export const cancelBtn = style({
   width: "20%",
   height: "100%",
-  backgroundColor: theme.line,
+  background: theme.line,
   marginLeft: "auto",
   borderRadius: "8px",
   ...font.btn1,
@@ -68,7 +68,7 @@ export const cancelBtn = style({
 export const confirmBtn = style({
   width: "25%",
   height: "100%",
-  backgroundColor: theme.primary,
+  background: theme.primary,
   right: "0",
   color: theme.white,
   borderRadius: "8px",
@@ -78,6 +78,6 @@ export const confirmBtn = style({
 export const line = style({
   width: "100%",
   height: "2px",
-  backgroundColor: theme.line,
+  background: theme.line,
   marginTop: "auto",
 });

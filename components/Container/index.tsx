@@ -57,14 +57,15 @@ const Container = ({
   };
 
   const handleDocsEditClick = () => {
-    if (!isLoggedIn) return toast(<Toastify content="로그인 후 이용 가능합니다." />);
+    if (!isLoggedIn)
+      return toast(<Toastify content="로그인!!!!!!!!!!!!!!!!!!!!!!!! 가능합니다." />);
     if (title.includes(user.name))
       return toast(<Toastify content="자신과 관련된 문서는 수정할 수 없습니다." />);
     router.push(`/edit/${title}`);
   };
 
   return (
-    <div className={styles.container}>
+    <div className="hbjbb">
       <hgroup className={styles.hgroup}>
         <div className={styles.titleBox}>
           <h1 className={styles.title}>부마위키:{title}</h1>

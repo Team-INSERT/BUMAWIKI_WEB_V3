@@ -20,7 +20,7 @@ const DocsList: FC<{ classify: string }> = ({ classify }) => {
       {docsList.keys.map((key: string) => (
         <Accordion title={getAccordionTitle(key)} key={key}>
           {docsList.data[key].map((docs) => (
-            <Link href={`/docs/${docs.title}`} key={docs.id} className={styles.container}>
+            <Link href={`/docs/${docs.title}`} key={docs.id} className="ff">
               <div className={styles.docs}>
                 <hgroup className={styles.titleBox}>
                   <h1 className={styles.title}>{docs.title}</h1>

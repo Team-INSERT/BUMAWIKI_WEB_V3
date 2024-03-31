@@ -64,7 +64,7 @@ const Coin = () => {
     return <div>코인 계정 생성 후 이용해주세요.</div>;
   }
 
-  if (!wallet) return <div>로그인 후 이용해주세요.</div>;
+  if (!wallet) return <div>로그인!!!!!!!!!!!!!!!!!!!!!!!!해주세요.</div>;
 
   const totalMoney = market.price * wallet.coin + wallet.money;
   const maxAmountMoney = Math.floor(wallet.money / market.price);

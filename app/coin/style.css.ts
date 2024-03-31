@@ -107,7 +107,7 @@ export const tradeButton = style({
   padding: "8px 20px",
   borderRadius: "4px",
   width: "fit-content",
-  backgroundColor: theme.primary,
+  background: theme.primary,
   color: theme.white,
   ...font.btn2,
 });
@@ -119,7 +119,7 @@ export const tradeInformation = style({
 export const chartContainer = style({
   width: "100%",
   height: "100%",
-  backgroundColor: "#f2f3f7",
+  background: "#f2f3f7",
   margin: "20px 0",
   padding: "26px",
   borderRadius: "4px",
@@ -175,7 +175,7 @@ export const categoryBase = style({
 
 export const category = styleVariants({
   DISABLED: [categoryBase],
-  ENABLED: [categoryBase, { backgroundColor: theme.gray }],
+  ENABLED: [categoryBase, { background: theme.gray }],
 });
 
 export const warningText = style({

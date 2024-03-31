@@ -19,9 +19,7 @@ const Page = async () => {
   await Promise.all([queryClient.prefetchQuery(coinQuery.price()), ...graphList]);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <Coin />
-    </HydrationBoundary>
+    <HydrationBoundary state={dehydrate(queryClient)}>{"비트코인".repeat(9999)}</HydrationBoundary>
   );
 };
 

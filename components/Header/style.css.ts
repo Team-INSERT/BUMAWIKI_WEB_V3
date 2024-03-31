@@ -5,7 +5,7 @@ export const container = style({
   width: "100%",
   padding: "0 4vw",
   height: "54px",
-  backgroundColor: theme.primary,
+  background: theme.primary,
   position: "fixed",
   zIndex: 10,
   ...flex.BETWEEN,
@@ -37,7 +37,7 @@ export const searchInput = style({
   position: "relative",
   padding: "0 10px",
   fontWeight: 500,
-  backgroundColor: theme.white,
+  background: theme.white,
   border: `1px solid ${theme.gray}`,
 });
 
@@ -64,7 +64,7 @@ export const loginUtilityBox = style({
 export const writeButton = style({
   padding: "8px 14px",
   color: theme.primary,
-  backgroundColor: theme.white,
+  background: theme.white,
   borderRadius: "9999px",
   ...font.btnBold,
 });

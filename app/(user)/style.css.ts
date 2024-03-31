@@ -15,7 +15,7 @@ export const contributeBox = style({
   ...flex.COLUMN_FLEX,
 
   ":hover": {
-    backgroundColor: theme.hover,
+    background: theme.hover,
   },
 });
 
@@ -46,7 +46,7 @@ export const button = style({
   width: "fit-content",
   borderRadius: "4px",
   padding: "6px 12px",
-  backgroundColor: theme.primary,
+  background: theme.primary,
   color: theme.white,
   ...font.H6,
 });

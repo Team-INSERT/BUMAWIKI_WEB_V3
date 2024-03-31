@@ -4,7 +4,7 @@ import { style } from "@vanilla-extract/css";
 export const container = style({
   width: "100%",
   height: "100%",
-  backgroundColor: theme.white,
+  background: theme.white,
   position: "absolute",
   top: "0",
   left: "0",
@@ -27,7 +27,7 @@ export const content = style({
 export const sideBar = style({
   width: "4%",
   height: "100%",
-  backgroundColor: theme.primary,
+  background: theme.primary,
 });
 
 export const icon = style({

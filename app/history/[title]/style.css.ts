@@ -10,7 +10,7 @@ export const historyBox = style({
   ...flex.COLUMN_FLEX,
 
   ":hover": {
-    backgroundColor: theme.hover,
+    background: theme.hover,
   },
 });
 
