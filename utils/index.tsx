@@ -6,9 +6,9 @@ export const decodeContent = (content: string) => {
   const decoded = content
     .replace(/<<(.*?)>>:{(.*?)}/gi, `<이미지%@T src="$1" width="$2%" />`)
     /** xss */
-    // .replace(/<([A-Za-z]+)[^>]*>.*?<\/\1>/gi, "")
-    // .replace(/<([A-Za-z]+)[^>]*\/>/gi, "")
-    // .replace(/<([A-Za-z]+)([^>]*)\/?\s*>/gi, "")
+    .replace(/<([A-Za-z]+)[^>]*>.*?<\/\1>/gi, "")
+    .replace(/<([A-Za-z]+)[^>]*\/>/gi, "")
+    .replace(/<([A-Za-z]+)([^>]*)\/?\s*>/gi, "")
     .replaceAll("이미지%@T", "img")
     /** */
     .replaceAll(
@@ -29,7 +29,7 @@ export const decodeContent = (content: string) => {
     .replace(/세로병합={{/gi, ` rowspan="`)
 
     .replace(/}}/gi, `"`)
-    .replace(/include\((.*?)\);/gi, "틀 개발중!\n\n")
+    .replace(/include\((.*?)\);/gi, "")
 
     .replace(/<항목>([\s\S]*?)<\/항목>/gi, "<li style='list-style: disc';>$1</li>")
     .replace(/<어록>([\s\S]*?)<\/어록>/gi, "<div class='analects';>$1</div>")
@@ -156,4 +156,59 @@ export const translateClassify = (classify: string) => {
 
 export const contentsCleaner = (contents: string) => {
   return `${contents.replace(/<[^>]+>/g, " ")} ...`;
+};
+
+export const isJsonString = (value: string): boolean => {
+  if (typeof value !== "string") return false;
+
+  try {
+    const result = JSON.parse(value);
+    return typeof result === "object" && result !== null;
+  } catch (e) {
+    return false;
+  }
+};
+
+interface Frame {
+  key: string;
+  content: string;
+  colSpan: number;
+  rowSpan: number;
+}
+
+interface DocsPropsType {
+  title: string;
+  contents: string;
+}
+
+export const encoder = ({ title, contents }: DocsPropsType) => {
+  const rows = isJsonString(contents) ? JSON.parse(contents) : [];
+  const encoded = (
+    <details className="frame_details">
+      <summary className="frame_caption">
+        <div>
+          {title ? title : "제목을 입력해주세요"}
+          <br />
+          <span>[ 펼치기 · 접기 ]</span>
+        </div>
+      </summary>
+      <table className="frame_table">
+        <tbody>
+          {rows.map((row: Frame[], rowIndex: number) => (
+            <tr key={rowIndex}>
+              {row.map((col: Frame) => (
+                <td key={col.key} colSpan={col.colSpan} rowSpan={col.rowSpan} className="frame_td">
+                  <div
+                    // eslint-disable-next-line react/no-danger
+                    dangerouslySetInnerHTML={{ __html: decodeContent(col.content) }}
+                  />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </details>
+  );
+  return encoded;
 };
