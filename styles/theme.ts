@@ -15,6 +15,7 @@ const theme = {
   cover: "#ececec50",
   line: "#f0f0f0",
   preview: "#F6FAFD",
+  btnHover: "#7f94b4",
 };
 
 export default theme;
