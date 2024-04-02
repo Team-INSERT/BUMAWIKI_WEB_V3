@@ -168,7 +168,7 @@ const AdvancedDynamicTable = ({
     const newRows = newing.map((row, index) => {
       if (index > rowIndex && index <= rowIndex + rows[rowIndex][colIndex].rowSpan) {
         if (index === rowIndex + rows[rowIndex][colIndex].rowSpan) {
-          if (row.length <= rowIndex + rows[rowIndex][colIndex].colSpan + 1) return row;
+          // if (row.length <= rowIndex + rows[rowIndex][colIndex].colSpan + 1) return row;
           for (let i = 0; i < rows[rowIndex][colIndex].colSpan; i += 1) {
             row.pop();
           }
