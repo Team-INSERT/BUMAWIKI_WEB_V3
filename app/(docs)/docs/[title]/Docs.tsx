@@ -19,8 +19,8 @@ import useUser from "@/hooks/useUser";
 import Toastify from "@/components/Toastify";
 import { toast } from "react-toastify";
 import { useCreateLikeMutation, useDeleteLikeMutation } from "@/services/like/like.mutation";
-import * as styles from "./style.css";
 import FrameEncoder from "@/components/FrameEncoder";
+import * as styles from "./style.css";
 
 const Docs: FC<{ title: string }> = ({ title }) => {
   const [frameList, setFrameList] = useState<string[]>([]);
