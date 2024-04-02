@@ -188,7 +188,7 @@ export const encoder = ({ title, contents }: DocsPropsType) => {
     <details className="frame_details">
       <summary className="frame_caption">
         <div>
-          {title ? title : "제목을 입력해주세요"}
+          {title ?? "제목을 입력해주세요"}
           <br />
           <span>[ 펼치기 · 접기 ]</span>
         </div>
@@ -198,7 +198,13 @@ export const encoder = ({ title, contents }: DocsPropsType) => {
           {rows.map((row: Frame[], rowIndex: number) => (
             <tr key={rowIndex}>
               {row.map((col: Frame) => (
-                <td key={col.key} colSpan={col.colSpan} rowSpan={col.rowSpan} className="frame_td">
+                <td
+                  key={col.key}
+                  colSpan={col.colSpan}
+                  rowSpan={col.rowSpan}
+                  className="frame_td"
+                  aria-label="present td's content"
+                >
                   <div
                     // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{ __html: decodeContent(col.content) }}
