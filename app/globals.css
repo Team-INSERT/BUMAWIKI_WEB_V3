@@ -101,12 +101,12 @@ button {
   width: 200px;
   height: 50px;
   background-color: white;
-  border: solid 2px #274168;
+  border: solid 4px #274168;
 }
 
 .frame_table {
   border-collapse: collapse;
-  border: solid 2px #274168;
+  border: solid 4px #274168;
   background-color: #ccc;
   margin: auto;
   text-align: center;
