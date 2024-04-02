@@ -3,7 +3,7 @@
 import React, { FC, Suspense, useEffect, useState } from "react";
 import "dayjs/locale/ko";
 import DOMPurify from "isomorphic-dompurify";
-import { decodeContent, encoder } from "@/utils";
+import { decodeContent } from "@/utils";
 import Link from "next/link";
 import {
   useQueries,
@@ -20,6 +20,7 @@ import Toastify from "@/components/Toastify";
 import { toast } from "react-toastify";
 import { useCreateLikeMutation, useDeleteLikeMutation } from "@/services/like/like.mutation";
 import * as styles from "./style.css";
+import FrameEncoder from "@/components/FrameEncoder";
 
 const Docs: FC<{ title: string }> = ({ title }) => {
   const [frameList, setFrameList] = useState<string[]>([]);
@@ -83,13 +84,28 @@ const Docs: FC<{ title: string }> = ({ title }) => {
           </header>
           {docs.docsType === "FRAME" ? (
             <div>
-              <div className={styles.body}>{encoder(docs)}</div>
+              <div className={styles.body}>
+                <FrameEncoder
+                  title={docs.title}
+                  contents={docs.contents}
+                  docsType={docs.docsType}
+                  mode="READ"
+                />
+              </div>
             </div>
           ) : (
             <>
               {frameData.map(
                 (frame) =>
-                  frame.data !== null && frame.data.docsType === "FRAME" && encoder(frame.data),
+                  frame.data !== null &&
+                  frame.data.docsType === "FRAME" && (
+                    <FrameEncoder
+                      title={docs.title}
+                      contents={docs.contents}
+                      docsType={docs.docsType}
+                      mode="READ"
+                    />
+                  ),
               )}
               <div
                 className={styles.body}

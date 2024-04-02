@@ -170,56 +170,6 @@ export const isJsonString = (value: string): boolean => {
   }
 };
 
-interface Frame {
-  key: string;
-  content: string;
-  colSpan: number;
-  rowSpan: number;
-}
-
-interface DocsPropsType {
-  title: string;
-  contents: string;
-}
-
-export const encoder = ({ title, contents }: DocsPropsType) => {
-  const rows = isJsonString(contents) ? JSON.parse(contents) : [];
-  const encoded = (
-    <details className="frame_details">
-      <summary className="frame_caption">
-        <div>
-          {title ?? "제목을 입력해주세요"}
-          <br />
-          <span>[ 펼치기 · 접기 ]</span>
-        </div>
-      </summary>
-      <table className="frame_table">
-        <tbody>
-          {rows.map((row: Frame[], rowIndex: number) => (
-            <tr key={rowIndex}>
-              {row.map((col: Frame) => (
-                <td
-                  key={col.key}
-                  colSpan={col.colSpan}
-                  rowSpan={col.rowSpan}
-                  className="frame_td"
-                  aria-label="present td's content"
-                >
-                  <div
-                    // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{ __html: decodeContent(col.content) }}
-                  />
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </details>
-  );
-  return encoded;
-};
-
 export const moneyText = (str: number) => {
   const parts = String(str)
     .replace(/\D/g, "")

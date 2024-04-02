@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ChangeEvent, useCallback, useState } from "react";
-import { decodeContent, encoder, getYear } from "@/utils";
+import { decodeContent, getYear } from "@/utils";
 import { ArrowIcon } from "@/assets";
 import { useDocs } from "@/hooks/useDocs";
 import {
@@ -21,6 +21,7 @@ import Confirm from "../(modal)/Confirm";
 import Toastify from "../Toastify";
 import PasteUpload from "../PasteUpload";
 import FrameEditor from "../FrameEditor";
+import FrameEncoder from "../FrameEncoder";
 
 const wikiExampleList = [
   [
@@ -244,7 +245,14 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorProps)
             </div>
           )}
           {["틀", "FRAME"].includes(docs.docsType) ? (
-            <div className={styles.preview}>{encoder(docs)}</div>
+            <div className={styles.preview}>
+              <FrameEncoder
+                title={docs.title}
+                contents={docs.contents}
+                docsType={docs.docsType}
+                mode="WRITE"
+              />
+            </div>
           ) : (
             <div
               className={styles.preview}
