@@ -15,3 +15,5 @@ export { default as TeacherIcon } from "./TeacherIcon";
 export { default as WriteIcon } from "./WriteIcon";
 export { default as Logo } from "./Logo";
 export { default as MyPageIcon } from "./MyPageIcon";
+export { default as PartyIcon } from "./PartyIcon";
+export { default as CoinIcon } from "./CoinIcon";

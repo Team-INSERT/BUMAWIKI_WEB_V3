@@ -2,8 +2,8 @@
 
 import React, { FC, Suspense, useEffect, useState } from "react";
 import "dayjs/locale/ko";
+import DOMPurify from "isomorphic-dompurify";
 import { decodeContent, encoder } from "@/utils";
-import DOMPurify from "dompurify";
 import Link from "next/link";
 import {
   useQueries,
@@ -87,11 +87,10 @@ const Docs: FC<{ title: string }> = ({ title }) => {
             </div>
           ) : (
             <>
-              {frameData.map((frame) => {
-                if (frame.data !== null && frame.data.docsType === "FRAME") {
-                  return encoder(frame.data);
-                }
-              })}
+              {frameData.map(
+                (frame) =>
+                  frame.data !== null && frame.data.docsType === "FRAME" && encoder(frame.data),
+              )}
               <div
                 className={styles.body}
                 // eslint-disable-next-line react/no-danger

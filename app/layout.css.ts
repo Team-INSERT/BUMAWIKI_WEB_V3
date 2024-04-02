@@ -16,4 +16,10 @@ export const asideBox = style({
   width: "300px",
   gap: "12px",
   ...flex.COLUMN_FLEX,
+
+  "@media": {
+    "screen and (max-width: 480px)": {
+      display: "none",
+    },
+  },
 });

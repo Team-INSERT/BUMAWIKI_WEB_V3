@@ -10,6 +10,7 @@ import {
   Logo,
   SearchIcon,
   MyPageIcon,
+  CoinIcon,
 } from "@/assets";
 import { useRouter } from "next/navigation";
 import { Storage } from "@/storage";
@@ -24,6 +25,7 @@ const navigationList = [
   { item: "사건/사고", href: "/accident", icon: <AccidentIcon /> },
   { item: "동아리", href: "/club", icon: <ClubIcon /> },
   { item: "틀", href: "/frame", icon: <FrameIcon /> },
+  { item: "코인", href: "/coin", icon: <CoinIcon /> },
 ];
 
 const Header = () => {

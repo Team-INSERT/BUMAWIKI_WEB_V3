@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import * as styles from "./style.css";
 import { isJsonString } from "@/utils";
+import * as styles from "./style.css";
 
 const AdvancedDynamicTable = ({
   mode,
@@ -116,7 +116,8 @@ const AdvancedDynamicTable = ({
           if (cIndex === colIndex) {
             if (
               (row.length < 1 && index === rowIndex) ||
-              (index === rowIndex && cIndex === row.length - 1)
+              (index === rowIndex && cIndex === row.length - 1) ||
+              row.length === rowIndex + rows[rowIndex][colIndex].colSpan - 1
             )
               return row;
             row.pop();
@@ -165,7 +166,8 @@ const AdvancedDynamicTable = ({
     const newRows = newing.map((row, index) => {
       if (index > rowIndex && index <= rowIndex + rows[rowIndex][colIndex].rowSpan) {
         if (index === rowIndex + rows[rowIndex][colIndex].rowSpan) {
-          for (let i = 0; i < rows[rowIndex][colIndex].colSpan; i++) {
+          if (row.length <= rowIndex + rows[rowIndex][colIndex].colSpan + 1) return row;
+          for (let i = 0; i < rows[rowIndex][colIndex].colSpan; i += 1) {
             row.pop();
           }
         }
@@ -262,6 +264,7 @@ const AdvancedDynamicTable = ({
                             cursorPosition(col.key);
                           }}
                           className={styles.ColSpan}
+                          role="button"
                         />
                       </div>
                       <div
@@ -270,13 +273,22 @@ const AdvancedDynamicTable = ({
                           cursorPosition(col.key);
                         }}
                         className={styles.RowSpan}
+                        role="button"
                       />
                     </td>
                   ))}
-                  <td onClick={() => addTd(rowIndex)} className={styles.SetRow}>
+                  <td
+                    onClick={() => addTd(rowIndex)}
+                    className={styles.SetRow}
+                    aria-label="add button"
+                  >
                     +
                   </td>
-                  <td onClick={() => removeLastTd(rowIndex)} className={styles.SetRow}>
+                  <td
+                    onClick={() => removeLastTd(rowIndex)}
+                    className={styles.SetRow}
+                    role="remove button"
+                  >
                     x
                   </td>
                 </tr>

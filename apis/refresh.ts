@@ -7,15 +7,11 @@ const instance = axios.create({
 });
 
 const refresh = async () => {
-  try {
-    const { data } = await instance.put("/auth/refresh/access", null, {
-      headers: { RefreshToken: `${Storage.getItem(TOKEN.REFRESH)}` },
-    });
-    Storage.setItem(TOKEN.ACCESS, data.accessToken);
-    return data.accessToken;
-  } catch (err) {
-    Storage.clear();
-  }
+  const { data } = await instance.put("/auth/refresh/access", null, {
+    headers: { RefreshToken: `${Storage.getItem(TOKEN.REFRESH)}` },
+  });
+  Storage.setItem(TOKEN.ACCESS, data.accessToken);
+  return data.accessToken;
 };
 
 export default refresh;

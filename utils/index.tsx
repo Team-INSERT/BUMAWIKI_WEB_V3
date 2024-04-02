@@ -72,6 +72,7 @@ export const decodeContent = (content: string) => {
 };
 
 export const dateText = (date: Date) => {
+  if (!date) return;
   return dayjs(date).locale("ko").format("YYYY년 M월 D일 A h시 m분");
 };
 
@@ -211,4 +212,47 @@ export const encoder = ({ title, contents }: DocsPropsType) => {
     </details>
   );
   return encoded;
+};
+
+export const moneyText = (str: number) => {
+  const parts = String(str)
+    .replace(/\D/g, "")
+    .split("")
+    .reverse()
+    .join("")
+    .match(/.{1,3}/g);
+  return parts?.join(",").split("").reverse().join("");
+};
+
+export const tradeStatusText = (status: string) => {
+  switch (status) {
+    case "BUYING":
+      return "구매 요청 중";
+    case "SELLING":
+      return "판매 요청 중";
+    case "BOUGHT":
+      return "구매 완료";
+    case "SOLD":
+      return "판매 완료";
+    case "CANCELLED":
+      return "거래 취소";
+    case "DELISTING":
+      return "상장 폐지";
+    default:
+      return status;
+  }
+};
+
+export const tierIconMaker = (max: number, curr: number) => {
+  const percentage = (curr / max) * 100;
+  if (curr === 1) return 1;
+
+  if (percentage >= 60) return 9;
+  if (percentage >= 52) return 8;
+  if (percentage >= 40) return 7;
+  if (percentage >= 24) return 6;
+  if (percentage >= 12) return 5;
+  if (percentage >= 9) return 4;
+  if (percentage >= 4) return 3;
+  return 2;
 };

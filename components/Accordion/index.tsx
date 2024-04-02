@@ -3,12 +3,13 @@ import * as styles from "./style.css";
 
 interface AccordionProps extends PropsWithChildren {
   title: string;
+  open?: boolean;
 }
 
-const Accordion = ({ title, children }: AccordionProps) => {
+const Accordion = ({ title, open = true, children }: AccordionProps) => {
   return (
     <div className={styles.container}>
-      <details className={styles.details} open>
+      <details className={styles.details} open={open}>
         <summary className={styles.summary}>
           <div className={styles.title}>{title}</div>
         </summary>
