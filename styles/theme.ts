@@ -18,6 +18,7 @@ const theme = {
   preview: "#F6FAFD",
   buy: "#F75467",
   sell: "#0083B6",
+  btnHover: "#7f94b4",
 };
 
 export default theme;

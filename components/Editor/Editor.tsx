@@ -15,11 +15,13 @@ import { docsQuery } from "@/services/docs/docs.query";
 import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import * as styles from "./style.css";
 import DragDropUpload from "../DragDropUpload";
 import Confirm from "../(modal)/Confirm";
 import Toastify from "../Toastify";
 import PasteUpload from "../PasteUpload";
+import FrameEditor from "../FrameEditor";
+import FrameEncoder from "../FrameEncoder";
+import * as styles from "./style.css";
 
 const wikiExampleList = [
   [
@@ -65,6 +67,7 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorProps)
   const { openModal } = useModal();
   const router = useRouter();
   const [cursorPosition, setCursorPosition] = useState(0);
+  const [isChanged, setIsChanged] = useState(false);
   const [isExampleOpen, setIsExampleOpen] = useState(false);
   const [docs, setDocs] = useState({
     enroll: 0,
@@ -89,14 +92,22 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorProps)
   const uploadImage = async (file: File) => {
     if (!file) return;
     const { url } = await upload(file);
+    setIsChanged((prev) => !prev);
     setDocs((prev) => {
-      const first = prev.contents.substring(0, cursorPosition);
-      const middle = `\n<사진 {200px}>${url}</사진>\n`;
-      const last = prev.contents.substring(cursorPosition, prev.contents.length);
-      return {
-        ...prev,
-        contents: `${first}${middle}${last}`,
-      };
+      const position =
+        ["틀", "FRAME"].includes(docs.docsType) && cursorPosition === 0 ? 26 : cursorPosition;
+      const first = prev.contents.substring(0, position);
+      const middle = `<사진 {200px}>${url}</사진>`;
+      const last = prev.contents.substring(position, prev.contents.length);
+      return ["틀", "FRAME"].includes(docs.docsType)
+        ? {
+            ...prev,
+            contents: `${first}${middle}${last}`,
+          }
+        : {
+            ...prev,
+            contents: `${first}\n${middle}\n${last}`,
+          };
     });
   };
 
@@ -150,6 +161,11 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorProps)
     }
   };
 
+  const setDocsType = (type: string) => {
+    if (docs.docsType === "틀") setDocs((prev) => ({ ...prev, contents: "" }));
+    setDocs((prev) => ({ ...prev, docsType: type }));
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -194,7 +210,7 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorProps)
                 "틀",
               ].map((type) => (
                 <button
-                  onClick={() => setDocs((prev) => ({ ...prev, docsType: type }))}
+                  onClick={() => setDocsType(type)}
                   key={type}
                   className={styles.docsType[String(type === docs.docsType)]}
                 >
@@ -203,13 +219,23 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorProps)
               ))}
             </div>
           )}
-          <textarea
-            onKeyDown={(e) => setCursorPosition((e.target as HTMLTextAreaElement).selectionStart)}
-            onChange={handleDocsContentsChange}
-            value={docs.contents.replaceAll("<br>", "\n")}
-            placeholder="문서 내용을 입력해주세요. 사진 또는 동영상을 넣으려면 파일을 드래그&드롭하세요."
-            className={styles.textarea[String(isExampleOpen)]}
-          />
+          {["틀", "FRAME"].includes(docs.docsType) ? (
+            <FrameEditor
+              mode={mode}
+              docs={docs}
+              setDocs={setDocs}
+              setCursorPosition={setCursorPosition}
+              isChanged={isChanged}
+            />
+          ) : (
+            <textarea
+              onKeyDown={(e) => setCursorPosition((e.target as HTMLTextAreaElement).selectionStart)}
+              onChange={handleDocsContentsChange}
+              value={docs.contents.replaceAll("<br>", "\n")}
+              placeholder="문서 내용을 입력해주세요. 사진 또는 동영상을 넣으려면 파일을 드래그&드롭하세요."
+              className={styles.textarea[String(isExampleOpen)]}
+            />
+          )}
         </div>
         <div className={styles.previewBox}>
           <h1 className={styles.previewTitle}>{docs.title}</h1>
@@ -218,11 +244,22 @@ const Editor = ({ contents = "", title = "", docsType = "", mode }: EditorProps)
               분류 : <span className={styles.classify}>{translateClassify(docs.docsType)}</span>
             </div>
           )}
-          <div
-            className={styles.preview}
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: decodeContent(docs.contents) }}
-          />
+          {["틀", "FRAME"].includes(docs.docsType) ? (
+            <div className={styles.preview}>
+              <FrameEncoder
+                title={docs.title}
+                contents={docs.contents}
+                docsType={docs.docsType}
+                mode="WRITE"
+              />
+            </div>
+          ) : (
+            <div
+              className={styles.preview}
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: decodeContent(docs.contents) }}
+            />
+          )}
         </div>
         {mode === "EDIT" ? (
           <button onClick={handleEditDocsClick} className={styles.writeButton}>

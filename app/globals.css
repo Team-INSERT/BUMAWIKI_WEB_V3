@@ -98,16 +98,20 @@ button {
 /* wiki */
 
 .frame_td {
-  height: 30px;
-  border: solid 2px #274168;
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border: solid 4px #274168;
 }
 
 .frame_table {
   border-collapse: collapse;
-  border: solid 2px #274168;
+  border: solid 4px #274168;
+  background-color: #ccc;
   margin: auto;
   text-align: center;
   padding: 10px;
+  width: 100%;
 }
 
 .frame_caption {
@@ -118,6 +122,9 @@ button {
   font-size: 20px;
   text-align: center;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .frame_caption::marker {

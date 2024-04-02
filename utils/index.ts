@@ -29,7 +29,7 @@ export const decodeContent = (content: string) => {
     .replace(/세로병합={{/gi, ` rowspan="`)
 
     .replace(/}}/gi, `"`)
-    .replace(/include\((.*?)\);/gi, "틀 개발중!\n\n")
+    .replace(/include\((.*?)\);/gi, "")
 
     .replace(/<항목>([\s\S]*?)<\/항목>/gi, "<li style='list-style: disc';>$1</li>")
     .replace(/<어록>([\s\S]*?)<\/어록>/gi, "<div class='analects';>$1</div>")
@@ -157,6 +157,17 @@ export const translateClassify = (classify: string) => {
 
 export const contentsCleaner = (contents: string) => {
   return `${contents.replace(/<[^>]+>/g, " ")} ...`;
+};
+
+export const isJsonString = (value: string): boolean => {
+  if (typeof value !== "string") return false;
+
+  try {
+    const result = JSON.parse(value);
+    return typeof result === "object" && result !== null;
+  } catch (e) {
+    return false;
+  }
 };
 
 export const moneyText = (str: number) => {

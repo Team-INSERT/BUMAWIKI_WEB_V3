@@ -1,11 +1,16 @@
 "use client";
 
-import React, { FC, Suspense } from "react";
+import React, { FC, Suspense, useEffect, useState } from "react";
 import "dayjs/locale/ko";
-import { decodeContent } from "@/utils";
 import DOMPurify from "isomorphic-dompurify";
+import { decodeContent } from "@/utils";
 import Link from "next/link";
-import { useQueries, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import {
+  useQueries,
+  useQueryClient,
+  useSuspenseQueries,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import { likeQuery } from "@/services/like/like.query";
 import Container from "@/components/Container";
@@ -14,10 +19,15 @@ import useUser from "@/hooks/useUser";
 import Toastify from "@/components/Toastify";
 import { toast } from "react-toastify";
 import { useCreateLikeMutation, useDeleteLikeMutation } from "@/services/like/like.mutation";
+import FrameEncoder from "@/components/FrameEncoder";
 import * as styles from "./style.css";
 
 const Docs: FC<{ title: string }> = ({ title }) => {
+  const [frameList, setFrameList] = useState<string[]>([]);
   const { data: docs } = useSuspenseQuery(docsQuery.title(title));
+  const frameData = useSuspenseQueries({
+    queries: frameList.map((frame) => docsQuery.title(frame)),
+  });
   const { isLoggedIn } = useUser();
   const [{ data: like }, { data: isILike }] = useQueries({
     queries: [likeQuery.likeCount(title), likeQuery.isILike(docs.id)],
@@ -41,6 +51,21 @@ const Docs: FC<{ title: string }> = ({ title }) => {
   const sanitizeData = () => ({
     __html: DOMPurify.sanitize(decodeContent(docs.contents)),
   });
+
+  useEffect(() => {
+    const expression = /include\((.+)\);/g;
+    const frames = Array.from(docs.contents.matchAll(expression));
+    const list: string[] = [];
+    return () => {
+      frames.forEach((frame) => {
+        if (list.indexOf(frame[1]) === -1) {
+          list.push(frame[1]);
+        }
+      });
+
+      setFrameList(list);
+    };
+  }, []);
   return (
     <Suspense>
       <Container {...docs}>
@@ -57,8 +82,38 @@ const Docs: FC<{ title: string }> = ({ title }) => {
               <span>{like.thumbsUpsCount}</span>
             </button>
           </header>
-          {/* eslint-disable-next-line react/no-danger */}
-          <div className={styles.body} dangerouslySetInnerHTML={sanitizeData()} />
+          {docs.docsType === "FRAME" ? (
+            <div>
+              <div className={styles.body}>
+                <FrameEncoder
+                  title={docs.title}
+                  contents={docs.contents}
+                  docsType={docs.docsType}
+                  mode="READ"
+                />
+              </div>
+            </div>
+          ) : (
+            <>
+              {frameData.map(
+                (frame) =>
+                  frame.data !== null &&
+                  frame.data.docsType === "FRAME" && (
+                    <FrameEncoder
+                      title={docs.title}
+                      contents={docs.contents}
+                      docsType={docs.docsType}
+                      mode="READ"
+                    />
+                  ),
+              )}
+              <div
+                className={styles.body}
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={sanitizeData()}
+              />
+            </>
+          )}
           <div className={styles.contributorsBox}>
             <h1 className={styles.contributorTitle}>문서 기여자</h1>
             <div className={styles.contributorList}>
