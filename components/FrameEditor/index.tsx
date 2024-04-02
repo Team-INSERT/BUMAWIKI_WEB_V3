@@ -120,7 +120,7 @@ const AdvancedDynamicTable = ({
               row.length === rowIndex + rows[rowIndex][colIndex].colSpan - 1
             )
               return row;
-            row.pop();
+            return row.pop();
           }
         });
       }
@@ -264,7 +264,7 @@ const AdvancedDynamicTable = ({
                             cursorPosition(col.key);
                           }}
                           className={styles.ColSpan}
-                          role="button"
+                          aria-label="add colSpan button"
                         />
                       </div>
                       <div
@@ -273,7 +273,7 @@ const AdvancedDynamicTable = ({
                           cursorPosition(col.key);
                         }}
                         className={styles.RowSpan}
-                        role="button"
+                        aria-label="add rowSpan button"
                       />
                     </td>
                   ))}
@@ -287,7 +287,7 @@ const AdvancedDynamicTable = ({
                   <td
                     onClick={() => removeLastTd(rowIndex)}
                     className={styles.SetRow}
-                    role="remove button"
+                    aria-label="remove button"
                   >
                     x
                   </td>
