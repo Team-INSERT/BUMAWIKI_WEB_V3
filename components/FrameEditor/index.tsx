@@ -120,8 +120,10 @@ const AdvancedDynamicTable = ({
               row.length === rowIndex + rows[rowIndex][colIndex].colSpan - 1
             )
               return row;
-            return row.pop();
+            const popped = row.pop();
+            return popped;
           }
+          return row;
         });
       }
       return row;
