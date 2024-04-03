@@ -124,16 +124,12 @@ export const docsType = styleVariants<Record<string, ComplexStyleRule>>({
   false: [docsTypeBase, { background: theme.preview, color: theme.primary }],
 });
 
-const textareaBase = style({
+export const textarea = style({
   whiteSpace: "pre-wrap",
   width: "100%",
+  height: "54%",
   marginTop: "12px",
   ...font.p1,
-});
-
-export const textarea = styleVariants<Record<string, ComplexStyleRule>>({
-  true: [textareaBase, { height: "20%" }],
-  false: [textareaBase, { height: "54%" }],
 });
 
 const wikiBoxHeaderBase = style({

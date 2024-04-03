@@ -7,7 +7,6 @@ const AdvancedDynamicTable = ({
   docs,
   setDocs,
   setCursorPosition,
-  isChanged,
 }: {
   mode: string;
   docs: {
@@ -25,7 +24,6 @@ const AdvancedDynamicTable = ({
     }>
   >;
   setCursorPosition: Dispatch<SetStateAction<number>>;
-  isChanged: boolean;
 }) => {
   const [rows, setRows] = useState(
     mode === "EDIT" && docs.docsType === "FRAME"
@@ -59,7 +57,7 @@ const AdvancedDynamicTable = ({
 
   useEffect(() => {
     setRows(isJsonString(docs.contents) ? JSON.parse(docs.contents) : rows);
-  }, [isChanged]);
+  }, [docs.contents]);
 
   useEffect(() => {
     const newContent = JSON.stringify(rows);
