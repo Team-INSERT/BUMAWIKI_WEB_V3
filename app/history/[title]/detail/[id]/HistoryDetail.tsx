@@ -42,9 +42,7 @@ const HistoryDetail: FC<{ id: number; title: string }> = ({ id, title }) => {
             return (
               <div key={historyId} className={styles.historyContent}>
                 <div className={styles.historyOperation[dif.operation]}>{operationIcon}</div>
-                <div className={styles.history[dif.operation]}>
-                  {dif.text.replaceAll("<br>", "\n")}
-                </div>
+                <div className={styles.history[dif.operation]}>{dif.text}</div>
               </div>
             );
           })}
