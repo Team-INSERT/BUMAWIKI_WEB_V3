@@ -14,9 +14,23 @@ export const FrameSummary = style({
   fontSize: "20px",
   textAlign: "center",
   cursor: "pointer",
+  position: "relative",
 
   "::marker": {
     content: "",
+  },
+});
+
+export const ColorPicker = style({
+  position: "absolute",
+  right: "5%",
+  top: "25%",
+  cursor: "pointer",
+
+  ":hover": {
+    width: "55px",
+    height: "30px",
+    transition: "width, height, 100ms",
   },
 });
 
