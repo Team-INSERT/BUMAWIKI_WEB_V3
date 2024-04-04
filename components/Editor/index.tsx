@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import Editor from "./Editor";

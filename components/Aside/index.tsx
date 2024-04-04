@@ -1,7 +1,7 @@
 import getQueryClient from "@/app/getQueryClient";
 import { docsQuery } from "@/services/docs/docs.query";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import React from "react";
+
 import Aside from "./Aside";
 
 const Page = async () => {

@@ -26,12 +26,11 @@ module.exports = {
         tsx: "never",
       },
     ],
-    // 'React' must be in scope when using JSX 에러 지우기(Next.js)
+    // 'React' must be in scope when using JSX in Next.JS
     "react/react-in-jsx-scope": "off",
     "react/jsx-no-useless-fragment": 0,
     "react/jsx-key": 1,
     "react/button-has-type": 0,
-    // ts파일에서 tsx구문 허용(Next.js)
     "@typescript-eslint/no-use-before-define": "off",
     "react/jsx-filename-extension": [1, { extensions: [".ts", ".tsx"] }], // should add ".ts" if typescript project
     "no-unused-vars": "off",
@@ -57,5 +56,17 @@ module.exports = {
     "react/no-array-index-key": 0,
     "consistent-return": 0,
     "react-hooks/exhaustive-deps": "off",
+    "no-restricted-imports": [
+      "warn",
+      {
+        paths: [
+          {
+            name: "react",
+            importNames: ["default"],
+            message: "import React from 'react' is increases bundling size without the need.",
+          },
+        ],
+      },
+    ],
   },
 };

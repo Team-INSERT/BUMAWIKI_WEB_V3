@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { MoonLoader } from "react-spinners";
 import { theme } from "@/styles";
 import { useLoginMutation } from "@/services/auth/auth.mutation";

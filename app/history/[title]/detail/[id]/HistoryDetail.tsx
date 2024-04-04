@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import { FC } from "react";
 import Link from "next/link";
 import Container from "@/components/Container";
 import { useSuspenseQuery } from "@tanstack/react-query";

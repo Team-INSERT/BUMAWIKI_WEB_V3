@@ -1,7 +1,7 @@
 import getQueryClient from "@/app/getQueryClient";
 import { coinQuery } from "@/services/coin/coin.query";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import React from "react";
+
 import CoinRanking from "./CoinRanking";
 
 const Page = async () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import { FC } from "react";
 import { contentsCleaner, dateText } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";

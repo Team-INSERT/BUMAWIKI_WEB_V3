@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/Container";
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";

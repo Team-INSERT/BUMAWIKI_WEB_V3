@@ -2,7 +2,7 @@
 
 import Accordion from "@/components/Accordion";
 import { useDocs } from "@/hooks/useDocs";
-import React, { FC } from "react";
+import { FC } from "react";
 import { contentsCleaner, dateText } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";

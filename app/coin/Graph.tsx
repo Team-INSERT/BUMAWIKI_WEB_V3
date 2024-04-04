@@ -2,7 +2,7 @@
 
 import { coinQuery } from "@/services/coin/coin.query";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";

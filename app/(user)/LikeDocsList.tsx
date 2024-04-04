@@ -1,7 +1,7 @@
 import Accordion from "@/components/Accordion";
 import { ContributeDocsType } from "@/types/contributeDocs.interface";
 import Link from "next/link";
-import React from "react";
+
 import { translateClassify } from "@/utils";
 import * as styles from "./style.css";
 
