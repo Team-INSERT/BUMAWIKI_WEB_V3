@@ -43,7 +43,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
   const [docs, setDocs] = useState({
     enroll: 0,
     title,
-    contents,
+    contents: contents.replaceAll("<br>", "\n"),
     docsType,
   });
 
@@ -76,7 +76,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
   const onDragDropUpload = useCallback((file: File) => uploadImage(file), [uploadImage]);
 
   const handleDocsContentsChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setDocs((prev) => ({ ...prev, contents: autoClosingTag(e) }));
+    setDocs((prev) => ({ ...prev, contents: autoClosingTag(e).replaceAll("<br>", "\n") }));
   };
 
   const handleCreateDocsClick = async () => {
@@ -214,7 +214,9 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
             <div
               className={styles.preview}
               // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: decodeContent(docs.contents) }}
+              dangerouslySetInnerHTML={{
+                __html: decodeContent(docs.contents),
+              }}
             />
           )}
         </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import { decodeContent, isJsonString } from "@/utils";
 
 interface Frame {
@@ -18,10 +20,7 @@ const FrameEncoder = ({ title, contents, docsType, mode }: DocsPropsType) => {
   const rows = isJsonString(contents) ? JSON.parse(contents) : [];
   const theme = rows[0]?.[0].color;
   return (
-    <details
-      className="frame_details"
-      open={mode === "WRITE" || (docsType === "FRAME" && mode === "READ")}
-    >
+    <details className="frame_details" open={mode === "WRITE"}>
       <summary className="frame_caption" style={{ backgroundColor: theme }}>
         <div>
           {title ?? "제목을 입력해주세요"}
