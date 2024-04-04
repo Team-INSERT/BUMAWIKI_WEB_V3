@@ -1,7 +1,9 @@
+import { CSSProperties } from "@vanilla-extract/css";
+
 interface PropsType {
-  direction?: React.CSSProperties["flexDirection"];
-  justify?: React.CSSProperties["justifyContent"];
-  align?: React.CSSProperties["alignItems"];
+  direction?: CSSProperties["flexDirection"];
+  justify?: CSSProperties["justifyContent"];
+  align?: CSSProperties["alignItems"];
 }
 
 const flexGenerator = ({ direction, align, justify }: PropsType) => ({

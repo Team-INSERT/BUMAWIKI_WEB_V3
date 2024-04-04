@@ -1,4 +1,3 @@
-import React from "react";
 import { generateOpenGraph } from "@/utils";
 import MyPage from "./MyPage";
 

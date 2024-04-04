@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import { GithubIcon } from "@/assets";
 import * as styles from "./style.css";

@@ -2,7 +2,7 @@
 
 import { docsQuery } from "@/services/docs/docs.query";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import React, { Suspense, useState } from "react";
+import { Suspense, useState } from "react";
 import { DocsListItem } from "@/types/docsListItem.interface";
 import Link from "next/link";
 import moment from "moment";

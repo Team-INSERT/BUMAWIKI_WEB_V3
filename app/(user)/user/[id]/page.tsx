@@ -1,4 +1,3 @@
-import React from "react";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import getQueryClient from "@/app/getQueryClient";
 import { userQuery } from "@/services/user/user.query";

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import * as styles from "./style.css";
 
 export interface DragDropUploadProps {
   onUpload: (file: File) => unknown;
 }
-const DragDropUpload: React.FC<DragDropUploadProps> = ({ onUpload }) => {
+const DragDropUpload: FC<DragDropUploadProps> = ({ onUpload }) => {
   const dragIndex = useRef(0);
   const down = useRef(false);
   const [dragging, setDragging] = useState(false);

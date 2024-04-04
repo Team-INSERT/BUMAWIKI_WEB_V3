@@ -1,6 +1,5 @@
 import EditorContainer from "@/components/Editor";
 import { generateOpenGraph } from "@/utils";
-import React from "react";
 
 export const metadata = generateOpenGraph({
   title: "문서 생성",

@@ -1,7 +1,7 @@
 "use client";
 
 import Accordion from "@/components/Accordion";
-import React, { FC } from "react";
+import { FC } from "react";
 import { 조사, particle } from "auto-particle";
 import { translateAuthority } from "@/utils";
 import Container from "@/components/Container";

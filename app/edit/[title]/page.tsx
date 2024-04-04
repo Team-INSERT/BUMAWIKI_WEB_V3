@@ -4,7 +4,6 @@ import { docsQuery } from "@/services/docs/docs.query";
 import { generateOpenGraph } from "@/utils";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { Metadata } from "next";
-import React from "react";
 
 interface PageProps {
   params: {

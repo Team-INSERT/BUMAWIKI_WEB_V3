@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import * as styles from "./style.css";
 
 interface AccordionProps extends PropsWithChildren {

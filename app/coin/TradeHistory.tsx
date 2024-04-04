@@ -1,6 +1,6 @@
 import { coinQuery } from "@/services/coin/coin.query";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { FC } from "react";
+import { FC } from "react";
 import { dateText, moneyText, tradeStatusText } from "@/utils";
 import Image from "next/image";
 import { useCancelTradeMutation } from "@/services/coin/coin.mutation";

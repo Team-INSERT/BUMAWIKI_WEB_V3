@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import { FC } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import { dateText, moneyText, tradeStatusText } from "@/utils";
