@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 import { dateText } from "@/utils";
 import Container from "@/components/Container";

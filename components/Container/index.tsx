@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { useDocs } from "@/hooks/useDocs";
 import useUser from "@/hooks/useUser";
 import { dateText } from "@/utils";

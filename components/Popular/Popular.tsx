@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import { Suspense, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import Link from "next/link";

@@ -1,4 +1,4 @@
-import React, { SVGProps } from "react";
+import { SVGProps } from "react";
 
 interface PropsType extends SVGProps<SVGSVGElement> {
   isLike?: boolean;

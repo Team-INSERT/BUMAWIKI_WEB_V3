@@ -1,5 +1,5 @@
 import Container from "@/components/Container";
-import React from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import Accordion from "@/components/Accordion";

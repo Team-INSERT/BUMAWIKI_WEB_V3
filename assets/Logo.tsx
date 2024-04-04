@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { ImgHTMLAttributes } from "react";
+import { ImgHTMLAttributes } from "react";
 
 const Logo = ({ ...props }: ImgHTMLAttributes<HTMLImageElement>) => {
   return (

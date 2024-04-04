@@ -1,6 +1,5 @@
 import Container from "@/components/Container";
 import { generateOpenGraph } from "@/utils";
-import React from "react";
 
 export const metadata = generateOpenGraph({
   title: "404 Not Found",

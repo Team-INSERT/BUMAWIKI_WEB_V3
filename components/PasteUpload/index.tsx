@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import { FC, useEffect } from "react";
 
 export interface PasteUploadProps {
   onUpload: (file: File) => unknown;
 }
 
-const PasteUpload: React.FC<PasteUploadProps> = ({ onUpload }) => {
+const PasteUpload: FC<PasteUploadProps> = ({ onUpload }) => {
   useEffect(() => {
     const onPaste: EventListener = (e) => {
       const { clipboardData } = e as ClipboardEvent;
