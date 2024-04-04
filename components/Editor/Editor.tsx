@@ -39,6 +39,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
   const { openModal } = useModal();
   const router = useRouter();
   const [cursorPosition, setCursorPosition] = useState(0);
+  const [isChanged, setIsChanged] = useState(false);
   const [docs, setDocs] = useState({
     enroll: 0,
     title,
@@ -62,7 +63,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
   const uploadImage = async (file: File) => {
     if (!file) return;
     const { url } = await upload(file);
-    // setIsChanged((prev) => !prev);
+    setIsChanged((prev) => !prev);
     const position =
       ["틀", "FRAME"].includes(docs.docsType) && cursorPosition === 0 ? 26 : cursorPosition;
     const first = docs.contents.substring(0, position);
@@ -181,6 +182,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
               docs={docs}
               setDocs={setDocs}
               setCursorPosition={setCursorPosition}
+              isChanged={isChanged}
             />
           ) : (
             <textarea
