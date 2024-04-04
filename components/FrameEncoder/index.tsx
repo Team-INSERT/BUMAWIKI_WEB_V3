@@ -16,19 +16,20 @@ interface DocsPropsType {
 
 const FrameEncoder = ({ title, contents, docsType, mode }: DocsPropsType) => {
   const rows = isJsonString(contents) ? JSON.parse(contents) : [];
+  const theme = rows[0]?.[0].color;
   return (
     <details
       className="frame_details"
       open={mode === "WRITE" || (docsType === "FRAME" && mode === "READ")}
     >
-      <summary className="frame_caption">
+      <summary className="frame_caption" style={{ backgroundColor: theme }}>
         <div>
           {title ?? "제목을 입력해주세요"}
           <br />
           <span>[ 펼치기 · 접기 ]</span>
         </div>
       </summary>
-      <table className="frame_table">
+      <table className="frame_table" style={{ borderColor: theme }}>
         <tbody>
           {rows.map((row: Frame[], rowIndex: number) => (
             <tr key={rowIndex}>
@@ -38,6 +39,7 @@ const FrameEncoder = ({ title, contents, docsType, mode }: DocsPropsType) => {
                   colSpan={col.colSpan}
                   rowSpan={col.rowSpan}
                   className="frame_td"
+                  style={{ borderColor: theme }}
                   aria-label="present td's content"
                 >
                   <div
