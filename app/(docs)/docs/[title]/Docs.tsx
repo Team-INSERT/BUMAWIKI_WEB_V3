@@ -27,7 +27,7 @@ const Docs: FC<{ title: string }> = ({ title }) => {
   const { data: docs } = useSuspenseQuery(docsQuery.title(title));
   const frameData = useSuspenseQueries({
     queries: frameList.map((frame) => docsQuery.title(frame)),
-  });
+  }).map(({ data }) => data);
   const { isLoggedIn } = useUser();
   const [{ data: like }, { data: isILike }] = useQueries({
     queries: [likeQuery.likeCount(title), likeQuery.isILike(docs.id)],
@@ -97,12 +97,13 @@ const Docs: FC<{ title: string }> = ({ title }) => {
             <>
               {frameData.map(
                 (frame) =>
-                  frame.data !== null &&
-                  frame.data.docsType === "FRAME" && (
+                  frame !== null &&
+                  frame.docsType === "FRAME" && (
                     <FrameEncoder
-                      title={docs.title}
-                      contents={docs.contents}
-                      docsType={docs.docsType}
+                      key={frame.id}
+                      title={frame.title}
+                      contents={frame.contents}
+                      docsType={frame.docsType}
                       mode="READ"
                     />
                   ),

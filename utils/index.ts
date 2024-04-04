@@ -62,10 +62,6 @@ export const decodeContent = (content: string) => {
       /(?<=<<<|<<|>>|>>>)\s*http:\/\/bumawiki\.kro\.kr\/api\/\s*/g,
       process.env.NEXT_PUBLIC_SERVER_URL || "",
     )
-    .replace(/(?<=<<<|<<)\s+|\s+(?=>>>|>>)/g, "%20")
-    // .replace(/<</gi, `<img src="`)
-    // .replace(/>>:{/gi, `" alt='' style="width:`)
-    // .replace(/}/gi, `%; !important"/>`)
     .replace(/&#.*;/gi, ``);
 
   return decoded;

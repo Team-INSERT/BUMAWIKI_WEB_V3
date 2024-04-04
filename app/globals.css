@@ -133,7 +133,7 @@ button {
 
 .frame_details {
   margin-bottom: 1em;
-  transition: all 1.5s ease-in-out;
+  transition: all linear 1.5s;
   max-height: 10em;
   overflow: hidden;
 }
