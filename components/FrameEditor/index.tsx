@@ -222,9 +222,9 @@ const AdvancedDynamicTable = ({
     setRows(newArr);
   };
 
-  const onChangeColor = (color: string) => {
+  const onChangeColor = (colorProps: string) => {
     const newArr = [...rows];
-    newArr[0][0].color = color;
+    newArr[0][0].color = colorProps;
     setColor(color);
     setRows(newArr);
   };
