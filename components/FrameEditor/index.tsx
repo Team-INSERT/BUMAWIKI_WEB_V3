@@ -7,6 +7,7 @@ const AdvancedDynamicTable = ({
   docs,
   setDocs,
   setCursorPosition,
+  isChanged,
 }: {
   mode: string;
   docs: {
@@ -24,13 +25,17 @@ const AdvancedDynamicTable = ({
     }>
   >;
   setCursorPosition: Dispatch<SetStateAction<number>>;
+  isChanged: boolean;
 }) => {
+  const [color, setColor] = useState(
+    isJsonString(docs.contents) ? JSON.parse(docs.contents)[0][0].color : "#274168",
+  );
   const [rows, setRows] = useState(
     mode === "EDIT" && docs.docsType === "FRAME"
       ? (JSON.parse(docs.contents) as [])
       : [
           [
-            { key: "0-0", content: "", colSpan: 1, rowSpan: 1 },
+            { key: "0-0", content: "", colSpan: 1, rowSpan: 1, color: "#274168" },
             { key: "0-1", content: "", colSpan: 1, rowSpan: 1 },
             { key: "0-2", content: "", colSpan: 1, rowSpan: 1 },
             { key: "0-3", content: "", colSpan: 1, rowSpan: 1 },
@@ -57,7 +62,7 @@ const AdvancedDynamicTable = ({
 
   useEffect(() => {
     setRows(isJsonString(docs.contents) ? JSON.parse(docs.contents) : rows);
-  }, [docs.contents]);
+  }, [isChanged]);
 
   useEffect(() => {
     const newContent = JSON.stringify(rows);
@@ -217,9 +222,22 @@ const AdvancedDynamicTable = ({
     setRows(newArr);
   };
 
+  const onChangeColor = (color: string) => {
+    const newArr = [...rows];
+    newArr[0][0].color = color;
+    setColor(color);
+    setRows(newArr);
+  };
+
   return (
     <details className={styles.FrameDetails} open>
       <summary className={styles.FrameSummary}>
+        <input
+          type="color"
+          onChange={(e) => onChangeColor(e.target.value)}
+          value={color}
+          className={styles.ColorPicker}
+        />
         {docs.title ? docs.title : "문서 제목이 들어갑니다."}
         <br />
         <span>[ 펼치기 · 접기 ]</span>
