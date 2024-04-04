@@ -35,9 +35,23 @@ const Page = async ({ params: { title } }: PageProps) => {
     await queryClient.prefetchQuery(likeQuery.likeCount(title)),
   ]);
 
+  const data = await queryClient.fetchQuery(docsQuery.title(title));
+
+  const frameList: string[] = [];
+  const frames = Array.from(data.contents.matchAll(/include\((.+)\);/g));
+  frames.forEach((frame) => {
+    if (!frameList.includes(frame[1])) {
+      frameList.push(frame[1]);
+    }
+  });
+
+  await Promise.all(
+    frameList.map((frameTitle) => queryClient.prefetchQuery(docsQuery.title(frameTitle))),
+  );
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Docs title={title} />
+      <Docs title={title} list={frameList} />
     </HydrationBoundary>
   );
 };
