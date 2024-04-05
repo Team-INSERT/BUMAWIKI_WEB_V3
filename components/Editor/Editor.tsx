@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, memo, useCallback, useState } from "react";
 import { decodeContent, getYear } from "@/utils";
 import { useDocs } from "@/hooks/useDocs";
 import {

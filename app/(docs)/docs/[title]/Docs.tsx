@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, Suspense, useEffect, useState } from "react";
+import React, { FC, Suspense } from "react";
 import "dayjs/locale/ko";
 import DOMPurify from "isomorphic-dompurify";
 import { decodeContent } from "@/utils";
@@ -22,11 +22,10 @@ import { useCreateLikeMutation, useDeleteLikeMutation } from "@/services/like/li
 import FrameEncoder from "@/components/FrameEncoder";
 import * as styles from "./style.css";
 
-const Docs: FC<{ title: string }> = ({ title }) => {
-  const [frameList, setFrameList] = useState<string[]>([]);
+const Docs: FC<{ title: string; list: string[] }> = ({ title, list }) => {
   const { data: docs } = useSuspenseQuery(docsQuery.title(title));
   const frameData = useSuspenseQueries({
-    queries: frameList.map((frame) => docsQuery.title(frame)),
+    queries: list.map((frame) => docsQuery.title(frame)),
   }).map(({ data }) => data);
   const { isLoggedIn } = useUser();
   const [{ data: like }, { data: isILike }] = useQueries({
@@ -52,20 +51,6 @@ const Docs: FC<{ title: string }> = ({ title }) => {
     __html: DOMPurify.sanitize(decodeContent(docs.contents)),
   });
 
-  useEffect(() => {
-    const expression = /include\((.+)\);/g;
-    const frames = Array.from(docs.contents.matchAll(expression));
-    const list: string[] = [];
-    return () => {
-      frames.forEach((frame) => {
-        if (list.indexOf(frame[1]) === -1) {
-          list.push(frame[1]);
-        }
-      });
-
-      setFrameList(list);
-    };
-  }, []);
   return (
     <Suspense>
       <Container {...docs}>
