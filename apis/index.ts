@@ -10,14 +10,14 @@ export const http = axios.create({
 http.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const originalRequest = error.config;
+    const request = error.config;
     const { code } = error.response.data;
     const isAccessTokenExpiredError = code === exception.code.TOKEN_403_2;
 
-    if (isAccessTokenExpiredError && !originalRequest.sent) {
-      originalRequest.sent = true;
-      originalRequest.headers.Authorization = await refresh();
-      return http(originalRequest);
+    if (isAccessTokenExpiredError && !request.sent) {
+      request.sent = true;
+      request.headers.Authorization = await refresh();
+      return http(request);
     }
     return Promise.reject(error);
   },
