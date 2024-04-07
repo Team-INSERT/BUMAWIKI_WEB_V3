@@ -12,31 +12,13 @@ http.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
     const { code } = error.response.data;
+    const isAccessTokenExpiredError = code === exception.code.TOKEN_403_2;
 
-    if (
-      (code?.includes(exception.code.TOKEN_403_2) || code?.includes(exception.code.TOKEN_403_1)) &&
-      !originalRequest.isLooping
-    ) {
-      originalRequest.isLooping = true;
+    if (isAccessTokenExpiredError && !originalRequest.sent) {
+      originalRequest.sent = true;
       originalRequest.headers.Authorization = await refresh();
       return http(originalRequest);
     }
     return Promise.reject(error);
   },
 );
-
-http.interceptors.request.use(async (requestConfig) => {
-  const urlParams = requestConfig.url?.split("/:") || [];
-  if (urlParams.length < 2) return requestConfig;
-
-  const paramParsedUrl = urlParams?.map((paramKey) => requestConfig.params[paramKey]).join("/");
-
-  urlParams?.forEach((paramKey: string) => {
-    delete requestConfig.params[paramKey];
-  }, {});
-
-  return {
-    ...requestConfig,
-    url: paramParsedUrl,
-  };
-});
