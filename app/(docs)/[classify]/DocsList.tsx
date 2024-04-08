@@ -3,7 +3,8 @@
 import Accordion from "@/components/Accordion";
 import { useDocs } from "@/hooks/useDocs";
 import { FC } from "react";
-import { contentsCleaner, dateText } from "@/utils";
+import { contentsCleaner } from "@/utils";
+import { useDate } from "@/hooks/useDate";
 import Image from "next/image";
 import Link from "next/link";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -12,6 +13,7 @@ import Container from "@/components/Container";
 import * as styles from "./style.css";
 
 const DocsList: FC<{ classify: string }> = ({ classify }) => {
+  const { formatDate } = useDate();
   const { getAccordionTitle, translateClassify } = useDocs();
   const { data: docsList } = useSuspenseQuery(docsQuery.list(classify));
 
@@ -26,7 +28,7 @@ const DocsList: FC<{ classify: string }> = ({ classify }) => {
                   <h1 className={styles.title}>{docs.title}</h1>
                   <span className={styles.lastModifiedAt}>
                     최근 수정일 ·&nbsp;
-                    {dateText(docs.lastModifiedAt)}
+                    {formatDate(docs.lastModifiedAt)}
                   </span>
                 </hgroup>
                 <p className={styles.simpleContents}>{contentsCleaner(docs.simpleContents)} ...</p>

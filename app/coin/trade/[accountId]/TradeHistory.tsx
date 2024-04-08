@@ -3,12 +3,14 @@
 import { FC } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
-import { dateText, moneyText, tradeStatusText } from "@/utils";
+import { moneyText, tradeStatusText } from "@/utils";
 import Image from "next/image";
 import Container from "@/components/Container";
+import { useDate } from "@/hooks/useDate";
 import * as styles from "../../TradeHistory.css";
 
 const Trade: FC<{ accountId: number }> = ({ accountId }) => {
+  const { formatDate } = useDate();
   const { data: tradeList } = useSuspenseQuery(coinQuery.trade(accountId));
   return (
     <Container docsType="코인" title={`통장#${accountId}`}>
@@ -22,7 +24,7 @@ const Trade: FC<{ accountId: number }> = ({ accountId }) => {
             {trade.tradedTime && (
               <span className={styles.createdAt}>
                 거래일 ·&nbsp;
-                {dateText(trade.tradedTime)}
+                {formatDate(trade.tradedTime)}
               </span>
             )}
           </div>
