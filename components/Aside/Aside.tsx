@@ -2,74 +2,64 @@
 
 import { docsQuery } from "@/services/docs/docs.query";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { DocsListItem } from "@/types/docsListItem.interface";
 import Link from "next/link";
-import moment from "moment";
-import "moment/locale/ko";
 import { ArrowIcon } from "@/assets";
+import { useDate } from "@/hooks/useDate";
 import { theme } from "@/styles";
 import * as styles from "./style.css";
 
 const Aside = () => {
+  const { fromNow } = useDate();
   const [page, setPage] = useState(0);
-  const { data: docsList } = useSuspenseQuery(docsQuery.lastModified(page));
-
-  const handleIncreasePageNumber = () => {
-    if (docsList.length === 12) setPage((prev) => prev + 1);
-  };
+  const { data: lastModifiedList } = useSuspenseQuery(docsQuery.lastModified(page));
 
   const handleDecreasePageNumber = () => {
     if (page !== 0) setPage((prev) => prev - 1);
   };
 
+  const handleIncreasePageNumber = () => {
+    // 문서 MAX_PAGE_LENGTH개 모두 불러오지 못했다면 마지막 페이지로 간주
+    const isLastPage = lastModifiedList.length !== config.MAX_PAGE_LENGTH;
+    if (!isLastPage) setPage((prev) => prev + 1);
+  };
+
   return (
-    <Suspense>
-      <div className={styles.body}>
-        <aside className={styles.container}>
-          <div className={styles.titleBox}>
-            <span className={styles.titleText}>최근 변경</span>
-          </div>
-          <div className={styles.list}>
-            {docsList?.map((docs: DocsListItem) => (
-              <Link href={`/docs/${docs.title}`} key={docs.id} className={styles.docs}>
-                <span className={styles.docsName}>{docs.title}</span>
-                <span className={styles.docsLastModified}>
-                  {moment(docs.lastModifiedAt).fromNow()}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </aside>
-        <div className={styles.pageBox}>
-          <button className={styles.pageButton} onClick={handleDecreasePageNumber}>
-            <span className={styles.pageButtonText}>
-              <ArrowIcon
-                direction="left"
-                width={11}
-                height={11}
-                viewBox="0 0 11 20"
-                fill={theme.primary}
-              />
-              이전
-            </span>
-          </button>
-          <button className={styles.pageButton} onClick={handleIncreasePageNumber}>
-            <span className={styles.pageButtonText}>
-              다음
-              <ArrowIcon
-                direction="right"
-                width={11}
-                height={11}
-                viewBox="0 0 11 20"
-                fill={theme.primary}
-              />
-            </span>
-          </button>
-        </div>
-      </div>
-    </Suspense>
+    <main className={styles.container}>
+      <article className={styles.lastModifiedBox}>
+        <header className={styles.header}>최근 변경</header>
+        <ul className={styles.list}>
+          {lastModifiedList.map((docs: DocsListItem) => (
+            <Link href={`/docs/${docs.title}`} className={styles.listItem} key={docs.id}>
+              <span className={styles.docsName}>{docs.title}</span>
+              <time className={styles.docsLastModifiedAt}>{fromNow(docs.lastModifiedAt)}</time>
+            </Link>
+          ))}
+        </ul>
+      </article>
+      <figure className={styles.pagination}>
+        <button className={styles.paginationButton} onClick={handleDecreasePageNumber}>
+          <ArrowIcon direction="left" {...config.arrowIcon} />
+          이전
+        </button>
+        <button className={styles.paginationButton} onClick={handleIncreasePageNumber}>
+          다음
+          <ArrowIcon direction="right" {...config.arrowIcon} />
+        </button>
+      </figure>
+    </main>
   );
+};
+
+const config = {
+  arrowIcon: {
+    width: 11,
+    height: 11,
+    viewBox: "0 0 11 20",
+    fill: theme.primary,
+  },
+  MAX_PAGE_LENGTH: 12,
 };
 
 export default Aside;

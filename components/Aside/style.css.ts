@@ -1,61 +1,50 @@
 import { style } from "@vanilla-extract/css";
 import { flex, font, theme } from "@/styles";
 
-export const body = style({
+export const container = style({
   width: "300px",
   height: "540px",
   ...flex.COLUMN_FLEX,
 });
 
-export const container = style({
+export const lastModifiedBox = style({
   background: theme.white,
   border: `2px solid ${theme.gray}`,
   height: "100%",
   borderTop: "none",
 });
 
-export const titleBox = style({
+export const header = style({
   backgroundColor: theme.primary,
   border: `2px solid ${theme.gray}`,
   borderLeft: "none",
   borderRight: "none",
   width: "100%",
   height: "46px",
-  ...flex.VERTICAL,
-});
-
-export const titleText = style({
-  marginLeft: "20px",
+  paddingLeft: "20px",
   color: theme.white,
   ...font.H5,
+  ...flex.VERTICAL,
 });
 
 export const list = style({
   ...flex.COLUMN_FLEX,
 });
 
-export const docs = style({
+export const listItem = style({
   width: "100%",
   height: "38px",
   backgroundColor: theme.white,
-  border: `2px solid ${theme.gray}`,
-  borderLeft: "none",
-  borderRight: "none",
-  borderTop: "none",
-  ...flex.VERTICAL,
+  borderBottom: `2px solid ${theme.gray}`,
+  padding: "0 14px",
+  ...flex.BETWEEN,
 
-  ":hover": {
-    opacity: 0.8,
-  },
-
-  ":last-child": {
-    borderBottom: "none",
-  },
+  ":hover": { opacity: 0.8 },
+  ":last-child": { borderBottom: "none" },
 });
 
 export const docsName = style({
   color: theme.primary,
-  marginLeft: "14px",
   textOverflow: "ellipsis",
   overflow: "hidden",
   whiteSpace: "nowrap",
@@ -67,31 +56,24 @@ export const docsName = style({
   },
 });
 
-export const docsLastModified = style({
-  marginLeft: "auto",
-  marginRight: "14px",
+export const docsLastModifiedAt = style({
   color: theme.boldgray,
   ...font.caption,
 });
 
-export const pageBox = style({
+export const pagination = style({
+  gap: "4px",
   ...flex.FLEX,
 });
 
-export const pageButton = style({
+export const paginationButton = style({
   width: "56px",
   height: "24px",
   backgroundColor: theme.white,
-  margin: "6px 2px",
+  margin: "6px 0",
   border: `2px solid ${theme.gray}`,
-  borderRadius: "3px",
-  ...flex.CENTER,
-});
-
-export const pageButtonText = style({
   color: theme.primary,
-  fontWeight: 600,
-  fontSize: "12px",
-  gap: "2.5px",
+  gap: "3px",
+  ...font.btnBold,
   ...flex.CENTER,
 });
