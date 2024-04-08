@@ -32,11 +32,11 @@ export const subFooter = style({
   ...flex.COLUMN_FLEX,
 });
 
-export const subFooterLogo = style({
+export const logo = style({
   marginLeft: "auto",
 });
 
-export const subFooterNoticeText = style({
+export const noticeText = style({
   ...font.H6,
   textAlign: "right",
 });
