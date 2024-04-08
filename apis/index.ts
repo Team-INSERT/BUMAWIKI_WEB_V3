@@ -1,6 +1,8 @@
 import axios from "axios";
 import { exception } from "@/constants/exception.constant";
-import refresh from "./refresh";
+import { Storage } from "@/storage";
+import { TOKEN } from "@/constants/token.constant";
+import { refreshToken } from "./header";
 
 export const http = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -10,33 +12,21 @@ export const http = axios.create({
 http.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const originalRequest = error.config;
+    const request = error.config;
     const { code } = error.response.data;
+    const isAccessTokenExpiredError = code === exception.code.TOKEN_403_2;
 
-    if (
-      (code?.includes(exception.code.TOKEN_403_2) || code?.includes(exception.code.TOKEN_403_1)) &&
-      !originalRequest.isLooping
-    ) {
-      originalRequest.isLooping = true;
-      originalRequest.headers.Authorization = await refresh();
-      return http(originalRequest);
+    if (isAccessTokenExpiredError && !request.sent) {
+      request.sent = true;
+      request.headers.Authorization = await refresh();
+      return http(request);
     }
     return Promise.reject(error);
   },
 );
 
-http.interceptors.request.use(async (requestConfig) => {
-  const urlParams = requestConfig.url?.split("/:") || [];
-  if (urlParams.length < 2) return requestConfig;
-
-  const paramParsedUrl = urlParams?.map((paramKey) => requestConfig.params[paramKey]).join("/");
-
-  urlParams?.forEach((paramKey: string) => {
-    delete requestConfig.params[paramKey];
-  }, {});
-
-  return {
-    ...requestConfig,
-    url: paramParsedUrl,
-  };
-});
+const refresh = async () => {
+  const { data } = await http.put("/auth/refresh/access", null, refreshToken());
+  Storage.setItem(TOKEN.ACCESS, data.accessToken);
+  return data.accessToken;
+};
