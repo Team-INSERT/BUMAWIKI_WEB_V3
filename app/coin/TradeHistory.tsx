@@ -1,14 +1,16 @@
 import { coinQuery } from "@/services/coin/coin.query";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { FC } from "react";
-import { dateText, moneyText, tradeStatusText } from "@/utils";
+import { moneyText, tradeStatusText } from "@/utils";
 import Image from "next/image";
 import { useCancelTradeMutation } from "@/services/coin/coin.mutation";
 import { toast } from "react-toastify";
+import { useDate } from "@/hooks/useDate";
 import Toastify from "@/components/Toastify";
 import * as styles from "./TradeHistory.css";
 
 const TradeHistory: FC<{ id: number }> = ({ id }) => {
+  const { formatDate } = useDate();
   const { data: tradeList, isSuccess } = useQuery(coinQuery.trade(id));
   const { mutate } = useCancelTradeMutation();
   const queryClient = useQueryClient();
@@ -37,7 +39,7 @@ const TradeHistory: FC<{ id: number }> = ({ id }) => {
               {trade.tradedTime && (
                 <span className={styles.createdAt}>
                   거래일 ·&nbsp;
-                  {dateText(trade.tradedTime)}
+                  {formatDate(trade.tradedTime)}
                 </span>
               )}
             </div>

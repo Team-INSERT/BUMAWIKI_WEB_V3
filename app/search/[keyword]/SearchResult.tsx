@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { contentsCleaner, dateText } from "@/utils";
+import { contentsCleaner } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
@@ -9,12 +9,14 @@ import { useQuery } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import { useRouter } from "next/navigation";
 import { theme } from "@/styles";
+import { useDate } from "@/hooks/useDate";
 import { MoonLoader } from "react-spinners";
 import * as styles from "./style.css";
 
 const SearchResult: FC<{ keyword: string }> = ({ keyword }) => {
   const { data: result } = useQuery(docsQuery.keyword(keyword));
   const router = useRouter();
+  const { formatDate } = useDate();
 
   if (!result) {
     return (
@@ -41,7 +43,7 @@ const SearchResult: FC<{ keyword: string }> = ({ keyword }) => {
                 <h1 className={styles.title}>{docs.title}</h1>
                 <span className={styles.lastModifiedAt}>
                   최근 수정일 ·&nbsp;
-                  {dateText(docs.lastModifiedAt)}
+                  {formatDate(docs.lastModifiedAt)}
                 </span>
               </hgroup>
               <p className={styles.simpleContents}>{contentsCleaner(docs.simpleContents)}</p>
