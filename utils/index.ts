@@ -72,19 +72,6 @@ export const dateText = (date: Date) => {
   return dayjs(date).locale("ko").format("YYYY년 M월 D일 A h시 m분");
 };
 
-export const translateAuthority = (authority: string) => {
-  switch (authority) {
-    case "ADMIN":
-      return "관리자";
-    case "USER":
-      return "유저";
-    case "READONLY":
-      return "읽기전용 사용자";
-    default:
-      return authority;
-  }
-};
-
 export const getYear = () => {
   const startYear = 2021;
   const currentYear = new Date().getFullYear();
@@ -116,40 +103,6 @@ export const generateOpenGraph = <OG extends { title: string; description: strin
       "https://bumawiki.s3.ap-northeast-2.amazonaws.com/file2a809fd7-66f4-421e-9b64-005b34ea8020",
   },
 });
-
-export const translateClassify = (classify: string) => {
-  switch (classify.toUpperCase()) {
-    case "/":
-      return "부마위키";
-    case "MYPAGE":
-    case "USER":
-      return "유저";
-    case "STUDENT":
-      return "학생";
-    case "MAJOR_TEACHER":
-      return "전공교과 선생님";
-    case "TEACHER":
-      return "보통교과 선생님";
-    case "MENTOR_TEACHER":
-      return "멘토 선생님";
-    case "ACCIDENT":
-      return "사건";
-    case "CLUB":
-      return "동아리";
-    case "FRAME":
-      return "틀";
-    case "POPULAR":
-      return "인기";
-    case "NOTICE":
-      return "공지";
-    case "READONLY":
-      return "읽기전용";
-    case "":
-      return "부마위키";
-    default:
-      return classify;
-  }
-};
 
 export const contentsCleaner = (contents: string) => {
   return `${contents.replace(/<[^>]+>/g, " ")} ...`;

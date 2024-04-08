@@ -157,12 +157,12 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
               <div className={styles.separator} />
               <div className={styles.docsTypeList}>
                 {[
-                  "사건",
-                  "일반선생님",
-                  "전공선생님",
-                  "멘토선생님",
-                  "전공동아리",
-                  "사설동아리",
+                  "사건/사고",
+                  "보통교과 선생님",
+                  "전공교과 선생님",
+                  "멘토 선생님",
+                  "전공 동아리",
+                  "사설 동아리",
                   "틀",
                 ].map((type) => (
                   <button
@@ -198,7 +198,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
           <h1 className={styles.previewTitle}>{docs.title}</h1>
           {docs.docsType && (
             <div className={styles.classifyBox}>
-              분류 : <span className={styles.classify}>{CLASSIFY[docs.docsType]}</span>
+              분류 : <span className={styles.classify}>{docs.docsType}</span>
             </div>
           )}
           {["틀", "FRAME"].includes(docs.docsType) ? (

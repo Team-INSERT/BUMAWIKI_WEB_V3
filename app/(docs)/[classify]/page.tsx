@@ -14,7 +14,7 @@ interface PageProps {
 
 export const generateMetadata = async ({ params: { classify } }: PageProps): Promise<Metadata> => {
   return generateOpenGraph({
-    title: CLASSIFY[classify],
+    title: CLASSIFY[classify.toUpperCase()],
     description: `교내의 ${CLASSIFY[classify]}들을 모아둔 페이지입니다.`,
   });
 };
