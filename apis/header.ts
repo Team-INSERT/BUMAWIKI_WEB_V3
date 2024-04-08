@@ -6,3 +6,9 @@ export const authorization = () => ({
     Authorization: Storage.getItem(TOKEN.ACCESS),
   },
 });
+
+export const refreshToken = () => ({
+  headers: {
+    RefreshToken: Storage.getItem(TOKEN.REFRESH),
+  },
+});
