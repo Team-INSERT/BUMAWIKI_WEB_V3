@@ -1,7 +1,6 @@
 "use client";
 
 import Accordion from "@/components/Accordion";
-import { useDocs } from "@/hooks/useDocs";
 import { FC } from "react";
 import { contentsCleaner, dateText } from "@/utils";
 import Image from "next/image";
@@ -9,14 +8,15 @@ import Link from "next/link";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import Container from "@/components/Container";
+import { CLASSIFY } from "@/record/docsType.record";
+import getAccordionTitle from "@/utils/getAccordionTitle";
 import * as styles from "./style.css";
 
 const DocsList: FC<{ classify: string }> = ({ classify }) => {
-  const { getAccordionTitle, translateClassify } = useDocs();
   const { data: docsList } = useSuspenseQuery(docsQuery.list(classify));
 
   return (
-    <Container title={translateClassify(classify)} docsType={classify}>
+    <Container title={CLASSIFY[classify]} docsType={classify}>
       {docsList.keys.map((key: string) => (
         <Accordion title={getAccordionTitle(key)} key={key}>
           {docsList.data[key].map((docs) => (

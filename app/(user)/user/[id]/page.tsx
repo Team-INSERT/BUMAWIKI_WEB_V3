@@ -2,7 +2,8 @@ import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import getQueryClient from "@/app/getQueryClient";
 import { userQuery } from "@/services/user/user.query";
 import { Metadata } from "next";
-import { generateOpenGraph, translateAuthority } from "@/utils";
+import { generateOpenGraph } from "@/utils";
+import { CLASSIFY } from "@/record/docsType.record";
 import User from "./User";
 
 interface PageProps {
@@ -17,7 +18,7 @@ export const generateMetadata = async ({ params: { id } }: PageProps): Promise<M
 
   return generateOpenGraph({
     title: data.nickName,
-    description: `부마위키 - ${data.nickName} (${translateAuthority(data.authority)})`,
+    description: `부마위키 - ${data.nickName} (${CLASSIFY[data.authority]})`,
   });
 };
 

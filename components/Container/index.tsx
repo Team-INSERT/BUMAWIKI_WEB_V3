@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { PropsWithChildren } from "react";
-import { useDocs } from "@/hooks/useDocs";
 import useUser from "@/hooks/useUser";
 import { dateText } from "@/utils";
 import { useDeleteDocsMutation } from "@/services/docs/docs.mutation";
@@ -11,6 +10,7 @@ import { toast } from "react-toastify";
 import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
+import { CLASSIFY } from "@/record/docsType.record";
 import * as styles from "./style.css";
 import Toastify from "../Toastify";
 import Confirm from "../(modal)/Confirm";
@@ -31,7 +31,6 @@ const Container = ({
   id,
   children,
 }: ContainerProps) => {
-  const { translateClassify } = useDocs();
   const { mutate } = useDeleteDocsMutation();
   const { isAdmin, user, isLoggedIn } = useUser();
   const { openModal } = useModal();
@@ -89,7 +88,7 @@ const Container = ({
         )}
       </hgroup>
       <div className={styles.classifyBox}>
-        분류 : <span className={styles.classify}>{translateClassify(docsType)}</span>
+        분류 : <span className={styles.classify}>{CLASSIFY[docsType]}</span>
       </div>
       <main className={styles.main}>{children}</main>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, Suspense } from "react";
+import { FC, Suspense } from "react";
 import "dayjs/locale/ko";
 import DOMPurify from "isomorphic-dompurify";
 import { decodeContent } from "@/utils";
