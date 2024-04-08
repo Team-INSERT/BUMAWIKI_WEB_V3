@@ -5,11 +5,11 @@ export const container = style({
   width: "100%",
   minHeight: "100svh",
   backgroundColor: theme.background,
-  padding: "52px 20px 0 20px",
+  paddingTop: "52px",
   ...flex.FLEX,
 });
 
-export const asideBox = style({
+export const aside = style({
   height: "100%",
   position: "sticky",
   top: "70px",

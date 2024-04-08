@@ -3,6 +3,8 @@
 import { PropsWithChildren, useState } from "react";
 import { Provider as JotaiProvider } from "jotai";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { ToastContainer } from "react-toastify";
 
 const Providers = ({ children }: PropsWithChildren) => {
   const [queryClient] = useState(
@@ -19,6 +21,15 @@ const Providers = ({ children }: PropsWithChildren) => {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+      <ToastContainer
+        autoClose={3000}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover
+        closeButton={false}
+        className="toastify"
+      />
       <JotaiProvider>{children}</JotaiProvider>
     </QueryClientProvider>
   );

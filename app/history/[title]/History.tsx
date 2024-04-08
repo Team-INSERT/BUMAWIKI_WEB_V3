@@ -2,13 +2,14 @@
 
 import { Suspense } from "react";
 import Link from "next/link";
-import { dateText } from "@/utils";
 import Container from "@/components/Container";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { historyQuery } from "@/services/history/history.query";
+import { useDate } from "@/hooks/useDate";
 import * as styles from "./style.css";
 
 const History = ({ title }: { title: string }) => {
+  const { formatDate } = useDate();
   const { data: historyList } = useSuspenseQuery(historyQuery.list(title));
   const decodeTitle = decodeURI(title);
 
@@ -25,7 +26,7 @@ const History = ({ title }: { title: string }) => {
               <h1 className={styles.historyId}>#{history.index}</h1>
               <span className={styles.createdAt}>
                 편집일 ·&nbsp;
-                {dateText(history.thisVersionCreatedAt)}
+                {formatDate(history.thisVersionCreatedAt)}
               </span>
             </div>
             <span className={styles.author}>작성자 ·&nbsp;{history.nickName}</span>

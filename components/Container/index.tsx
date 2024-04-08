@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 import useUser from "@/hooks/useUser";
-import { dateText } from "@/utils";
 import { useDeleteDocsMutation } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -11,11 +10,12 @@ import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import { CLASSIFY } from "@/record/docsType.record";
+import { useDate } from "@/hooks/useDate";
 import * as styles from "./style.css";
 import Toastify from "../Toastify";
 import Confirm from "../(modal)/Confirm";
 
-interface ContainerProps extends PropsWithChildren {
+interface Props extends PropsWithChildren {
   docsType: string;
   title: string;
   lastModifiedAt?: Date;
@@ -23,15 +23,9 @@ interface ContainerProps extends PropsWithChildren {
   id?: number;
 }
 
-const Container = ({
-  docsType,
-  title,
-  lastModifiedAt,
-  docsDetail,
-  id,
-  children,
-}: ContainerProps) => {
+const Container = ({ docsType, title, lastModifiedAt, docsDetail, id, children }: Props) => {
   const { mutate } = useDeleteDocsMutation();
+  const { formatDate } = useDate();
   const { isAdmin, user, isLoggedIn } = useUser();
   const { openModal } = useModal();
   const queryClient = useQueryClient();
@@ -68,7 +62,7 @@ const Container = ({
         <div className={styles.titleBox}>
           <h1 className={styles.title}>부마위키:{title}</h1>
           {docsDetail && lastModifiedAt && (
-            <span className={styles.lastModifiedAt}>최근 편집 · {dateText(lastModifiedAt)}</span>
+            <span className={styles.lastModifiedAt}>최근 편집 · {formatDate(lastModifiedAt)}</span>
           )}
         </div>
         {docsDetail && (

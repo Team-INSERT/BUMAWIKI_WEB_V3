@@ -67,11 +67,6 @@ export const decodeContent = (content: string) => {
   return decoded;
 };
 
-export const dateText = (date: Date) => {
-  if (!date) return;
-  return dayjs(date).locale("ko").format("YYYY년 M월 D일 A h시 m분");
-};
-
 export const getYear = () => {
   const startYear = 2021;
   const currentYear = new Date().getFullYear();

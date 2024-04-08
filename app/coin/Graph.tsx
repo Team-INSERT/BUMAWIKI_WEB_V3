@@ -6,7 +6,8 @@ import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
-import { dateText, moneyText } from "@/utils";
+import { moneyText } from "@/utils";
+import { useDate } from "@/hooks/useDate";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -56,6 +57,7 @@ interface GraphProps {
 }
 
 const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
+  const { formatDate } = useDate();
   const differenceInSeconds = dayjs().diff(dayjs(updatedAt), "second");
   const remainingSeconds = 3 * 60 - differenceInSeconds;
 
@@ -81,7 +83,7 @@ const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
           <Image alt="bumacoin" src="/assets/bumacoin.png" width={62} height={62} />
           <div className={styles.chartCoinInfoBox}>
             <span className={styles.chartCoinTitle}>₩{moneyText(marketPrice)}</span>
-            <span className={styles.chartCoinDate}>{dateText(updatedAt)}</span>
+            <span className={styles.chartCoinDate}>{formatDate(updatedAt)}</span>
             <span className={styles.chartCoinDate}>3분마다 업데이트됩니다.</span>
           </div>
         </div>
