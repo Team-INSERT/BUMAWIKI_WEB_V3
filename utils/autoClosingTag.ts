@@ -14,7 +14,7 @@ const eventDecomposer = (event: ChangeEvent<HTMLTextAreaElement>) => {
   return { target, selection, value, inputType };
 };
 
-export const autoClosingTag = (event: ChangeEvent<HTMLTextAreaElement>): string => {
+const autoClosingTag = (event: ChangeEvent<HTMLTextAreaElement>): string => {
   const { target, selection, value, inputType } = eventDecomposer(event);
   const isSubjectToClosure = value[selection - 1] === ">";
 
@@ -44,3 +44,5 @@ export const autoClosingTag = (event: ChangeEvent<HTMLTextAreaElement>): string 
   });
   return completedContent;
 };
+
+export default autoClosingTag;
