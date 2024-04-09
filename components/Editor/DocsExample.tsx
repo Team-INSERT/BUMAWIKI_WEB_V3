@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { decodeContent } from "@/utils";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { ArrowIcon } from "@/assets";
+import { documentCompiler } from "@/utils";
 import Toastify from "../Toastify";
 import * as styles from "./style.css";
 
@@ -70,7 +70,7 @@ const DocsExample = () => {
                     <figure
                       className={styles.footer.tCell.bottom}
                       // eslint-disable-next-line react/no-danger
-                      dangerouslySetInnerHTML={{ __html: decodeContent(ex.example) }}
+                      dangerouslySetInnerHTML={{ __html: documentCompiler(ex.example) }}
                     />
                   </section>
                 </article>

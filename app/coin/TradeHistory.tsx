@@ -1,11 +1,12 @@
 import { coinQuery } from "@/services/coin/coin.query";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { FC } from "react";
-import { moneyText, tradeStatusText } from "@/utils";
+import { priceComma } from "@/utils";
 import Image from "next/image";
 import { useCancelTradeMutation } from "@/services/coin/coin.mutation";
 import { toast } from "react-toastify";
 import { useDate } from "@/hooks/useDate";
+import { TRADE } from "@/record/trade.record";
 import Toastify from "@/components/Toastify";
 import * as styles from "./TradeHistory.css";
 
@@ -34,7 +35,7 @@ const TradeHistory: FC<{ id: number }> = ({ id }) => {
             <div className={styles.hgroup}>
               <div className={styles.tradeStatusCircle[trade.tradeStatus]} />
               <h1 className={styles.tradeId}>
-                {tradeStatusText(trade.tradeStatus)}#{trade.id}
+                {TRADE[trade.tradeStatus]}#{trade.id}
               </h1>
               {trade.tradedTime && (
                 <span className={styles.createdAt}>
@@ -46,15 +47,15 @@ const TradeHistory: FC<{ id: number }> = ({ id }) => {
             <div className={styles.informationBox}>
               <span className={styles.informationText}>
                 <Image src="/assets/bumamoney.png" alt="money" width={30} height={15} />
-                {moneyText(trade.coinPrice)}
+                {priceComma(trade.coinPrice)}
               </span>
               <span className={styles.informationText}>
                 <Image src="/assets/bumacoin.png" alt="money" width={18} height={18} />
-                {moneyText(trade.coinCount)}
+                {priceComma(trade.coinCount)}
               </span>
             </div>
             <span className={styles.informationText}>
-              총 거래 금액 · {moneyText(trade.usedMoney)}
+              총 거래 금액 · {priceComma(trade.usedMoney)}
             </span>
             {["BUYING", "SELLING"].includes(trade.tradeStatus) && (
               <div onClick={() => handleCancelTradeClick(trade.id)} className={styles.cancelButton}>

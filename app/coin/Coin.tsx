@@ -9,7 +9,7 @@ import useModal from "@/hooks/useModal";
 import Confirm from "@/components/(modal)/Confirm";
 import { toast } from "react-toastify";
 import Toastify from "@/components/Toastify";
-import { moneyText } from "@/utils";
+import { priceComma } from "@/utils";
 import {
   useBuyCoinMutation,
   useDailyRewardMutation,
@@ -89,7 +89,7 @@ const Coin = () => {
     openModal({
       component: (
         <Confirm
-          content={`${moneyText(requestAmount)}주를 주당 ${moneyText(market.price)}원에 매수합니다.`}
+          content={`${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매수합니다.`}
           onConfirm={() => buy({ marketPrice: market.price, requestAmount }, handleTradeSuccess())}
         />
       ),
@@ -101,7 +101,7 @@ const Coin = () => {
     openModal({
       component: (
         <Confirm
-          content={`${moneyText(requestAmount)}주를 주당 ${moneyText(market.price)}원에 매도합니다.`}
+          content={`${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매도합니다.`}
           onConfirm={() => sell({ marketPrice: market.price, requestAmount }, handleTradeSuccess())}
         />
       ),
@@ -119,7 +119,7 @@ const Coin = () => {
   const handleDailyRewardClick = () => {
     dailyReward(undefined, {
       onSuccess: (res) => {
-        toast(<Toastify content={`${moneyText(res)}원을 받았어요!`} />);
+        toast(<Toastify content={`${priceComma(res)}원을 받았어요!`} />);
         queryClient.invalidateQueries({ queryKey: ["query.myWallet"] });
       },
       onError: (err) => {
@@ -149,21 +149,21 @@ const Coin = () => {
             <div className={styles.moneyName}>보유 총액</div>
             <div className={styles.moneyAmount}>
               <WalletIcon />
-              <div className={styles.moneyAmount}>{moneyText(totalMoney)}</div>
+              <div className={styles.moneyAmount}>{priceComma(totalMoney)}</div>
             </div>
           </div>
           <div className={styles.moneyBox}>
             <div className={styles.moneyName}>보유 코인</div>
             <div className={styles.moneyAmount}>
               <Image alt="bumacoin" src="/assets/bumacoin.png" width={20} height={20} />
-              <div className={styles.moneyAmount}>{moneyText(wallet.coin)}</div>
+              <div className={styles.moneyAmount}>{priceComma(wallet.coin)}</div>
             </div>
           </div>
           <div className={styles.moneyBox}>
             <div className={styles.moneyName}>보유 머니</div>
             <div className={styles.moneyAmount}>
               <Image alt="bumacoin" src="/assets/bumamoney.png" width={36} height={18} />
-              <div className={styles.moneyAmount}>{moneyText(wallet.money)}</div>
+              <div className={styles.moneyAmount}>{priceComma(wallet.money)}</div>
             </div>
           </div>
         </div>
@@ -192,12 +192,14 @@ const Coin = () => {
           </div>
           <figure className={styles.tradeFieldBox}>
             <h1 className={styles.tradeName}>가격</h1>
-            <span className={styles.tradeItem}>1 BMC &nbsp;=&nbsp; ₩{moneyText(market.price)}</span>
+            <span className={styles.tradeItem}>
+              1 BMC &nbsp;=&nbsp; ₩{priceComma(market.price)}
+            </span>
           </figure>
           <figure className={styles.tradeFieldBox}>
             <h1 className={styles.tradeName}>{tradeText[tradeMode].trade} 가능</h1>
             <span className={styles.tradeItem}>
-              {moneyText(tradeMode === "BUY" ? maxAmountMoney : maxAmountCoin)}주
+              {priceComma(tradeMode === "BUY" ? maxAmountMoney : maxAmountCoin)}주
             </span>
           </figure>
           <figure className={styles.tradeFieldBox}>
@@ -217,7 +219,7 @@ const Coin = () => {
             )}
             <span className={styles.tradeInformation}>주</span>
             <span className={styles.tradeDescription}>
-              총 {moneyText(tradeMode === "BUY" ? maxAmountMoney : maxAmountCoin)}주를{" "}
+              총 {priceComma(tradeMode === "BUY" ? maxAmountMoney : maxAmountCoin)}주를{" "}
               {tradeText[tradeMode].trade}할 수 있어요
             </span>
           </figure>
@@ -225,20 +227,20 @@ const Coin = () => {
             <div className={styles.tradeName}>총 거래 {tradeText[tradeMode].before}</div>
             <span className={styles.tradeItem}>
               {tradeText[tradeMode].period}
-              {moneyText(tradeMode === "BUY" ? tradeRequestMoney : tradeRequestCoin)}
+              {priceComma(tradeMode === "BUY" ? tradeRequestMoney : tradeRequestCoin)}
             </span>
           </figure>
           <figure className={styles.tradeFieldBox}>
             <div className={styles.tradeName}>거래 후 보유 {tradeText[tradeMode].before}</div>
             <span className={styles.tradeItem}>
               {tradeText[tradeMode].period}
-              {moneyText(tradeMode === "BUY" ? tradeBeforeLeftMoney : tradeBeforeLeftCoin)}
+              {priceComma(tradeMode === "BUY" ? tradeBeforeLeftMoney : tradeBeforeLeftCoin)}
             </span>
           </figure>
           {tradeMode === "SELL" && (
             <figure className={styles.tradeFieldBox}>
               <div className={styles.tradeName}>총 매도 이익</div>
-              <span className={styles.tradeItem}>₩{moneyText(requestAmount * market.price)}</span>
+              <span className={styles.tradeItem}>₩{priceComma(requestAmount * market.price)}</span>
             </figure>
           )}
           {tradeMode === "BUY" ? (

@@ -6,7 +6,7 @@ import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
-import { moneyText } from "@/utils";
+import { priceComma } from "@/utils";
 import { useDate } from "@/hooks/useDate";
 import {
   Chart as ChartJS,
@@ -82,7 +82,7 @@ const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
         <div className={styles.chartCoinBox}>
           <Image alt="bumacoin" src="/assets/bumacoin.png" width={62} height={62} />
           <div className={styles.chartCoinInfoBox}>
-            <span className={styles.chartCoinTitle}>₩{moneyText(marketPrice)}</span>
+            <span className={styles.chartCoinTitle}>₩{priceComma(marketPrice)}</span>
             <span className={styles.chartCoinDate}>{formatDate(updatedAt)}</span>
             <span className={styles.chartCoinDate}>3분마다 업데이트됩니다.</span>
           </div>

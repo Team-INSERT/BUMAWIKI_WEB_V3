@@ -2,7 +2,7 @@
 
 import Accordion from "@/components/Accordion";
 import { FC } from "react";
-import { contentsCleaner } from "@/utils";
+import { tagRemover } from "@/utils";
 import { useDate } from "@/hooks/useDate";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,7 +32,7 @@ const DocsList: FC<{ classify: string }> = ({ classify }) => {
                     {formatDate(docs.lastModifiedAt)}
                   </span>
                 </hgroup>
-                <p className={styles.simpleContents}>{contentsCleaner(docs.simpleContents)} ...</p>
+                <p className={styles.simpleContents}>{tagRemover(docs.simpleContents)} ...</p>
               </div>
               {docs.thumbnail && (
                 <Image

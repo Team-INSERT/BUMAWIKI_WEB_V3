@@ -1,7 +1,6 @@
 "use client";
 
 import { ChangeEvent, memo, useCallback, useState } from "react";
-import { decodeContent, getYear } from "@/utils";
 import {
   useCreateDocsMutation,
   useUploadImageMutation,
@@ -13,8 +12,9 @@ import { docsQuery } from "@/services/docs/docs.query";
 import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { autoClosingTag } from "@/utils/autoClosingTag";
+import { autoClosingTag, documentCompiler } from "@/utils";
 import { CLASSIFY } from "@/record/docsType.record";
+import { useDate } from "@/hooks/useDate";
 import DragDropUpload from "../DragDropUpload";
 import Confirm from "../(modal)/Confirm";
 import Toastify from "../Toastify";
@@ -36,6 +36,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
   const { mutateAsync: upload } = useUploadImageMutation();
   const { mutateAsync: update } = useUpdateDocsMutation();
   const queryClient = useQueryClient();
+  const { getValidYearList } = useDate();
   const { openModal } = useModal();
   const router = useRouter();
   const [cursorPosition, setCursorPosition] = useState(0);
@@ -142,7 +143,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
             <>
               <div className={styles.enrollList}>
                 |
-                {getYear().map((year) => (
+                {getValidYearList().map((year) => (
                   <div key={year}>
                     <span
                       onClick={() => setDocs((prev) => ({ ...prev, enroll: year }))}
@@ -215,7 +216,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
               className={styles.preview}
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
-                __html: decodeContent(docs.contents),
+                __html: documentCompiler(docs.contents),
               }}
             />
           )}

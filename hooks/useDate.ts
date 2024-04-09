@@ -12,5 +12,13 @@ export const useDate = () => {
     return dayjs(date).locale("ko").format("YYYY년 M월 D일 A h시 m분");
   };
 
-  return { fromNow, formatDate };
+  const getValidYearList = () => {
+    const CURRENT_YEAR = new Date().getFullYear();
+    const length = CURRENT_YEAR - 2022;
+
+    const validYearList = Array.from({ length }, (_, year) => CURRENT_YEAR - year);
+    return validYearList;
+  };
+
+  return { fromNow, formatDate, getValidYearList };
 };
