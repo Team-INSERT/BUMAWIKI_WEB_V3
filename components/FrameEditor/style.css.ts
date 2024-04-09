@@ -106,7 +106,6 @@ export const ColSpan = style({
   height: "100%",
   backgroundColor: theme.primary,
   cursor: "pointer",
-  zIndex: "20",
 
   ":hover": {
     backgroundColor: theme.btnHover,
