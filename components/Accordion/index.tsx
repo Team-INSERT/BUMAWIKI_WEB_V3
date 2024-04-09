@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
-import * as styles from "./style.css";
+import * as styles from "@/styles/document.css";
+import { content } from "./style.css";
 
 interface Props extends PropsWithChildren {
   title: string;
@@ -10,7 +11,7 @@ const Accordion = ({ title, open = true, children }: Props) => {
   return (
     <details className={styles.details} open={open}>
       <summary className={styles.summary}>{title}</summary>
-      <article className={styles.content}>{children}</article>
+      <article className={content}>{children}</article>
     </details>
   );
 };

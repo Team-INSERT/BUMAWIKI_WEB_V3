@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { contentsCleaner } from "@/utils";
+import { tagRemover } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
@@ -46,7 +46,7 @@ const SearchResult: FC<{ keyword: string }> = ({ keyword }) => {
                   {formatDate(docs.lastModifiedAt)}
                 </span>
               </hgroup>
-              <p className={styles.simpleContents}>{contentsCleaner(docs.simpleContents)}</p>
+              <p className={styles.simpleContents}>{tagRemover(docs.simpleContents)}</p>
             </div>
             {docs.thumbnail && (
               <Image

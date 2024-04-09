@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { PropsWithChildren } from "react";
-import { useDocs } from "@/hooks/useDocs";
 import useUser from "@/hooks/useUser";
 import { useDeleteDocsMutation } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
@@ -10,6 +9,7 @@ import { toast } from "react-toastify";
 import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
+import { CLASSIFY } from "@/record/docsType.record";
 import { useDate } from "@/hooks/useDate";
 import * as styles from "./style.css";
 import Toastify from "../Toastify";
@@ -24,7 +24,6 @@ interface Props extends PropsWithChildren {
 }
 
 const Container = ({ docsType, title, lastModifiedAt, docsDetail, id, children }: Props) => {
-  const { translateClassify } = useDocs();
   const { mutate } = useDeleteDocsMutation();
   const { formatDate } = useDate();
   const { isAdmin, user, isLoggedIn } = useUser();
@@ -83,7 +82,7 @@ const Container = ({ docsType, title, lastModifiedAt, docsDetail, id, children }
         )}
       </hgroup>
       <div className={styles.classifyBox}>
-        분류 : <span className={styles.classify}>{translateClassify(docsType)}</span>
+        분류 : <span className={styles.classify}>{CLASSIFY[docsType]}</span>
       </div>
       <main className={styles.main}>{children}</main>
     </div>

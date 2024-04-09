@@ -1,8 +1,9 @@
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import getQueryClient from "@/app/getQueryClient";
 import { docsQuery } from "@/services/docs/docs.query";
-import { generateOpenGraph, translateClassify } from "@/utils";
+import { generateOpenGraph } from "@/utils";
 import { Metadata } from "next";
+import { CLASSIFY } from "@/record/docsType.record";
 import DocsList from "./DocsList";
 
 interface PageProps {
@@ -13,8 +14,8 @@ interface PageProps {
 
 export const generateMetadata = async ({ params: { classify } }: PageProps): Promise<Metadata> => {
   return generateOpenGraph({
-    title: translateClassify(classify),
-    description: `교내의 ${translateClassify(classify)}들을 모아둔 페이지입니다.`,
+    title: CLASSIFY[classify.toUpperCase()],
+    description: `교내의 ${CLASSIFY[classify]}들을 모아둔 페이지입니다.`,
   });
 };
 

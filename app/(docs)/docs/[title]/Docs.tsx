@@ -1,9 +1,8 @@
 "use client";
 
-import React, { FC, Suspense } from "react";
+import { FC, Suspense } from "react";
 import "dayjs/locale/ko";
 import DOMPurify from "isomorphic-dompurify";
-import { decodeContent } from "@/utils";
 import Link from "next/link";
 import {
   useQueries,
@@ -20,6 +19,7 @@ import Toastify from "@/components/Toastify";
 import { toast } from "react-toastify";
 import { useCreateLikeMutation, useDeleteLikeMutation } from "@/services/like/like.mutation";
 import FrameEncoder from "@/components/FrameEncoder";
+import { documentCompiler } from "@/utils";
 import * as styles from "./style.css";
 
 const Docs: FC<{ title: string; list: string[] }> = ({ title, list }) => {
@@ -48,7 +48,7 @@ const Docs: FC<{ title: string; list: string[] }> = ({ title, list }) => {
   };
 
   const sanitizeData = () => ({
-    __html: DOMPurify.sanitize(decodeContent(docs.contents)),
+    __html: DOMPurify.sanitize(documentCompiler(docs.contents)),
   });
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { decodeContent, isJsonString } from "@/utils";
+import { isJsonString, documentCompiler } from "@/utils";
 
 interface Frame {
   key: string;
@@ -43,7 +43,7 @@ const FrameEncoder = ({ title, contents, docsType, mode }: DocsPropsType) => {
                 >
                   <div
                     // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{ __html: decodeContent(col.content) }}
+                    dangerouslySetInnerHTML={{ __html: documentCompiler(col.content) }}
                   />
                 </td>
               ))}

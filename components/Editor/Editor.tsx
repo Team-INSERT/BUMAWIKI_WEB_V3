@@ -1,8 +1,6 @@
 "use client";
 
 import { ChangeEvent, memo, useCallback, useState } from "react";
-import { decodeContent, getYear } from "@/utils";
-import { useDocs } from "@/hooks/useDocs";
 import {
   useCreateDocsMutation,
   useUploadImageMutation,
@@ -14,6 +12,9 @@ import { docsQuery } from "@/services/docs/docs.query";
 import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { autoClosingTag, documentCompiler } from "@/utils";
+import { CLASSIFY } from "@/record/docsType.record";
+import { useDate } from "@/hooks/useDate";
 import DragDropUpload from "../DragDropUpload";
 import Confirm from "../(modal)/Confirm";
 import Toastify from "../Toastify";
@@ -34,8 +35,8 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
   const { mutateAsync: create } = useCreateDocsMutation();
   const { mutateAsync: upload } = useUploadImageMutation();
   const { mutateAsync: update } = useUpdateDocsMutation();
-  const { autoClosingTag, getDocsTypeByClassify, translateClassify } = useDocs();
   const queryClient = useQueryClient();
+  const { getValidYearList } = useDate();
   const { openModal } = useModal();
   const router = useRouter();
   const [cursorPosition, setCursorPosition] = useState(0);
@@ -92,7 +93,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
     if (!docs.docsType) return toast(<Toastify content="문서 분류를 선택해주세요!" />);
     if (!docs.contents.trim()) return toast(<Toastify content="내용을 입력해주세요!" />);
     try {
-      const classify = getDocsTypeByClassify(docs.docsType);
+      const classify = CLASSIFY[docs.docsType];
       await create({ ...docs, docsType: classify });
       toast(<Toastify content="문서가 생성되었습니다!" />);
       queryClient.invalidateQueries(docsQuery.list(classify.toLowerCase()));
@@ -142,7 +143,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
             <>
               <div className={styles.enrollList}>
                 |
-                {getYear().map((year) => (
+                {getValidYearList().map((year) => (
                   <div key={year}>
                     <span
                       onClick={() => setDocs((prev) => ({ ...prev, enroll: year }))}
@@ -157,12 +158,12 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
               <div className={styles.separator} />
               <div className={styles.docsTypeList}>
                 {[
-                  "사건",
-                  "일반선생님",
-                  "전공선생님",
-                  "멘토선생님",
-                  "전공동아리",
-                  "사설동아리",
+                  "사건/사고",
+                  "보통교과 선생님",
+                  "전공교과 선생님",
+                  "멘토 선생님",
+                  "전공 동아리",
+                  "사설 동아리",
                   "틀",
                 ].map((type) => (
                   <button
@@ -198,7 +199,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
           <h1 className={styles.previewTitle}>{docs.title}</h1>
           {docs.docsType && (
             <div className={styles.classifyBox}>
-              분류 : <span className={styles.classify}>{translateClassify(docs.docsType)}</span>
+              분류 : <span className={styles.classify}>{docs.docsType}</span>
             </div>
           )}
           {["틀", "FRAME"].includes(docs.docsType) ? (
@@ -215,7 +216,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
               className={styles.preview}
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
-                __html: decodeContent(docs.contents),
+                __html: documentCompiler(docs.contents),
               }}
             />
           )}

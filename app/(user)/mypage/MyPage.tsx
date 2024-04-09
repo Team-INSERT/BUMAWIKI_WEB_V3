@@ -4,9 +4,9 @@ import Accordion from "@/components/Accordion";
 import Container from "@/components/Container";
 import { useLogoutMutation } from "@/services/auth/auth.mutation";
 import { userQuery } from "@/services/user/user.query";
-import { translateAuthority } from "@/utils";
 import { useQueries } from "@tanstack/react-query";
 import { particle, 조사 } from "auto-particle";
+import { ROLE } from "@/record/role.record";
 import Link from "next/link";
 import ContritbuteDocsList from "../ContritbuteDocsList";
 import * as styles from "../style.css";
@@ -31,7 +31,7 @@ const MyPage = () => {
     <Container title="마이페이지" docsType="mypage">
       <div className={styles.container}>
         <Accordion title="내정보">
-          {particle(user.nickName).word(조사.은_는)} 부마위키의 {translateAuthority(user.authority)}
+          {particle(user.nickName).word(조사.은_는)} 부마위키의 {ROLE[user.authority]}
           이다.
           <button onClick={() => mutate()} className={styles.button}>
             로그아웃

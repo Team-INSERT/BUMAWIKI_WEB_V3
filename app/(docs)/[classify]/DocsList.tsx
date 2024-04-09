@@ -1,26 +1,27 @@
 "use client";
 
 import Accordion from "@/components/Accordion";
-import { useDocs } from "@/hooks/useDocs";
 import { FC } from "react";
-import { contentsCleaner } from "@/utils";
+import { tagRemover } from "@/utils";
 import { useDate } from "@/hooks/useDate";
 import Image from "next/image";
 import Link from "next/link";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import Container from "@/components/Container";
+import { CLASSIFY } from "@/record/docsType.record";
 import * as styles from "./style.css";
 
 const DocsList: FC<{ classify: string }> = ({ classify }) => {
   const { formatDate } = useDate();
-  const { getAccordionTitle, translateClassify } = useDocs();
   const { data: docsList } = useSuspenseQuery(docsQuery.list(classify));
 
+  const docsType = classify.toUpperCase();
+
   return (
-    <Container title={translateClassify(classify)} docsType={classify}>
+    <Container title={CLASSIFY[docsType]} docsType={docsType}>
       {docsList.keys.map((key: string) => (
-        <Accordion title={getAccordionTitle(key)} key={key}>
+        <Accordion title={`${key}년 ${CLASSIFY[docsType]}`} key={key}>
           {docsList.data[key].map((docs) => (
             <Link href={`/docs/${docs.title}`} key={docs.id} className={styles.container}>
               <div className={styles.docs}>
@@ -31,7 +32,7 @@ const DocsList: FC<{ classify: string }> = ({ classify }) => {
                     {formatDate(docs.lastModifiedAt)}
                   </span>
                 </hgroup>
-                <p className={styles.simpleContents}>{contentsCleaner(docs.simpleContents)} ...</p>
+                <p className={styles.simpleContents}>{tagRemover(docs.simpleContents)} ...</p>
               </div>
               {docs.thumbnail && (
                 <Image

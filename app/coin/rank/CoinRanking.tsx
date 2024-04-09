@@ -6,7 +6,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
 import Link from "next/link";
-import { moneyText, tierIconMaker } from "@/utils";
+import { priceComma, calculateCoinTier } from "@/utils";
 import WalletIcon from "@/assets/WalletIcon";
 import * as styles from "./style.css";
 
@@ -31,7 +31,7 @@ const CoinRanking = () => {
               className={styles.rankingListItem}
             >
               <Image
-                src={`/assets/tier/${tierIconMaker(rankingListMax, rank)}.png`}
+                src={`/assets/tier/${calculateCoinTier(rankingListMax, rank)}.png`}
                 width={999}
                 height={999}
                 alt="tier"
@@ -45,16 +45,16 @@ const CoinRanking = () => {
                   </span>
                 </hgroup>
                 <span className={styles.totalMoney}>
-                  <WalletIcon /> {moneyText(ranking.totalMoney)}₩
+                  <WalletIcon /> {priceComma(ranking.totalMoney)}₩
                 </span>
                 <hgroup className={styles.rankingListItemHGroup}>
                   <main className={styles.rankingListItemBody}>
                     <Image src="/assets/bumamoney.png" width={24} height={12} alt="moneyicon" />
-                    {moneyText(ranking.money)}₩
+                    {priceComma(ranking.money)}₩
                   </main>
                   <main className={styles.rankingListItemBody}>
                     <Image src="/assets/bumacoin.png" width={18} height={18} alt="moneyicon" />
-                    {moneyText(ranking.coin)}주
+                    {priceComma(ranking.coin)}주
                   </main>
                 </hgroup>
               </div>

@@ -1,8 +1,7 @@
 import Accordion from "@/components/Accordion";
 import { ContributeDocsType } from "@/types/contributeDocs.interface";
 import Link from "next/link";
-
-import { translateClassify } from "@/utils";
+import { CLASSIFY } from "@/record/docsType.record";
 import * as styles from "./style.css";
 
 const LikeDocsList = ({ likeList }: { likeList: Array<ContributeDocsType> }) => {
@@ -16,7 +15,7 @@ const LikeDocsList = ({ likeList }: { likeList: Array<ContributeDocsType> }) => 
         >
           <hgroup className={styles.hgroup}>
             <h1 className={styles.docsTitle}>
-              {docs.title} ({translateClassify(docs.docsType)})
+              {docs.title} ({CLASSIFY[docs.docsType]})
             </h1>
           </hgroup>
         </Link>
