@@ -6,7 +6,6 @@ import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-quer
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
 import useModal from "@/hooks/useModal";
-import Confirm from "@/components/(modal)/Confirm";
 import { toast } from "react-toastify";
 import Toastify from "@/components/Toastify";
 import { priceComma } from "@/utils";
@@ -15,7 +14,7 @@ import {
   useDailyRewardMutation,
   useSellMutation,
 } from "@/services/coin/coin.mutation";
-import CreateCoinAccount from "@/components/(modal)/CreateCoinAccount";
+import CreateCoinAccount from "@/components/CreateCoinAccount";
 import { AxiosError, isAxiosError } from "axios";
 import Accordion from "@/components/Accordion";
 import Link from "next/link";
@@ -53,7 +52,7 @@ const Coin = () => {
   const { mutate: buy } = useBuyCoinMutation();
   const { mutate: sell } = useSellMutation();
 
-  const { openModal } = useModal();
+  const { openModal, openConfirm } = useModal();
   const [tradeMode, setTradeMode] = useState("BUY");
   const [requestAmount, setRequestAmount] = useState(0);
 
@@ -86,25 +85,17 @@ const Coin = () => {
 
   const handleBuyTradeButtonClick = () => {
     if (!requestAmount) return toast(<Toastify content="수량을 입력해주세요." />);
-    openModal({
-      component: (
-        <Confirm
-          content={`${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매수합니다.`}
-          onConfirm={() => buy({ marketPrice: market.price, requestAmount }, handleTradeSuccess())}
-        />
-      ),
+    openConfirm({
+      content: `${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매수합니다.`,
+      onConfirm: () => buy({ marketPrice: market.price, requestAmount }, handleTradeSuccess()),
     });
   };
 
   const handleSellTradeButtonClick = () => {
     if (!requestAmount) return toast(<Toastify content="수량을 입력해주세요." />);
-    openModal({
-      component: (
-        <Confirm
-          content={`${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매도합니다.`}
-          onConfirm={() => sell({ marketPrice: market.price, requestAmount }, handleTradeSuccess())}
-        />
-      ),
+    openConfirm({
+      content: `${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매도합니다.`,
+      onConfirm: () => sell({ marketPrice: market.price, requestAmount }, handleTradeSuccess()),
     });
   };
 

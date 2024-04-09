@@ -16,7 +16,7 @@ import { autoClosingTag, documentCompiler } from "@/utils";
 import { CLASSIFY } from "@/record/docsType.record";
 import { useDate } from "@/hooks/useDate";
 import DragDropUpload from "../DragDropUpload";
-import Confirm from "../(modal)/Confirm";
+import Confirm from "../Confirm";
 import Toastify from "../Toastify";
 import PasteUpload from "../PasteUpload";
 import FrameEditor from "../FrameEditor";
