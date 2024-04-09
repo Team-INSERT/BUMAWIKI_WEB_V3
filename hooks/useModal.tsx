@@ -1,8 +1,8 @@
 import { ReactNode, useCallback } from "react";
 import { useSetAtom } from "jotai";
 import { modalContext } from "@/context/index";
-import Alert from "@/components/Alert";
-import Confirm from "@/components/Confirm";
+import Alert from "@/components/(modal)/Alert";
+import Confirm from "@/components/(modal)/Confirm";
 
 const useModal = () => {
   const setModal = useSetAtom(modalContext);

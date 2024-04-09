@@ -1,7 +1,7 @@
 import useModal from "@/hooks/useModal";
 import { PartyIcon } from "@/assets";
 import { useCreateCoinWalletMutation } from "@/services/coin/coin.mutation";
-import * as styles from "../Modal/style.css";
+import * as styles from "../(modal)/style.css";
 
 const CreateCoinAccount = () => {
   const { closeModal } = useModal();

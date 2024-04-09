@@ -2,7 +2,7 @@
 
 import useModal from "@/hooks/useModal";
 import RoundLogo from "@/assets/RoundLogo";
-import * as styles from "../Modal/style.css";
+import * as styles from "../style.css";
 
 const Alert = ({ content }: { content: string }) => {
   const { closeModal } = useModal();

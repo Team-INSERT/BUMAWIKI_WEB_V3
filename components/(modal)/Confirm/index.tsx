@@ -1,6 +1,6 @@
 import useModal from "@/hooks/useModal";
 import RoundLogo from "@/assets/RoundLogo";
-import * as styles from "../Modal/style.css";
+import * as styles from "../style.css";
 
 interface Props {
   content: string;
