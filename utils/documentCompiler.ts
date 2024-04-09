@@ -1,8 +1,8 @@
 import { theme } from "@/styles";
 import * as styles from "@/styles/document.css";
 
-const deleteNotAllowedTag = (content: string) => {
-  return content
+const deleteNotAllowedTag = (contents: string) => {
+  return contents
     .replace(/<<(.*?)>>:{(.*?)}/gi, `<이미지%@T src="$1" width="$2%" />`)
     .replace(/<([A-Za-z]+)[^>]*>.*?<\/\1>/gi, "")
     .replace(/<([A-Za-z]+)[^>]*\/>/gi, "")
@@ -11,8 +11,8 @@ const deleteNotAllowedTag = (content: string) => {
     .replace(/&#.*;/gi, ``);
 };
 
-const colorTagCompiler = (content: string) => {
-  return content
+const colorTagCompiler = (contents: string) => {
+  return contents
     .replace(/<빨강>([\s\S]*?)<\/빨강>/gi, "<span style='color: red;'>$1</span>")
     .replace(/<주황>([\s\S]*?)<\/주황>/gi, "<span style='color: orange;'>$1</span>")
     .replace(/<노랑>([\s\S]*?)<\/노랑>/gi, "<span style='color: yellow;'>$1</span>")
@@ -23,8 +23,8 @@ const colorTagCompiler = (content: string) => {
     .replace(/<무지개>([\s\S]*?)<\/무지개>/gi, `<span class="${styles.rainbow}">$1</span>`);
 };
 
-const utilityTagCompiler = (content: string) => {
-  return content
+const utilityTagCompiler = (contents: string) => {
+  return contents
     .replace(/include\((.*?)\);/gi, "")
     .replace(/<항목>([\s\S]*?)<\/항목>/gi, "<li style='list-style: disc';>$1</li>")
     .replace(/<어록>([\s\S]*?)<\/어록>/gi, `<div class="${styles.quote}";>$1</div>`)
@@ -47,8 +47,8 @@ const utilityTagCompiler = (content: string) => {
     );
 };
 
-const assetTagComipler = (content: string) => {
-  return content
+const assetTagComipler = (contents: string) => {
+  return contents
     .replace(/<사진 \{(.*?)\}>(.*?)<\/사진>/g, '<img style="width: $1" src="$2" />')
     .replace(
       /<비디오 \{(.*?)\}>(.*?)<\/비디오>/g,
@@ -56,12 +56,12 @@ const assetTagComipler = (content: string) => {
     );
 };
 
-const documentCompiler = (content: string) => {
-  const XSSFilteredContent = deleteNotAllowedTag(content);
-  const tagAppliedContent = utilityTagCompiler(XSSFilteredContent);
-  const colorTagAppliedContent = colorTagCompiler(tagAppliedContent);
-  const assetAppliedContent = assetTagComipler(colorTagAppliedContent);
-  return assetAppliedContent;
+const documentCompiler = (contents: string) => {
+  const XSSFilteredContents = deleteNotAllowedTag(contents);
+  const tagAppliedContents = utilityTagCompiler(XSSFilteredContents);
+  const colorTagAppliedContents = colorTagCompiler(tagAppliedContents);
+  const assetAppliedContents = assetTagComipler(colorTagAppliedContents);
+  return assetAppliedContents;
 };
 
 export default documentCompiler;
