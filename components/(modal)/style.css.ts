@@ -1,5 +1,5 @@
 import { flex, font, theme } from "@/styles";
-import { style } from "@vanilla-extract/css";
+import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
 
 export const background = style({
   width: "100vw",
@@ -20,64 +20,34 @@ export const container = style({
   boxShadow: `0px 2px 5px 1px ${theme.gray}`,
   position: "absolute",
   margin: "0 auto",
-  ...flex.CENTER,
+  padding: "30px",
+  ...flex.COLUMN_BETWEEN,
 });
 
-export const wrapper = style({
-  width: "85%",
-  height: "90%",
-  ...flex.COLUMN_VERTICAL,
-});
-
-export const logoWrapper = style({
-  padding: "3%",
-});
-
-export const contentBox = style({
+export const contents = style({
   width: "100%",
   height: "30%",
-  ...flex.CENTER,
-});
-
-export const content = style({
-  width: "90%",
-  height: "auto",
+  padding: "0 20px",
   textAlign: "center",
   whiteSpace: "pre-wrap",
   color: theme.primary,
   ...font.H4,
+  ...flex.CENTER,
 });
 
 export const buttonBox = style({
   width: "100%",
-  height: "17%",
-  marginTop: "3%",
   gap: "2%",
-  ...flex.BETWEEN,
+  ...flex.END,
 });
 
-export const cancelBtn = style({
-  width: "20%",
-  height: "100%",
-  backgroundColor: theme.line,
-  marginLeft: "auto",
+const buttonBase = style({
+  padding: "6px 22px",
   borderRadius: "8px",
   ...font.btn1,
 });
 
-export const confirmBtn = style({
-  width: "25%",
-  height: "100%",
-  backgroundColor: theme.primary,
-  right: "0",
-  color: theme.white,
-  borderRadius: "8px",
-  ...font.btn1,
-});
-
-export const line = style({
-  width: "100%",
-  height: "2px",
-  backgroundColor: theme.line,
-  marginTop: "auto",
+export const button = styleVariants<Record<string, ComplexStyleRule>>({
+  confirm: [buttonBase, { backgroundColor: theme.primary, color: theme.white }],
+  cancel: [buttonBase, { backgroundColor: theme.line, color: theme.black }],
 });

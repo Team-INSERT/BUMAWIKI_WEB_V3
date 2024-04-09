@@ -1,13 +1,15 @@
+import { ReactNode } from "react";
 import useModal from "@/hooks/useModal";
 import RoundLogo from "@/assets/RoundLogo";
 import * as styles from "../style.css";
 
 interface Props {
+  icon?: ReactNode;
   content: string;
   onConfirm: () => void;
 }
 
-const Confirm = ({ content, onConfirm }: Props) => {
+const Confirm = ({ icon, content, onConfirm }: Props) => {
   const { closeModal } = useModal();
   const handleConfirm = () => {
     onConfirm();
@@ -16,22 +18,15 @@ const Confirm = ({ content, onConfirm }: Props) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper}>
-        <div className={styles.logoWrapper}>
-          <RoundLogo />
-        </div>
-        <div className={styles.contentBox}>
-          <div className={styles.content}>{content}</div>
-        </div>
-        <div className={styles.line} />
-        <div className={styles.buttonBox}>
-          <button className={styles.cancelBtn} onClick={closeModal}>
-            취소
-          </button>
-          <button className={styles.confirmBtn} onClick={handleConfirm}>
-            확인
-          </button>
-        </div>
+      {<RoundLogo /> || icon}
+      <div className={styles.contents}>{content}</div>
+      <div className={styles.buttonBox}>
+        <button className={styles.button.cancel} onClick={closeModal}>
+          취소
+        </button>
+        <button className={styles.button.confirm} onClick={handleConfirm}>
+          확인
+        </button>
       </div>
     </div>
   );

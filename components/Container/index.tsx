@@ -15,8 +15,8 @@ import * as styles from "./style.css";
 import Toastify from "../Toastify";
 
 interface Props extends PropsWithChildren {
-  docsType: string;
   title: string;
+  docsType: string;
   lastModifiedAt?: Date;
   docsDetail?: boolean;
   id?: number;
@@ -82,7 +82,7 @@ const Container = ({ docsType, title, lastModifiedAt, docsDetail, id, children }
         )}
       </hgroup>
       <div className={styles.classifyBox}>
-        분류 : <span className={styles.classify}>{CLASSIFY[docsType]}</span>
+        분류 : <span className={styles.classify}>{CLASSIFY[docsType] || docsType}</span>
       </div>
       <main className={styles.main}>{children}</main>
     </div>

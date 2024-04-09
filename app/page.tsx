@@ -24,7 +24,7 @@ const tableInformation = [
 
 const Home = () => {
   return (
-    <Container title="대문" docsType="/">
+    <Container title="대문" docsType="대문">
       <div className={styles.introduce.body}>
         <div className={styles.introduce.box}>
           <h1 className={styles.introduce.title}>
