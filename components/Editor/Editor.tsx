@@ -53,7 +53,10 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
         component: (
           <Confirm
             content="변경 사항을 삭제하시겠습니까?"
-            onConfirm={() => setDocs((prev) => ({ ...prev, contents }))}
+            onConfirm={() => {
+              setDocs((prev) => ({ ...prev, contents }));
+              setIsChanged((prev) => !prev);
+            }}
           />
         ),
       });
