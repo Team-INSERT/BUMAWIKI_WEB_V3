@@ -1,5 +1,6 @@
 import { flex, font, theme } from "@/styles";
-import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
+import StyleVariantsType from "@/types/styleVariants.interface";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 export const container = style({
   width: "100%",
@@ -85,7 +86,7 @@ const yearBase = style({
   },
 });
 
-export const year = styleVariants<Record<string, ComplexStyleRule>>({
+export const year = styleVariants<StyleVariantsType>({
   true: [yearBase, { color: theme.primary }],
   false: [yearBase, { color: theme.boldgray }],
 });
@@ -119,7 +120,7 @@ const docsTypeBase = style({
   ...font.btn3,
 });
 
-export const docsType = styleVariants<Record<string, ComplexStyleRule>>({
+export const docsType = styleVariants<StyleVariantsType>({
   true: [docsTypeBase, { background: theme.primary, color: theme.white }],
   false: [docsTypeBase, { background: theme.preview, color: theme.primary }],
 });
@@ -131,77 +132,6 @@ export const textarea = style({
   marginTop: "12px",
   ...font.p1,
 });
-
-const wikiBoxHeaderBase = style({
-  width: "100%",
-  height: "fit-content",
-  backgroundColor: theme.primary,
-  left: 0,
-  bottom: 0,
-  position: "fixed",
-  padding: "10px 24px",
-  cursor: "pointer",
-  ...flex.BETWEEN,
-});
-
-export const wikiBoxHeader = styleVariants<Record<string, ComplexStyleRule>>({
-  true: [wikiBoxHeaderBase, { bottom: "260px" }],
-  false: [wikiBoxHeaderBase, { bottom: 0 }],
-});
-
-export const wikiTitle = style({
-  color: theme.white,
-  ...font.H5,
-});
-
-const tCellBase = style({
-  width: "100%",
-  height: "100%",
-  padding: "4px 12px",
-  ...flex.VERTICAL,
-});
-
-export const footer = {
-  body: style({
-    width: "100%",
-    height: "260px",
-    left: 0,
-    bottom: 0,
-    position: "fixed",
-    background: theme.white,
-    ...flex.VERTICAL,
-  }),
-  wrap: style({
-    width: "100%",
-    height: "100%",
-    ...flex.COLUMN_FLEX,
-  }),
-  box: style({
-    width: "100%",
-    height: "100%",
-    border: `1px solid ${theme.gray}`,
-    ...flex.VERTICAL,
-  }),
-  tHead: style({
-    width: "18%",
-    height: "100%",
-    borderRight: `1px solid ${theme.gray}`,
-    color: theme.white,
-    backgroundColor: theme.primary,
-    textAlign: "center",
-    ...flex.CENTER,
-  }),
-  tItem: style({
-    width: "82%",
-    cursor: "pointer",
-    height: "100%",
-    ...flex.COLUMN_FLEX,
-  }),
-  tCell: styleVariants<Record<string, ComplexStyleRule>>({
-    top: [tCellBase, { borderBottom: `2px solid ${theme.gray}` }],
-    bottom: [tCellBase],
-  }),
-};
 
 export const writeButton = style({
   position: "fixed",

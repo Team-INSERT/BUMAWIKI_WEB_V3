@@ -7,7 +7,6 @@ import {
   useUpdateDocsMutation,
 } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import { docsQuery } from "@/services/docs/docs.query";
 import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
@@ -16,8 +15,6 @@ import { autoClosingTag, documentCompiler } from "@/utils";
 import { CLASSIFY } from "@/record/docsType.record";
 import { useDate } from "@/hooks/useDate";
 import DragDropUpload from "../DragDropUpload";
-import Confirm from "../(modal)/Confirm";
-import Toastify from "../Toastify";
 import PasteUpload from "../PasteUpload";
 import FrameEditor from "../FrameEditor";
 import FrameEncoder from "../FrameEncoder";
@@ -37,7 +34,7 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
   const { mutateAsync: update } = useUpdateDocsMutation();
   const queryClient = useQueryClient();
   const { getValidYearList } = useDate();
-  const { openModal } = useModal();
+  const { openToast, openConfirm } = useModal();
   const router = useRouter();
   const [cursorPosition, setCursorPosition] = useState(0);
   const [isChanged, setIsChanged] = useState(false);
@@ -50,16 +47,12 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
 
   const handleOpenConfirm = () => {
     if (contents !== docs.contents.trim()) {
-      openModal({
-        component: (
-          <Confirm
-            content="변경 사항을 삭제하시겠습니까?"
-            onConfirm={() => {
-              setDocs((prev) => ({ ...prev, contents }));
-              setIsChanged((prev) => !prev);
-            }}
-          />
-        ),
+      openConfirm({
+        content: "변경 사항을 삭제하시겠습니까?",
+        onConfirm: () => {
+          setDocs((prev) => ({ ...prev, contents }));
+          setIsChanged((prev) => !prev);
+        },
       });
     }
   };
@@ -77,60 +70,65 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
     setDocs({ ...docs, contents: `${first}${middle}${last}` });
   };
 
-  const onDragDropUpload = useCallback((file: File) => uploadImage(file), [uploadImage]);
+  const handleDragDropUpload = useCallback((file: File) => uploadImage(file), [uploadImage]);
 
   const handleDocsContentsChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setDocs((prev) => ({ ...prev, contents: autoClosingTag(e).replaceAll("<br>", "\n") }));
   };
 
   const handleCreateDocsClick = async () => {
-    const isInvalid =
+    if (!docs.title.trim()) return openToast("제목을 입력해주세요!");
+    if (!docs.enroll) return openToast("문서 연도를 선택해주세요!");
+    if (!docs.docsType) return openToast("문서 분류를 선택해주세요!");
+    if (!docs.contents.trim()) return openToast("내용을 입력해주세요!");
+
+    const isInvalidTitle =
       docs.title.includes("#") ||
       docs.title.includes("?") ||
       docs.title.includes("/") ||
       docs.title.includes("\\") ||
       docs.title.includes("%");
-    if (!docs.title.trim()) return toast(<Toastify content="제목을 입력해주세요!" />);
-    if (isInvalid) return toast(<Toastify content="문서명에는 #, ?, /를 넣을 수 없습니다." />);
-    if (!docs.enroll) return toast(<Toastify content="문서 연도를 선택해주세요!" />);
-    if (!docs.docsType) return toast(<Toastify content="문서 분류를 선택해주세요!" />);
-    if (!docs.contents.trim()) return toast(<Toastify content="내용을 입력해주세요!" />);
-    try {
-      const classify = CLASSIFY[docs.docsType];
-      await create({ ...docs, docsType: classify });
-      toast(<Toastify content="문서가 생성되었습니다!" />);
-      queryClient.invalidateQueries(docsQuery.list(classify.toLowerCase()));
-      queryClient.invalidateQueries(docsQuery.lastModified(0));
-      router.push(`/docs/${docs.title}`);
-    } catch (err) {
-      if (err instanceof AxiosError) toast(<Toastify content={err.response?.data.message} />);
-    }
+    if (isInvalidTitle) return openToast("문서명에는 #, ?, /를 넣을 수 없습니다.");
+
+    docs.docsType = CLASSIFY[docs.docsType];
+    await create(docs, {
+      onSuccess: () => {
+        queryClient.invalidateQueries(docsQuery.list(docs.docsType.toLowerCase()));
+        queryClient.invalidateQueries(docsQuery.lastModified(0));
+        openToast("문서가 생성되었습니다!");
+        router.push(`/docs/${docs.title}`);
+      },
+      onError: (err) => {
+        if (err instanceof AxiosError) openToast(err.response?.data.message);
+      },
+    });
   };
 
   const handleEditDocsClick = async () => {
-    if (contents === docs.contents.trim())
-      return toast(<Toastify content="변경된 사항이 없습니다!" />);
+    if (contents === docs.contents.trim()) return openToast("변경된 사항이 없습니다!");
 
-    try {
-      await update(docs);
-      toast(<Toastify content="문서가 수정되었습니다!" />);
-      queryClient.invalidateQueries(docsQuery.title(encodeURI(docs.title)));
-      queryClient.invalidateQueries(docsQuery.lastModified(0));
-      router.push(`/docs/${docs.title}`);
-    } catch (err) {
-      if (err instanceof AxiosError) toast(<Toastify content={err.response?.data.message} />);
-    }
+    await update(docs, {
+      onSuccess: () => {
+        openToast("문서가 수정되었습니다!");
+        queryClient.invalidateQueries(docsQuery.title(encodeURI(docs.title)));
+        queryClient.invalidateQueries(docsQuery.lastModified(0));
+        router.push(`/docs/${docs.title}`);
+      },
+      onError: (err) => {
+        if (err instanceof AxiosError) openToast(err.response?.data.message);
+      },
+    });
   };
 
-  const setDocsType = (type: string) => {
+  const setDocsType = (selectedDocsType: string) => {
     if (docs.docsType === "틀") setDocs((prev) => ({ ...prev, contents: "" }));
-    setDocs((prev) => ({ ...prev, docsType: type }));
+    setDocs((prev) => ({ ...prev, docsType: selectedDocsType }));
   };
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.editorBox}>
+      <main className={styles.container}>
+        <section className={styles.editorBox}>
           <input
             onChange={({ target: { value } }) => setDocs((prev) => ({ ...prev, title: value }))}
             value={docs.title}
@@ -197,8 +195,8 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
               className={styles.textarea}
             />
           )}
-        </div>
-        <div className={styles.previewBox}>
+        </section>
+        <section className={styles.previewBox}>
           <h1 className={styles.previewTitle}>{docs.title}</h1>
           {docs.docsType && (
             <div className={styles.classifyBox}>
@@ -206,24 +204,23 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
             </div>
           )}
           {["틀", "FRAME"].includes(docs.docsType) ? (
-            <div className={styles.preview}>
+            <section className={styles.preview}>
               <FrameEncoder
                 title={docs.title}
                 contents={docs.contents}
                 docsType={docs.docsType}
                 mode="WRITE"
               />
-            </div>
+            </section>
           ) : (
-            <div
+            <section
               className={styles.preview}
-              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: documentCompiler(docs.contents),
               }}
             />
           )}
-        </div>
+        </section>
         {mode === "EDIT" ? (
           <button onClick={handleEditDocsClick} className={styles.writeButton}>
             편집하기
@@ -234,9 +231,9 @@ const Editor = memo(({ contents = "", title = "", docsType = "", mode }: EditorP
           </button>
         )}
         <DocsExample />
-      </div>
-      <DragDropUpload onUpload={onDragDropUpload} />
-      <PasteUpload onUpload={onDragDropUpload} />
+      </main>
+      <DragDropUpload onUpload={handleDragDropUpload} />
+      <PasteUpload onUpload={handleDragDropUpload} />
     </>
   );
 });

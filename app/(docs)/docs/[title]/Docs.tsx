@@ -93,11 +93,7 @@ const Docs: FC<{ title: string; list: string[] }> = ({ title, list }) => {
                     />
                   ),
               )}
-              <div
-                className={styles.body}
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={sanitizeData()}
-              />
+              <div className={styles.body} dangerouslySetInnerHTML={sanitizeData()} />
             </>
           )}
           <div className={styles.contributorsBox}>

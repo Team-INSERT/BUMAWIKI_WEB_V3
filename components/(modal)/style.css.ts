@@ -1,5 +1,6 @@
 import { flex, font, theme } from "@/styles";
-import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
+import StyleVariantsType from "@/types/styleVariants.interface";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 export const background = style({
   width: "100vw",
@@ -47,7 +48,7 @@ const buttonBase = style({
   ...font.btn1,
 });
 
-export const button = styleVariants<Record<string, ComplexStyleRule>>({
+export const button = styleVariants<StyleVariantsType>({
   confirm: [buttonBase, { backgroundColor: theme.primary, color: theme.white }],
   cancel: [buttonBase, { backgroundColor: theme.line, color: theme.black }],
 });

@@ -41,10 +41,7 @@ const FrameEncoder = ({ title, contents, docsType, mode }: DocsPropsType) => {
                   style={{ borderColor: theme }}
                   aria-label="present td's content"
                 >
-                  <div
-                    // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{ __html: documentCompiler(col.content) }}
-                  />
+                  <div dangerouslySetInnerHTML={{ __html: documentCompiler(col.content) }} />
                 </td>
               ))}
             </tr>

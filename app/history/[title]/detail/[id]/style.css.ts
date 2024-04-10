@@ -1,5 +1,6 @@
 import { flex, font, theme } from "@/styles";
-import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
+import StyleVariantsType from "@/types/styleVariants.interface";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 export const container = style({
   width: "100%",
@@ -34,7 +35,7 @@ const historyBase = style({
   ...flex.VERTICAL,
 });
 
-export const history = styleVariants<Record<string, ComplexStyleRule>>({
+export const history = styleVariants<StyleVariantsType>({
   INSERT: [historyBase, { background: theme.insert }],
   DELETE: [historyBase, { background: theme.delete }],
   EQUAL: [historyBase, { background: theme.equal }],
@@ -46,7 +47,7 @@ const historyOperationBase = style({
   ...flex.CENTER,
 });
 
-export const historyOperation = styleVariants<Record<string, ComplexStyleRule>>({
+export const historyOperation = styleVariants<StyleVariantsType>({
   INSERT: [historyOperationBase, { background: theme.insert }],
   DELETE: [historyOperationBase, { background: theme.delete }],
   EQUAL: [historyOperationBase, { background: theme.equal }],

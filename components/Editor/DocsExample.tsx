@@ -3,7 +3,58 @@ import { toast } from "react-toastify";
 import { ArrowIcon } from "@/assets";
 import { documentCompiler } from "@/utils";
 import Toastify from "../Toastify";
-import * as styles from "./style.css";
+import * as styles from "./DocsExample.css";
+
+const DocsExample = () => {
+  const [isExampleOpen, setIsExampleOpen] = useState(false);
+  const arrowDirection = isExampleOpen ? "down" : "up";
+
+  const handleTagCopyClick = async (tag: string) => {
+    await navigator.clipboard.writeText(`<${tag}></${tag}>`);
+    toast(<Toastify content="클립보드에 복사되었어요!" />);
+  };
+
+  return (
+    <>
+      <header
+        onClick={() => setIsExampleOpen((prev) => !prev)}
+        className={styles.wikiBoxHeader[String(isExampleOpen)]}
+      >
+        <span className={styles.wikiTitle}>부마위키 문법 예제 보기</span>
+        <ArrowIcon
+          direction={arrowDirection}
+          fill="white"
+          width={16}
+          height={16}
+          viewBox="0 0 30 16"
+        />
+      </header>
+      {isExampleOpen && (
+        <section className={styles.footer.body}>
+          {wikiExampleList.map((list, index) => (
+            <ul className={styles.footer.wrap} key={index}>
+              {list.map((ex) => (
+                <li className={styles.footer.box} key={ex.name}>
+                  <hgroup className={styles.footer.tHead}>{ex.name}</hgroup>
+                  <section
+                    className={styles.footer.tItem}
+                    onClick={() => handleTagCopyClick(ex.name)}
+                  >
+                    <figure className={styles.footer.tCell.top}>{ex.example}</figure>
+                    <figure
+                      className={styles.footer.tCell.bottom}
+                      dangerouslySetInnerHTML={{ __html: documentCompiler(ex.example) }}
+                    />
+                  </section>
+                </li>
+              ))}
+            </ul>
+          ))}
+        </section>
+      )}
+    </>
+  );
+};
 
 const wikiExampleList = [
   [
@@ -32,55 +83,4 @@ const wikiExampleList = [
     },
   ],
 ];
-
-const DocsExample = () => {
-  const [isExampleOpen, setIsExampleOpen] = useState(false);
-  const handleTagCopyClick = async (tag: string) => {
-    await navigator.clipboard.writeText(`<${tag}></${tag}>`);
-    toast(<Toastify content="클립보드에 복사되었어요!" />);
-  };
-
-  return (
-    <>
-      <header
-        onClick={() => setIsExampleOpen((prev) => !prev)}
-        className={styles.wikiBoxHeader[String(isExampleOpen)]}
-      >
-        <span className={styles.wikiTitle}>부마위키 문법 예제 보기</span>
-        <ArrowIcon
-          direction={isExampleOpen ? "down" : "up"}
-          fill="white"
-          width={16}
-          height={16}
-          viewBox="0 0 30 16"
-        />
-      </header>
-      {isExampleOpen && (
-        <main className={styles.footer.body}>
-          {wikiExampleList.map((list, index) => (
-            <div className={styles.footer.wrap} key={index}>
-              {list.map((ex) => (
-                <article className={styles.footer.box} key={ex.name}>
-                  <hgroup className={styles.footer.tHead}>{ex.name}</hgroup>
-                  <section
-                    className={styles.footer.tItem}
-                    onClick={() => handleTagCopyClick(ex.name)}
-                  >
-                    <figure className={styles.footer.tCell.top}>{ex.example}</figure>
-                    <figure
-                      className={styles.footer.tCell.bottom}
-                      // eslint-disable-next-line react/no-danger
-                      dangerouslySetInnerHTML={{ __html: documentCompiler(ex.example) }}
-                    />
-                  </section>
-                </article>
-              ))}
-            </div>
-          ))}
-        </main>
-      )}
-    </>
-  );
-};
-
 export default DocsExample;
