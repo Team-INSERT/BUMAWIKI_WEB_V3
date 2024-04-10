@@ -1,7 +1,7 @@
 import { style } from "@vanilla-extract/css";
 import { flex, theme } from "@/styles";
 
-export const scrollButtonWrap = style({
+export const container = style({
   position: "fixed",
   left: "2%",
   bottom: "3%",
@@ -10,11 +10,6 @@ export const scrollButtonWrap = style({
 });
 
 export const scrollButton = style({
-  selectors: {
-    "&:first-child": {
-      borderRight: "none",
-    },
-  },
   width: "40px",
   height: "40px",
   background: theme.primary,
@@ -22,4 +17,8 @@ export const scrollButton = style({
   border: `2px solid ${theme.gray}`,
   cursor: "pointer",
   ...flex.CENTER,
+
+  ":first-child": {
+    borderRight: "none",
+  },
 });

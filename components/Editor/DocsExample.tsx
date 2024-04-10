@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { ArrowIcon } from "@/assets";
+import { theme } from "@/styles";
 import { documentCompiler } from "@/utils";
 import Toastify from "../Toastify";
 import * as styles from "./DocsExample.css";
@@ -23,7 +24,7 @@ const DocsExample = () => {
         <span className={styles.wikiTitle}>부마위키 문법 예제 보기</span>
         <ArrowIcon
           direction={arrowDirection}
-          fill="white"
+          fill={theme.white}
           width={16}
           height={16}
           viewBox="0 0 30 16"
@@ -83,4 +84,5 @@ const wikiExampleList = [
     },
   ],
 ];
+
 export default DocsExample;
