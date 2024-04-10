@@ -8,29 +8,13 @@ export const container = style({
   position: "absolute",
   top: "0",
   left: "0",
-  ...flex.FLEX,
-});
-
-export const contentBox = style({
-  width: "100%",
+  borderRight: `8px solid ${theme.primary}`,
   gap: "5%",
   padding: "5%",
   ...flex.VERTICAL,
 });
 
 export const content = style({
-  ...font.p1,
-  fontWeight: "700",
+  ...font.H5,
   ...flex.BETWEEN,
-});
-
-export const sideBar = style({
-  width: "4%",
-  height: "100%",
-  backgroundColor: theme.primary,
-});
-
-export const icon = style({
-  width: "23px",
-  height: "23px",
 });

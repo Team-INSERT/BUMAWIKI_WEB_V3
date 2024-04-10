@@ -143,13 +143,11 @@ button {
 
 /* toastify */
 
-.toastify {
-  margin-top: 30px;
-}
-
 .toastify .Toastify__toast {
   background-color: white;
+  top: 40px;
   right: 80px;
   width: 400px;
   color: #274168;
+  border-radius: 0px;
 }
