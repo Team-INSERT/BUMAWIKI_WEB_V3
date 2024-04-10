@@ -1,5 +1,6 @@
 import { flex, font, theme } from "@/styles";
-import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
+import StyleVariantsType from "@/types/styleVariants.interface";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 export const tradeListBox = style({
   width: "100%",
@@ -63,7 +64,7 @@ export const tradeStatusCircleBase = style({
   borderRadius: "999px",
 });
 
-export const tradeStatusCircle = styleVariants<Record<string, ComplexStyleRule>>({
+export const tradeStatusCircle = styleVariants<StyleVariantsType>({
   BUYING: [tradeStatusCircleBase, { backgroundColor: theme.insert }],
   SELLING: [tradeStatusCircleBase, { backgroundColor: theme.insert }],
   BOUGHT: [tradeStatusCircleBase, { backgroundColor: theme.buy }],

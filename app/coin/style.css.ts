@@ -1,5 +1,6 @@
 import { flex, font, theme } from "@/styles";
-import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
+import StyleVariantsType from "@/types/styleVariants.interface";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 export const informationContainer = style({
   width: "100%",
@@ -69,7 +70,7 @@ export const tradeToggleBase = style({
   },
 });
 
-export const tradeToggle = styleVariants<Record<string, ComplexStyleRule>>({
+export const tradeToggle = styleVariants<StyleVariantsType>({
   BUY: [tradeToggleBase, { borderBottom: `3px solid ${theme.buy}`, color: theme.buy }],
   SELL: [tradeToggleBase, { borderBottom: `3px solid ${theme.sell}`, color: theme.sell }],
   DISABLED: [tradeToggleBase, { borderBottom: `3px solid transparent`, color: theme.gray }],

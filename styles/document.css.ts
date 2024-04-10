@@ -3,7 +3,7 @@ import { theme, font, flex } from ".";
 
 export const details = style({
   width: "100%",
-  paddingBottom: "50px",
+  paddingBottom: "10px",
 });
 
 export const summary = style({

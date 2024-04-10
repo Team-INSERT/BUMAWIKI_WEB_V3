@@ -30,6 +30,7 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/jsx-no-useless-fragment": 0,
     "react/jsx-key": 1,
+    "react/no-danger": 0,
     "react/button-has-type": 0,
     "@typescript-eslint/no-use-before-define": "off",
     "react/jsx-filename-extension": [1, { extensions: [".ts", ".tsx"] }], // should add ".ts" if typescript project

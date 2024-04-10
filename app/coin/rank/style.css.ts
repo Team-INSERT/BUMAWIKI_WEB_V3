@@ -1,5 +1,6 @@
 import { flex, font, theme } from "@/styles";
-import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
+import StyleVariantsType from "@/types/styleVariants.interface";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 export const rankingBox = style({
   width: "100%",
@@ -42,7 +43,7 @@ const rankingListItemRankTextBase = style({
   ...font.H4,
 });
 
-export const rankingListItemRankText = styleVariants<Record<string, ComplexStyleRule>>({
+export const rankingListItemRankText = styleVariants<StyleVariantsType>({
   1: [rankingListItemRankTextBase, { ...font.H2 }],
   2: [rankingListItemRankTextBase, { ...font.H3 }],
   default: [rankingListItemRankTextBase],
@@ -53,7 +54,7 @@ const rankingListItemNameTextBase = style({
   ...font.H5,
 });
 
-export const rankingListItemNameText = styleVariants<Record<string, ComplexStyleRule>>({
+export const rankingListItemNameText = styleVariants<StyleVariantsType>({
   1: [rankingListItemNameTextBase, { ...font.H3 }],
   2: [rankingListItemNameTextBase, { ...font.H4 }],
   default: [rankingListItemNameTextBase],
@@ -77,7 +78,7 @@ const tierBase = style({
   height: "auto",
 });
 
-export const tier = styleVariants<Record<string, ComplexStyleRule>>({
+export const tier = styleVariants<StyleVariantsType>({
   1: [tierBase, { width: "80px" }],
   2: [tierBase, { width: "70px" }],
   3: [tierBase, { width: "60px" }],
