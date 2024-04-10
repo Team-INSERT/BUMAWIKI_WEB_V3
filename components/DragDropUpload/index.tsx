@@ -11,7 +11,6 @@ const DragDropUpload: FC<{
   useEffect(() => {
     const onDrop = (e: DragEvent) => {
       e.preventDefault();
-      e.stopPropagation();
 
       const { files } = e.dataTransfer || { files: null };
       if (!files) return;
