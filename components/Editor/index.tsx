@@ -7,7 +7,7 @@ import { EditorType } from "@/enum";
 import Editor from "./Editor";
 
 type EditMode = { mode: EditorType.EDIT; title: string };
-type CreateMode = { mode: EditorType.CREATE; title: undefined };
+type CreateMode = { mode: EditorType.CREATE; title?: undefined };
 
 const EditorContainer: FC<EditMode | CreateMode> = ({ title, mode }) => {
   const { data, isSuccess } = useQuery({

@@ -1,4 +1,5 @@
 import EditorContainer from "@/components/Editor";
+import { EditorType } from "@/enum";
 import { generateOpenGraph } from "@/utils";
 
 export const metadata = generateOpenGraph({
@@ -7,7 +8,7 @@ export const metadata = generateOpenGraph({
 });
 
 const Page = () => {
-  return <EditorContainer mode="CREATE" />;
+  return <EditorContainer mode={EditorType.CREATE} />;
 };
 
 export default Page;
