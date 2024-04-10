@@ -5,12 +5,11 @@ import { theme } from "@/styles";
 import * as styles from "./style.css";
 
 const ScrollButton = () => {
-  const { scrollHeight } = document.documentElement;
-
   const scrollToTop = () => {
     window.scroll({ top: 0, behavior: "smooth" });
   };
   const scrollToBottom = () => {
+    const { scrollHeight } = document.documentElement;
     window.scroll({ top: scrollHeight, behavior: "smooth" });
   };
 
