@@ -76,10 +76,15 @@ export const enrollList = style({
   color: theme.boldgray,
   ...flex.VERTICAL,
   ...font.H3_1,
+
+  ":before": {
+    content: "|",
+  },
 });
 
 const yearBase = style({
   cursor: "pointer",
+  ...font.H4,
 
   ":hover": {
     color: theme.primary,
