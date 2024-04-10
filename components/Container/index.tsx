@@ -6,18 +6,17 @@ import useUser from "@/hooks/useUser";
 import { useDeleteDocsMutation } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import { CLASSIFY } from "@/record/docsType.record";
+import useModal from "@/hooks/useModal";
 import { useDate } from "@/hooks/useDate";
 import * as styles from "./style.css";
 import Toastify from "../Toastify";
-import Confirm from "../(modal)/Confirm";
 
 interface Props extends PropsWithChildren {
-  docsType: string;
   title: string;
+  docsType: string;
   lastModifiedAt?: Date;
   docsDetail?: boolean;
   id?: number;
@@ -27,7 +26,7 @@ const Container = ({ docsType, title, lastModifiedAt, docsDetail, id, children }
   const { mutate } = useDeleteDocsMutation();
   const { formatDate } = useDate();
   const { isAdmin, user, isLoggedIn } = useUser();
-  const { openModal } = useModal();
+  const { openConfirm } = useModal();
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -44,8 +43,9 @@ const Container = ({ docsType, title, lastModifiedAt, docsDetail, id, children }
   };
 
   const handleDeleteDocsClick = () => {
-    openModal({
-      component: <Confirm content="정말 문서를 삭제하시겠습니까?" onConfirm={deleteDocs} />,
+    openConfirm({
+      content: "정말 문서를 삭제하시겠습니까?",
+      onConfirm: deleteDocs,
     });
   };
 
@@ -82,7 +82,7 @@ const Container = ({ docsType, title, lastModifiedAt, docsDetail, id, children }
         )}
       </hgroup>
       <div className={styles.classifyBox}>
-        분류 : <span className={styles.classify}>{CLASSIFY[docsType]}</span>
+        분류 : <span className={styles.classify}>{CLASSIFY[docsType] || docsType}</span>
       </div>
       <main className={styles.main}>{children}</main>
     </div>

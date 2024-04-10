@@ -6,20 +6,20 @@ import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-quer
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
 import useModal from "@/hooks/useModal";
-import Confirm from "@/components/(modal)/Confirm";
 import { toast } from "react-toastify";
 import Toastify from "@/components/Toastify";
 import { priceComma } from "@/utils";
 import {
   useBuyCoinMutation,
+  useCreateCoinWalletMutation,
   useDailyRewardMutation,
   useSellMutation,
 } from "@/services/coin/coin.mutation";
-import CreateCoinAccount from "@/components/(modal)/CreateCoinAccount";
 import { AxiosError, isAxiosError } from "axios";
 import Accordion from "@/components/Accordion";
 import Link from "next/link";
 import WalletIcon from "@/assets/WalletIcon";
+import { PartyIcon } from "@/assets";
 import * as styles from "./style.css";
 import Graph from "./Graph";
 import TradeHistory from "./TradeHistory";
@@ -52,14 +52,17 @@ const Coin = () => {
   const { mutate: dailyReward } = useDailyRewardMutation();
   const { mutate: buy } = useBuyCoinMutation();
   const { mutate: sell } = useSellMutation();
+  const { mutate: signup } = useCreateCoinWalletMutation();
 
-  const { openModal } = useModal();
+  const { openConfirm } = useModal();
   const [tradeMode, setTradeMode] = useState("BUY");
   const [requestAmount, setRequestAmount] = useState(0);
 
   if (isAxiosError(error) && error.response?.data.status === 404) {
-    openModal({
-      component: <CreateCoinAccount />,
+    openConfirm({
+      icon: <PartyIcon />,
+      content: "지금 바로 부마코인을 시작해보세요!\n기본지원금 1000만원을 드려요 😎",
+      onConfirm: signup,
     });
     return <div>코인 계정 생성 후 이용해주세요.</div>;
   }
@@ -86,25 +89,17 @@ const Coin = () => {
 
   const handleBuyTradeButtonClick = () => {
     if (!requestAmount) return toast(<Toastify content="수량을 입력해주세요." />);
-    openModal({
-      component: (
-        <Confirm
-          content={`${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매수합니다.`}
-          onConfirm={() => buy({ marketPrice: market.price, requestAmount }, handleTradeSuccess())}
-        />
-      ),
+    openConfirm({
+      content: `${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매수합니다.`,
+      onConfirm: () => buy({ marketPrice: market.price, requestAmount }, handleTradeSuccess()),
     });
   };
 
   const handleSellTradeButtonClick = () => {
     if (!requestAmount) return toast(<Toastify content="수량을 입력해주세요." />);
-    openModal({
-      component: (
-        <Confirm
-          content={`${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매도합니다.`}
-          onConfirm={() => sell({ marketPrice: market.price, requestAmount }, handleTradeSuccess())}
-        />
-      ),
+    openConfirm({
+      content: `${priceComma(requestAmount)}주를 주당 ${priceComma(market.price)}원에 매도합니다.`,
+      onConfirm: () => sell({ marketPrice: market.price, requestAmount }, handleTradeSuccess()),
     });
   };
 

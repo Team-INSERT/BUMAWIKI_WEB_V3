@@ -14,4 +14,5 @@ export const userContext = atom({
 
 export const modalContext = atom<ModalState>({
   component: null,
+  visible: false,
 });

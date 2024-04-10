@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import useModal from "@/hooks/useModal";
 import {
   cancelTrade,
   requestBuyCoin,
@@ -8,11 +9,13 @@ import {
 } from "./coin.api";
 
 export const useCreateCoinWalletMutation = () => {
+  const { closeModal } = useModal();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: requestCreateCoinWallet,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["query.myWallet"] });
+      closeModal();
     },
   });
 };
