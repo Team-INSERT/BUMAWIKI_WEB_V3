@@ -14,7 +14,7 @@ export const useDate = () => {
 
   const getValidYearList = () => {
     const CURRENT_YEAR = new Date().getFullYear();
-    const length = CURRENT_YEAR - 2022;
+    const length = CURRENT_YEAR - 2020;
 
     const validYearList = Array.from({ length }, (_, year) => CURRENT_YEAR - year);
     return validYearList;

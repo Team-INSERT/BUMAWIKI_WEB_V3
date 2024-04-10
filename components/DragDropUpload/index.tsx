@@ -1,92 +1,80 @@
 import { FC, useEffect, useRef, useState } from "react";
 import * as styles from "./style.css";
 
-export interface DragDropUploadProps {
+const DragDropUpload: FC<{
   onUpload: (file: File) => unknown;
-}
-const DragDropUpload: FC<DragDropUploadProps> = ({ onUpload }) => {
-  const dragIndex = useRef(0);
+}> = ({ onUpload }) => {
+  const dragIndexRef = useRef(0);
   const down = useRef(false);
   const [dragging, setDragging] = useState(false);
 
-  useEffect(
-    function setEvent() {
-      const onDrop = (e: DragEvent) => {
-        e.preventDefault();
-        const { files } = e.dataTransfer || { files: null };
-        if (!files) return;
-        if (!files[0]) return;
-        onUpload(files[0]);
+  useEffect(function setDragDropEvent() {
+    const onDrop = (e: DragEvent) => {
+      e.preventDefault();
 
-        dragIndex.current = 0;
-        setDragging(false);
-        e.stopPropagation();
-      };
+      const { files } = e.dataTransfer || { files: null };
+      if (!files) return;
+      dragIndexRef.current = 0;
+      onUpload(files[0]);
+      setDragging(false);
+    };
 
-      const onMouseDown = () => {
-        down.current = true;
-      };
-      const onMouseUp = () => {
-        down.current = false;
-      };
-      const onDragEnter = () => {
-        if (down.current) return;
-        dragIndex.current += 1;
-        if (dragIndex.current === 1) {
-          setDragging(true);
-        }
-      };
+    const onMouseDown = () => {
+      down.current = true;
+    };
 
-      const onDragOver = (e: DragEvent) => {
-        e.preventDefault();
-        if (e.dataTransfer) {
-          e.dataTransfer.dropEffect = "copy";
-        }
-        if (!dragging) {
-          setDragging(true);
-        }
-      };
+    const onMouseUp = () => {
+      down.current = false;
+    };
 
-      const onDragLeave = () => {
-        if (down.current) return;
-        dragIndex.current -= 1;
-        if (dragIndex.current === 0) {
-          setDragging(false);
-        }
-      };
+    const onDragEnter = () => {
+      if (down.current) return;
+      if (!dragIndexRef.current) setDragging(true);
+      dragIndexRef.current += 1;
+    };
 
-      const onMouseLeave = () => {
-        if (dragging) {
-          setDragging(false);
-        }
-      };
+    const onDragOver = (e: DragEvent) => {
+      e.preventDefault();
+      const { dataTransfer } = e;
+      if (dataTransfer) dataTransfer.dropEffect = "copy";
+      if (!dragging) setDragging(true);
+    };
 
-      window.addEventListener("drop", onDrop);
-      window.addEventListener("dragover", onDragOver);
-      window.addEventListener("mousedown", onMouseDown);
-      window.addEventListener("mouseup", onMouseUp);
-      window.addEventListener("dragenter", onDragEnter);
-      window.addEventListener("dragleave", onDragLeave);
-      document.addEventListener("mouseleave", onMouseLeave);
+    const onDragLeave = () => {
+      if (down.current) return;
+      if (dragIndexRef.current === 1) setDragging(false);
+      dragIndexRef.current -= 1;
+    };
 
-      return () => {
-        window.removeEventListener("drop", onDrop);
-        window.removeEventListener("dragover", onDragOver);
-        window.removeEventListener("mousedown", onMouseDown);
-        window.removeEventListener("mouseup", onMouseUp);
-        window.removeEventListener("dragenter", onDragEnter);
-        window.removeEventListener("dragleave", onDragLeave);
-        document.removeEventListener("mouseleave", onMouseLeave);
-      };
-    },
-    [dragging, onUpload],
-  );
+    const onMouseLeave = () => {
+      if (dragging) setDragging(false);
+    };
 
-  return dragging ? (
-    <div className={styles.dragDropUploadBlock}>
-      <input type="file" className={styles.invisibleInput} />
-    </div>
-  ) : null;
+    window.addEventListener("drop", onDrop);
+    window.addEventListener("dragover", onDragOver);
+    window.addEventListener("dragenter", onDragEnter);
+    window.addEventListener("dragleave", onDragLeave);
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mouseleave", onMouseLeave);
+
+    return () => {
+      window.removeEventListener("drop", onDrop);
+      window.removeEventListener("dragover", onDragOver);
+      window.removeEventListener("dragenter", onDragEnter);
+      window.removeEventListener("dragleave", onDragLeave);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("mouseleave", onMouseLeave);
+    };
+  }, [dragging, onUpload]);
+
+  if (dragging)
+    return (
+      <div className={styles.dragDropUploadBlock}>
+        <input type="file" className={styles.invisibleInput} />
+      </div>
+    );
 };
 
 export default DragDropUpload;
