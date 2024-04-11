@@ -7,33 +7,33 @@ export interface PasteUploadProps {
 const PasteUpload: FC<PasteUploadProps> = ({ onUpload }) => {
   useEffect(() => {
     const onPaste: EventListener = (e) => {
+      e.preventDefault();
       const { clipboardData } = e as ClipboardEvent;
       if (!clipboardData) return;
 
       const { items } = clipboardData;
-      if (items.length === 0) return;
+      if (!items.length) return;
 
       const itemsArray = (() => {
         const array = [];
-        for (let i = 0; i < items.length; i += 1) {
-          array.push(items[i]);
-        }
+        for (let i = 0; i < items.length; i += 1) array.push(items[i]);
         return array;
       })();
 
-      const fileItem = itemsArray.filter((item) => item.kind === "file")[0];
+      const [fileItem] = itemsArray.filter((item) => item.kind === "file");
       if (!fileItem || !fileItem.getAsFile) return;
+
       const file = fileItem.getAsFile();
       if (!file) return;
       onUpload(file);
-      e.preventDefault();
     };
+
     window.addEventListener("paste", onPaste);
     return () => {
       window.removeEventListener("paste", onPaste);
     };
   }, [onUpload]);
-  return null;
+  return <></>;
 };
 
 export default PasteUpload;
