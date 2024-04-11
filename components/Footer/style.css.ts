@@ -9,24 +9,12 @@ export const container = style({
   ...flex.COLUMN_CENTER,
 });
 
-export const footerLinkBox = style({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+export const githubLink = style({
   padding: "10px 0",
-});
-
-export const separator = style({
-  margin: "0 20px 0 20px",
-  width: "2px",
-  height: "25px",
-  backgroundColor: "black",
-});
-
-export const informationBox = style({
-  marginTop: "12px",
+  ...flex.CENTER,
 });
 
 export const information = style({
+  marginTop: "12px",
   ...font.context,
 });
