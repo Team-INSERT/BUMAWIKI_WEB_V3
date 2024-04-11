@@ -11,21 +11,6 @@ export const container = style({
   ...flex.BETWEEN,
 });
 
-export const navigationList = style({
-  gap: "4.5vw",
-  ...flex.HORIZONTAL,
-});
-
-export const navigationItem = style({
-  color: theme.white,
-  fontWeight: 600,
-  gap: "6px",
-  ...flex.VERTICAL,
-  ":hover": {
-    opacity: 0.8,
-  },
-});
-
 export const searchBox = style({
   position: "relative",
   ...flex.END,
@@ -56,11 +41,6 @@ export const utilityBox = style({
   gap: "24px",
 });
 
-export const loginUtilityBox = style({
-  gap: "18px",
-  ...flex.VERTICAL,
-});
-
 export const writeButton = style({
   padding: "8px 14px",
   color: theme.primary,
@@ -72,4 +52,19 @@ export const writeButton = style({
 export const textarea = style({
   width: "100%",
   height: "100%",
+});
+
+export const navigationList = style({
+  gap: "4.5vw",
+  ...flex.HORIZONTAL,
+});
+
+export const navigationItem = style({
+  color: theme.white,
+  fontWeight: 600,
+  gap: "6px",
+  ...flex.VERTICAL,
+  ":hover": {
+    opacity: 0.8,
+  },
 });
