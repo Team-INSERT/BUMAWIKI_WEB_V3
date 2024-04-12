@@ -1,4 +1,4 @@
-export interface DocsListItem {
+export default interface DocsListItemType {
   id: number;
   title: string;
   enroll: number;

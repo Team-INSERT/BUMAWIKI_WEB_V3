@@ -4,7 +4,7 @@ import { TOKEN } from "@/constants";
 import { userContext } from "@/context";
 import { getMyInformation } from "@/services/user/user.api";
 import { Storage } from "@/storage";
-import { UserType } from "@/types/user.interface";
+import { UserType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { useEffect } from "react";

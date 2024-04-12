@@ -1,4 +1,4 @@
-interface Contribute {
+export default interface ContributeType {
   userId: number;
   userNickName: string;
   docsId: number;
@@ -6,5 +6,3 @@ interface Contribute {
   title: string;
   versionDocsId: number;
 }
-
-export default Contribute;

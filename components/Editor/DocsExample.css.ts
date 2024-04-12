@@ -1,5 +1,5 @@
 import { flex, font, theme } from "@/styles";
-import StyleVariantsType from "@/types/styleVariants.interface";
+import StyleVariantsType from "@/types/styleVariants.type";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 const wikiBoxHeaderBase = style({
