@@ -11,7 +11,7 @@ import { docsQuery } from "@/services/docs/docs.query";
 import { useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { autoClosingTag, documentCompiler } from "@/utils";
-import { CLASSIFY } from "@/record/docsType.record";
+import { CLASSIFY } from "@/record";
 import { useDate, useModal } from "@/hooks";
 import { EditorType } from "@/enum";
 import DragDropUpload from "../DragDropUpload";

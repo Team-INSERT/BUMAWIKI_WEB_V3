@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import Container from "@/components/Container";
-import { CLASSIFY } from "@/record/docsType.record";
+import { CLASSIFY } from "@/record";
 import * as styles from "./style.css";
 
 const DocsList: FC<{ classify: string }> = ({ classify }) => {
