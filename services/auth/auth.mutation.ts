@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { Storage } from "@/storage";
-import { TOKEN } from "@/constants/token.constant";
+import { TOKEN } from "@/constants";
 import { requestLogin, requestLogout } from "./auth.api";
 
 export const useLoginMutation = () => {

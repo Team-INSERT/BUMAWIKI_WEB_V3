@@ -1,6 +1,6 @@
 "use client";
 
-import { TOKEN } from "@/constants/token.constant";
+import { TOKEN } from "@/constants";
 import { userContext } from "@/context";
 import { getMyInformation } from "@/services/user/user.api";
 import { Storage } from "@/storage";
