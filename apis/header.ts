@@ -1,4 +1,4 @@
-import { TOKEN } from "@/constants/token.constant";
+import { TOKEN } from "@/constants";
 import { Storage } from "@/storage";
 
 export const authorization = () => ({
