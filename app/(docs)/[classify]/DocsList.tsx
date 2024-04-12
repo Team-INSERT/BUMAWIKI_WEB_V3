@@ -3,7 +3,7 @@
 import Accordion from "@/components/Accordion";
 import { FC } from "react";
 import { tagRemover } from "@/utils";
-import { useDate } from "@/hooks/useDate";
+import { useDate } from "@/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { useSuspenseQuery } from "@tanstack/react-query";

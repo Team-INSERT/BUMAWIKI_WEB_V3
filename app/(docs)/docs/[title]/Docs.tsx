@@ -14,7 +14,7 @@ import { docsQuery } from "@/services/docs/docs.query";
 import { likeQuery } from "@/services/like/like.query";
 import Container from "@/components/Container";
 import { LikeIcon } from "@/assets";
-import useUser from "@/hooks/useUser";
+import { useUser } from "@/hooks";
 import Toastify from "@/components/Toastify";
 import { toast } from "react-toastify";
 import { useCreateLikeMutation, useDeleteLikeMutation } from "@/services/like/like.mutation";

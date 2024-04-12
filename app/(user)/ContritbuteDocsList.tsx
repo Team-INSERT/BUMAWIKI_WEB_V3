@@ -2,7 +2,7 @@ import Accordion from "@/components/Accordion";
 import { ContributeDocsType } from "@/types/contributeDocs.interface";
 import Link from "next/link";
 
-import { useDate } from "@/hooks/useDate";
+import { useDate } from "@/hooks";
 import * as styles from "./style.css";
 
 const ContritbuteDocsList = ({ contributes }: { contributes: Array<ContributeDocsType> }) => {

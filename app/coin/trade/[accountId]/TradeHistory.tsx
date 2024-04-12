@@ -6,7 +6,7 @@ import { coinQuery } from "@/services/coin/coin.query";
 import { priceComma } from "@/utils";
 import Image from "next/image";
 import Container from "@/components/Container";
-import { useDate } from "@/hooks/useDate";
+import { useDate } from "@/hooks";
 import { TRADE } from "@/record/trade.record";
 import * as styles from "../../TradeHistory.css";
 

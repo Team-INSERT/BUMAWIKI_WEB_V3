@@ -13,8 +13,7 @@ import {
   CoinIcon,
 } from "@/assets";
 import { useRouter } from "next/navigation";
-import useUser from "@/hooks/useUser";
-import useModal from "@/hooks/useModal";
+import { useUser, useModal } from "@/hooks";
 import * as styles from "./style.css";
 
 const Header = () => {

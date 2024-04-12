@@ -5,7 +5,7 @@ import { ChangeEvent, useState } from "react";
 import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
-import useModal from "@/hooks/useModal";
+import { useModal } from "@/hooks";
 import { toast } from "react-toastify";
 import Toastify from "@/components/Toastify";
 import { priceComma } from "@/utils";

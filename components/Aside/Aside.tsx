@@ -6,7 +6,7 @@ import { useState } from "react";
 import { DocsListItem } from "@/types/docsListItem.interface";
 import Link from "next/link";
 import { ArrowIcon } from "@/assets";
-import { useDate } from "@/hooks/useDate";
+import { useDate } from "@/hooks";
 import { theme } from "@/styles";
 import * as styles from "./style.css";
 
