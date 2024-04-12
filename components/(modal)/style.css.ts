@@ -1,5 +1,5 @@
 import { flex, font, theme } from "@/styles";
-import StyleVariantsType from "@/types/styleVariants.type";
+import { StyleVariantsType } from "@/types";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const background = style({
