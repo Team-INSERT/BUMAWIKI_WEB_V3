@@ -18,8 +18,7 @@ import {
 import { AxiosError, isAxiosError } from "axios";
 import Accordion from "@/components/Accordion";
 import Link from "next/link";
-import WalletIcon from "@/assets/WalletIcon";
-import { PartyIcon } from "@/assets";
+import { PartyIcon, WalletIcon } from "@/assets";
 import * as styles from "./style.css";
 import Graph from "./Graph";
 import TradeHistory from "./TradeHistory";
