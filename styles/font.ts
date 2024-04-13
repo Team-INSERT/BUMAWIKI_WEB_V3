@@ -15,6 +15,7 @@ const font = {
   D2: fontGenerator(700, 3.75, 130, -0.5),
   D3: fontGenerator(700, 3, 130, 0),
   D4: fontGenerator(700, 2.75, 130, 0),
+  D5: fontGenerator(700, 2.5, 130, 0),
 
   H1: fontGenerator(700, 2.25, 140, 0.25),
   H2: fontGenerator(700, 1.75, 140, 0),
