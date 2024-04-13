@@ -1,5 +1,5 @@
 import { keyframes, style } from "@vanilla-extract/css";
-import { theme, font, flex } from ".";
+import { theme, font, flex, screen } from ".";
 
 export const details = style({
   width: "100%",
@@ -28,6 +28,15 @@ export const summary = style({
     },
     [`${details}[open] > &:before`]: {
       background: "url('/assets/arrow_down.svg')",
+    },
+  },
+
+  "@media": {
+    [`screen and (max-width: ${screen.tablet})`]: {
+      lineHeight: "200%",
+    },
+    [`screen and (max-width: ${screen.phone})`]: {
+      lineHeight: "250%",
     },
   },
 });
