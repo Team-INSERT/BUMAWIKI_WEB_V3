@@ -1,10 +1,16 @@
 import { style } from "@vanilla-extract/css";
-import { flex, font, theme } from "@/styles";
+import { flex, font, theme, screen } from "@/styles";
 
 export const container = style({
   width: "300px",
   height: "540px",
   ...flex.COLUMN_FLEX,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      width: "100%",
+    },
+  },
 });
 
 export const lastModifiedBox = style({

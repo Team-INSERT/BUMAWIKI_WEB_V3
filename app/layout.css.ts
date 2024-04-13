@@ -1,4 +1,4 @@
-import { theme, flex } from "@/styles";
+import { theme, flex, screen } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -7,6 +7,12 @@ export const container = style({
   backgroundColor: theme.background,
   paddingTop: "52px",
   ...flex.FLEX,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      display: "inline",
+    },
+  },
 });
 
 export const aside = style({
@@ -18,8 +24,12 @@ export const aside = style({
   ...flex.COLUMN_FLEX,
 
   "@media": {
-    "screen and (max-width: 480px)": {
-      display: "none",
+    [`screen and (max-width: ${screen.phone})`]: {
+      top: "0",
+      position: "static",
+      width: "100%",
+      gap: "0",
+      marginBottom: "100px",
     },
   },
 });
