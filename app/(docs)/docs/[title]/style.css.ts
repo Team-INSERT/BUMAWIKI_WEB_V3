@@ -1,4 +1,4 @@
-import { flex, font, theme } from "@/styles";
+import { flex, font, theme, screen } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -44,6 +44,12 @@ export const contributorList = style({
   flexWrap: "wrap",
   gap: "12px",
   ...flex.VERTICAL,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      width: "100%",
+    },
+  },
 });
 
 export const contributor = style({
@@ -58,4 +64,10 @@ export const contributor = style({
 export const warning = style({
   color: theme.red,
   ...font.H6,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      ...font.p4,
+    },
+  },
 });
