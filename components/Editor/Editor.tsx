@@ -8,12 +8,11 @@ import {
 } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
 import { docsQuery } from "@/services/docs/docs.query";
-import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { autoClosingTag, documentCompiler } from "@/utils";
-import { CLASSIFY } from "@/record/docsType.record";
-import { useDate } from "@/hooks/useDate";
+import { CLASSIFY } from "@/record";
+import { useDate, useModal } from "@/hooks";
 import { EditorType } from "@/enum";
 import DragDropUpload from "../DragDropUpload";
 import PasteUpload from "../PasteUpload";

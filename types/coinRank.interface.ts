@@ -1,4 +1,4 @@
-export interface CoinRank {
+export default interface CoinRankType {
   coinAccountId: number;
   coin: number;
   money: number;

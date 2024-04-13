@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useModal from "@/hooks/useModal";
+import { useModal } from "@/hooks";
 import {
   cancelTrade,
   requestBuyCoin,

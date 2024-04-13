@@ -1,5 +1,4 @@
-import ModalState from "@/types/modal.interface";
-import { ContributeDocsType } from "@/types/contributeDocs.interface";
+import { ContributeDocsType, ModalState } from "@/types";
 import { atom } from "jotai";
 
 export const userContext = atom({

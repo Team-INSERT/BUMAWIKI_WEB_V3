@@ -1,4 +1,4 @@
-export interface ContributeDocsType {
+export default interface ContributeDocsType {
   userId: number;
   userNickName: string;
   docsId: number;

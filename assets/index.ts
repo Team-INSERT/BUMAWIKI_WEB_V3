@@ -14,6 +14,8 @@ export { default as SearchIcon } from "./SearchIcon";
 export { default as TeacherIcon } from "./TeacherIcon";
 export { default as WriteIcon } from "./WriteIcon";
 export { default as Logo } from "./Logo";
+export { default as RoundLogo } from "./RoundLogo";
 export { default as MyPageIcon } from "./MyPageIcon";
 export { default as PartyIcon } from "./PartyIcon";
 export { default as CoinIcon } from "./CoinIcon";
+export { default as WalletIcon } from "./WalletIcon";

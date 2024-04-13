@@ -5,7 +5,7 @@ import { ChangeEvent, useState } from "react";
 import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
-import useModal from "@/hooks/useModal";
+import { useModal } from "@/hooks";
 import { toast } from "react-toastify";
 import Toastify from "@/components/Toastify";
 import { priceComma } from "@/utils";
@@ -18,8 +18,7 @@ import {
 import { AxiosError, isAxiosError } from "axios";
 import Accordion from "@/components/Accordion";
 import Link from "next/link";
-import WalletIcon from "@/assets/WalletIcon";
-import { PartyIcon } from "@/assets";
+import { PartyIcon, WalletIcon } from "@/assets";
 import * as styles from "./style.css";
 import Graph from "./Graph";
 import TradeHistory from "./TradeHistory";

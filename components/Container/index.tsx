@@ -2,15 +2,13 @@
 
 import Link from "next/link";
 import { PropsWithChildren } from "react";
-import useUser from "@/hooks/useUser";
 import { useDeleteDocsMutation } from "@/services/docs/docs.mutation";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
-import { CLASSIFY } from "@/record/docsType.record";
-import useModal from "@/hooks/useModal";
-import { useDate } from "@/hooks/useDate";
+import { CLASSIFY } from "@/record";
+import { useDate, useModal, useUser } from "@/hooks";
 import * as styles from "./style.css";
 import Toastify from "../Toastify";
 

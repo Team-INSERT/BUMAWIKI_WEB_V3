@@ -1,10 +1,6 @@
 import { FC, useEffect } from "react";
 
-export interface PasteUploadProps {
-  onUpload: (file: File) => unknown;
-}
-
-const PasteUpload: FC<PasteUploadProps> = ({ onUpload }) => {
+const PasteUpload: FC<{ onUpload: (file: File) => unknown }> = ({ onUpload }) => {
   useEffect(() => {
     const onPaste: EventListener = (e) => {
       e.preventDefault();

@@ -3,10 +3,10 @@
 import { docsQuery } from "@/services/docs/docs.query";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { DocsListItem } from "@/types/docsListItem.interface";
+import { DocsListItemType } from "@/types";
 import Link from "next/link";
 import { ArrowIcon } from "@/assets";
-import { useDate } from "@/hooks/useDate";
+import { useDate } from "@/hooks";
 import { theme } from "@/styles";
 import * as styles from "./style.css";
 
@@ -30,7 +30,7 @@ const Aside = () => {
       <article className={styles.lastModifiedBox}>
         <header className={styles.header}>최근 변경</header>
         <ul className={styles.list}>
-          {lastModifiedList.map((docs: DocsListItem) => (
+          {lastModifiedList.map((docs: DocsListItemType) => (
             <Link href={`/docs/${docs.title}`} className={styles.listItem} key={docs.id}>
               <span className={styles.docsName}>{docs.title}</span>
               <time className={styles.docsLastModifiedAt}>{fromNow(docs.lastModifiedAt)}</time>

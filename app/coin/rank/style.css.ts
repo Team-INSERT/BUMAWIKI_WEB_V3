@@ -1,5 +1,5 @@
 import { flex, font, theme } from "@/styles";
-import StyleVariantsType from "@/types/styleVariants.interface";
+import { StyleVariantsType } from "@/types";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const rankingBox = style({

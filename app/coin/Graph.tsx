@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
 import { priceComma } from "@/utils";
-import { useDate } from "@/hooks/useDate";
+import { useDate } from "@/hooks";
 import {
   Chart as ChartJS,
   CategoryScale,

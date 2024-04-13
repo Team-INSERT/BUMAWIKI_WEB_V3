@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { HistoryType } from "@/types/history.interface";
+import { HistoryType } from "@/types";
 import { getHistoryDetail, getHistoryList } from "./history.api";
 
 export const historyQuery = {
