@@ -1,24 +1,40 @@
-import { flex, font, theme } from "@/styles";
+import { flex, font, theme, screen } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
-export const FrameDetails = style({
+export const container = style({
   width: "50vw",
+  overflowY: "auto",
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      width: "100%",
+      height: "30vh",
+    },
+  },
+});
+
+export const FrameDetails = style({
+  width: "100%",
   marginBottom: "1em",
 });
 
 export const FrameSummary = style({
   backgroundColor: theme.primary,
-  color: "white",
-  fontWeight: "700",
+  color: theme.white,
   padding: "10px",
-  fontSize: "20px",
   textAlign: "center",
   cursor: "pointer",
   position: "relative",
+  ...font.H3,
+  fontWeight: "700",
 
   "::marker": {
     content: "",
   },
+});
+
+export const fold = style({
+  ...font.H4,
 });
 
 export const ColorPicker = style({
@@ -125,7 +141,6 @@ export const TBody = style({
 
 export const AddColumn = style({
   width: "5%",
-  height: "100%",
   backgroundColor: theme.primary,
   cursor: "pointer",
   ...font.btn3,
@@ -157,7 +172,6 @@ export const Span = style({
 
 export const Bar = style({
   width: "5%",
-  height: "100%",
   backgroundColor: theme.primary,
 });
 
