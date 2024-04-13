@@ -1,4 +1,4 @@
-export const CLASSIFY = {
+const CLASSIFY = {
   MENTOR_TEACHER: "멘토 선생님",
   MAJOR_TEACHER: "전공교과 선생님",
   TEACHER: "보통교과 선생님",
@@ -20,3 +20,5 @@ export const CLASSIFY = {
   학생: "STUDENT",
   틀: "FRAME",
 } as Record<string, string>;
+
+export default CLASSIFY;

@@ -1,5 +1,5 @@
 import { http } from "@/apis";
-import { TOKEN } from "@/constants/token.constant";
+import { TOKEN } from "@/constants";
 import { Storage } from "@/storage";
 
 export const requestLogin = async (authCode: string) => {

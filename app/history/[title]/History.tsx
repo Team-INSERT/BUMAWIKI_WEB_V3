@@ -5,7 +5,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { historyQuery } from "@/services/history/history.query";
-import { useDate } from "@/hooks/useDate";
+import { useDate } from "@/hooks";
 import * as styles from "./style.css";
 
 const History = ({ title }: { title: string }) => {

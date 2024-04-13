@@ -1,4 +1,4 @@
-export interface TradeType {
+export default interface TradeType {
   id: number;
   coinPrice: number;
   coinCount: number;

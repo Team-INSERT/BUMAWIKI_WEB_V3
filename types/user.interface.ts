@@ -1,6 +1,6 @@
-import { ContributeDocsType } from "./contributeDocs.interface";
+import { ContributeDocsType } from ".";
 
-export interface UserType {
+export default interface UserType {
   id: number;
   nickName: string;
   authority: string;

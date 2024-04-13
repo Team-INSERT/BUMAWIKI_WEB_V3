@@ -1,6 +1,6 @@
-import { DocsListItem } from "./docsListItem.interface";
+import { DocsListItemType } from ".";
 
-export interface DocsListType {
-  data: Record<string, Array<DocsListItem>>;
+export default interface DocsListType {
+  data: Record<string, Array<DocsListItemType>>;
   keys: Array<string>;
 }

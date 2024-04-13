@@ -1,6 +1,6 @@
 import { http } from "@/apis";
 import { authorization } from "@/apis/header";
-import { CreateDocsType } from "@/types/createDocsType.interface";
+import { CreateDocsType } from "@/types";
 
 export const getDocsListByClassify = async (classify: string) => {
   const { data } = await http.get(`/docs/${classify}`);

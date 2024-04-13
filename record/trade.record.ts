@@ -1,4 +1,4 @@
-export const TRADE = {
+const TRADE = {
   BUYING: "구매 요청 중",
   SELLING: "판매 요청 중",
   BOUGHT: "구매 완료",
@@ -6,3 +6,5 @@ export const TRADE = {
   CANCELLED: "거래 취소",
   DELISTING: "상장 폐지",
 } as Record<string, string>;
+
+export default TRADE;

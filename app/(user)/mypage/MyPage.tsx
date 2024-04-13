@@ -6,7 +6,7 @@ import { useLogoutMutation } from "@/services/auth/auth.mutation";
 import { userQuery } from "@/services/user/user.query";
 import { useQueries } from "@tanstack/react-query";
 import { particle, 조사 } from "auto-particle";
-import { ROLE } from "@/record/role.record";
+import { ROLE } from "@/record";
 import Link from "next/link";
 import ContritbuteDocsList from "../ContritbuteDocsList";
 import * as styles from "../style.css";

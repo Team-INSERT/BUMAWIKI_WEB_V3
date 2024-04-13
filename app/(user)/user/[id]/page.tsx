@@ -3,7 +3,7 @@ import getQueryClient from "@/app/getQueryClient";
 import { userQuery } from "@/services/user/user.query";
 import { Metadata } from "next";
 import { generateOpenGraph } from "@/utils";
-import { CLASSIFY } from "@/record/docsType.record";
+import { CLASSIFY } from "@/record";
 import User from "./User";
 
 interface PageProps {

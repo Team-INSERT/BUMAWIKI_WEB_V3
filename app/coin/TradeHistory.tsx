@@ -5,8 +5,8 @@ import { priceComma } from "@/utils";
 import Image from "next/image";
 import { useCancelTradeMutation } from "@/services/coin/coin.mutation";
 import { toast } from "react-toastify";
-import { useDate } from "@/hooks/useDate";
-import { TRADE } from "@/record/trade.record";
+import { useDate } from "@/hooks";
+import { TRADE } from "@/record";
 import Toastify from "@/components/Toastify";
 import * as styles from "./TradeHistory.css";
 

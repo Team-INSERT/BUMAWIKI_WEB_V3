@@ -1,6 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { TradeType } from "@/types/trade.interface";
-import { CoinRank } from "@/types/coinRank.interface";
+import { TradeType, CoinRankType } from "@/types";
 import {
   getCoinCurrentPrice,
   getCoinGraph,
@@ -31,7 +30,7 @@ export const coinQuery = {
       queryFn: getCoinCurrentPrice,
     }),
   rank: () =>
-    queryOptions<Array<CoinRank>>({
+    queryOptions<Array<CoinRankType>>({
       queryKey: ["query.rank"],
       queryFn: getCoinRanking,
     }),

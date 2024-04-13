@@ -1,6 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { flex, font, theme, screen } from "@/styles";
-import StyleVariantsType from "@/types/styleVariants.interface";
+import { StyleVariantsType } from "@/types";
 import { popularAnimation } from "./keyframes.css";
 
 const containerBase = style({

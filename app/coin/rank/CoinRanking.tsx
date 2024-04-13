@@ -2,12 +2,11 @@
 
 import Container from "@/components/Container";
 import { useSuspenseQuery } from "@tanstack/react-query";
-
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
 import Link from "next/link";
 import { priceComma, calculateCoinTier } from "@/utils";
-import WalletIcon from "@/assets/WalletIcon";
+import { WalletIcon } from "@/assets";
 import * as styles from "./style.css";
 
 const CoinRanking = () => {

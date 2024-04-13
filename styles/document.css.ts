@@ -12,10 +12,15 @@ export const summary = style({
   margin: "20px 0",
   color: `${theme.primary}94`,
   cursor: "pointer",
+  listStyle: "none",
   ...font.H2,
   ...flex.FLEX,
 
+  // "::-webkit-details-marker": {},
   selectors: {
+    [`${details} > &::-webkit-details-marker`]: {
+      display: "none",
+    },
     [`${details}[open] > &`]: {
       color: theme.primary,
     },

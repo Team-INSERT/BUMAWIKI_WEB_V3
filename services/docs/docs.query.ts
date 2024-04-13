@@ -1,7 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { DocsListType } from "@/types/docsList.interface";
-import { DocsItem } from "@/types/docsItem.interface";
-import { DocsListItem } from "@/types/docsListItem.interface";
+import { DocsListItemType, DocsItemType, DocsListType } from "@/types";
 import {
   getDocsByKeyword,
   getDocsByTitle,
@@ -10,7 +8,7 @@ import {
 } from "./docs.api";
 
 type QueryOptions<Classify extends string> = Classify extends "popular"
-  ? Array<DocsListItem>
+  ? Array<DocsListItemType>
   : DocsListType;
 
 export const docsQuery = {
@@ -20,12 +18,12 @@ export const docsQuery = {
       queryFn: () => getDocsListByClassify(classify),
     }),
   title: <Title extends string>(title: Title) =>
-    queryOptions<DocsItem>({
+    queryOptions<DocsItemType>({
       queryKey: ["query.docsTitle", title],
       queryFn: () => getDocsByTitle(title),
     }),
   keyword: <Keyword extends string>(keyword: Keyword) =>
-    queryOptions<Array<DocsListItem>>({
+    queryOptions<Array<DocsListItemType>>({
       queryKey: ["query.docsKeyword", keyword],
       queryFn: () => getDocsByKeyword(keyword),
     }),

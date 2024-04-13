@@ -6,7 +6,7 @@ import { 조사, particle } from "auto-particle";
 import Container from "@/components/Container";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { userQuery } from "@/services/user/user.query";
-import { ROLE } from "@/record/role.record";
+import { ROLE } from "@/record";
 import * as styles from "../../style.css";
 import ContritbuteDocsList from "../../ContritbuteDocsList";
 
