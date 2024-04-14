@@ -122,6 +122,11 @@ button {
   align-content: center;
 }
 
+.frame_fold {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
 .frame_caption::marker {
   content: "";
 }
@@ -150,4 +155,14 @@ button {
   width: 400px;
   color: #274168;
   border-radius: 0px;
+
+  @media (max-width: 600px) {
+    top: 50px;
+    width: 50vw;
+    height: 20px;
+    margin-top: 10px;
+    right: 10px;
+    margin-left: auto;
+    border-radius: 5px;
+  }
 }

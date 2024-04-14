@@ -1,4 +1,4 @@
-import { flex, font, theme } from "@/styles";
+import { flex, font, theme, screen } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -18,6 +18,12 @@ export const docs = style({
   height: "100px",
   gap: "8px",
   ...flex.COLUMN_HORIZONTAL,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      width: "100%",
+    },
+  },
 });
 
 export const titleBox = style({
@@ -28,11 +34,23 @@ export const titleBox = style({
 export const lastModifiedAt = style({
   color: theme.boldgray,
   ...font.p2,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      ...font.p4,
+    },
+  },
 });
 
 export const title = style({
   color: theme.primary,
   ...font.H4,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      ...font.H6,
+    },
+  },
 });
 
 export const simpleContents = style({
@@ -41,6 +59,12 @@ export const simpleContents = style({
 
 export const thumbnail = style({
   objectFit: "cover",
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      display: "none",
+    },
+  },
 });
 
 export const searchNotFoundBox = style({

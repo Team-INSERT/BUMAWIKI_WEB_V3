@@ -1,12 +1,18 @@
-import { font, flex } from "@/styles";
+import { font, flex, theme, screen } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
   width: "100vw",
   height: "22vh",
-  backgroundColor: "#fff",
+  backgroundColor: theme.white,
   border: "1px solid #ccc",
   ...flex.COLUMN_CENTER,
+
+  "@media": {
+    [`screen and (max-width: ${screen.tablet})`]: {
+      height: "30vh",
+    },
+  },
 });
 
 export const githubLink = style({

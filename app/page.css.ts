@@ -1,4 +1,4 @@
-import { theme, font, flex } from "@/styles";
+import { theme, font, flex, screen } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -19,6 +19,12 @@ export const introduce = {
   title: style({
     color: theme.title,
     ...font.H1,
+
+    "@media": {
+      [`screen and (max-width: ${screen.phone})`]: {
+        ...font.H2,
+      },
+    },
   }),
   highlight: style({
     color: theme.primary,
@@ -58,6 +64,12 @@ export const table = {
   body: style({
     width: "70%",
     ...flex.COLUMN_FLEX,
+
+    "@media": {
+      [`screen and (max-width: ${screen.phone})`]: {
+        width: "100%",
+      },
+    },
   }),
   thead: style({
     width: "100%",
@@ -93,9 +105,15 @@ export const table = {
     backgroundColor: theme.primary,
     ...font.H6,
     ...flex.CENTER,
+
+    "@media": {
+      [`screen and (max-width: ${screen.phone})`]: {
+        ...font.p3,
+      },
+    },
   }),
   tContent: style({
-    width: "100%",
+    width: "82%",
     height: "100%",
     color: theme.title,
     padding: "0 20px",

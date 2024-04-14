@@ -1,4 +1,4 @@
-import { flex, font, theme } from "@/styles";
+import { flex, font, theme, screen } from "@/styles";
 import { StyleVariantsType } from "@/types";
 import { style, styleVariants } from "@vanilla-extract/css";
 
@@ -15,7 +15,7 @@ export const utilityBox = style({
   ...flex.VERTICAL,
 
   "@media": {
-    "screen and (max-width: 480px)": {
+    [`screen and (max-width: ${screen.phone})`]: {
       ...flex.COLUMN_FLEX,
     },
   },
@@ -64,7 +64,7 @@ export const tradeToggleBase = style({
   ...flex.CENTER,
 
   "@media": {
-    "screen and (max-width: 480px)": {
+    [`screen and (max-width: ${screen.phone})`]: {
       width: "30%",
     },
   },
@@ -133,7 +133,7 @@ export const chartHeader = style({
   ...flex.BETWEEN,
 
   "@media": {
-    "screen and (max-width: 480px)": {
+    [`screen and (max-width: ${screen.phone})`]: {
       ...flex.COLUMN_FLEX,
     },
   },

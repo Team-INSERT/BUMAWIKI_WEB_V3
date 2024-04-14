@@ -1,4 +1,4 @@
-import { flex, font, theme } from "@/styles";
+import { flex, font, theme, screen } from "@/styles";
 import { StyleVariantsType } from "@/types";
 import { style, styleVariants } from "@vanilla-extract/css";
 
@@ -12,6 +12,12 @@ const wikiBoxHeaderBase = style({
   padding: "10px 24px",
   cursor: "pointer",
   ...flex.BETWEEN,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      display: "none",
+    },
+  },
 });
 
 export const wikiBoxHeader = styleVariants<StyleVariantsType>({

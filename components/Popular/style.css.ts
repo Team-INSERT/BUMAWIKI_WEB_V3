@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { flex, font, theme } from "@/styles";
+import { flex, font, theme, screen } from "@/styles";
 import { StyleVariantsType } from "@/types";
 import { popularAnimation } from "./keyframes.css";
 
@@ -9,6 +9,13 @@ const containerBase = style({
   height: "90px",
   borderTop: "none",
   zIndex: 100,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      zIndex: 0,
+      width: "100%",
+    },
+  },
 });
 
 export const container = styleVariants<StyleVariantsType>({

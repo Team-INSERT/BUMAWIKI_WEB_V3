@@ -25,7 +25,7 @@ const FrameEncoder = ({ title, contents, docsType, mode }: DocsPropsType) => {
         <div>
           {title ?? "제목을 입력해주세요"}
           <br />
-          <span>[ 펼치기 · 접기 ]</span>
+          <span className="frame_fold">[ 펼치기 · 접기 ]</span>
         </div>
       </summary>
       <table className="frame_table" style={{ borderColor: theme }}>

@@ -1,4 +1,4 @@
-import { flex, font, theme } from "@/styles";
+import { flex, font, theme, screen } from "@/styles";
 import { StyleVariantsType } from "@/types";
 import { style, styleVariants } from "@vanilla-extract/css";
 
@@ -11,6 +11,12 @@ export const container = style({
   backgroundColor: theme.gray,
   zIndex: 20,
   ...flex.VERTICAL,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      ...flex.COLUMN_VERTICAL,
+    },
+  },
 });
 
 export const editorBox = style({
@@ -20,6 +26,12 @@ export const editorBox = style({
   padding: "42px",
   gap: "12px",
   ...flex.COLUMN_FLEX,
+
+  "@media": {
+    [`screen and (max-width: ${screen.tablet})`]: {
+      padding: "30px",
+    },
+  },
 });
 
 export const titleInput = style({
@@ -33,6 +45,12 @@ export const titleInput = style({
 
   ":disabled": {
     backgroundColor: "transparent",
+  },
+
+  "@media": {
+    [`screen and (max-width: ${screen.tablet})`]: {
+      ...font.D5,
+    },
   },
 });
 
@@ -89,6 +107,12 @@ const yearBase = style({
   ":hover": {
     color: theme.primary,
   },
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      ...font.H5,
+    },
+  },
 });
 
 export const year = styleVariants<StyleVariantsType>({
@@ -123,6 +147,12 @@ const docsTypeBase = style({
   borderRadius: "9999px",
   cursor: "pointer",
   ...font.btn3,
+
+  "@media": {
+    [`screen and (max-width: ${screen.tablet})`]: {
+      padding: "4px 8px",
+    },
+  },
 });
 
 export const docsType = styleVariants<StyleVariantsType>({
@@ -148,4 +178,11 @@ export const writeButton = style({
   color: theme.white,
   ...font.H6,
   borderRadius: "4px",
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      left: "80%",
+      bottom: "5%",
+    },
+  },
 });

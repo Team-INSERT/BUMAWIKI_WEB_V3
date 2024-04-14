@@ -1,10 +1,17 @@
-import { theme, font, flex } from "@/styles";
+import { theme, font, flex, screen } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
   width: "100%",
   gap: "32px",
   ...flex.COLUMN_FLEX,
+
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      overflow: "hidden",
+      gap: "16px",
+    },
+  },
 });
 
 export const hgroup = style({

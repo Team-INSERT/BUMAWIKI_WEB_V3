@@ -1,4 +1,4 @@
-import { flex, font, theme } from "@/styles";
+import { flex, font, theme, screen } from "@/styles";
 import { StyleVariantsType } from "@/types";
 import { style, styleVariants } from "@vanilla-extract/css";
 
@@ -20,7 +20,7 @@ export const hgroup = style({
   ...flex.VERTICAL,
 
   "@media": {
-    "screen and (max-width: 480px)": {
+    [`screen and (max-width: ${screen.phone})`]: {
       ...flex.COLUMN_CENTER,
     },
   },

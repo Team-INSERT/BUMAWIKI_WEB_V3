@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { isJsonString } from "@/utils";
 import * as styles from "./style.css";
 
-const AdvancedDynamicTable = ({
+const FrameEditor = ({
   mode,
   docs,
   setDocs,
@@ -230,99 +230,101 @@ const AdvancedDynamicTable = ({
   };
 
   return (
-    <details className={styles.FrameDetails} open>
-      <summary className={styles.FrameSummary}>
-        <input
-          type="color"
-          onChange={(e) => onChangeColor(e.target.value)}
-          value={color}
-          className={styles.ColorPicker}
-        />
-        {docs.title ? docs.title : "문서 제목이 들어갑니다."}
-        <br />
-        <span>[ 펼치기 · 접기 ]</span>
-      </summary>
-      <div className={styles.ContentBox}>
-        <div className={styles.Flexing}>
-          <div className={styles.Bar} />
-          <table className={styles.FrameTable}>
-            <tbody className={styles.TBody}>
-              {rows.map((row, rowIndex) => (
-                <tr key={rowIndex} className={styles.Tr}>
-                  {row.map((col, colIndex) => (
-                    <td
-                      key={col.key}
-                      colSpan={col.colSpan}
-                      rowSpan={col.rowSpan}
-                      className={styles.Td}
-                    >
-                      <div className={styles.YBorderBox}>
-                        <textarea
-                          onClick={(e) =>
-                            cursorPosition(
-                              col.key,
-                              (e.target as HTMLTextAreaElement).selectionStart,
-                            )
-                          }
-                          onKeyDown={(e) =>
-                            cursorPosition(
-                              col.key,
-                              (e.target as HTMLTextAreaElement).selectionStart,
-                            )
-                          }
-                          onChange={(e) => onChangeRowContent(rowIndex, colIndex, e.target.value)}
-                          value={col.content}
-                          className={styles.textarea}
-                          placeholder={`${col.key} \n 가로 병합: ${col.colSpan} \n 세로 병합: ${col.rowSpan}`}
-                        />
+    <section className={styles.container}>
+      <details className={styles.FrameDetails} open>
+        <summary className={styles.FrameSummary}>
+          <input
+            type="color"
+            onChange={(e) => onChangeColor(e.target.value)}
+            value={color}
+            className={styles.ColorPicker}
+          />
+          {docs.title ? docs.title : "문서 제목이 들어갑니다."}
+          <br />
+          <span className={styles.fold}>[ 펼치기 · 접기 ]</span>
+        </summary>
+        <div className={styles.ContentBox}>
+          <div className={styles.Flexing}>
+            <div className={styles.Bar} />
+            <table className={styles.FrameTable}>
+              <tbody className={styles.TBody}>
+                {rows.map((row, rowIndex) => (
+                  <tr key={rowIndex} className={styles.Tr}>
+                    {row.map((col, colIndex) => (
+                      <td
+                        key={col.key}
+                        colSpan={col.colSpan}
+                        rowSpan={col.rowSpan}
+                        className={styles.Td}
+                      >
+                        <div className={styles.YBorderBox}>
+                          <textarea
+                            onClick={(e) =>
+                              cursorPosition(
+                                col.key,
+                                (e.target as HTMLTextAreaElement).selectionStart,
+                              )
+                            }
+                            onKeyDown={(e) =>
+                              cursorPosition(
+                                col.key,
+                                (e.target as HTMLTextAreaElement).selectionStart,
+                              )
+                            }
+                            onChange={(e) => onChangeRowContent(rowIndex, colIndex, e.target.value)}
+                            value={col.content}
+                            className={styles.textarea}
+                            placeholder={`${col.key} \n 가로 병합: ${col.colSpan} \n 세로 병합: ${col.rowSpan}`}
+                          />
 
+                          <div
+                            onClick={() => {
+                              addColSpan(rowIndex, colIndex);
+                              cursorPosition(col.key);
+                            }}
+                            className={styles.ColSpan}
+                            aria-label="add colSpan button"
+                          />
+                        </div>
                         <div
                           onClick={() => {
-                            addColSpan(rowIndex, colIndex);
+                            addRowSpan(rowIndex, colIndex);
                             cursorPosition(col.key);
                           }}
-                          className={styles.ColSpan}
-                          aria-label="add colSpan button"
+                          className={styles.RowSpan}
+                          aria-label="add rowSpan button"
                         />
-                      </div>
-                      <div
-                        onClick={() => {
-                          addRowSpan(rowIndex, colIndex);
-                          cursorPosition(col.key);
-                        }}
-                        className={styles.RowSpan}
-                        aria-label="add rowSpan button"
-                      />
+                      </td>
+                    ))}
+                    <td
+                      onClick={() => addTd(rowIndex)}
+                      className={styles.SetRow}
+                      aria-label="add button"
+                    >
+                      +
                     </td>
-                  ))}
-                  <td
-                    onClick={() => addTd(rowIndex)}
-                    className={styles.SetRow}
-                    aria-label="add button"
-                  >
-                    +
-                  </td>
-                  <td
-                    onClick={() => removeLastTd(rowIndex)}
-                    className={styles.SetRow}
-                    aria-label="remove button"
-                  >
-                    x
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div onClick={addColumn} className={styles.AddColumn}>
+                    <td
+                      onClick={() => removeLastTd(rowIndex)}
+                      className={styles.SetRow}
+                      aria-label="remove button"
+                    >
+                      x
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div onClick={addColumn} className={styles.AddColumn}>
+              <span className={styles.Span}>+</span>
+            </div>
+          </div>
+          <div onClick={addRow} className={styles.AddRow}>
             <span className={styles.Span}>+</span>
           </div>
         </div>
-        <div onClick={addRow} className={styles.AddRow}>
-          <span className={styles.Span}>+</span>
-        </div>
-      </div>
-    </details>
+      </details>
+    </section>
   );
 };
 
-export default AdvancedDynamicTable;
+export default FrameEditor;

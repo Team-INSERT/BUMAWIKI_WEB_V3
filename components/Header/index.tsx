@@ -35,7 +35,7 @@ const Header = () => {
         {navigationList.map((nav) => (
           <Link key={nav.item} href={nav.href} className={styles.navigationItem}>
             {nav.icon}
-            <span>{nav.item}</span>
+            <span className={styles.ItemText}>{nav.item}</span>
           </Link>
         ))}
       </ul>

@@ -1,4 +1,4 @@
-import { flex, font, theme } from "@/styles";
+import { flex, font, screen, theme } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -17,4 +17,13 @@ export const container = style({
 export const content = style({
   ...font.H5,
   ...flex.BETWEEN,
+});
+
+export const icon = style({
+  "@media": {
+    [`screen and (max-width: ${screen.phone})`]: {
+      width: "18px",
+      height: "18px",
+    },
+  },
 });
