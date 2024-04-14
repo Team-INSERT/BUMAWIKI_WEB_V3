@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 
 const Providers = ({ children }: PropsWithChildren) => {
   const [queryClient] = useState(
+    // lazy initialization
     () =>
       new QueryClient({
         defaultOptions: {
