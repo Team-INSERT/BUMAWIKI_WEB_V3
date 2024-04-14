@@ -17,12 +17,12 @@ export const generateMetadata = async ({ params: { title } }: PageProps): Promis
   try {
     const queryClient = getQueryClient();
     const data = await queryClient.fetchQuery(docsQuery.title(title));
-
     return generateOpenGraph({
       title: data.title,
       description: data.contents,
     });
   } catch {
+    // prefetch 단계에서 오류가 발생했다면 해당 문서는 Not Found
     notFound();
   }
 };
@@ -33,20 +33,15 @@ const Page = async ({ params: { title } }: PageProps) => {
     await queryClient.prefetchQuery(docsQuery.title(title)),
     await queryClient.prefetchQuery(likeQuery.likeCount(title)),
   ]);
-
-  const data = await queryClient.fetchQuery(docsQuery.title(title));
-
-  const frameList: string[] = [];
-  const frames = Array.from(data.contents.matchAll(/include\((.+)\);/g));
-  frames.forEach((frame) => {
-    if (!frameList.includes(frame[1])) {
-      frameList.push(frame[1]);
-    }
-  });
-
-  await Promise.all(
-    frameList.map((frameTitle) => queryClient.prefetchQuery(docsQuery.title(frameTitle))),
-  );
+  /**
+   * contents에서 frame list를 얻기 위해 값을 반환하는 fetchQuery 사용
+   * include();와 match되는 글자 탐색
+   * "include();" 삭제 (틀 이름만 남을 수 있도록)
+   */
+  const { contents } = await queryClient.fetchQuery(docsQuery.title(title));
+  const matchesFrameFormatList = contents.match(/include\((.*?)\);/g) || [];
+  const frameList = matchesFrameFormatList.map((match) => match.replace(/include\(|\);/g, ""));
+  await Promise.all(frameList.map((frame) => queryClient.prefetchQuery(docsQuery.title(frame))));
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
