@@ -47,7 +47,7 @@ export const introduce = {
 export const utility = {
   body: style({
     width: "100%",
-    gap: "12px",
+    gap: "32px",
     ...flex.CENTER,
   }),
   href: style({
