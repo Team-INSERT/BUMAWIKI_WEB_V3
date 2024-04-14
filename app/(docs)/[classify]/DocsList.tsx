@@ -15,7 +15,6 @@ import * as styles from "./style.css";
 const DocsList: FC<{ classify: string }> = ({ classify }) => {
   const { formatDate } = useDate();
   const { data: docsList } = useSuspenseQuery(docsQuery.list(classify));
-
   const docsType = classify.toUpperCase();
 
   return (
