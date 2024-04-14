@@ -45,7 +45,7 @@ const Page = async ({ params: { title } }: PageProps) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Docs title={title} list={frameList} />
+      <Docs title={title} frameNameList={frameList} />
     </HydrationBoundary>
   );
 };
