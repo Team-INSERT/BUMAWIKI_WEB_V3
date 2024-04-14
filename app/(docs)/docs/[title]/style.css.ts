@@ -9,6 +9,7 @@ export const container = style({
 
 export const header = style({
   width: "100%",
+  marginBottom: "40px",
   ...flex.BETWEEN,
 });
 
