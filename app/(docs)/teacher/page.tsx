@@ -11,19 +11,19 @@ export const metadata = generateOpenGraph({
 
 const Page = async () => {
   const queryClient = getQueryClient();
-  Promise.all([
-    await queryClient.prefetchQuery(docsQuery.list("teacher")),
-    await queryClient.prefetchQuery(docsQuery.list("major_teacher")),
-    await queryClient.prefetchQuery(docsQuery.list("mentor_teacher")),
-  ]);
+  Promise.all(
+    teacherClassifyList.map((docsType) => queryClient.prefetchQuery(docsQuery.list(docsType))),
+  );
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      {["teacher", "major_teacher", "mentor_teacher"].map((classify) => (
+      {teacherClassifyList.map((classify) => (
         <DocsList classify={classify} key={classify} />
       ))}
     </HydrationBoundary>
   );
 };
+
+const teacherClassifyList = ["teacher", "major_teacher", "mentor_teacher"];
 
 export default Page;
