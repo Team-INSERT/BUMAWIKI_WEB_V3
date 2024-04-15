@@ -3,6 +3,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import Container from "@/components/Container";
+import { VersionDifferent } from "@/enum";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { historyQuery } from "@/services/history/history.query";
 import * as styles from "./style.css";
@@ -21,33 +22,33 @@ const HistoryDetail: FC<{ id: number; title: string }> = ({ id, title }) => {
       docsType={history.docsType}
       lastModifiedAt={history.versionDocs.thisVersionCreatedAt}
     >
-      <div className={styles.container}>
+      <main className={styles.container}>
         <Link href={`/user/${history.versionDocs.userId}`} className={styles.author}>
           작성자 · {history.versionDocs.nickName}
         </Link>
-        <div className={styles.historyBox}>
+        <ul className={styles.historyBox}>
           {history.diff.map((dif: HistoryType, historyId: number) => {
             const operationIcon = (() => {
               switch (dif.operation) {
-                case "INSERT":
+                case VersionDifferent.INSERT:
                   return "+";
-                case "DELETE":
+                case VersionDifferent.DELETE:
                   return "-";
-                case "EQUAL":
-                  return "";
+                case VersionDifferent.EQUAL:
+                  return;
                 default:
                   return dif.operation;
               }
             })();
             return (
-              <div key={historyId} className={styles.historyContent}>
-                <div className={styles.historyOperation[dif.operation]}>{operationIcon}</div>
-                <div className={styles.history[dif.operation]}>{dif.text}</div>
-              </div>
+              <li key={historyId} className={styles.historyContent}>
+                <i className={styles.historyOperation[dif.operation]}>{operationIcon}</i>
+                <p className={styles.history[dif.operation]}>{dif.text}</p>
+              </li>
             );
           })}
-        </div>
-      </div>
+        </ul>
+      </main>
     </Container>
   );
 };
