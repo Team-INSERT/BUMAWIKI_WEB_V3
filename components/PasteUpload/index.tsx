@@ -3,10 +3,10 @@ import { FC, useEffect } from "react";
 const PasteUpload: FC<{ onUpload: (file: File) => unknown }> = ({ onUpload }) => {
   useEffect(() => {
     const onPaste: EventListener = (e) => {
-      e.preventDefault();
       const { clipboardData } = e as ClipboardEvent;
       if (!clipboardData) return;
-
+      if (clipboardData.types[0] === "text/plain") return;
+      e.preventDefault();
       const { items } = clipboardData;
       if (!items.length) return;
 
@@ -22,6 +22,7 @@ const PasteUpload: FC<{ onUpload: (file: File) => unknown }> = ({ onUpload }) =>
       const file = fileItem.getAsFile();
       if (!file) return;
       onUpload(file);
+      e.stopPropagation();
     };
 
     window.addEventListener("paste", onPaste);
