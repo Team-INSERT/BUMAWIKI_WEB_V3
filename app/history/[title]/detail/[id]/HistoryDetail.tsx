@@ -13,7 +13,7 @@ interface HistoryType {
 }
 
 const HistoryDetail: FC<{ id: number; title: string }> = ({ id, title }) => {
-  const { data: history } = useSuspenseQuery(historyQuery.detail({ id: id - 1, title }));
+  const { data: history } = useSuspenseQuery(historyQuery.detail({ id, title }));
 
   return (
     <Container
