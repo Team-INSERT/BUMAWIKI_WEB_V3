@@ -8,18 +8,18 @@ import { useLoginMutation } from "@/services/auth/auth.mutation";
 import * as styles from "./style.css";
 
 const OAuth = () => {
-  const authCode = useSearchParams().get("code") || "";
   const { mutate } = useLoginMutation();
+  const authCode = useSearchParams().get("code") || "";
 
   useEffect(() => {
     mutate(authCode);
   }, []);
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <MoonLoader size={40} color={theme.primary} />
       <span className={styles.loadingText}>로그인 중...</span>
-    </div>
+    </main>
   );
 };
 

@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { generateOpenGraph } from "@/utils";
 import OAuth from "./OAuth";
 
@@ -8,11 +7,7 @@ export const metadata = generateOpenGraph({
 });
 
 const Page = () => {
-  return (
-    <Suspense>
-      <OAuth />
-    </Suspense>
-  );
+  return <OAuth />;
 };
 
 export default Page;
