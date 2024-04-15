@@ -14,11 +14,11 @@ interface PageProps {
 
 export const generateMetadata = async ({ params: { id } }: PageProps): Promise<Metadata> => {
   const queryClient = getQueryClient();
-  const data = await queryClient.fetchQuery(userQuery.id(id));
+  const { nickName, authority } = await queryClient.fetchQuery(userQuery.id(id));
 
   return generateOpenGraph({
-    title: data.nickName,
-    description: `부마위키 - ${data.nickName} (${CLASSIFY[data.authority]})`,
+    title: nickName,
+    description: `부마위키 - ${nickName} (${CLASSIFY[authority]})`,
   });
 };
 
