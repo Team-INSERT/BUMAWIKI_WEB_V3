@@ -15,12 +15,8 @@ const ContritbuteDocsList = ({ contributes }: { contributes: Array<ContributeDoc
           key={contribute.versionDocsId}
           className={styles.contributeBox}
         >
-          <hgroup className={styles.hgroup}>
-            <h1 className={styles.docsTitle}>
-              {contribute.title}#{contribute.versionDocsId}
-            </h1>
-            <span className={styles.modifiedAt}>{formatDate(contribute.createTime)}</span>
-          </hgroup>
+          {contribute.title}#{contribute.versionDocsId}
+          <time className={styles.modifiedAt}>{formatDate(contribute.createTime)}</time>
         </Link>
       ))}
     </Accordion>
