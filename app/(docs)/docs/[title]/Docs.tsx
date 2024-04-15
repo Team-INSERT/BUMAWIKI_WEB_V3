@@ -1,7 +1,6 @@
 "use client";
 
 import { FC, Suspense } from "react";
-import "dayjs/locale/ko";
 import DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
 import {

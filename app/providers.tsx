@@ -5,6 +5,7 @@ import { Provider as JotaiProvider } from "jotai";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ToastContainer } from "react-toastify";
+import "dayjs/locale/ko";
 
 const Providers = ({ children }: PropsWithChildren) => {
   const [queryClient] = useState(
