@@ -6,7 +6,11 @@ interface PropsType {
   align?: CSSProperties["alignItems"];
 }
 
-const flexGenerator = ({ direction, align, justify }: PropsType) => ({
+const flexGenerator = ({
+  direction = "unset",
+  align = "unset",
+  justify = "unset",
+}: PropsType = {}) => ({
   display: "flex",
   flexDirection: direction,
   justifyContent: justify,
@@ -14,7 +18,7 @@ const flexGenerator = ({ direction, align, justify }: PropsType) => ({
 });
 
 const flex = {
-  FLEX: flexGenerator({ align: "none", justify: "none" }),
+  FLEX: flexGenerator(),
   CENTER: flexGenerator({ align: "center", justify: "center" }),
   VERTICAL: flexGenerator({ align: "center" }),
   HORIZONTAL: flexGenerator({ justify: "center" }),
@@ -24,8 +28,6 @@ const flex = {
 
   COLUMN_FLEX: flexGenerator({
     direction: "column",
-    align: "none",
-    justify: "none",
   }),
   COLUMN_CENTER: flexGenerator({
     direction: "column",
