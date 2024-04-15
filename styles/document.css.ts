@@ -90,7 +90,7 @@ const shakeAnimation = keyframes({
 });
 
 export const shake = style({
-  animation: `${shakeAnimation} 0.5s linear infinite`,
+  animation: `${shakeAnimation} 1s linear infinite`,
 });
 
 const spinAnimation = keyframes({
@@ -103,7 +103,8 @@ const spinAnimation = keyframes({
 });
 
 export const spin = style({
-  animation: `${spinAnimation} 0.5s linear infinite`,
+  width: "fit-content",
+  animation: `${spinAnimation} 1s linear infinite`,
 });
 
 export const rainbow = style({
