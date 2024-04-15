@@ -1,32 +1,17 @@
 import { flex, font, theme } from "@/styles";
 import { style } from "@vanilla-extract/css";
 
-export const container = style({
-  width: "100%",
-  gap: "14px",
-  ...flex.COLUMN_FLEX,
-});
-
 export const contributeBox = style({
-  gap: "6px",
   padding: "18px",
   borderBottom: `1px solid ${theme.gray}`,
   cursor: "pointer",
+  color: theme.primary,
+  ...font.H5,
   ...flex.COLUMN_FLEX,
 
   ":hover": {
     backgroundColor: theme.hover,
   },
-});
-
-export const hgroup = style({
-  gap: "8px",
-  ...flex.VERTICAL,
-});
-
-export const docsTitle = style({
-  color: theme.primary,
-  ...font.H5,
 });
 
 export const modifiedAt = style({
