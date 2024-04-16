@@ -22,13 +22,13 @@ const History = ({ title }: { title: string }) => {
             className={styles.historyBox}
             key={String(history.thisVersionCreatedAt)}
           >
-            <div className={styles.hgroup}>
+            <hgroup className={styles.hgroup}>
               <h1 className={styles.historyId}>#{history.index}</h1>
-              <span className={styles.createdAt}>
+              <time className={styles.createdAt}>
                 편집일 ·&nbsp;
                 {formatDate(history.thisVersionCreatedAt)}
-              </span>
-            </div>
+              </time>
+            </hgroup>
             <span className={styles.author}>작성자 ·&nbsp;{history.nickName}</span>
           </Link>
         ))}
