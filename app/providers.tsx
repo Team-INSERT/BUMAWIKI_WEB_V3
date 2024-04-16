@@ -9,6 +9,7 @@ import "dayjs/locale/ko";
 
 const Providers = ({ children }: PropsWithChildren) => {
   const [queryClient] = useState(
+    // lazy initialization
     () =>
       new QueryClient({
         defaultOptions: {
