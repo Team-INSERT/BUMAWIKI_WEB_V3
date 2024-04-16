@@ -13,11 +13,7 @@ const LikeDocsList = ({ likeList }: { likeList: Array<ContributeDocsType> }) => 
           key={docs.versionDocsId}
           className={styles.contributeBox}
         >
-          <hgroup className={styles.hgroup}>
-            <h1 className={styles.docsTitle}>
-              {docs.title} ({CLASSIFY[docs.docsType]})
-            </h1>
-          </hgroup>
+          {docs.title} ({CLASSIFY[docs.docsType]})
         </Link>
       ))}
     </Accordion>

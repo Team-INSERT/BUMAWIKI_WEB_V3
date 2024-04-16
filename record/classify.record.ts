@@ -9,6 +9,9 @@ const CLASSIFY = {
   NOTICE: "공지사항",
   STUDENT: "학생",
   FRAME: "틀",
+  MYPAGE: "마이페이지",
+  USER: "유저",
+  /** */
   "멘토 선생님": "MENTOR_TEACHER",
   "전공교과 선생님": "MAJOR_TEACHER",
   "보통교과 선생님": "TEACHER",
@@ -19,6 +22,8 @@ const CLASSIFY = {
   공지사항: "NOTICE",
   학생: "STUDENT",
   틀: "FRAME",
+  마이페이지: "MYPAGE",
+  유저: "USER",
 } as Record<string, string>;
 
 export default CLASSIFY;
