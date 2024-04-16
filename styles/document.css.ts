@@ -16,7 +16,6 @@ export const summary = style({
   ...font.H2,
   ...flex.FLEX,
 
-  // "::-webkit-details-marker": {},
   selectors: {
     [`${details} > &::-webkit-details-marker`]: {
       display: "none",
@@ -48,6 +47,7 @@ export const summary = style({
 
 export const link = style({
   color: theme.link,
+  display: "inline",
   ":hover": {
     textDecoration: "underline",
   },
@@ -60,7 +60,6 @@ export const block = style({
   backgroundColor: `${theme.hover}`,
   padding: "16px 20px",
   margin: "10px 0",
-  ...flex.COLUMN_FLEX,
   ...font.H5,
 });
 
@@ -70,7 +69,6 @@ export const quote = style({
   border: `1px solid ${theme.gray}`,
   padding: "10px 20px",
   ...font.H6,
-  ...flex.COLUMN_FLEX,
 });
 
 const shakeAnimation = keyframes({
@@ -92,7 +90,7 @@ const shakeAnimation = keyframes({
 });
 
 export const shake = style({
-  animation: `${shakeAnimation} 0.5s linear infinite`,
+  animation: `${shakeAnimation} 1s linear infinite`,
 });
 
 const spinAnimation = keyframes({
@@ -105,7 +103,8 @@ const spinAnimation = keyframes({
 });
 
 export const spin = style({
-  animation: `${spinAnimation} 0.5s linear infinite`,
+  width: "fit-content",
+  animation: `${spinAnimation} 1s linear infinite`,
 });
 
 export const rainbow = style({

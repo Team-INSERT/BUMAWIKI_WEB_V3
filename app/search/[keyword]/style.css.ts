@@ -67,11 +67,6 @@ export const thumbnail = style({
   },
 });
 
-export const searchNotFoundBox = style({
-  gap: "8px",
-  ...flex.COLUMN_FLEX,
-});
-
 export const searchTitle = style({
   ...font.p2,
 });
@@ -86,7 +81,7 @@ export const searchCreateLink = style({
   },
 });
 
-export const loader = style({
+export const loaderBox = style({
   width: "100%",
   height: "100vh",
   ...flex.CENTER,
