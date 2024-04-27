@@ -1,7 +1,7 @@
 import React from "react";
 import { docsQuery } from "@/services/docs/docs.query";
-import Resolver from "./resolver";
 import getQueryClient from "@/app/getQueryClient";
+import Resolver from "./resolver";
 
 interface Props {
   title: string;

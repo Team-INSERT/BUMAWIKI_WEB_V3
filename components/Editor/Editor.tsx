@@ -14,6 +14,7 @@ import { docsQuery } from "@/services/docs/docs.query";
 import useModal from "@/hooks/useModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { exception } from "@/constants/exception.constant";
 import DragDropUpload from "../DragDropUpload";
 import Confirm from "../(modal)/Confirm";
 import Toastify from "../Toastify";
@@ -21,7 +22,6 @@ import PasteUpload from "../PasteUpload";
 import FrameEditor from "../FrameEditor";
 import FrameEncoder from "../FrameEncoder";
 import DocsExample from "./DocsExample";
-import { exception } from "@/constants/exception.constant";
 import Merge from "../(modal)/Merge";
 import * as styles from "./style.css";
 
