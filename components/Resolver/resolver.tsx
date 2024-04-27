@@ -5,16 +5,21 @@ import { useEffect, useState } from "react";
 import { docsQuery } from "@/services/docs/docs.query";
 import { useMergeDocsMutation } from "@/services/docs/docs.mutation";
 import { toast } from "react-toastify";
-import Toastify from "../Toastify";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 import useModal from "@/hooks/useModal";
+import Toastify from "../Toastify";
 import * as styles from "./style.css";
 
 interface LineObject {
   index?: number;
   operation: string;
   text: string;
+}
+
+interface RangeType {
+  start: number;
+  end: number;
 }
 
 interface PropsType {
@@ -33,7 +38,7 @@ const Resolver = ({ title, contents }: PropsType) => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  const { openModal, closeModal } = useModal();
+  const { closeModal } = useModal();
 
   useEffect(() => {
     return () => {
@@ -44,16 +49,14 @@ const Resolver = ({ title, contents }: PropsType) => {
   function spliting(arr: LineObject[] | string) {
     let result: LineObject[] = [];
     let start = 0;
-    let str =
+    const str =
       typeof arr === "object"
         ? arr
-            .map((obj: LineObject) =>
-              obj.operation === "INSERT"
-                ? `[diff]${obj.text}[/diff]`
-                : obj.operation === "DELETE"
-                  ? `[delete]${obj.text}[/delete]`
-                  : obj.text,
-            )
+            .map((obj: LineObject) => {
+              if (obj.operation === "INSERT") return `[diff]${obj.text}[/diff]`;
+              if (obj.operation === "DELETE") return `[delete]${obj.text}[/delete]`;
+              return obj.text;
+            })
             .join("")
         : arr;
 
@@ -110,7 +113,7 @@ const Resolver = ({ title, contents }: PropsType) => {
     });
 
     // del체크
-    let delRange = [];
+    const delRange: RangeType[] = [];
     for (let i = 0; i < result.length; i += 1) {
       if (result[i].operation === "DELETE1") {
         delRange.push({ start: i, end: 0 });
@@ -129,8 +132,6 @@ const Resolver = ({ title, contents }: PropsType) => {
         }
       });
     });
-
-    //====
 
     result.map((i, index) => {
       if (
@@ -164,7 +165,7 @@ const Resolver = ({ title, contents }: PropsType) => {
 
     //diff체크
 
-    let diffRange = [];
+    const diffRange: RangeType[] = [];
     for (let i = 0; i < result.length; i += 1) {
       if (result[i].operation === "DIFFERENT1") {
         diffRange.push({ start: i, end: 0 });
@@ -186,8 +187,6 @@ const Resolver = ({ title, contents }: PropsType) => {
         }
       });
     });
-
-    //=====
 
     result = result.filter((i) => i.text !== "[change][diff]\n");
 
@@ -380,7 +379,9 @@ const Resolver = ({ title, contents }: PropsType) => {
       <div className={styles.comparingBox}>
         <div className={styles.docsList}>
           {["First", "Original", "Second"].map((item) => (
-            <div className={styles.docsItem}>{item}</div>
+            <div key={item} className={styles.docsItem}>
+              {item}
+            </div>
           ))}
         </div>
         <div className={styles.changeList}>
