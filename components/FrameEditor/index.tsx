@@ -22,6 +22,7 @@ const AdvancedDynamicTable = ({
       title: string;
       contents: string;
       docsType: string;
+      version: number;
     }>
   >;
   setCursorPosition: Dispatch<SetStateAction<number>>;
@@ -134,24 +135,6 @@ const AdvancedDynamicTable = ({
 
     setRows(newRows);
   };
-
-  // const addColSpan = (rowIndex: number, colIndex: number) => {
-  //   const newArr = [...rows];
-  //   newArr[rowIndex][colIndex].colSpan += newArr[rowIndex][colIndex + 1]?.colSpan ?? 0;
-  //   if (newArr[rowIndex][colIndex].rowSpan === 1) {
-  //     newArr[rowIndex].splice(colIndex + 1, 1);
-  //   } else {
-  //     newArr.forEach((row, index) => {
-  //       if (index > rowIndex && index <= rowIndex + rows[rowIndex][colIndex].rowSpan) {
-  //         if (index === rowIndex + rows[rowIndex][colIndex].rowSpan - 1) {
-  //           console.log(row, index);
-  //         }
-  //       }
-  //     });
-  //   }
-
-  //   setRows(newArr);
-  // };
 
   const addRowSpan = (rowIndex: number, colIndex: number) => {
     const newing = rows.map((row, index) => {
