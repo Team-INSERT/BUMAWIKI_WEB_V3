@@ -19,7 +19,7 @@ interface ContainerProps extends PropsWithChildren {
   docsType: string;
   title: string;
   lastModifiedAt?: Date;
-  docsDetail?: boolean;
+  isDocsDetail?: boolean;
   id?: number;
 }
 
@@ -27,7 +27,7 @@ const Container = ({
   docsType,
   title,
   lastModifiedAt,
-  docsDetail,
+  isDocsDetail,
   id,
   children,
 }: ContainerProps) => {
@@ -68,11 +68,11 @@ const Container = ({
       <hgroup className={styles.hgroup}>
         <div className={styles.titleBox}>
           <h1 className={styles.title}>부마위키:{title}</h1>
-          {docsDetail && lastModifiedAt && (
+          {isDocsDetail && lastModifiedAt && (
             <span className={styles.lastModifiedAt}>최근 편집 · {dateText(lastModifiedAt)}</span>
           )}
         </div>
-        {docsDetail && (
+        {isDocsDetail && (
           <div className={styles.utilityBox}>
             <button onClick={handleDocsEditClick} className={styles.editButton}>
               문서 편집
