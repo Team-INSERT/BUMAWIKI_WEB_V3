@@ -3,6 +3,7 @@ import { DocsListType } from "@/types/docsList.interface";
 import { DocsItem } from "@/types/docsItem.interface";
 import { DocsListItem } from "@/types/docsListItem.interface";
 import {
+  getConflictByTitle,
   getDocsByKeyword,
   getDocsByTitle,
   getDocsListByClassify,
@@ -33,5 +34,10 @@ export const docsQuery = {
     queryOptions({
       queryKey: ["query.lastModifiedAt", page],
       queryFn: () => getLastModifiedDocsList(page),
+    }),
+  conflicted: <Title extends string>(title: Title, contents: string) =>
+    queryOptions({
+      queryKey: ["query.conflicted", title],
+      queryFn: () => getConflictByTitle(title, contents),
     }),
 };

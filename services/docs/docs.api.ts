@@ -26,6 +26,35 @@ export const getLastModifiedDocsList = async (page: number) => {
   return data;
 };
 
+export const getConflictByTitle = async (title: string, contents: string) => {
+  const { data } = await http.post(`/docs/merge/${title}`, {
+    contents,
+  });
+
+  return data;
+};
+
+export const requestMergeDocs = async ({
+  title,
+  contents,
+  version,
+}: {
+  title: string;
+  contents: string;
+  version: number;
+}) => {
+  const { data } = await http.put(
+    `/docs/merge/${title}`,
+    {
+      contents,
+      version,
+    },
+    authorization(),
+  );
+
+  return data;
+};
+
 export const requestCreateDocs = async (docs: CreateDocsType) => {
   const { data } = await http.post("/docs/create", docs, authorization());
   return data;
@@ -34,11 +63,17 @@ export const requestCreateDocs = async (docs: CreateDocsType) => {
 export const requestUpdateDocs = async ({
   title,
   contents,
+  version,
 }: {
   title: string;
   contents: string;
+  version: number;
 }) => {
-  const { data } = await http.put(`/docs/update/${title}`, { contents }, authorization());
+  const { data } = await http.put(
+    `/docs/${title}`,
+    { contents, updatingVersion: version },
+    authorization(),
+  );
   return data;
 };
 

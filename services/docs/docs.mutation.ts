@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import {
   requestCreateDocs,
   requestDeleteDocs,
+  requestMergeDocs,
   requestUpdateDocs,
   requestUploadImage,
 } from "./docs.api";
@@ -15,6 +16,12 @@ export const useCreateDocsMutation = () => {
 export const useUpdateDocsMutation = () => {
   return useMutation({
     mutationFn: requestUpdateDocs,
+  });
+};
+
+export const useMergeDocsMutation = () => {
+  return useMutation({
+    mutationFn: requestMergeDocs,
   });
 };
 
