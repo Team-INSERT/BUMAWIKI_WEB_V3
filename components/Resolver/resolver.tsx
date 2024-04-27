@@ -90,19 +90,23 @@ const Resolver = ({ title, contents }: PropsType) => {
       }
     }
 
-    result.map((i, index) => {
+    result.forEach((i, index) => {
       if (
         (i.text.includes("[delete]") && i.text.includes("[/delete]")) ||
         (i.text.includes("[delete]") && result[index + 1]?.text.startsWith("[/delete]")) ||
         (result[index - 1]?.text.endsWith("[delete]\n") && i.text.includes("[/delete]"))
-      )
-        return (i.operation = "DELETE");
+      ) {
+        i.operation = "DELETE";
+        return;
+      }
       if (
         i.text.includes("[delete]") &&
         !i.text.includes("[/delete]") &&
         (!i.text.endsWith("[delete]\n") || i.text.length < 12)
-      )
-        return (i.operation = "DELETE1");
+      ) {
+        i.operation = "DELETE1";
+        return;
+      }
       if (
         (!i.text.includes("[delete]") && i.text.slice(9).includes("[/delete]")) ||
         (i.text.slice(9).includes("[/delete]") &&
@@ -110,8 +114,9 @@ const Resolver = ({ title, contents }: PropsType) => {
         result[index + 1]?.text.startsWith("[/delete]") ||
         (!result[index - 1]?.text.endsWith("[delete]\n") &&
           (i.text.endsWith("[/delete]\n") || i.text.endsWith("[/delete]")))
-      )
-        return (i.operation = "DELETE2");
+      ) {
+        i.operation = "DELETE2";
+      }
     });
 
     // del체크
@@ -126,23 +131,25 @@ const Resolver = ({ title, contents }: PropsType) => {
       }
     }
 
-    result.map((item, index) => {
+    result.forEach((item, index) => {
       delRange.forEach((range) => {
         if (index >= range.start && index <= range.end) {
           item.text = "";
-          return (item.operation = "DELETES");
+          item.operation = "DELETES";
         }
       });
     });
 
-    result.map((i, index) => {
+    result.forEach((i, index) => {
       if (
         (((i.text.includes("[diff]") && i.text.includes("[/diff]")) ||
           (i.text.includes("[diff]") && result[index + 1]?.text.startsWith("[/diff]"))) &&
           !i.text.includes("[diff][/diff]")) ||
         (result[index - 1]?.text.endsWith("[diff]\n") && i.text.includes("[/diff]"))
-      )
-        return (i.operation = "DIFFERENT");
+      ) {
+        i.operation = "DIFFERENT";
+        return;
+      }
       if (
         (i.text.includes("[diff]") &&
           !i.text.includes("[/diff]") &&
@@ -156,16 +163,18 @@ const Resolver = ({ title, contents }: PropsType) => {
           result[index - 1]?.operation !== "DIFFERENT1" &&
           !i.text.includes("[/diff]"))
       ) {
-        return (i.operation = "DIFFERENT1");
+        i.operation = "DIFFERENT1";
+        return;
       }
       if (
         (!i.text.includes("[diff]") && result[index + 1]?.text.startsWith("[/diff]")) ||
         (!i.text.includes("[diff]") && !i.text.startsWith("[/diff]") && i.text.includes("[/diff]"))
-      )
-        return (i.operation = "DIFFERENT2");
+      ) {
+        i.operation = "DIFFERENT2";
+      }
     });
 
-    //diff체크
+    // diff체크
 
     const diffRange: RangeType[] = [];
     for (let i = 0; i < result.length; i += 1) {
@@ -178,14 +187,15 @@ const Resolver = ({ title, contents }: PropsType) => {
       }
     }
 
-    result.map((item, index) => {
+    result.forEach((item, index) => {
       diffRange.forEach((range) => {
         if (range.end - range.start === 1) return;
         if (index >= range.start && index <= range.end) {
-          return (item.operation = "DIFFERENTS");
+          item.operation = "DIFFERENTS";
+          return;
         }
         if (index > range.start && index < range.end) {
-          return (item.operation = "DIFFERENTS");
+          item.operation = "DIFFERENTS";
         }
       });
     });
@@ -349,6 +359,7 @@ const Resolver = ({ title, contents }: PropsType) => {
           )
         )
           return obj.text;
+        return "";
       })
       .join("");
 
