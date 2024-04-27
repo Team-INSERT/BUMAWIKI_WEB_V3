@@ -2,7 +2,7 @@ import { http } from "@/apis";
 import { authorization } from "@/apis/header";
 
 export const getDocsLikeCount = async (title: string) => {
-  const { data } = await http.get(`/docs/thumbs/up/get/${title}`);
+  const { data } = await http.get(`/thumbs/up/get/${title}`);
   return data;
 };
 
