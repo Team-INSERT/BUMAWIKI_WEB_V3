@@ -1,6 +1,8 @@
 export const exception = {
   code: {
     IMG_400_1: "IMG-400-1",
+    DOCS_400_1: "DOCS-400-1",
+    DOCS_400_2: "DOCS-400-2",
     DOCS_404_1: "DOCS-404-1",
     DOCS_404_2: "DOCS-404-2",
     DOCS_403_1: "DOCS-403-1",
