@@ -14,6 +14,7 @@ import * as styles from "./style.css";
 interface LineObject {
   index?: number;
   operation: string;
+  subOperation?: string;
   text: string;
 }
 
@@ -66,11 +67,12 @@ const Resolver = ({ title, contents }: PropsType) => {
         if (range.includes("[/delete]") && range.includes("[diff]")) {
           result.push({
             operation: "DELETE",
-            text: `${range.replace(/\[diff\].+?\[\/diff\]/gs, "").replace(/\[diff\].+?/gs, "")}`,
+            text: `${range.replace(/\[diff\].+?\[\/diff\]/gs, "").replace(/\[diff\].+/gs, "")}`,
           });
           result.push({
             operation: "DIFFERENT",
-            text: `[change]${range.replace(/\[delete\].+?\[\/delete\]/gs, "").replace(/.+?\[\/delete\]/gs, "")}`,
+            subOperation: "CHANGE",
+            text: `[change]${range.replace(/\[delete\].+?\[\/delete\]/gs, "").replace(/.+\[\/delete\]/gs, "")}`,
           });
         } else {
           result.push({
@@ -337,10 +339,14 @@ const Resolver = ({ title, contents }: PropsType) => {
 
   const onClickJoinArr = async () => {
     const str = std
-      .map((obj: LineObject) => {
+      .map((obj: LineObject, index) => {
         if (
-          obj.operation !== "EMPTY" ||
-          (["DELETE", "DELETES"].includes(obj.operation) && obj.text === "")
+          obj.operation !== "EMPTY" &&
+          !(
+            ["DELETE", "DELETES"].includes(obj.operation) &&
+            !(obj.text === "") &&
+            std[index + 1]?.subOperation === "CHANGE"
+          )
         )
           return obj.text;
       })
