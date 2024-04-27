@@ -13,7 +13,7 @@ const EditorContainer: FC<EditMode | CreateMode> = ({ title, mode }) => {
     ...docsQuery.title(title as string),
     enabled: mode === "EDIT",
   });
-  const docs = isSuccess ? { ...data } : { title: "", contents: "", docsType: "" };
+  const docs = isSuccess ? { ...data } : { title: "", contents: "", docsType: "", version: 0 };
 
   return <Editor {...docs} mode={mode} />;
 };
