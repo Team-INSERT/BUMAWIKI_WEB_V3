@@ -297,6 +297,7 @@ const FrameEditor = ({
                       </td>
                     ))}
                     <td
+                      // eslint-disable-next-line
                       onClick={() => addTd(rowIndex)}
                       className={styles.SetRow}
                       aria-label="add button"
@@ -304,6 +305,7 @@ const FrameEditor = ({
                       +
                     </td>
                     <td
+                      // eslint-disable-next-line
                       onClick={() => removeLastTd(rowIndex)}
                       className={styles.SetRow}
                       aria-label="remove button"
