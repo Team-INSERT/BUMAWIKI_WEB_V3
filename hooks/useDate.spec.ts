@@ -3,7 +3,7 @@ import useDate from "./useDate";
 describe("useDate", () => {
   const { fromNow, formatDate, getValidYearList } = useDate();
 
-  it("fromNow를 호출하면 주입된 시간은 현재 시간을 기점으로 몇 분 전인지를 반환한다.", () => {
+  it("fromNow를 호출하면 주입된 시간은 현재 시간을 기점으로 얼마나 전인지를 반환한다.", () => {
     const createSometimesAgo = (ago: number) => new Date(new Date().getTime() - ago);
 
     const SECONDS = 1_000;
