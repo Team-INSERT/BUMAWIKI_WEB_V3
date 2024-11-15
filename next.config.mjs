@@ -1,5 +1,5 @@
 import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
-import { withPWA } from "next-pwa";
+import withPWA from "next-pwa";
 
 const withVanillaExtract = createVanillaExtractPlugin({
   identifiers: ({ hash }) => `bumawiki_${hash}`,
