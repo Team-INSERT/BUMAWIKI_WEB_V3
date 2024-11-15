@@ -1,0 +1,23 @@
+{
+  "theme_color": "#274168",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "icon512_maskable.png",
+      "type": "image/png"
+    },
+    { "purpose": "any", "sizes": "512x512", "src": "icon512_rounded.png", "type": "image/png" }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "ko-KR",
+  "name": "부마위키",
+  "short_name": "부마위키",
+  "start_url": "https://buma.wiki",
+  "scope": "https://buma.wiki",
+  "description": "부산소마고의 역사를 담은 위키",
+  "id": "https://buma.wiki"
+}

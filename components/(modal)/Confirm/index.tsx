@@ -18,7 +18,7 @@ const Confirm = ({ icon, content, onConfirm }: Props) => {
 
   return (
     <div className={styles.container}>
-      {<RoundLogo /> || icon}
+      {icon || <RoundLogo />}
       <div className={styles.contents}>{content}</div>
       <div className={styles.buttonBox}>
         <button className={styles.button.cancel} onClick={closeModal}>
