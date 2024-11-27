@@ -49,10 +49,13 @@ const utilityTagCompiler = (contents: string) => {
 
 const assetTagComipler = (contents: string) => {
   return contents
-    .replace(/<사진 \{(.*?)\}>(.*?)<\/사진>/g, '<img style="width: $1" src="$2" />')
+    .replace(
+      /<사진 \{(.*?)\}>(.*?)<\/사진>/g,
+      '<img style="max-width: 100%; width: $1" src="$2" />',
+    )
     .replace(
       /<비디오 \{(.*?)\}>(.*?)<\/비디오>/g,
-      '<video style="width: $1" src="$2" controls /></video>',
+      '<video style="max-width: 100%; width: $1" src="$2" controls /></video>',
     );
 };
 
