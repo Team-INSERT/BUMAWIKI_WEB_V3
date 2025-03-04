@@ -66,7 +66,7 @@ interface ManagementProps {
 
 const UserManagement = ({ debounceValue }: ManagementProps) => {
   const { data: userList, isSuccess } = useQuery(userQuery.list());
-  const { data: myInfo } = useQuery(userQuery.my());
+  const { data: myInfo, isSuccess: isUserSuccess } = useQuery(userQuery.my());
   const { mutateAsync: updateUserAuthority } = useChangeUserAuthorityMutation();
   const { openConfirm, openToast } = useModal();
   const queryClient = useQueryClient();
@@ -149,7 +149,7 @@ const UserManagement = ({ debounceValue }: ManagementProps) => {
     });
   };
 
-  if (myInfo.authority !== "ADMIN") return <div>권한이 없습니다.</div>;
+  if (isUserSuccess && myInfo.authority !== "ADMIN") return <div>권한이 없습니다.</div>;
 
   return (
     <section className={styles.managementContainer}>
