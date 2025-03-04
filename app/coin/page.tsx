@@ -20,8 +20,7 @@ const Page = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div>공사중</div>
-      {/* <Coin /> */}
+      <Coin />
     </HydrationBoundary>
   );
 };
