@@ -15,3 +15,19 @@ export const getMyLikeList = async () => {
   const { data } = await http.get("/thumbs/up/get", authorization());
   return data;
 };
+
+export const getUserList = async () => {
+  const { data } = await http.get("/users", authorization());
+  return data;
+};
+
+export const requestChangeAuthorityUser = async ({
+  email,
+  authority,
+}: {
+  email: string;
+  authority: string;
+}) => {
+  const { data } = await http.put(`/set/authority`, { email, authority }, authorization());
+  return data;
+};

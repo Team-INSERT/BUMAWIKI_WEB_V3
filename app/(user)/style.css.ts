@@ -35,3 +35,9 @@ export const button = style({
   color: theme.white,
   ...font.H6,
 });
+
+export const buttonGroup = style({
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+});

@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { particle, 조사 } from "auto-particle";
 import { CLASSIFY, ROLE } from "@/record";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import ContritbuteDocsList from "../ContritbuteDocsList";
 import * as styles from "../style.css";
 import LikeDocsList from "../LikeDocsList";
@@ -16,6 +17,7 @@ const MyPage = () => {
   const { data: user } = useQuery(userQuery.my());
   const { data: likeList } = useQuery(userQuery.like());
   const isLoggedIn = user && likeList;
+  const router = useRouter();
   const { mutate } = useLogoutMutation();
 
   if (!isLoggedIn)
@@ -32,9 +34,16 @@ const MyPage = () => {
       <Accordion title="내정보">
         {particle(user.nickName).word(조사.은_는)} 부마위키의 {ROLE[user.authority]}
         이다.
-        <button onClick={() => mutate()} className={styles.button}>
-          로그아웃
-        </button>
+        <hgroup className={styles.buttonGroup}>
+          {user.authority === "ADMIN" && (
+            <button onClick={() => router.push("/admin")} className={styles.button}>
+              관리자 페이지
+            </button>
+          )}
+          <button onClick={() => mutate()} className={styles.button}>
+            로그아웃
+          </button>
+        </hgroup>
       </Accordion>
       <LikeDocsList likeList={likeList} />
       <ContritbuteDocsList contributes={user.contributeDocs} />

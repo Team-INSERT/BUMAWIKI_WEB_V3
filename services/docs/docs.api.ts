@@ -42,6 +42,17 @@ export const requestUpdateDocs = async ({
   return data;
 };
 
+export const requestUpdateNameDocs = async ({
+  legacyTitle,
+  title,
+}: {
+  legacyTitle: string;
+  title: string;
+}) => {
+  const { data } = await http.put(`/docs/update/title/${legacyTitle}`, { title }, authorization());
+  return data;
+};
+
 export const requestDeleteDocs = async (id: number) => {
   const { data } = await http.delete(`/docs/delete/${id}`, authorization());
   return data;
