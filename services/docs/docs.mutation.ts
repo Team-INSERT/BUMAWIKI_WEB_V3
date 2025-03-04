@@ -3,6 +3,7 @@ import {
   requestCreateDocs,
   requestDeleteDocs,
   requestUpdateDocs,
+  requestUpdateNameDocs,
   requestUploadImage,
 } from "./docs.api";
 
@@ -15,6 +16,12 @@ export const useCreateDocsMutation = () => {
 export const useUpdateDocsMutation = () => {
   return useMutation({
     mutationFn: requestUpdateDocs,
+  });
+};
+
+export const useRenameDocsMutation = () => {
+  return useMutation({
+    mutationFn: requestUpdateNameDocs,
   });
 };
 
