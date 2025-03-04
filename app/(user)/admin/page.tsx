@@ -21,6 +21,7 @@ import * as styles from "./style.css";
 import { UserType } from "@/types";
 
 const AdminPage = () => {
+  const { data: myInfo, isSuccess, isError } = useQuery(userQuery.my());
   const [selectedManageTab, setSelectedManageTab] = useState("유저 관리");
   const [keyword, setKeyword] = useState("");
   const debounceValue = useDebounce(keyword, 200);
@@ -29,6 +30,8 @@ const AdminPage = () => {
     setSelectedManageTab(type);
     setKeyword("");
   };
+
+  if ((isSuccess && myInfo.authority !== "ADMIN") || isError) return <div>권한이 없습니다.</div>;
 
   return (
     <Container title="관리자 페이지" docsType="관리자 페이지">
@@ -65,8 +68,7 @@ interface ManagementProps {
 }
 
 const UserManagement = ({ debounceValue }: ManagementProps) => {
-  const { data: userList, isSuccess, isError } = useQuery(userQuery.list());
-  const { data: myInfo, isSuccess: isUserSuccess } = useQuery(userQuery.my());
+  const { data: userList, isSuccess } = useQuery(userQuery.list());
   const { mutateAsync: updateUserAuthority } = useChangeUserAuthorityMutation();
   const { openConfirm, openToast } = useModal();
   const queryClient = useQueryClient();
@@ -148,9 +150,6 @@ const UserManagement = ({ debounceValue }: ManagementProps) => {
       },
     });
   };
-
-  if ((isUserSuccess && myInfo.authority !== "ADMIN") || isError)
-    return <div>권한이 없습니다.</div>;
 
   return (
     <section className={styles.managementContainer}>
