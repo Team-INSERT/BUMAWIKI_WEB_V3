@@ -1,13 +1,13 @@
 "use client";
 
 import { coinQuery } from "@/services/coin/coin.query";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
 import { priceComma } from "@/utils";
 import { useDate } from "@/hooks";
+import { useQuery } from "@tanstack/react-query";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -62,7 +62,7 @@ const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
   const remainingSeconds = 3 * 60 - differenceInSeconds;
 
   const [cycle, setCycle] = useState("threeHours");
-  const { data: coin, refetch: graphRefetch } = useSuspenseQuery(coinQuery.graph(cycle));
+  const { data: coin, refetch: graphRefetch, isSuccess } = useQuery(coinQuery.graph(cycle));
 
   const labels = coin.map(({ startedTime }: { startedTime: Date }) =>
     dayjs(startedTime).format("M/D H:m"),
@@ -75,6 +75,8 @@ const Graph: FC<GraphProps> = ({ updatedAt, marketPrice, refetch }) => {
       graphRefetch();
     }, remainingSeconds * 1000);
   }, [updatedAt]);
+
+  if (!isSuccess) return null;
 
   return (
     <div className={styles.chartContainer}>

@@ -23,6 +23,7 @@ export const generateMetadata = async ({ params: { title, id } }: PageProps): Pr
 const Page = async ({ params }: PageProps) => {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(historyQuery.detail(params));
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <HistoryDetail {...params} />

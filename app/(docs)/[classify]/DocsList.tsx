@@ -6,7 +6,7 @@ import { tagRemover } from "@/utils";
 import { useDate } from "@/hooks";
 import Image from "next/image";
 import Link from "next/link";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import Container from "@/components/Container";
 import { CLASSIFY } from "@/record";
@@ -14,8 +14,12 @@ import * as styles from "./style.css";
 
 const DocsList: FC<{ classify: string }> = ({ classify }) => {
   const { formatDate } = useDate();
-  const { data: docsList } = useSuspenseQuery(docsQuery.list(classify));
+  const { data: docsList, isSuccess } = useQuery({
+    ...docsQuery.list(classify),
+  });
   const docsType = classify.toUpperCase();
+
+  if (!isSuccess) return null;
 
   return (
     <Container title={CLASSIFY[docsType]} docsType={docsType}>

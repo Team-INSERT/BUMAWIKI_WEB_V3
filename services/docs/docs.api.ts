@@ -8,12 +8,8 @@ export const getDocsListByClassify = async (classify: string) => {
 };
 
 export const getDocsByTitle = async (title: string) => {
-  try {
-    const { data } = await http.get(`/docs/find/title/${title}`);
-    return data;
-  } catch (error) {
-    return null;
-  }
+  const { data } = await http.get(`/docs/find/title/${title}`);
+  return data;
 };
 
 export const getDocsByKeyword = async (keyword: string) => {

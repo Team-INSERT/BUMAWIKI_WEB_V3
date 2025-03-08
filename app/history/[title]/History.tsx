@@ -3,15 +3,17 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import Container from "@/components/Container";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { historyQuery } from "@/services/history/history.query";
 import { useDate } from "@/hooks";
 import * as styles from "./style.css";
 
 const History = ({ title }: { title: string }) => {
   const { formatDate } = useDate();
-  const { data: historyList } = useSuspenseQuery(historyQuery.list(title));
+  const { data: historyList, isSuccess } = useQuery(historyQuery.list(title));
   const decodeTitle = decodeURI(title);
+
+  if (!isSuccess) return null;
 
   return (
     <Suspense>

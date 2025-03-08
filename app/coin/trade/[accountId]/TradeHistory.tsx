@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import { priceComma } from "@/utils";
 import Image from "next/image";
@@ -12,7 +12,10 @@ import * as styles from "../../TradeHistory.css";
 
 const Trade: FC<{ accountId: number }> = ({ accountId }) => {
   const { formatDate } = useDate();
-  const { data: tradeList } = useSuspenseQuery(coinQuery.trade(accountId));
+  const { data: tradeList, isSuccess } = useQuery(coinQuery.trade(accountId));
+
+  if (!isSuccess) return null;
+
   return (
     <Container docsType="코인" title={`통장#${accountId}`}>
       {tradeList.map((trade) => (

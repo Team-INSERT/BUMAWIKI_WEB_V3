@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/Container";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +10,9 @@ import { WalletIcon } from "@/assets";
 import * as styles from "./style.css";
 
 const CoinRanking = () => {
-  const { data: rankingList } = useSuspenseQuery(coinQuery.rank());
+  const { data: rankingList, isSuccess } = useQuery(coinQuery.rank());
+
+  if (!isSuccess) return null;
   const rankingListMax = rankingList.length;
 
   return (
