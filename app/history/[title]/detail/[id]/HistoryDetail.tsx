@@ -13,8 +13,14 @@ interface HistoryType {
   text: string;
 }
 
-const HistoryDetail: FC<{ id: number; title: string }> = ({ id, title }) => {
-  const { data: history, isSuccess } = useQuery(historyQuery.detail({ id, title }));
+const HistoryDetail: FC<{ id: number; title: string; shouldServerErrorFix: boolean }> = ({
+  id,
+  title,
+  shouldServerErrorFix,
+}) => {
+  const { data: history, isSuccess } = useQuery(
+    historyQuery.detail({ id: Number(id) + Number(shouldServerErrorFix), title }),
+  );
 
   if (!isSuccess) return null;
 

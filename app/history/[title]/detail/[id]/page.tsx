@@ -24,9 +24,21 @@ const Page = async ({ params }: PageProps) => {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(historyQuery.detail(params));
 
+  let shouldServerErrorFix = false;
+
+  try {
+    shouldServerErrorFix = true;
+    const data = await queryClient.fetchQuery(historyQuery.list(params.title));
+    await queryClient.fetchQuery(
+      historyQuery.detail({ ...params, id: (data as unknown as { length: number }).length }),
+    );
+  } catch {
+    shouldServerErrorFix = false;
+  }
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <HistoryDetail {...params} />
+      <HistoryDetail shouldServerErrorFix={shouldServerErrorFix} {...params} />
     </HydrationBoundary>
   );
 };
