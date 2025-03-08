@@ -4,7 +4,7 @@ import { FC } from "react";
 import Link from "next/link";
 import Container from "@/components/Container";
 import { VersionDifferent } from "@/enum";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { historyQuery } from "@/services/history/history.query";
 import * as styles from "./style.css";
 
@@ -14,7 +14,9 @@ interface HistoryType {
 }
 
 const HistoryDetail: FC<{ id: number; title: string }> = ({ id, title }) => {
-  const { data: history } = useSuspenseQuery(historyQuery.detail({ id: id - 1, title }));
+  const { data: history, isSuccess } = useQuery(historyQuery.detail({ id, title }));
+
+  if (!isSuccess) return null;
 
   return (
     <Container

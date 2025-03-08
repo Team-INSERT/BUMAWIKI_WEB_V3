@@ -4,13 +4,15 @@ import Accordion from "@/components/Accordion";
 import { FC } from "react";
 import { 조사, particle } from "auto-particle";
 import Container from "@/components/Container";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { userQuery } from "@/services/user/user.query";
 import { CLASSIFY, ROLE } from "@/record";
+import { useQuery } from "@tanstack/react-query";
 import ContritbuteDocsList from "../../ContritbuteDocsList";
 
 const User: FC<{ id: number }> = ({ id }) => {
-  const { data: user } = useSuspenseQuery(userQuery.id(id));
+  const { data: user, isSuccess } = useQuery(userQuery.id(id));
+
+  if (!isSuccess) return null;
 
   return (
     <Container title={user.nickName} docsType={CLASSIFY.유저}>

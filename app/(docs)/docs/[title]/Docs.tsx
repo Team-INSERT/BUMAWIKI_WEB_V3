@@ -3,12 +3,7 @@
 import { FC, Suspense } from "react";
 import DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
-import {
-  useQuery,
-  useQueryClient,
-  useSuspenseQueries,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
+import { useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import { likeQuery } from "@/services/like/like.query";
 import Container from "@/components/Container";
@@ -25,19 +20,24 @@ import * as styles from "./style.css";
 
 const Docs: FC<{ title: string; frameNameList: Array<string> }> = ({ title, frameNameList }) => {
   const frameQueryList = frameNameList.map((frame) => docsQuery.title(frame));
-  const frameList = useSuspenseQueries({ queries: frameQueryList }).map(({ data }) => data);
-  const { data: docs } = useSuspenseQuery(docsQuery.title(title));
+  const frameList = useQueries({ queries: frameQueryList }).map(({ data }) => data);
+  const { data: docs, isSuccess: isDocsSuccess } = useQuery(docsQuery.title(title));
   const { isLoggedIn } = useUser();
   const queryClient = useQueryClient();
 
   const { data: like } = useQuery(likeQuery.likeCount(title));
-  const { data: isILike } = useQuery(likeQuery.isILike(docs.id));
+  const { data: isILike } = useQuery({
+    ...likeQuery.isILike(docs?.id ?? -1),
+    enabled: isDocsSuccess,
+  });
   const { mutate: createLike } = useCreateLikeMutation();
   const { mutate: cancelLike } = useDeleteLikeMutation();
 
+  if (!isDocsSuccess) return null;
+
   const handleLikeToggleClick = () => {
     const onSuccessToggleLike = () => {
-      queryClient.invalidateQueries(likeQuery.isILike(docs.id));
+      queryClient.invalidateQueries(likeQuery.isILike(docs?.id ?? -1));
       queryClient.invalidateQueries(likeQuery.likeCount(title));
     };
     if (!isLoggedIn) return toast(<Toastify content="로그인 후 이용해주세요!" />);
@@ -74,7 +74,7 @@ const Docs: FC<{ title: string; frameNameList: Array<string> }> = ({ title, fram
                 {frameList
                   .filter((frame) => frame && frame.docsType === CLASSIFY.틀)
                   .map((frame) => (
-                    <FrameEncoder key={frame.id} {...frame} mode={EditorType.READ} />
+                    <FrameEncoder key={frame!.id} {...frame!} mode={EditorType.READ} />
                   ))}
                 <section className={styles.body} dangerouslySetInnerHTML={sanitizeData()} />
               </>

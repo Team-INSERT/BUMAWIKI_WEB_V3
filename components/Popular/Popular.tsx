@@ -1,16 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { docsQuery } from "@/services/docs/docs.query";
 import Link from "next/link";
 import { LikeIcon } from "@/assets";
 import * as styles from "./style.css";
 
 const Popular = () => {
-  const { data: popularList } = useSuspenseQuery(docsQuery.list("popular"));
+  const { data: popularList, isSuccess } = useQuery(docsQuery.list("popular"));
   const [isListOpen, setIsListOpen] = useState(false);
   const containerStatus = isListOpen ? "open" : "close";
+
+  if (!isSuccess) return null;
 
   const handlePopularListMouseHover = () => {
     setIsListOpen((prev) => !prev);

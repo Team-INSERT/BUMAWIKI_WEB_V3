@@ -2,7 +2,7 @@
 
 import Container from "@/components/Container";
 import { ChangeEvent, useState } from "react";
-import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { coinQuery } from "@/services/coin/coin.query";
 import Image from "next/image";
 import { useModal } from "@/hooks";
@@ -45,7 +45,7 @@ const tradeText: Record<
 
 const Coin = () => {
   const queryClient = useQueryClient();
-  const { data: market, refetch } = useSuspenseQuery(coinQuery.price());
+  const { data: market, refetch, isSuccess } = useQuery(coinQuery.price());
   const { data: wallet, error } = useQuery(coinQuery.myWallet());
 
   const { mutate: dailyReward } = useDailyRewardMutation();
@@ -67,6 +67,8 @@ const Coin = () => {
   }
 
   if (!wallet) return <div>로그인 후 이용해주세요.</div>;
+
+  if (!isSuccess) return null;
 
   const totalMoney = market.price * wallet.coin + wallet.money;
   const maxAmountMoney = Math.floor(wallet.money / market.price);

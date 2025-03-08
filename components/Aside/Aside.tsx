@@ -1,7 +1,7 @@
 "use client";
 
 import { docsQuery } from "@/services/docs/docs.query";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { DocsListItemType } from "@/types";
 import Link from "next/link";
@@ -13,7 +13,9 @@ import * as styles from "./style.css";
 const Aside = () => {
   const { fromNow } = useDate();
   const [page, setPage] = useState(0);
-  const { data: lastModifiedList } = useSuspenseQuery(docsQuery.lastModified(page));
+  const { data: lastModifiedList, isSuccess } = useQuery(docsQuery.lastModified(page));
+
+  if (!isSuccess) return null;
 
   const handleDecreasePageNumber = () => {
     if (page !== 0) setPage((prev) => prev - 1);
