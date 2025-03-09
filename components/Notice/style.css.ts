@@ -8,7 +8,7 @@ const containerBase = style({
   width: "300px",
   height: "90px",
   borderTop: "none",
-  zIndex: 100,
+  zIndex: 80,
 
   "@media": {
     [`screen and (max-width: ${screen.phone})`]: {
