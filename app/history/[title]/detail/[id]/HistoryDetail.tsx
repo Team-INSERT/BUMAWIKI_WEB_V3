@@ -4,7 +4,7 @@ import { FC } from "react";
 import Link from "next/link";
 import Container from "@/components/Container";
 import { VersionDifferent } from "@/enum";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { historyQuery } from "@/services/history/history.query";
 import * as styles from "./style.css";
 
