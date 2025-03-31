@@ -25,7 +25,9 @@ const Notice = () => {
       onMouseLeave={handlePopularListMouseHover}
       className={styles.container[containerStatus]}
     >
-      <header className={styles.titleBox}>공지</header>
+      <header className={styles.titleBox}>
+        Protect this branch from force pushing or deletion, or require stat
+      </header>
       <ul className={styles.docsList}>
         {flatNoticeList.slice(0, 5).map((notice) => (
           <Link

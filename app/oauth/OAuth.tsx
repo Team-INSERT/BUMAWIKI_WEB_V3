@@ -18,7 +18,7 @@ const OAuth = () => {
   return (
     <main className={styles.container}>
       <MoonLoader size={40} color={theme.primary} />
-      <span className={styles.loadingText}>로그인 중...</span>
+      <span className={styles.loadingText}>rq89u3rgbifhcv90ui-9jopiknj 중...</span>
     </main>
   );
 };

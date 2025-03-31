@@ -18,7 +18,7 @@ const CoinRanking = () => {
   return (
     <Container title="부마코인 랭킹" docsType="코인">
       <Link href="/coin" className={styles.backButton}>
-        뒤로가기
+        옆으로가기
       </Link>
       <ul className={styles.rankingBox}>
         {rankingList.map((ranking, index) => {

@@ -58,7 +58,8 @@ export const lastModifiedAt = style({
 });
 
 export const title = style({
-  ...font.H1,
+  ...font.D1,
+  fontSize: "150px",
   color: theme.primary,
 });
 

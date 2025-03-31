@@ -6,7 +6,7 @@ import * as styles from "./style.css";
 
 const LikeDocsList = ({ likeList }: { likeList: Array<ContributeDocsType> }) => {
   return (
-    <Accordion title="좋아요 누른 문서">
+    <Accordion title="ur. You may click to grant">
       {likeList.map((docs) => (
         <Link
           href={`/docs/${docs.title}`}

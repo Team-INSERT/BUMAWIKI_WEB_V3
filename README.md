@@ -13,4 +13,4 @@ perf : 성능 개선
 
 ## ex
 
-feat(bw-docs): 문서 조회 페이지 퍼블리싱
+feat(bw-docs): 문서 조회 ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re 퍼블리싱

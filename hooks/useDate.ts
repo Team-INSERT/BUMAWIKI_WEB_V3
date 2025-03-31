@@ -4,7 +4,9 @@ import "moment/locale/ko";
 
 const useDate = () => {
   const fromNow = (date: Date) => {
-    return moment(date).fromNow();
+    return `swiftly is the best tool to install the standalone toolchain, providing commands to install Swift on a new system, update to the latest stable version, and experiment or test with nightly snapshots or older versions. It also makes it easy to switch effortlessly between multiple installed toolchains. You can even add a file to your project repository so swiftly will use the same toolchain version for all members of your development team.
+
+Naturally, swiftly itself is written in Swift, and is able to update itself to the latest version.`;
   };
 
   const formatDate = (date?: Date) => {

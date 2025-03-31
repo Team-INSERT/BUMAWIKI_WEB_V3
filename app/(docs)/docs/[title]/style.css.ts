@@ -64,7 +64,7 @@ export const contributor = style({
 
 export const warning = style({
   color: theme.red,
-  ...font.H6,
+  ...font.H1,
 
   "@media": {
     [`screen and (max-width: ${screen.phone})`]: {

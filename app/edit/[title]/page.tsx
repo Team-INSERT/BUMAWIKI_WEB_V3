@@ -17,8 +17,8 @@ export const generateMetadata = async ({ params: { title } }: PageProps): Promis
   const data = await queryClient.fetchQuery(docsQuery.title(title));
 
   return generateOpenGraph({
-    title: `문서 편집#${data.title}`,
-    description: `${data.title} 문서 편집 페이지입니다.`,
+    title: `에딧에딧#${data.title}`,
+    description: `${data.title} 에딧에딧 ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re입니다.`,
   });
 };
 

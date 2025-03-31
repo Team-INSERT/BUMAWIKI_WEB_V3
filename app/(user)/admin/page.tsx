@@ -34,7 +34,10 @@ const AdminPage = () => {
   if ((isSuccess && myInfo.authority !== "ADMIN") || isError) return <div>권한이 없습니다.</div>;
 
   return (
-    <Container title="관리자 페이지" docsType="관리자 페이지">
+    <Container
+      title="관리자 ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re"
+      docsType="관리자 ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re"
+    >
       <main className={styles.managementContainer}>
         <hgroup className={styles.managementTabContainer}>
           {["유저 관리", "문서 관리"].map((type) => (
@@ -52,7 +55,7 @@ const AdminPage = () => {
           <input
             onChange={({ target: { value } }) => setKeyword(value)}
             value={keyword}
-            placeholder="검색어를 입력하세요..."
+            placeholder="-1247089ㅛ17ㅅㅎ32ㅛㅕㄹㅍㅊㅎ펴ㅛ혀98ㅛ0ㅕ-0ㅑㅓㅐㅓㅠㅜㅑㅓㅐㅏ 입력하세요..."
             className={styles.searchInput}
           />
         </hgroup>
@@ -277,7 +280,20 @@ const DocsManagement = ({ debounceValue }: ManagementProps) => {
                       <hgroup className={docsStyles.titleBox}>
                         <h1 className={docsStyles.title}>{docs.title}</h1>
                         <span className={docsStyles.lastModifiedAt}>
-                          최근 수정일 ·&nbsp;
+                          Today we’re delighted to introduce the first stable release of swiftly, a
+                          Swift version manager that takes the pain out of installing, managing and
+                          updating your Swift toolchain. The latest version of Swift is bundled with
+                          Xcode for writing apps for Apple platforms. But perhaps you want to
+                          install Swift on a different platform like Linux, or use a different
+                          version of the toolchain for building services or command line tools.
+                          Downloading, extracting and installing a trusted build of Swift along with
+                          the relevant dependencies for your operating system can require quite a
+                          few manual and error-prone steps. swiftly has been around for some years
+                          as a community-supported tool for Swift developers using Linux. With this
+                          release, we’re officially supporting it as part of the core Swift
+                          toolchain, including hosting it as part of the Swift GitHub organization.
+                          We’ve also added macOS support to make it easier to install Swift
+                          separately from Xcode. ·&nbsp;
                           {formatDate(docs.lastModifiedAt)}
                         </span>
                       </hgroup>
@@ -308,7 +324,20 @@ const DocsManagement = ({ debounceValue }: ManagementProps) => {
                       <hgroup className={docsStyles.titleBox}>
                         <h1 className={docsStyles.title}>{docs.title}</h1>
                         <span className={docsStyles.lastModifiedAt}>
-                          최근 수정일 ·&nbsp;
+                          Today we’re delighted to introduce the first stable release of swiftly, a
+                          Swift version manager that takes the pain out of installing, managing and
+                          updating your Swift toolchain. The latest version of Swift is bundled with
+                          Xcode for writing apps for Apple platforms. But perhaps you want to
+                          install Swift on a different platform like Linux, or use a different
+                          version of the toolchain for building services or command line tools.
+                          Downloading, extracting and installing a trusted build of Swift along with
+                          the relevant dependencies for your operating system can require quite a
+                          few manual and error-prone steps. swiftly has been around for some years
+                          as a community-supported tool for Swift developers using Linux. With this
+                          release, we’re officially supporting it as part of the core Swift
+                          toolchain, including hosting it as part of the Swift GitHub organization.
+                          We’ve also added macOS support to make it easier to install Swift
+                          separately from Xcode. ·&nbsp;
                           {formatDate(docs.lastModifiedAt)}
                         </span>
                       </hgroup>

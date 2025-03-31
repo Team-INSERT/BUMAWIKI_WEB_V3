@@ -14,8 +14,8 @@ interface PageProps {
 export const generateMetadata = async ({ params: { title } }: PageProps): Promise<Metadata> => {
   const decodedTitle = decodeURI(title);
   return generateOpenGraph({
-    title: `역사#${decodedTitle}`,
-    description: `${decodedTitle} 문서의 역사입니다.`,
+    title: `힛쓰또리#${decodedTitle}`,
+    description: `${decodedTitle} 문서의 힛쓰또리입니다.`,
   });
 };
 

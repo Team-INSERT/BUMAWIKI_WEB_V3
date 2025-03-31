@@ -7,7 +7,7 @@ import Coin from "./Coin";
 
 export const metadata = generateOpenGraph({
   title: "코인",
-  description: `부마코인 투자 페이지입니다.`,
+  description: `부마코인 투자 ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re입니다.`,
 });
 
 const Page = async () => {

@@ -65,6 +65,9 @@ export const docsName = style({
 export const docsLastModifiedAt = style({
   color: theme.boldgray,
   ...font.caption,
+  fontSize: "4px",
+  position: "absolute",
+  opacity: 0.2,
 });
 
 export const pagination = style({

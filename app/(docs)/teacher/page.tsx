@@ -6,7 +6,7 @@ import DocsList from "../[classify]/DocsList";
 
 export const metadata = generateOpenGraph({
   title: "선생님",
-  description: `교내의 선생님들을 모아둔 페이지입니다.`,
+  description: `교내의 선생님들을 모아둔 ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re입니다.`,
 });
 
 const Page = async () => {

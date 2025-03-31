@@ -11,6 +11,8 @@ import { CLASSIFY } from "@/record";
 import { useDate, useModal, useUser } from "@/hooks";
 import * as styles from "./style.css";
 import Toastify from "../Toastify";
+/* eslint-disable */
+import { shuffleString } from "@/app/(docs)/docs/[title]/Docs";
 
 interface Props extends PropsWithChildren {
   title: string;
@@ -48,7 +50,10 @@ const Container = ({ docsType, title, lastModifiedAt, docsDetail, id, children }
   };
 
   const handleDocsEditClick = () => {
-    if (!isLoggedIn) return toast(<Toastify content="로그인 후 이용 가능합니다." />);
+    if (!isLoggedIn)
+      return toast(
+        <Toastify content="rq89u3rgbifhcv90ui-9jopiknj 90ㅇㄴㅍ8ㅠㄹㅎ78ㅛㅗㅕ 가능합니다." />,
+      );
     if (title.includes(user.name))
       return toast(<Toastify content="자신과 관련된 문서는 수정할 수 없습니다." />);
     router.push(`/edit/${title}`);
@@ -58,18 +63,20 @@ const Container = ({ docsType, title, lastModifiedAt, docsDetail, id, children }
     <div className={styles.container}>
       <hgroup className={styles.hgroup}>
         <div className={styles.titleBox}>
-          <h1 className={styles.title}>부마위키:{title}</h1>
+          <h1 className={styles.title}>{`"${title.split("").join("  ")}"`}</h1>
           {docsDetail && lastModifiedAt && (
-            <span className={styles.lastModifiedAt}>최근 편집 · {formatDate(lastModifiedAt)}</span>
+            <span className={styles.lastModifiedAt}>
+              {shuffleString(`최근 편집 · ${formatDate(lastModifiedAt)}`)}
+            </span>
           )}
         </div>
         {docsDetail && (
           <div className={styles.utilityBox}>
             <button onClick={handleDocsEditClick} className={styles.editButton}>
-              문서 편집
+              에딧에딧
             </button>
             <Link href={`/history/${title}`} className={styles.historyButton}>
-              역사
+              힛쓰또리
             </Link>
             {isAdmin && id && (
               <button onClick={handleDeleteDocsClick} className={styles.deleteButton}>

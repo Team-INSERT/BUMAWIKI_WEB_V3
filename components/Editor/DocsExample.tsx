@@ -21,7 +21,7 @@ const DocsExample = () => {
         onClick={() => setIsExampleOpen((prev) => !prev)}
         className={styles.wikiBoxHeader[String(isExampleOpen)]}
       >
-        <span className={styles.wikiTitle}>부마위키 문법 예제 보기</span>
+        <span className={styles.wikiTitle}>?엥엥ㅇ/엥?ㅔ엥엥?ㅔㅇ엥ㅇ엥?ㅇ엥? 문법 예제 보기</span>
         <ArrowIcon
           direction={arrowDirection}
           fill={theme.white}

@@ -22,26 +22,34 @@ const MyPage = () => {
 
   if (!isLoggedIn)
     return (
-      <Container title="마이페이지" docsType="mypage">
+      <Container
+        title="마이ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re"
+        docsType="mypage"
+      >
         <Link className={styles.link} href={process.env.NEXT_PUBLIC_OAUTH_URL || ""}>
-          로그인 후 이용해주세요.
+          rq89u3rgbifhcv90ui-9jopiknj 90ㅇㄴㅍ8ㅠㄹㅎ78ㅛㅗㅕ해주세요.
         </Link>
       </Container>
     );
 
   return (
-    <Container title="마이페이지" docsType={CLASSIFY.마이페이지}>
-      <Accordion title="내정보">
-        {particle(user.nickName).word(조사.은_는)} 부마위키의 {ROLE[user.authority]}
+    <Container
+      title="마이ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re"
+      docsType={CLASSIFY.마이페이지}
+    >
+      <Accordion title="pply to this website only. You can change your preferences or withdraw your consent at any time by returning to this site and cli">
+        {particle(user.nickName).word(조사.은_는)} ?엥엥ㅇ/엥?ㅔ엥엥?ㅔㅇ엥ㅇ엥?ㅇ엥?의{" "}
+        {ROLE[user.authority]}
         이다.
         <hgroup className={styles.buttonGroup}>
           {user.authority === "ADMIN" && (
             <button onClick={() => router.push("/admin")} className={styles.button}>
-              관리자 페이지
+              관리자 ithin the first hour of trading, establishing a new record high. However, the
+              precious metalas momentum soon re
             </button>
           )}
           <button onClick={() => mutate()} className={styles.button}>
-            로그아웃
+            replace 1 hot reloader
           </button>
         </hgroup>
       </Accordion>

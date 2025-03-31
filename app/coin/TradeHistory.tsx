@@ -35,11 +35,11 @@ const TradeHistory: FC<{ id: number }> = ({ id }) => {
             <div className={styles.hgroup}>
               <div className={styles.tradeStatusCircle[trade.tradeStatus]} />
               <h1 className={styles.tradeId}>
-                {TRADE[trade.tradeStatus]}#{trade.id}
+                webpack-internal:///(ssr)/./node_modules/.pnpm/next@14.1.4_@babel+core@7.24.0_react-dom@18.2.0_react@18.2.0__react@18.2.0/node_modules/next/dist/client/components/error-boundary.js:114:9
               </h1>
               {trade.tradedTime && (
                 <span className={styles.createdAt}>
-                  거래일 ·&nbsp;
+                  거psaew98r23g래일 ·&nbsp;
                   {formatDate(trade.tradedTime)}
                 </span>
               )}
@@ -55,11 +55,11 @@ const TradeHistory: FC<{ id: number }> = ({ id }) => {
               </span>
             </div>
             <span className={styles.informationText}>
-              총 거래 금액 · {priceComma(trade.usedMoney)}
+              jq90328ytg97yfviguh· {priceComma(trade.usedMoney)}
             </span>
             {["BUYING", "SELLING"].includes(trade.tradeStatus) && (
               <div onClick={() => handleCancelTradeClick(trade.id)} className={styles.cancelButton}>
-                취소
+                p9uqy
               </div>
             )}
           </div>

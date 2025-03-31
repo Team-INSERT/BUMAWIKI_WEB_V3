@@ -19,206 +19,337 @@ const createConfig: () => Config = () => {
     baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
     nodeEnv: process.env.NODE_ENV,
     clientUrl: typeof window !== "undefined" ? window.location.origin : "",
-    serviceName: "부마위키",
-    description: `환영합니다! 창의와 성실로 꿈을 펼치는 부산소프트웨어마이스터고등학교입니다.
-부산소프트웨어마이스터고등학교 학생이라면 누구나 문서를 편집하고 작성할 수 있습니다.
-사실에 근거하고 남을 비방하거나 칭찬하지 않는 선에서 자유롭게 문서를 편집할 수 있습니다.
-문의 및 문서삭제는 bumawiki@gmail.com으로 요청하실 수 있습니다.`,
-    warningDescription: `교내의 모든 유/무선 네트워크 정보는 국가정보원 『국가·공공기관의 무선망 구축 보안 가이드라인, 국가정보보안 기본지침』과, 
-교육부 『정보보안기본지침』에 따라 대외비로 관리되고 있으니 절대로 기재해서는 안 됩니다.`,
-    departmentDescription: `1학년때에는 공통이며, 2학년 때 소프트웨어개발과 32명, 임베디드소프트웨어과 32명으로 나뉘게 된다.`,
-    softwareDepartment: `SW구조에 대한 이해를 바탕으로 다양한 SW개발 도구 및 설계 방법을 학습함으로써 SW분석, 설계, 구현, 시험, 유지 보수 등의
-업무를 능동적으로 수행할 수 있는 진보적이고 창의적인 SW 개발자를 양성한다.`,
-    embeddedDepartment: `전자기기 및 산업용 기기의 HW와 SW에 대한 이해를 바탕으로 제조업 하드웨어를 제어하는 펌웨어 개발, 시험, 유지 보수를
-능동적으로 수행할 수 있는 시스템 SW엔지니어 및 응용 SW엔지니어를 양성한다.`,
-    schoolSong: `옛 가야 푸른 정기 서려도는 낙동강 구비
+    serviceName: "?엥엥ㅇ/엥?ㅔ엥엥?ㅔㅇ엥ㅇ엥?ㅇ엥?",
+    description: `Beyond Prepared
+Haul everything you need with 2,500 pounds payload and 11,000 pounds towing capacity—the equivalent of an average African elephant. The super-tough composite bed doesn’t need a liner and is big enough for 4'x8’ construction materials.`,
+    warningDescription: `Make low-speed maneuvers with only minor steering inputs. At higher speeds, your maneuvers will be more predictable and quicker.
+`,
+    departmentDescription: `I was still a Software Engineer.
 
-새 천년 조국 빛낼 배움터 솟았네
+It all started with a code review.
 
-저마다 가슴가슴 큰 희망 품어 안고
+I’d spent days working on a complex feature. Hundreds of lines of code, edge cases covered, performance tweaks in place. I was proud of it. I hit “Create Pull Request” and waited for feedback, expecting maybe a comment or two.
 
-창의와 성실로 진리를 탐구하는
+What I got back was brutal.
 
-우리는 모두 하나 힘 모아 전진하세
+“Over-engineered. Too many moving parts. Refactor.”
 
-영원무궁 길이 빛날 부산소프트웨어마이스터고`,
-    privacyPolicy: `" Team-OG "('bumawiki.kro.kr'이하 '부마위키')은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.
+That was it. No “nice work.” No “good attempt”. Just a hard stop.
 
-제1조(개인정보의 처리 목적)
+I sat there, fuming. I thought, “Does this guy enjoy tearing people down?”
 
-" Team-OG "('bumawiki.kro.kr'이하 '부마위키')은(는) 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며 이용 목적이 변경되는 경우에는 「개인정보 보호법」 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.
+But this was just the beginning.
 
-1. 홈페이지 회원가입 및 관리
+The manager who didn’t care about my feelings
+He wasn’t like other leads I’d worked with.
 
-회원 가입의사 확인, 회원제 서비스 제공에 따른 본인 식별·인증, 회원자격 유지·관리, 서비스 부정이용 방지, 각종 고지·통지, 고충처리 목적으로 개인정보를 처리합니다.
+No hand-holding. No fluff.
 
+He rejected half-baked ideas without blinking.
 
-2. 민원사무 처리
+He hated complexity for the sake of cleverness.
 
-민원인의 신원 확인, 민원사항 확인, 사실조사를 위한 연락·통지, 처리결과 통보 목적으로 개인정보를 처리합니다.
+He cared about one thing: clean, maintainable, efficient code.
 
+In sprint retros, he didn’t sugarcoat things. Missed a deadline? He’d say, “We scoped it wrong. Let’s fix it.” Built something that didn’t scale? “That’s tech debt. We can’t afford it.”
 
-3. 재화 또는 서비스 제공
+At first, I thought he was just that manager. The one who made engineers miserable. But there was something deeper going on.
 
-서비스 제공, 계약서·청구서 발송, 콘텐츠 제공, 맞춤서비스 제공, 본인인증, 연령인증을 목적으로 개인정보를 처리합니다.
+If you enjoy posts like this, consider supporting my work and subscribing to this newsletter.
 
+As a free subscriber, you get:
 
-4. 마케팅 및 광고에의 활용
+✉️ 1 post per week
 
-인구통계학적 특성에 따른 서비스 제공 및 광고 게재 , 서비스의 유효성 확인, 접속빈도 파악 또는 회원의 서비스 이용에 대한 통계 등을 목적으로 개인정보를 처리합니다.
+🧑‍🎓 Access to the Engineering Manager Masterclass
 
+As a paid subscriber, you get:
 
+🔒 50+ templates and playbooks (worth $79)
 
+🔒 A weekly "What would you do?" scenario & breakdown from real challenges EMs face
 
-제2조(개인정보의 처리 및 보유 기간)
+🔒 Full access to the complete archive
 
-① " Team-OG "은(는) 법령에 따른 개인정보 보유·이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의받은 개인정보 보유·이용기간 내에서 개인정보를 처리·보유합니다.
+Join the best engineering leaders for weekly articles on creating high-performing teams!
 
-② 각각의 개인정보 처리 및 보유 기간은 다음과 같습니다.
+Type your email...
+Subscribe
+The ego check that changed everything
+The tipping point came during a sprint review.
 
-1."홈페이지 회원가입 및 관리"
-"홈페이지 회원가입 및 관리"와 관련한 개인정보는 수집.이용에 관한 동의일로부터 준영구 까지 위 이용목적을 위하여 보유.이용됩니다.
-보유근거 : 졸업이후의 문서 존치 및 사용
+I demoed a feature I was sure would impress him. Instead, he cut me off halfway through.
 
-2."민원사무 처리"
-"민원사무 처리"와 관련한 개인정보는 수집.이용에 관한 동의일로부터 3년 까지 위 이용목적을 위하여 보유.이용됩니다.
-보유근거 : 사이트의 유지보수
-관련법령 : 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년
+“This is fragile. What happens under load? What’s the rollback plan?”
 
+I scrambled for answers but didn’t have good ones. He paused and then said, “You’re thinking like a coder, not an engineer. Build things that survive failure.”
 
-제3조(처리하는 개인정보의 항목)
+That was a tough moment for me.
 
-① " Team-OG "은(는) 다음의 개인정보 항목을 처리하고 있습니다.
+I spent the whole night replaying that comment. At first, I was pissed. But the more I thought about it, the more I realized he was right. I was too focused on clever solutions, not resilient ones.
 
-1. "홈페이지 회원가입 및 관리" 
-필수항목 : 이름, 생년월일, 성별, 로그인ID, 이메일, 부서, 학력, 접속 IP 정보, 쿠키, 접속 로그, 서비스 이용 기록
+The real lesson: it wasn’t about me
+I started approaching my work differently.
 
-제4조(개인정보의 제3자 제공에 관한 사항)
+I stopped writing “smart” code and started writing readable code.
 
-① " Team-OG "은(는) 개인정보를 제1조(개인정보의 처리 목적)에서 명시한 범위 내에서만 처리하며, 정보주체의 동의, 법률의 특별한 규정 등 「개인정보 보호법」 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.
+I designed for failure scenarios, not just ideal cases.
 
-② " Team-OG "은(는) 다음과 같이 개인정보를 제3자에게 제공하고 있습니다.
+I stopped coding for myself and started coding for the next person who’d touch my codebase.
 
-1. " Team-Insert "
-개인정보를 제공받는 자 : Team-Insert
-제공받는 자의 개인정보 이용목적 : 이름, 로그인ID, 이메일, 접속 IP 정보, 쿠키, 접속 로그, 서비스 이용 기록
-제공받는 자의 보유.이용기간: 준영구
+And something wild happened:
 
+My pull requests started flying through reviews that he would do.
 
-제7조(개인정보의 파기절차 및 파기방법)
+It wasn’t that he’d softened. I’d just finally levelled up.
 
+How it shaped my own leadership style
+When I eventually became an engineering manager, I thought a lot about that experience.
 
-① " Team-OG " 은(는) 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체없이 해당 개인정보를 파기합니다.
+I didn’t want to be the kind of leader people hated. But I didn’t want to be soft, either.
 
-② 정보주체로부터 동의받은 개인정보 보유기간이 경과하거나 처리목적이 달성되었음에도 불구하고 다른 법령에 따라 개인정보를 계속 보존하여야 하는 경우에는, 해당 개인정보를 별도의 데이터베이스(DB)로 옮기거나 보관장소를 달리하여 보존합니다.
-1. 법령 근거 :
-2. 보존하는 개인정보 항목 : 계좌정보, 거래날짜
+So I stole the parts that worked:
 
-③ 개인정보 파기의 절차 및 방법은 다음과 같습니다.
-1. 파기절차
-" Team-OG " 은(는) 파기 사유가 발생한 개인정보를 선정하고, " Team-OG " 의 개인정보 보호책임자의 승인을 받아 개인정보를 파기합니다.
+Brutal honesty backed by context. Instead of “This sucks,” I say, “This creates hidden tech debt, here’s why.”
 
-2. 파기방법
+Focus on system thinking. I push engineers to look past their tickets and think about how their code fits into the bigger picture.
 
-전자적 파일 형태의 정보는 기록을 재생할 수 없는 기술적 방법을 사용합니다.
+High standards, but human feedback. I don’t just point out flaws, I help map the way forward.
 
+I find that engineers want to be challenged, but not feel belittled in the process`,
+    softwareDepartment: `How to Write Blog Posts that Developers Read
+by Michael Lynch, published March 27, 2025
 
+I recently spoke to a developer who tried blogging but gave up because nobody was reading his posts. I checked out his blog, and it was immediately obvious why he didn’t have any readers.
 
+The developer had interesting insights, but he made so many mistakes in presenting his ideas that he was driving everyone away. The tragedy was that these errors were easy to fix. Once you learn to recognize them, they feel obvious, but some bloggers make these mistakes for years.
 
-제9조(정보주체와 법정대리인의 권리·의무 및 그 행사방법에 관한 사항)
+I know because I’m one of them.
 
+I’ve been blogging about software development for nine years. My best posts have reached 300k+ readers, but many of them flopped, especially in my first few years.
 
+Over time, I’ve learned techniques that help some blog posts succeed and the pitfalls that cause others to languish in obscurity.
 
-① 정보주체는 Team-OG에 대해 언제든지 개인정보 열람·정정·삭제·처리정지 요구 등의 권리를 행사할 수 있습니다.
+Why listen to me?
+Get to the point
+Think one degree bigger
+Plan the route to your readers
+Show more pictures
+Accommodate skimmers
+Why listen to me?🔗
+I’m going to say a bunch of gloaty things to establish credibility, but it feels gross, so let’s just get it out of the way:
 
-② 제1항에 따른 권리 행사는Team-OG에 대해 「개인정보 보호법」 시행령 제41조제1항에 따라 서면, 전자우편, 모사전송(FAX) 등을 통하여 하실 수 있으며 Team-OG은(는) 이에 대해 지체 없이 조치하겠습니다.
+I’ve written a software blog for nine years, and it attracts 300k-500k unique readers per year.
+My posts have reached the front page of Hacker News over 30 times, many of them reaching the #1 spot.
+According to a ranking system I made up, I have the 48th most popular personal blog on Hacker News.
+I launched a successful indie business by writing a popular blog post about my product.
+My articles frequently appear on reddit and Lobsters.
 
-③ 제1항에 따른 권리 행사는 정보주체의 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수 있습니다.이 경우 “개인정보 처리 방법에 관한 고시(제2020-7호)” 별지 제11호 서식에 따른 위임장을 제출하셔야 합니다.
+My software blog receives 300k-500k unique readers per year.
 
-④ 개인정보 열람 및 처리정지 요구는 「개인정보 보호법」 제35조 제4항, 제37조 제2항에 의하여 정보주체의 권리가 제한 될 수 있습니다.
+I don’t claim to be the world’s best software blogger, but I’ve had enough success and experience to share some useful lessons.
 
-⑤ 개인정보의 정정 및 삭제 요구는 다른 법령에서 그 개인정보가 수집 대상으로 명시되어 있는 경우에는 그 삭제를 요구할 수 없습니다.
+Get to the point🔗
+The biggest mistake software bloggers make is meandering.
 
-⑥ Team-OG은(는) 정보주체 권리에 따른 열람의 요구, 정정·삭제의 요구, 처리정지의 요구 시 열람 등 요구를 한 자가 본인이거나 정당한 대리인인지를 확인합니다.
+Often, the author has some valuable insight to share, but they squander their first seven paragraphs on the history of functional programming and a trip they took to Bell Labs in 1973. By the time they get to the part that’s actually interesting, everyone has long since closed the browser tab.
 
 
+Internet attention spans are short. If you dawdle before making your point, the reader will seek out one of the literally billions of other articles they could be reading instead.
 
-제10조(개인정보의 안전성 확보조치에 관한 사항)
+So, how do you convince the reader to stay and continue reading your blog post?
 
-" Team-OG "은(는) 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다.
+When the reader arrives, they’re trying to answer two questions as quickly as possible:
 
-1. 내부관리계획의 수립 및 시행
-개인정보의 안전한 처리를 위하여 내부관리계획을 수립하고 시행하고 있습니다.
+Did the author write this article for someone like me?
+How will I benefit from reading it?
+Give yourself the title plus your first three sentences to answer both questions. If you find yourself in paragraph two and you haven’t answered either question, you’re in trouble.
 
-2. 개인정보에 대한 접근 제한
-개인정보를 처리하는 데이터베이스시스템에 대한 접근권한의 부여,변경,말소를 통하여 개인정보에 대한 접근통제를 위하여 필요한 조치를 하고 있으며 침입차단시스템을 이용하여 외부로부터의 무단 접근을 통제하고 있습니다.
+To show the reader you’re writing for them, mention topics they care about, and use terminology they recognize. If you throw out jargon or unfamiliar concepts, the reader assumes the article isn’t meant for them and clicks away.
 
-3. 접속기록의 보관 및 위변조 방지
-개인정보처리시스템에 접속한 기록을 최소 1년 이상 보관, 관리하고 있으며,다만, 5만명 이상의 정보주체에 관하여 개인정보를 추가하거나, 고유식별정보 또는 민감정보를 처리하는 경우에는 2년이상 보관, 관리하고 있습니다.
-또한, 접속기록이 위변조 및 도난, 분실되지 않도록 보안기능을 사용하고 있습니다.
+Your introduction should also make it clear to the reader how the article will benefit them. There are many possible benefits you can offer:
 
-4. 해킹 등에 대비한 기술적 대책
-"Team-OG"('부마위키')은 해킹이나 컴퓨터 바이러스 등에 의한 개인정보 유출 및 훼손을 막기 위하여 보안프로그램을 설치하고 주기적인 갱신·점검을 하며 외부로부터 접근이 통제된 구역에 시스템을 설치하고 기술적/물리적으로 감시 및 차단하고 있습니다.
+A technique the reader can apply in their work or personal life.
+A clear explanation of a concept that impacts the reader’s work or personal life.
+An insight that gives the reader a better understanding of a particular technology or industry.
+An interesting story that resonates with the reader.
 
+Example: “if got, want: A Simple Way to Write Better Go Tests”🔗
+I recently wrote an article about improving tests when using the Go programming language.
 
+Here’s the title and first paragraph:
 
-제12조(행태정보의 수집·이용·제공 및 거부 등에 관한 사항)
+if got, want: A Simple Way to Write Better Go Tests
 
+There’s an excellent Go testing pattern that too few people know. I can teach it to you in 30 seconds.
 
-① "개인정보처리자"은(는) 서비스 이용과정에서 정보주체에게 최적화된 맞춤형 서비스 및 혜택, 온라인 맞춤형 광고 등을 제공하기 위하여 행태정보를 수집·이용하고 있습니다.
+This article immediately answers the two questions:
 
-② "개인정보처리자"은(는) 다음과 같이 행태정보를 수집합니다.
+Did the author write the article for someone like me?
+The article is for Go developers.
+What’s the benefit of reading it?
+You’ll learn a new testing technique in 30 seconds.
+Think one degree bigger🔗
+When you write an article, you hopefully have a type of reader in mind. For example, if you wrote an article called “Debugging Memory Leaks in Java,” you probably assumed that the reader is an intermediate to advanced Java developer.
 
-12. 행태정보의 수집·이용·제공 및 거부 등에 관한 사항 제공을 위해 수집하는 행태정보의 항목, 행태정보 수집 방법, 행태정보 수집 목적, 보유·이용기간 및 이후 정보처리 방법을 입력하기 위한 표입니다.
-수집하는 행태정보의 항목   행태정보 수집 방법   행태정보 수집 목적   보유·이용기간 및 이후 정보처리 방법
-방문이력, 검색내역   웹사이트 방문시 자동 수집   부마위키 업데이트및 개선   수집일로부터 2년 이후에 파기
-"온라인 맞춤형 광고 등을 위해 제3자(온라인 광고사업자 등)가 이용자의 행태정보를 수집·처리할수 있도록 허용한 경우"
-③ "개인정보처리자"은(는) 다음과 같이 온라인 맞춤형 광고 사업자가 행태정보를 수집·처리하도록 허용하고 있습니다.
+Most software bloggers never think to ask, “Is there a wider audience for this topic?”
 
-- 행태정보를 수집 및 처리하려는 광고 사업자 : 추후 업데이트,
+For example, “intermediate to advanced Java developers” are a subset of “Java developers,” who are a subset of “programmers,” who are a subset of “people who read blog posts.”
 
-- 행태정보 수집 방법 : 이용자가 당사 웹사이트를 방문하거나 앱을 실행할 때 자동 수집 및 전송
+Categories and subcategories
 
-- 수집·처리되는 행태정보 항목 : 이용자의 웹/앱 방문이력, 검색이력, 구매이력
+If you wrote an article for intermediate and advanced Java developers, how much would have to change for the article to appeal to Java developers of any experience level?
 
-- 보유·이용기간 : 30일
+Often, the change is just an extra sentence or two early in the article to introduce a concept or replace jargon with more accessible terms.
 
-④ "개인정보처리자"은(는) 온라인 맞춤형 광고 등에 필요한 최소한의 행태정보만을 수집하며, 사상, 신념, 가족 및 친인척관계, 학력·병력, 기타 사회활동 경력 등 개인의 권리·이익이나 사생활을 뚜렷하게 침해할 우려가 있는 민감한 행태정보를 수집하지 않습니다.
-⑤ "개인정보처리자"은(는) 만 14세 미만임을 알고 있는 아동이나 만14세 미만의 아동을 주 이용자로 하는 온라인 서비스로부터 맞춤형 광고 목적의 행태정보를 수집하지 않고, 만 14세 미만임을 알고 있는 아동에게는 맞춤형 광고를 제공하지 않습니다.
+Jeff: Sony has a futuristic sci-fi movie they’re looking to make.
 
-⑥ "개인정보처리자"은(는) 모바일 앱에서 온라인 맞춤형 광고를 위하여 광고식별자를 수집·이용합니다. 정보주체는 모바일 단말기의 설정 변경을 통해 앱의 맞춤형 광고를 차단·허용할 수 있습니다.
+Nick: Cigarettes in space?
 
+Jeff: It’s the final frontier, Nick.
 
-제15조 (개인정보 보호책임자에 관한 사항)
+Nick: But wouldn’t they blow up in an all-oxygen environment?
 
-① Team-OG 은(는) 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.
+Jeff: Probably. But it’s an easy fix. One line of dialogue. “Thank God we invented the… you know, whatever device.”
 
-▶ 개인정보 보호책임자
-성명 :김호현
-연락처 :01044067875, 2022055@bssm.hs.kr
-※ 개인정보 보호 담당부서로 연결됩니다.
+Thank You for Smoking (2005)
 
-제17조(개인정보의 열람청구를 접수·처리하는 부서)
-정보주체는 ｢개인정보 보호법｣ 제35조에 따른 개인정보의 열람 청구를 아래의 부서에 할 수 있습니다.
-" Team-OG "은(는) 정보주체의 개인정보 열람청구가 신속하게 처리되도록 노력하겠습니다.
+The set of all Java developers is about 10x larger than the set of intermediate and advanced Java developers. That means small tweaks can expand the reach of your article by an order of magnitude.
 
-▶ 개인정보 열람청구 접수·처리 부서
-성명 :김호현
-연락처 :01044067875, 2022055@bssm.hs.kr
+Obviously, you can’t broaden every article, and you can’t keep broadening your audience forever. No matter how well you explain background concepts, your tax accountant will never read an article about memory leaks in Java. The point isn’t to write articles that appeal to every possible reader but to notice opportunities to reach a larger audience.
 
-제18조(정보주체의 권익침해에 대한 구제방법)
+Example: “How I Stole Your Siacoin”🔗
+One of my earliest successes in blogging was an article called “How I Stole Your Siacoin.” It was about a time I stole a reddit user’s cryptocurrency (for noble reasons, I promise).
 
+Initially, I thought the story would resonate with the few hundred people who followed a niche cryptocurrency called Siacoin. As I was editing the article, I realized that you didn’t have to know anything about Siacoin to understand my story. I revised it slightly so it would make sense to cryptocurrency enthusiasts who had never heard of Siacoin.
 
-정보주체는 개인정보침해로 인한 구제를 받기 위하여 개인정보분쟁조정위원회, 한국인터넷진흥원 개인정보침해신고센터 등에 분쟁해결이나 상담 등을 신청할 수 있습니다. 이 밖에 기타 개인정보침해의 신고, 상담에 대하여는 아래의 기관에 문의하시기 바랍니다.
+Then, I realized I could even explain this story to people who knew nothing about cryptocurrency. I adjusted the terminology to use regular-person terms like “wallet” and “passphrase” and avoided crypto-specific terms like “blockchain” or “Merkle tree.”
 
-1. 개인정보분쟁조정위원회 : (국번없이) 1833-6972 (www.kopico.go.kr)
-2. 개인정보침해신고센터 : (국번없이) 118 (privacy.kisa.or.kr)
-3. 대검찰청 : (국번없이) 1301 (www.spo.go.kr)
-4. 경찰청 : (국번없이) 182 (ecrm.cyber.go.kr)
+The article was my first ever hit. It became the most popular story of all time not only on the /r/siacoin subreddit but also on the larger /r/cryptocurrency subreddit. It reached the front page of Hacker News, even though readers there are generally hostile to cryptocurrency-focused stories.
 
-「개인정보보호법」제35조(개인정보의 열람), 제36조(개인정보의 정정·삭제), 제37조(개인정보의 처리정지 등)의 규정에 의한 요구에 대 하여 공공기관의 장이 행한 처분 또는 부작위로 인하여 권리 또는 이익의 침해를 받은 자는 행정심판법이 정하는 바에 따라 행정심판을 청구할 수 있습니다.
+Siacoin subcategories
 
-※ 행정심판에 대해 자세한 사항은 중앙행정심판위원회(www.simpan.go.kr) 홈페이지를 참고하시기 바랍니다.`,
+“How I Stole Your Siacoin” only needed a few tweaks to be enjoyable for people who didn’t know anything about cryptocurrency.
+
+Plan the route to your readers🔗
+Suppose you wrote the greatest beginner’s tutorial imaginable for the Python programming language. Both your five-year-old nephew and 80-year-old dentist blazed through it with ease and delight. Everyone who reads your tutorial goes on to become a Python core contributor.
+
+Bad news: nobody will ever read your Python tutorial.
+
+“Lies!” you shout. “Thousands of developers learn Python every year. Why wouldn’t my objectively awesome tutorial become popular?”
+
+Well, think it through. What happens after you hit publish? How does anyone find your article?
+
+You’re probably thinking: Google.
+
+Yes, your friend Google will index your tutorial and use its secret Google magic to identify your article’s superior quality. Before you know it, your tutorial will be the top result for python tutorial.
+
+Except that can’t happen because there are so many Python tutorials out there already on sites that Google prefers over yours. You’ll never even make it to the first page of results.
+
+
+It’s nearly impossible for a new blog post to rank well in Google for the search term python tutorial.
+
+Okay, so you’ll submit your Python tutorial to reddit. The /r/python subreddit has over 1.3 million subscribers. If even 5% of them read your article, that’s a huge audience:
+
+
+The /r/python subreddit has over 1.3 million subscribers.
+
+Whoops! /r/python only accepts text posts, not external links, so you can’t post your tutorial there.
+
+
+The /r/python subreddit disables the option to submit external links.
+
+Fine, then you’ll submit it to Hacker News. They accept anything and let their members decide what’s interesting. Surely, they’ll recognize the quality of your work!
+
+Nope, it will flop there, too. Hacker News doesn’t like tutorials, especially for mainstream technologies like Python.
+
+You can try sharing your tutorial by tweeting it, skeeting it, or tooting it, but unless you already have a massive following on social media, that won’t reach a critical mass either.
+
+So, what’s the answer? How do you get people to read your amazing Python tutorial?
+
+The answer is that you don’t write a beginner’s Python tutorial.
+
+You need a realistic path to your readers🔗
+If you want people to read your blog, choose topics that have a clear path to your readers. Before you begin writing, think through how readers will find your post.
+
+Questions to ask when considering an article topic
+
+Is it realistic for readers to find you via Google search?
+Are there already 500 articles about the same topic from more established websites?
+What keywords would your target reader search? Try searching those keywords, and see whether there are already relevant results from well-known domains.
+If you’re going to submit it to a link aggregator like Hacker News or Lobsters, how often do posts like yours succeed there?
+If you’re going to share it on a subreddit or niche forum, does it have any chance there?
+Does the forum accept links to blog posts?
+The bigger the community, the stricter the rules tend to be about external links and self-promotion.
+Do blog posts like yours ever succeed there?
+Is the community still active?
+The best plan is to give your post multiple chances to succeed. If you’re betting everything on Google bubbling your post to the top, it could take months or years for you to find out if you succeeded. If you’re relying on Hacker News or reddit to tell you whether your article is worth reading, they’re going to break your heart a lot.
+
+Example: “Using Zig to Unit Test a C Application”🔗
+In 2023, I wrote an article called “Using Zig to Unit Test a C Application.” It was about using a new low-level language called Zig to write tests for legacy C code.
+
+Before I wrote the article, I knew that there were several places where I could share it. By luck, they all worked out:
+
+Hacker News is extremely friendly to Zig content, so my article reached the #7 spot on the front page.
+Lobsters is extremely friendly to Zig content, so my article was one of the top links of the day.
+Google bubbled my article to the top result for the keywords zig unit testing c.
+It’s actually even a top result for just zig unit testing because there aren’t many articles about the topic.
+The /r/Zig subreddit accepts links to blog posts, even if they’re self-promotion, so my post reached the top spot in that subreddit.
+Ziggit is a niche forum that’s welcoming to Zig-related articles, so my post received 1,000 views from Ziggit.
+Show more pictures🔗
+The biggest bang-for-your-buck change you can make to a blog post is adding pictures.
+
+If your article features long stretches of text, think about whether there’s any photo, screenshot, graph, or diagram that could make the post more visually interesting.
+
+If you’re talking about a program with a graphical interface, show screenshots.
+If you’re talking about an improvement in metrics like app performance or active users, show graphs.
+If you’re writing about your server getting overloaded, show a screenshot of what that looked like in your dashboard or email alerts.
+If you’re explaining a difficult concept, draw a diagram.
+I hire illustrators for most of my posts (including this one). I typically pay $50-100 per illustration. For simple diagrams like the nested circle sketches above, I use Excalidraw, which is free and open-source.
+
+You can also use free stock photos and AI-generated images, as they’re better than nothing, but they’re worse than anything else, including terrible MS Paint drawings.
+
+
+Even a terrible MS Paint drawing is more interesting than an AI-generated image.
+
+Accommodate skimmers🔗
+Many readers skim an article first to decide if it’s worth reading. Dazzle those readers during the skim.
+
+If the reader only saw your headings and images, would it pique their interest?
+
+The worst thing for a skimmer to see is a wall of text: long paragraphs with no images or headings to break them up. Just text, text, text all the way down.
+
+Tool: Read like a skimmer🔗
+Here’s a JavaScript bookmarklet that you can use to see what your article looks like with just headings and images.
+
+Skimmify page
+Drag the link to your browser bookmark bar, and then click it to see what your article looks like to skimmers.
+
+Example: Boring structure vs. interesting structure🔗
+I wrote my article, “End-to-End Testing Web Apps: The Painless Way,” in 2019, before I thought about structure.
+
+If you skim the article, does it make you want to read the full version?
+
+Probably not. The headings don’t reveal much about the content, and the visuals are confusing.
+
+Consider my more recent article, “I Regret My $46k Website Redesign.”
+
+If you skim that article, you still see the bones of a good story, and there are interesting visual elements to draw the reader in.
+
+One of those articles barely attracted any readers, and the other became one of the most popular articles I ever published, attracting 150k unique readers in its first week. Can you guess which is which?
+`,
+    embeddedDepartment: `Next-Generation Adaptive Suspension
+Delivers up to 12″ of travel with dedicated drive modes for on-road and off-road surfaces. Adapts ride height and suspension tuning to match the driving surface and your driving style.
+Heated and Cooled Seats
+Enjoy ventilated front seats and heated seats in both the front and rear. You can adjust seat and cabin heating or cooling from your touchscreen or your Tesla app.
+Clean Cabin Air
+Breathe clean air with every climate setting. The HEPA filter can remove up to 99.97% of fine particulate matter and gaseous pollutants, as well as bacteria, viruses, pollen and mold spores.
+`,
+    schoolSong: `자이언츠 나승엽 쌔리라 안타 안타
+
+자이언츠 나승엽 오오오오오`,
+    privacyPolicy: `Custom Cabin Lighting
+Immerse yourself in an otherworldly experience with wrap-around ambient lighting—customizable in endless color options.`,
   };
 };
 

@@ -15,7 +15,7 @@ interface PageProps {
 export const generateMetadata = async ({ params: { classify } }: PageProps): Promise<Metadata> => {
   return generateOpenGraph({
     title: CLASSIFY[classify.toUpperCase()],
-    description: `교내의 ${CLASSIFY[classify]}들을 모아둔 페이지입니다.`,
+    description: `교내의 ${CLASSIFY[classify]}들을 모아둔 ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re입니다.`,
   });
 };
 

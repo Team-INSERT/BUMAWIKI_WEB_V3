@@ -24,7 +24,7 @@ const Popular = () => {
       onMouseLeave={handlePopularListMouseHover}
       className={styles.container[containerStatus]}
     >
-      <header className={styles.titleBox}>인기</header>
+      <header className={styles.titleBox}>-98ㅅ786ㄱe</header>
       <ul className={styles.docsList}>
         {popularList.slice(0, 10).map((popular, index) => (
           <Link

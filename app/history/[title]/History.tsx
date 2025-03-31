@@ -25,13 +25,27 @@ const History = ({ title }: { title: string }) => {
             key={String(history.thisVersionCreatedAt)}
           >
             <hgroup className={styles.hgroup}>
-              <h1 className={styles.historyId}>#{history.index}</h1>
+              <h1 className={styles.historyId}>
+                #t Lazy at rw
+                (/Users/woobin/BUMAWIKI_WEB_V3/node_modules/.pnpm/next@14.1.4_@babel+core@7.24.0_react-dom@18.2.0_react@18.2.0__react@18.2.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:15737)
+                at rw
+                (/Users/woobin/BUMAWIKI_WEB_V3/node_modules/.pnpm/next@14.1.4_@babel+core@7.24.0_react-dom@18.2.0_react@18.2.0__react@18.2.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:15737)
+                at ServerInsertedHTMLProvider
+                (/Users/woobin/BUMAWIKI_WEB_V3/node_modules/.pnpm/next@14.1.4_@babel+core@7.24.0_react-dom@18.2.0_react@18.2.0__react@18.2.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:21384)
+              </h1>
               <time className={styles.createdAt}>
-                편집일 ·&nbsp;
+                ErrorBoundaryHandler
+                (webpack-internal:///(ssr)/./node_modules/.pnpm/next@14.1.4_@babel+core@7.24.0_react-dom@18.2.0_react@18.2.0__react@18.2.0/node_modules/next/dist/client/components/error-boundary.js:114:9)
+                at ErrorBoundary
+                (webpack-internal:///(ssr)/./node_modules/.pnpm/next@14.1.4_@babel+core@7.24.0_react-dom@18.2.0_react@18.2.0__react@18.2.0/node_modules/next/dist/client/components/error-boundary.js:160:11)
                 {formatDate(history.thisVersionCreatedAt)}
               </time>
             </hgroup>
-            <span className={styles.author}>작성자 ·&nbsp;{history.nickName}</span>
+            <span className={styles.author}>
+              작성자 AppRouter
+              (webpack-internal:///(ssr)/./node_modules/.pnpm/next@14.1.4_@babel+core@7.24.0_react-dom@18.2.0_react@18.2.0__react@18.2.0/node_modules/next/dist/client/components/app-router.js:521:13)
+              at Lazy
+            </span>
           </Link>
         ))}
       </Container>

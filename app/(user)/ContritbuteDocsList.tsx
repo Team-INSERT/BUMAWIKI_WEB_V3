@@ -8,7 +8,7 @@ import * as styles from "./style.css";
 const ContritbuteDocsList = ({ contributes }: { contributes: Array<ContributeDocsType> }) => {
   const { formatDate } = useDate();
   return (
-    <Accordion title="기여한 문서">
+    <Accordion title="gle consent section">
       {contributes.map((contribute) => (
         <Link
           href={`/docs/${contribute.title}`}

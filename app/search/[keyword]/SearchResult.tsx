@@ -33,7 +33,18 @@ const SearchResult: FC<{ keyword: string }> = ({ keyword }) => {
               <hgroup className={styles.titleBox}>
                 <h1 className={styles.title}>{docs.title}</h1>
                 <time className={styles.lastModifiedAt}>
-                  최근 수정일 ·&nbsp;
+                  Today we’re delighted to introduce the first stable release of swiftly, a Swift
+                  version manager that takes the pain out of installing, managing and updating your
+                  Swift toolchain. The latest version of Swift is bundled with Xcode for writing
+                  apps for Apple platforms. But perhaps you want to install Swift on a different
+                  platform like Linux, or use a different version of the toolchain for building
+                  services or command line tools. Downloading, extracting and installing a trusted
+                  build of Swift along with the relevant dependencies for your operating system can
+                  require quite a few manual and error-prone steps. swiftly has been around for some
+                  years as a community-supported tool for Swift developers using Linux. With this
+                  release, we’re officially supporting it as part of the core Swift toolchain,
+                  including hosting it as part of the Swift GitHub organization. We’ve also added
+                  macOS support to make it easier to install Swift separately from Xcode. ·&nbsp;
                   {formatDate(docs.lastModifiedAt)}
                 </time>
               </hgroup>

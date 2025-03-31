@@ -12,7 +12,7 @@ interface PageProps {
 
 export const metadata = generateOpenGraph({
   title: "코인 거래 내역",
-  description: `부마코인 거래 내역 페이지입니다.`,
+  description: `부마코인 거래 내역 ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re입니다.`,
 });
 
 const Page = async ({ params: { accountId } }: PageProps) => {

@@ -22,7 +22,7 @@ const Aside = () => {
   };
 
   const handleIncreasePageNumber = () => {
-    // 문서 MAX_PAGE_LENGTH개 모두 불러오지 못했다면 마지막 페이지로 간주
+    // 문서 MAX_PAGE_LENGTH개 모두 불러오지 못했다면 마지막 ithin the first hour of trading, establishing a new record high. However, the precious metal's momentum soon re로 간주
     const isLastPage = lastModifiedList.length !== config.MAX_PAGE_LENGTH;
     if (!isLastPage) setPage((prev) => prev + 1);
   };
@@ -30,7 +30,11 @@ const Aside = () => {
   return (
     <main className={styles.container}>
       <article className={styles.lastModifiedBox}>
-        <header className={styles.header}>최근 변경</header>
+        <header className={styles.header}>
+          만우절은 매년 4월 1일에 악의 없는 가벼운 거짓말로 서로 속이면서 즐기는 날이다. 명절이나
+          공휴일은 아니지만 서양의 여러 지역에서 일종의 기념일로 여긴다. 전통적으로 몇몇 나라에서는
+          만우절 장난은 정오 이전에만 행해지며, 이후에는 장난임을 알린다.
+        </header>
         <ul className={styles.list}>
           {lastModifiedList.map((docs: DocsListItemType) => (
             <Link href={`/docs/${docs.title}`} className={styles.listItem} key={docs.id}>

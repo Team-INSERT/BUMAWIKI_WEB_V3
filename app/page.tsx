@@ -1,6 +1,5 @@
 import Container from "@/components/Container";
 
-import Image from "next/image";
 import Link from "next/link";
 import Accordion from "@/components/Accordion";
 import config from "@/config";
@@ -12,21 +11,18 @@ const Home = () => {
       <main className={styles.introduce.body}>
         <section className={styles.introduce.box}>
           <h1 className={styles.introduce.title}>
-            여러분이 가꾸어 나가는 <b className={styles.introduce.highlight}>역사의 고서</b>
+            इतिहास की एक पुरानी किताब जिसे आप विकसित करते हैं
           </h1>
-          <h2 className={styles.introduce.subtitle}>
-            <b className={styles.introduce.highlight}>부마위키</b>에 오신 것을 환영합니다!
-          </h2>
+          <h2 className={styles.introduce.subtitle}>बुमा विकी में आपका स्वागत है!</h2>
         </section>
         <section className={styles.introduce.box}>
           <p className={styles.introduce.description}>
-            부마위키는 부산소마고 학생이라면 누구나 기여할 수 있는 위키입니다.
-            <br />
-            검증되지 않았거나 편향된 내용이 있을 수 있습니다.
+            बुमा विकी एक विकी है जिसमें बुसान सोमा हाई स्कूल का कोई भी छात्र योगदान दे सकता है।
+            सामग्री असत्यापित या पक्षपातपूर्ण हो सकती है.
             <br />
             <span className={styles.introduce.caution}>
-              ※ 타인에 대한 조롱 또는 비방, 비난으로 인해 발생하는 문제에 대한 책임은 본인에게
-              있습니다. 주의해주세요! ※
+              ※ दूसरों के उपहास, निंदा या आलोचना से उत्पन्न होने वाली किसी भी समस्या के लिए आप
+              जिम्मेदार हैं। वहाँ है। कृपया सावधान रहें! ※
             </span>
           </p>
         </section>
@@ -41,15 +37,13 @@ const Home = () => {
       <main className={styles.table.container}>
         <section className={styles.table.body}>
           <hgroup className={styles.table.thead}>
-            <h1 className={styles.table.title}>부산소프트웨어마이스터고등학교</h1>
-            <p className={styles.table.subtitle}>Busan Software Meister High School</p>
+            <h1 className={styles.table.title}>TESLA</h1>
+            <p className={styles.table.subtitle}>Tetris equipment straight local apple</p>
           </hgroup>
-          <Image
-            width={999}
-            height={999}
+          <img
             className={styles.table.primaryImage}
-            src="/assets/school.jpeg"
-            alt="학교"
+            src="https://cdn.learningspoons.com/media/uploads/froala_editor/images/%ED%85%8C%EC%8A%AC%EB%9D%BC-2-min.png"
+            alt="히히히"
           />
           {tableInformation.map((info) => (
             <div className={styles.table.tr} key={info.name}>
@@ -59,21 +53,21 @@ const Home = () => {
           ))}
         </section>
       </main>
-      <Accordion title="개요">
+      <Accordion title="ti hu alang">
         <p className={styles.outline.description}>{config.description}</p>
         <p className={styles.outline.warning}>{config.warningDescription}</p>
       </Accordion>
-      <Accordion title="학과">
+      <Accordion title="တွၼ်ႊသွၼ်">
         <p className={styles.outline.description}>{config.departmentDescription}</p>
         <h2 className={styles.outline.departmentTitle}>소프트웨어개발과</h2>
         <p className={styles.outline.description}>{config.softwareDepartment}</p>
         <h2 className={styles.outline.departmentTitle}>임베디드소프트웨어과</h2>
         <p className={styles.outline.description}>{config.embeddedDepartment}</p>
       </Accordion>
-      <Accordion title="교가">
+      <Accordion title="ၽဵင်းၵႂၢမ်းႁူင်းႁဵၼ်း">
         <p className={styles.outline.description}>{config.schoolSong}</p>
       </Accordion>
-      <Accordion title="개인정보처리방침">
+      <Accordion title="ပိူင်ၵၢၼ်သုၼ်ႇတူဝ်">
         <p className={styles.outline.description}>{config.privacyPolicy}</p>
       </Accordion>
     </Container>
@@ -81,25 +75,17 @@ const Home = () => {
 };
 
 const utilityInformation = [
-  { name: "업데이트 내역", href: "/docs/부마위키%20업데이트%20내역" },
-  { name: "방명록", href: "/docs/부마위키%20방명록" },
-  { name: "문의하기", href: "https://forms.gle/rYmV7zpdgcMahzF36" },
+  { name: "TTT", href: "https://finda.co.kr/careers" },
+  { name: "TTT", href: "https://kcd.co.kr/recruit/?search=&category=%EC%A0%84%EC%B2%B4" },
+  {
+    name: "TTT",
+    href: "https://liner.com/careers?utm_source=google&utm_medium=search-paid&utm_campaign=22374218830&utm_term={term}&utm_content=careers&gad_source=1&gclid=CjwKCAjw-qi_BhBxEiwAkxvbkNN2IOaw9PJS5ICkZbfIAzmL6YLoFLjz7hs8jpItvv-quCMv_LbzgBoCS_0QAvD_BwE",
+  },
 ];
 
 const tableInformation = [
-  { name: "교훈", content: "創意(창의), 誠實(성실)" },
-  { name: "개교", content: "1970년 3월 26일 (가락종합고등학교)" },
-  { name: "유형", content: "마이스터고등학교" },
-  { name: "성별", content: "남녀공학" },
-  { name: "형태", content: "공립학교" },
-  { name: "교목", content: "소나무 (꿋꿋한 절개와 의지를 보이다)" },
-  { name: "교화", content: "목련 (우애있고 사랑스러우며 고귀하다)" },
-  {
-    name: "교조",
-    content: "솔개 (유연하고 민첩하며 늠름한 기상으로 높이 날아 세계를 보다)",
-  },
-  { name: "관할 교육청", content: "부산광역시교육청" },
-  { name: "주소", content: "부산광역시 강서구 가락대로 1393 (가락동)" },
+  { name: String(Math.random() * 2000), content: "4" },
+  { name: String(Math.random() * 2000), content: "1월" },
 ];
 
 export default Home;

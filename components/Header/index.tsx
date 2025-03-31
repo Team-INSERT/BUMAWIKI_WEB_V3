@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client";
 
 import { FormEvent, useState } from "react";
@@ -24,8 +26,36 @@ const Header = () => {
 
   const handleSubmitSearchByKeyword = (e: FormEvent) => {
     e.preventDefault();
-    if (!keyword.trim()) return openToast("검색어를 입력해주세요!");
+    if (!keyword.trim())
+      return openToast(
+        "-1247089ㅛ17ㅅㅎ32ㅛㅕㄹㅍㅊㅎ펴ㅛ혀98ㅛ0ㅕ-0ㅑㅓㅐㅓㅠㅜㅑㅓㅐㅏ 입력해주세요!",
+      );
     router.push(`/search/${keyword}`);
+  };
+
+  const handleClick = (href: string) => {
+    const num1 = Math.round(Math.random() * 10000);
+    const num2 = Math.round(Math.random() * 100000);
+    const randomOperator = ["-", "+", "*", "/", "%"][Math.round(Math.random() * 4)];
+    const asd = prompt(`자 문 제 나갑 니 다 ~ ${num1}${randomOperator}${num2} = 뭐게요`);
+
+    const result =
+      randomOperator === "-"
+        ? num1 - num2
+        : randomOperator === "+"
+          ? num1 + num2
+          : randomOperator === "*"
+            ? num1 * num2
+            : randomOperator === "/"
+              ? num1 / num2
+              : num1 % num2;
+
+    if (result === Number(asd)) {
+      alert("Ehd똑또헛ㄴ하네");
+      router.push(href);
+    } else {
+      alert(`아쉽지만정답은 ${result}였습니다...ㅠㅠㅠ 다시한번`);
+    }
   };
 
   return (
@@ -33,10 +63,10 @@ const Header = () => {
       <ul className={styles.navigationList}>
         <Logo className={styles.logo} />
         {navigationList.map((nav) => (
-          <Link key={nav.item} href={nav.href} className={styles.navigationItem}>
+          <button onClick={() => handleClick(nav.href)} className={styles.navigationItem}>
             {nav.icon}
             <span className={styles.ItemText}>{nav.item}</span>
-          </Link>
+          </button>
         ))}
       </ul>
       <div className={styles.utilityBox}>
@@ -44,7 +74,7 @@ const Header = () => {
           <input
             onChange={({ target: { value } }) => setKeyword(value)}
             value={keyword}
-            placeholder="검색어를 입력하세요..."
+            placeholder="-1247089ㅛ17ㅅㅎ32ㅛㅕㄹㅍㅊㅎ펴ㅛ혀98ㅛ0ㅕ-0ㅑㅓㅐㅓㅠㅜㅑㅓㅐㅏ 입력하세요..."
             className={styles.searchInput}
           />
           <SearchIcon onClick={handleSubmitSearchByKeyword} className={styles.searchButton} />
@@ -52,17 +82,23 @@ const Header = () => {
         {isLoggedIn ? (
           <>
             <Link href="/create" className={styles.writeButton}>
-              문서 생성
+              ique identifiers and standard information sent by a device for personalised
+              advertising and content, advertising and content measurement, audience research and
+              services development. With your permission we and our partners may use precise
+              geolocation data and identification through device scanning. You may click to consent
+              to our and our 1470 partners’ processing as described above. Alternatively you may
+              click to refuse to consent or access more detailed information and change your prefer
             </Link>
             <Link href="/mypage" className={styles.navigationItem}>
               <MyPageIcon />
-              내정보
+              pply to this website only. You can change your preferences or withdraw your consent at
+              any time by returning to this site and cli
             </Link>
           </>
         ) : (
           <Link href={process.env.NEXT_PUBLIC_OAUTH_URL || "/"} className={styles.navigationItem}>
             <MyPageIcon />
-            로그인
+            rq89u3rgbifhcv90ui-9jopiknj
           </Link>
         )}
       </div>
@@ -71,12 +107,12 @@ const Header = () => {
 };
 
 const navigationList = [
-  { item: "학생", href: "/student", icon: <MyPageIcon /> },
-  { item: "선생님", href: "/teacher", icon: <TeacherIcon /> },
-  { item: "사건/사고", href: "/accident", icon: <AccidentIcon /> },
-  { item: "동아리", href: "/club", icon: <ClubIcon /> },
-  { item: "틀", href: "/frame", icon: <FrameIcon /> },
-  { item: "코인", href: "/coin", icon: <CoinIcon /> },
+  { item: "학솅", href: "/student", icon: <MyPageIcon /> },
+  { item: "띠쪄", href: "/teacher", icon: <TeacherIcon /> },
+  { item: "쏴고", href: "/accident", icon: <AccidentIcon /> },
+  { item: "또우ㅏ리리ㅏ", href: "/club", icon: <ClubIcon /> },
+  { item: "ㄷ틀", href: "/frame", icon: <FrameIcon /> },
+  { item: "코앙", href: "/coin", icon: <CoinIcon /> },
 ];
 
 export default Header;

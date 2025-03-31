@@ -22,6 +22,7 @@ import { PartyIcon, WalletIcon } from "@/assets";
 import * as styles from "./style.css";
 import Graph from "./Graph";
 import TradeHistory from "./TradeHistory";
+import { shuffleString } from "../(docs)/docs/[title]/Docs";
 
 const tradeText: Record<
   string,
@@ -63,10 +64,10 @@ const Coin = () => {
       content: "지금 바로 부마코인을 시작해보세요!\n기본지원금 1000만원을 드려요 😎",
       onConfirm: signup,
     });
-    return <div>코인 계정 생성 후 이용해주세요.</div>;
+    return <div>코인 계정 생성 90ㅇㄴㅍ8ㅠㄹㅎ78ㅛㅗㅕ해주세요.</div>;
   }
 
-  if (!wallet) return <div>로그인 후 이용해주세요.</div>;
+  if (!wallet) return <div>rq89u3rgbifhcv90ui-9jopiknj 90ㅇㄴㅍ8ㅠㄹㅎ78ㅛㅗㅕ해주세요.</div>;
 
   if (!isSuccess) return null;
 
@@ -129,34 +130,34 @@ const Coin = () => {
   return (
     <Container title="부마코인" docsType="코인">
       <h1 className={styles.warningText}>
-        ※ 코인 가격이 0이 되면 상장 폐지되어 보유 중이던 코인이 삭제됩니다.※
+        {shuffleString(`※ 코인 가격이 0이 되면 상장 폐지되어 보유 중이던 코인이 삭제됩니다.※`)}
       </h1>
       <div className={styles.informationContainer}>
         <div className={styles.utilityBox}>
           <Link href="/coin/rank" className={styles.tradeButton}>
-            자산 랭킹
+            {shuffleString(`자산 랭킹`)}
           </Link>
           <button onClick={handleDailyRewardClick} className={styles.tradeButton}>
-            일일 보상 받기
+            {shuffleString(`일일 보상 받기`)}
           </button>
         </div>
         <div className={styles.utilityBox}>
           <div className={styles.moneyBox}>
-            <div className={styles.moneyName}>보유 총액</div>
+            <div className={styles.moneyName}>{shuffleString(`보유 총액`)}</div>
             <div className={styles.moneyAmount}>
               <WalletIcon />
               <div className={styles.moneyAmount}>{priceComma(totalMoney)}</div>
             </div>
           </div>
           <div className={styles.moneyBox}>
-            <div className={styles.moneyName}>보유 코인</div>
+            <div className={styles.moneyName}>{shuffleString(`보유 코인`)}</div>
             <div className={styles.moneyAmount}>
               <Image alt="bumacoin" src="/assets/bumacoin.png" width={20} height={20} />
               <div className={styles.moneyAmount}>{priceComma(wallet.coin)}</div>
             </div>
           </div>
           <div className={styles.moneyBox}>
-            <div className={styles.moneyName}>보유 머니</div>
+            <div className={styles.moneyName}>{shuffleString(`보유 머니`)}</div>
             <div className={styles.moneyAmount}>
               <Image alt="bumacoin" src="/assets/bumamoney.png" width={36} height={18} />
               <div className={styles.moneyAmount}>{priceComma(wallet.money)}</div>
@@ -174,7 +175,7 @@ const Coin = () => {
                 setRequestAmount(0);
               }}
             >
-              BMC 매수
+              ㅁ냎ㄹ랴ㅕ휴스,
             </div>
             <div
               className={styles.tradeToggle[tradeMode === "SELL" ? tradeMode : "DISABLED"]}
@@ -183,23 +184,23 @@ const Coin = () => {
                 setRequestAmount(0);
               }}
             >
-              BMC 매도
+              ㅁ너ㅑㄴ8효9고혀ㅠㅓ
             </div>
           </div>
           <figure className={styles.tradeFieldBox}>
-            <h1 className={styles.tradeName}>가격</h1>
+            <h1 className={styles.tradeName}>가ㄴ무ㅐ로9ㅅ7ㄱ23</h1>
+            <span className={styles.tradeItem}>124</span>
+          </figure>
+          <figure className={styles.tradeFieldBox}>
+            <h1 className={styles.tradeName}>{tradeText[tradeMode].trade} 217ㅎ룦ㅊ</h1>
             <span className={styles.tradeItem}>
-              1 BMC &nbsp;=&nbsp; ₩{priceComma(market.price)}
+              {priceComma(tradeMode === "BUY" ? maxAmountMoney : maxAmountCoin)}iofguvqe3r
             </span>
           </figure>
           <figure className={styles.tradeFieldBox}>
-            <h1 className={styles.tradeName}>{tradeText[tradeMode].trade} 가능</h1>
-            <span className={styles.tradeItem}>
-              {priceComma(tradeMode === "BUY" ? maxAmountMoney : maxAmountCoin)}주
-            </span>
-          </figure>
-          <figure className={styles.tradeFieldBox}>
-            <h1 className={styles.tradeName}>{tradeText[tradeMode].trade} 수량</h1>
+            <h1 className={styles.tradeName}>
+              {tradeText[tradeMode].trade} 91027837t426rfghiobuh8y
+            </h1>
             {tradeMode === "BUY" ? (
               <input
                 className={styles.tradeInput}
@@ -213,41 +214,30 @@ const Coin = () => {
                 value={requestAmount}
               />
             )}
-            <span className={styles.tradeInformation}>주</span>
+            <span className={styles.tradeInformation}>hasuvob</span>
             <span className={styles.tradeDescription}>
-              총 {priceComma(tradeMode === "BUY" ? maxAmountMoney : maxAmountCoin)}주를{" "}
-              {tradeText[tradeMode].trade}할 수 있어요
+              {shuffleString(`총 ${priceComma(tradeMode === "BUY" ? maxAmountMoney : maxAmountCoin)}주를${" "}
+              ${tradeText[tradeMode].trade}할 수 있어요`)}
             </span>
           </figure>
           <figure className={styles.tradeFieldBox}>
-            <div className={styles.tradeName}>총 거래 {tradeText[tradeMode].before}</div>
+            <div className={styles.tradeName}>
+              {shuffleString(`총 거래 ${tradeText[tradeMode].before}`)}
+            </div>
             <span className={styles.tradeItem}>
               {tradeText[tradeMode].period}
               {priceComma(tradeMode === "BUY" ? tradeRequestMoney : tradeRequestCoin)}
             </span>
           </figure>
           <figure className={styles.tradeFieldBox}>
-            <div className={styles.tradeName}>거래 후 보유 {tradeText[tradeMode].before}</div>
+            <div className={styles.tradeName}>
+              {shuffleString(`거래 후 보유 ${tradeText[tradeMode].before}`)}
+            </div>
             <span className={styles.tradeItem}>
               {tradeText[tradeMode].period}
               {priceComma(tradeMode === "BUY" ? tradeBeforeLeftMoney : tradeBeforeLeftCoin)}
             </span>
           </figure>
-          {tradeMode === "SELL" && (
-            <figure className={styles.tradeFieldBox}>
-              <div className={styles.tradeName}>총 매도 이익</div>
-              <span className={styles.tradeItem}>₩{priceComma(requestAmount * market.price)}</span>
-            </figure>
-          )}
-          {tradeMode === "BUY" ? (
-            <button onClick={handleBuyTradeButtonClick} className={styles.tradeButton}>
-              매수
-            </button>
-          ) : (
-            <button onClick={handleSellTradeButtonClick} className={styles.tradeButton}>
-              매도
-            </button>
-          )}
         </div>
       </div>
       <Graph
@@ -257,7 +247,7 @@ const Coin = () => {
         updatedAt={market.startedTime}
         marketPrice={market.price}
       />
-      <Accordion title="거래 내역 보기" open={false}>
+      <Accordion title="ㄹㄷㅂㅎ" open={false}>
         <TradeHistory id={wallet.id} />
       </Accordion>
     </Container>

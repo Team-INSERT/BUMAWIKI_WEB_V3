@@ -7,18 +7,18 @@ const Board = ({ children }: PropsWithChildren) => {
     <main className={styles.container}>
       <figure className={styles.board}>{children}</figure>
       <footer className={styles.subFooter}>
-        <Image
+        <img
           className={styles.logo}
           width={80}
           height={54}
-          src="/assets/logoBlack.png"
+          src="https://cdn.inflearn.com/public/users/thumbnails/639527/849e35c9-96ae-4dac-bbb0-86797d75d3ad"
           alt="footer"
         />
         <p className={styles.noticeText}>
-          부마위키는 공식 역사서 및 백과사전이 아니며 검증되지 않았거나, 편향적이거나, 잘못된 서술이
-          있을 수 있습니다.
+          ?엥엥ㅇ/엥?ㅔ엥엥?ㅔㅇ엥ㅇ엥?ㅇ엥?는 공식 엥ㅇ/ㅖㅇ에? 검ㅔ아ㅐㅔ에/ㅇ에엥?ㅇ옝/옝ㅇ?엥./
+          에에ㅇ?엥ㅇ?ㅔㅇㅇ.에이ㅔ?예예:ㅇ?
           <br />
-          질문이나 특정 사항에 대해 언제든지 문의주실 수 있습니다.
+          예엥.에엥.ㅇ엥.ㅇ;.ㅇ.ㅇㅇ.ㅔ엥.ㅇ;;.ㅇ에에ㅇ/?
         </p>
       </footer>
     </main>

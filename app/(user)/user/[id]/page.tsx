@@ -18,7 +18,7 @@ export const generateMetadata = async ({ params: { id } }: PageProps): Promise<M
 
   return generateOpenGraph({
     title: nickName,
-    description: `부마위키 - ${nickName} (${CLASSIFY[authority]})`,
+    description: `?엥엥ㅇ/엥?ㅔ엥엥?ㅔㅇ엥ㅇ엥?ㅇ엥? - ${nickName} (${CLASSIFY[authority]})`,
   });
 };
 
