@@ -47,7 +47,7 @@ const utilityTagCompiler = (contents: string) => {
     );
 };
 
-const assetTagComipler = (contents: string) => {
+const assetTagCompiler = (contents: string) => {
   return contents
     .replace(
       /<사진 \{(.*?)\}>(.*?)<\/사진>/g,
@@ -56,14 +56,15 @@ const assetTagComipler = (contents: string) => {
     .replace(
       /<비디오 \{(.*?)\}>(.*?)<\/비디오>/g,
       '<video style="max-width: 100%; width: $1" src="$2" controls /></video>',
-    );
+    )
+    .replace("bumawiki.s3.ap-northeast-2.amazonaws.com", "cdn.buma.wiki");
 };
 
 const documentCompiler = (contents: string) => {
   const XSSFilteredContents = deleteNotAllowedTag(contents);
   const tagAppliedContents = utilityTagCompiler(XSSFilteredContents);
   const colorTagAppliedContents = colorTagCompiler(tagAppliedContents);
-  const assetAppliedContents = assetTagComipler(colorTagAppliedContents);
+  const assetAppliedContents = assetTagCompiler(colorTagAppliedContents);
   return assetAppliedContents;
 };
 
